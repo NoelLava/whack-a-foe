@@ -12,6 +12,7 @@ public class Dummy {
 	private int life;
 	
 	public Dummy(int life, float x, float y, int width, int height) {
+		System.out.println("try");
 		this.life = life;
 		this.width = width;
 		this.height = height;
