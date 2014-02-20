@@ -1,19 +1,19 @@
 package com.bulalo.GameWorld;
 
-import com.badlogic.gdx.math.Rectangle;
+import com.bulalo.GameObjects.Dummy;
 
 public class GameWorld {
-	private Rectangle rect = new Rectangle(37, 96, 17, 25);
+	private Dummy dummy;
+	
+	public GameWorld(){
+		dummy = new Dummy(100, 115, 285, 60, 85);
+	}
 
 	public void update(float delta){
-		System.out.println("GameWorld - update");
-		rect.y-=5;
-		if(rect.y == 71){
-			rect.y = 96;
-		}
+		dummy.update(delta);
 	}
 	
-	public Rectangle getRect(){
-		return rect;
+	public Dummy getDummy(){
+		return dummy;		
 	}
 }

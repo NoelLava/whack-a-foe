@@ -2,25 +2,32 @@ package com.bulalo.Sreens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.graphics.GL10;
 import com.bulalo.GameWorld.GameRenderer;
 import com.bulalo.GameWorld.GameWorld;
+import com.bulalo.WaFHelpers.InputHandler;
 
 public class GameScreen implements Screen{
 	private GameWorld world;
 	private GameRenderer renderer;
+	private float runTime = 0;
 	
 	public GameScreen(){
-		System.out.println("GameScreen Attached");
+		float screenWidth = Gdx.graphics.getWidth();
+		float screenHeight = Gdx.graphics.getHeight();
+		float gameWidth = 136;
+		float gameHeight = screenHeight / (screenWidth / gameWidth);
 		
 		world = new GameWorld();
-		renderer = new GameRenderer(world);
+		renderer = new GameRenderer(world ,(int) gameHeight);
+		
+		Gdx.input.setInputProcessor(new InputHandler(world.getDummy()));
 	}
 	
 	@Override
 	public void render(float delta) {
+		runTime += delta;
 		world.update(delta); // GameWorld updates 
-		renderer.render(); // GameRenderer renders
+		renderer.render(runTime); // GameRenderer renders
 	}
 
 	@Override
