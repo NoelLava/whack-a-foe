@@ -8,8 +8,8 @@ public class Main {
 		LwjglApplicationConfiguration cfg = new LwjglApplicationConfiguration();
 		cfg.title = "Whack-A-Foe";
 		cfg.useGL20 = false;
-		cfg.width = 272;
-		cfg.height = 434;
+		cfg.width = 320;
+		cfg.height = 512;
 		
 		new LwjglApplication(new WaFGame(), cfg);
 	}
