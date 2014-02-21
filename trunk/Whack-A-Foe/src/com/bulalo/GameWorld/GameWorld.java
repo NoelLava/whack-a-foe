@@ -7,7 +7,7 @@ public class GameWorld {
 	private Dummy dummy;
 	
 	public GameWorld(){
-		dummy = new Dummy(500, 80, 95, 20, 30);
+		dummy = new Dummy(500, 65, 110, 33, 48);
 		
 	}
 	

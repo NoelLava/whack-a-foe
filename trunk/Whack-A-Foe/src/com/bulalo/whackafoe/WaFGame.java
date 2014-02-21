@@ -11,7 +11,6 @@ public class WaFGame extends Game {
 		System.out.println("Game created");
 		AssetsLoader.load();
 		setScreen(new GameScreen());
-		
 	}
 	
 	@Override
