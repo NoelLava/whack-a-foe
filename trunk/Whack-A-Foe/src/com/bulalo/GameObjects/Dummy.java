@@ -29,10 +29,11 @@ public class Dummy {
 		}
 		
 		position.add(velocity.cpy().scl(delta));
+		System.out.println(position);
 	}
 	
 	public void onClick(){
-		velocity.y = 95;
+		position.y = 95;
 		System.out.println("clicked");
 	}
     public float getX() {

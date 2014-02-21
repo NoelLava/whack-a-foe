@@ -1,25 +1,32 @@
 //This class is the very screen of the game which displays the game when play button is pressed
 package com.bulalo.Screens;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.bulalo.GameWorld.GameRenderer;
 import com.bulalo.GameWorld.GameWorld;
+import com.bulalo.Helpers.InputHandler;
 
 public class GameScreen implements Screen{
 	GameWorld world;
 	GameRenderer renderer;
+	
+	private float runTime = 0;
 	
 	public GameScreen(){
 		System.out.println("Game Screen Attached");
 		
 		world = new GameWorld();		//initialize the gameWorld
 		renderer = new GameRenderer(world);  //initialize the gameRenderer
+		
+		Gdx.input.setInputProcessor(new InputHandler(world.getDummy()));
 	}
 	
 	@Override
 	public void render(float delta) {
+		runTime += delta;
 		world.update(delta);
-		renderer.render();
+		renderer.render(runTime);
 	}
 
 	@Override

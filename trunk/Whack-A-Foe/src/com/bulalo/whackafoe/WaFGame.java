@@ -2,13 +2,14 @@ package com.bulalo.whackafoe;
 
 import com.badlogic.gdx.Game;
 import com.bulalo.Screens.GameScreen;
+import com.bulalo.Helpers.AssetsLoader;
 
 public class WaFGame extends Game {
 
 	@Override
 	public void create() {
 		System.out.println("Game created");
-		//AssetLoader.load();
+		AssetsLoader.load();
 		setScreen(new GameScreen());
 		
 	}
@@ -16,7 +17,7 @@ public class WaFGame extends Game {
 	@Override
 	public void dispose(){
 		super.dispose();
-		//AssetLoader.dispose();
+		AssetsLoader.dispose();
 	}
 	
 }
