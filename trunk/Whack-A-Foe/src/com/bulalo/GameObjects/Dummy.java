@@ -36,7 +36,7 @@ public class Dummy {
 	
 	public void onClick(){
 		position.y = 95;
-		System.out.println("clicked");
+		System.out.println("Bakla si Allen");
 	}
 	
 	public void spawn(float x, float y){
