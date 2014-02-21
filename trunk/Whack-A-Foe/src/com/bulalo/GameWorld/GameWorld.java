@@ -1,10 +1,22 @@
 //This Class is the one responsible for updating the game objects to the game screen. This class will be later on called in the gameScreen class 
 package com.bulalo.GameWorld;
 
+import com.bulalo.GameObjects.Dummy;
+
 public class GameWorld {
+	private Dummy dummy;
 	
-	public void update(float delta){
-		System.out.println("GameWorld - update");
+	public GameWorld(){
+		dummy = new Dummy(1000, 80, 95, 20, 30);
+		
+	}
+	
+	public void update(float delta){	
+		dummy.update(delta);
+	}
+	
+	public Dummy getDummy(){
+		return dummy;
 	}
 	
 }

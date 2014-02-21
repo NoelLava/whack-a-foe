@@ -13,7 +13,7 @@ public class GameScreen implements Screen{
 		System.out.println("Game Screen Attached");
 		
 		world = new GameWorld();		//initialize the gameWorld
-		renderer = new GameRenderer();  //initialize the gameRenderer
+		renderer = new GameRenderer(world);  //initialize the gameRenderer
 	}
 	
 	@Override
