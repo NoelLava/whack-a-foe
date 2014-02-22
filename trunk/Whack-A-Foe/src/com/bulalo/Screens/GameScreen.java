@@ -6,12 +6,18 @@ import com.badlogic.gdx.Screen;
 import com.bulalo.GameWorld.GameRenderer;
 import com.bulalo.GameWorld.GameWorld;
 import com.bulalo.Helpers.InputHandler;
+import com.bulalo.whackafoe.WaFGame;
 
 public class GameScreen implements Screen{
 	GameWorld world;
 	GameRenderer renderer;
+	WaFGame game;
 	
 	private float runTime = 0;
+	
+	public GameScreen(WaFGame game){
+		this.game = game;
+	}
 	
 	public GameScreen(){
 		System.out.println("Game Screen Attached");

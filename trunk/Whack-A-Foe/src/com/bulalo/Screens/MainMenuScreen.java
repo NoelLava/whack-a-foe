@@ -4,10 +4,11 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.bulalo.GameWorld.MenuRenderer;
 import com.bulalo.GameWorld.MenuWorld;
-import com.bulalo.Helpers.InputHandler;
+import com.bulalo.whackafoe.WaFGame;
 
 public class MainMenuScreen implements Screen{
 
+	WaFGame game;
 	MenuWorld menu;
 	MenuRenderer render;
 	private float runTime = 0;
@@ -22,10 +23,15 @@ public class MainMenuScreen implements Screen{
 		
 	}
 	
+	public MainMenuScreen(WaFGame game){
+        this.game = game;
+}
+	
 	@Override
 	public void render(float delta) {
-		runTime += delta;
-		menu.update(delta);
+		if (Gdx.input.justTouched()) // use your own criterion here
+            game.setScreen(game.gameScreen);//runTime += delta;
+		//menu.update(delta);
 		render.render(runTime);
 	}
 

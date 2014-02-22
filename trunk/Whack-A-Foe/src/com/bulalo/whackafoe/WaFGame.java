@@ -7,11 +7,16 @@ import com.bulalo.Helpers.AssetLoader;
 
 public class WaFGame extends Game {
 
+	MainMenuScreen mainMenu;
+	public GameScreen gameScreen;
+	
 	@Override
 	public void create() {
 		System.out.println("Game created");
+		mainMenu = new MainMenuScreen(this);
+		gameScreen = new GameScreen(this);
 		AssetLoader.load();
-		setScreen(new MainMenuScreen());
+		setScreen(new GameScreen());
 	}
 	
 	@Override

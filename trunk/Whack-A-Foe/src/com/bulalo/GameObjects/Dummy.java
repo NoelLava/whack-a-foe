@@ -36,7 +36,9 @@ public class Dummy {
 		System.out.println(position);
 	}
 	
-	public void onClick(){
+	public void onClick(float x, float y){
+		x = myDummy.getX();
+		y = myDummy.getY();
 		position.y = 95;
 		System.out.println("clicked");
 	}

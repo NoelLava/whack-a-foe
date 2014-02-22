@@ -12,7 +12,7 @@ public class InputHandler implements InputProcessor {
 
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-        myDummy.onClick();
+        myDummy.onClick(screenX,screenY);
     	return false;
     }
 
