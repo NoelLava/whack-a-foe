@@ -16,7 +16,7 @@ public class GameScreen implements Screen{
 	public GameScreen(){
 		System.out.println("Game Screen Attached");
 		
-		world = new GameWorld();		//initialize the gameWorld
+		world = new GameWorld();			//initialize the gameWorld
 		renderer = new GameRenderer(world);  //initialize the gameRenderer
 		
 		Gdx.input.setInputProcessor(new InputHandler(world.getDummy()));
