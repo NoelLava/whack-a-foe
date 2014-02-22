@@ -54,7 +54,7 @@ public class GameRenderer {
         // This is good for performance when drawing images that do not require
         // transparency.
         batcher.disableBlending();
-        batcher.draw(AssetsLoader.bg, 0, 0, 160, 256);
+        batcher.draw(AssetsLoader.table, 0, 0, 160, 256);
 
         // The bird needs transparency, so we enable that again.
         batcher.enableBlending();
