@@ -2,6 +2,7 @@ package com.bulalo.whackafoe;
 
 import com.badlogic.gdx.Game;
 import com.bulalo.Screens.GameScreen;
+import com.bulalo.Screens.MainMenuScreen;
 import com.bulalo.Helpers.AssetLoader;
 
 public class WaFGame extends Game {
@@ -10,7 +11,7 @@ public class WaFGame extends Game {
 	public void create() {
 		System.out.println("Game created");
 		AssetLoader.load();
-		setScreen(new GameScreen());
+		setScreen(new MainMenuScreen());
 	}
 	
 	@Override
