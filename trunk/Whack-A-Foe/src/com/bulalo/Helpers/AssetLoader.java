@@ -30,22 +30,22 @@ public class AssetLoader {
 		titleBg = new TextureRegion(tSTexture, 0, 0, 320, 512);
 		titleBg.flip(false, true);
 		
-		redButton = new TextureRegion(tSTexture, 320, 0, 65, 65);
+		redButton = new TextureRegion(tSTexture, 325, 0, 65, 65);
 		redButton.flip(false, true);
 		
-		redPressed = new TextureRegion(tSTexture, 390, 0, 65, 65);
+		redPressed = new TextureRegion(tSTexture, 400, 0, 65, 65);
 		redPressed.flip(false, true);
 		
-		yellowButton = new TextureRegion(tSTexture, 320, 75, 65, 65);
+		yellowButton = new TextureRegion(tSTexture, 325, 75, 65, 65);
 		yellowButton.flip(false, true);
 		
-		yellowPressed = new TextureRegion(tSTexture, 390, 75, 65, 65);
+		yellowPressed = new TextureRegion(tSTexture, 400, 75, 65, 65);
 		yellowPressed.flip(false, true);
 		
-		blueButton = new TextureRegion(tSTexture, 320, 150, 65, 65);
+		blueButton = new TextureRegion(tSTexture, 325, 150, 65, 65);
 		blueButton.flip(false, true);
 		
-		bluePressed = new TextureRegion(tSTexture, 390, 150, 65, 65);
+		bluePressed = new TextureRegion(tSTexture, 400, 150, 65, 65);
 		bluePressed.flip(false, true);
 		
 		//GameScreen Textures

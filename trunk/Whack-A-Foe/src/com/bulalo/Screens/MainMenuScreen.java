@@ -2,9 +2,9 @@ package com.bulalo.Screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
-import com.bulalo.GameWorld.MenuRenderer;
-import com.bulalo.GameWorld.MenuWorld;
 import com.bulalo.Helpers.InputHandler;
+import com.bulalo.MenuWorld.MenuRenderer;
+import com.bulalo.MenuWorld.MenuWorld;
 
 public class MainMenuScreen implements Screen{
 
