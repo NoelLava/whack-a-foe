@@ -8,7 +8,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.bulalo.GameObjects.Dummy;
-import com.bulalo.Helpers.AssetsLoader;
+import com.bulalo.Helpers.AssetLoader;
 
 public class GameRenderer {
 	private GameWorld myWorld;
@@ -54,14 +54,14 @@ public class GameRenderer {
         // This is good for performance when drawing images that do not require
         // transparency.
         batcher.disableBlending();
-        batcher.draw(AssetsLoader.table, 0, 0, 160, 256);
+        batcher.draw(AssetLoader.table, 0, 0, 160, 256);
 
         // The bird needs transparency, so we enable that again.
         batcher.enableBlending();
         
         // Draw bird at its coordinates. Retrieve the Animation object from AssetLoader
         // Pass in the runTime variable to get the current frame.
-        batcher.draw(AssetsLoader.dummy,
+        batcher.draw(AssetLoader.dummy,
                 dummy.getX(), dummy.getY(), dummy.getWidth(), dummy.getHeight());
         
         // End SpriteBatch

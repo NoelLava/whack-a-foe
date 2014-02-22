@@ -11,12 +11,14 @@ public class Dummy {
 	private int height;
 	private Dummy myDummy;
 	
+	private boolean markedForRemoval;
+	
 	public Dummy(int life, float x, float y, int width, int height){
-		this.life = life;
-		this.width = width;
-		this.height = height;
+		this.life = 500;
+		this.width = 33;
+		this.height = 48;
 		position = new Vector2(x,y);
-		velocity = new Vector2(0, -30);
+		velocity = new Vector2(0, -5);
 	}
 	
 	public void update(float delta){
@@ -44,15 +46,24 @@ public class Dummy {
 		myDummy = new Dummy(life, x, y, width, height);
 		position = new Vector2(x,y);
 		velocity = new Vector2(0, -30);
-
-	}
-	
-	public boolean isMarked(){
-		return false;
+		
+		markedForRemoval = false;
 	}
 	
 	public void remove(){
-		
+		markedForRemoval = true;
+	}	
+	
+	public boolean isMarked(){
+		return markedForRemoval;
+	}
+	
+	public void setX(float counter){
+		position.x = counter;
+	}
+	
+	public void setY(float counter){
+		position.y = counter;
 	}
 	
     public float getX() {

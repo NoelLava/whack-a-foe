@@ -5,7 +5,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
-public class AssetsLoader {
+public class AssetLoader {
 	public static Texture gameTexture;
 	public static TextureRegion table;
 	public static TextureRegion dummy;
