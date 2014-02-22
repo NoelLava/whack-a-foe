@@ -1,16 +1,19 @@
 package com.bulalo.GameObjects;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Vector2;
+import com.bulalo.Screens.GameScreen;
 
 public class PlayButton {
 
 	private Vector2 position;
 	private int height, width;
 	
-	public PlayButton(int width, int height){
+	public PlayButton(float x, float y,int width, int height){
 		this.height = height;
 		this.width = width;
-		position = new Vector2(60,284);
+		//60, 284
+		position = new Vector2(x,y);
 	}
 	
 	public float getX() {

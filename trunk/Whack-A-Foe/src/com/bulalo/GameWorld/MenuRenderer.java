@@ -45,7 +45,7 @@ public class MenuRenderer {
         // We MUST do this every time.
         shapeRenderer.end();
         
-      //Begin SpriteBatch
+        //Begin SpriteBatch
         batcher.begin();
         // Disable transparency 
         // This is good for performance when drawing images that do not require
@@ -56,12 +56,11 @@ public class MenuRenderer {
         // The bird needs transparency, so we enable that again.
         batcher.enableBlending();
 
-        batcher.enableBlending();
         
         // Draw bird at its coordinates. Retrieve the Animation object from AssetLoader
         // Pass in the runTime variable to get the current frame.
         batcher.draw(AssetLoader.redButton,
-                playButton.getX(), playButton.getY(), playButton.getWidth(), playButton.getHeight());
+                60, 285, playButton.getWidth(), playButton.getHeight());
         
         // End SpriteBatch
         batcher.end();

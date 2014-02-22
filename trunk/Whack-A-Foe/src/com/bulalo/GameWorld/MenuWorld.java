@@ -7,7 +7,7 @@ public class MenuWorld {
 	private PlayButton playButton;
 	
 	public MenuWorld(){
-		playButton = new PlayButton(65,65);
+		playButton = new PlayButton(60,284,65,65);
 	}
 	
 	public PlayButton getPlayButton(){
@@ -15,6 +15,6 @@ public class MenuWorld {
 	}
 	
 	public void update(float delta){	
-		//playButton.update(delta);
+		playButton.update(delta);
 	}
 }
