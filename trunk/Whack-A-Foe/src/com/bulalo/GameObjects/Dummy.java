@@ -36,12 +36,15 @@ public class Dummy {
 	
 	public void onClick(){
 		position.y = 95;
-		System.out.println("Bakla si Allen");
+		System.out.println("clicked");
 	}
 	
 	public void spawn(float x, float y){
 		System.out.println("Dummy - spawn");
 		myDummy = new Dummy(life, x, y, width, height);
+		position = new Vector2(x,y);
+		velocity = new Vector2(0, -30);
+
 	}
 	
 	public boolean isMarked(){
