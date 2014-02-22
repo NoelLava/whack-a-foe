@@ -4,12 +4,12 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Vector2;
 import com.bulalo.Screens.GameScreen;
 
-public class PlayButton {
+public class MenuButton {
 
 	private Vector2 position;
 	private int height, width;
 	
-	public PlayButton(float x, float y,int width, int height){
+	public MenuButton(float x, float y,int width, int height){
 		this.height = height;
 		this.width = width;
 		//60, 284
@@ -38,7 +38,7 @@ public class PlayButton {
     }
 	
 	public void onClick(){
-		
+		System.out.println("Button - Clicked");
 	}
 	
 	
