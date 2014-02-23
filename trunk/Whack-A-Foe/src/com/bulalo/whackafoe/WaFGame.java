@@ -2,21 +2,21 @@ package com.bulalo.whackafoe;
 
 import com.badlogic.gdx.Game;
 import com.bulalo.Screens.GameScreen;
-import com.bulalo.Screens.MainMenuScreen;
+import com.bulalo.Screens.MenuScreen;
 import com.bulalo.Helpers.AssetLoader;
 
 public class WaFGame extends Game {
 
-	MainMenuScreen mainMenu;
+	MenuScreen mainMenu;
 	public GameScreen gameScreen;
 	
 	@Override
 	public void create() {
 		System.out.println("Game created");
-		mainMenu = new MainMenuScreen(this);
+		mainMenu = new MenuScreen(this);
 		gameScreen = new GameScreen(this);
 		AssetLoader.load();
-		setScreen(new GameScreen());
+		setScreen(new MenuScreen());
 	}
 	
 	@Override
