@@ -8,8 +8,8 @@ import com.bulalo.GameObjects.Dummy;
 
 public class GameWorld {
 	private Dummy dummy;
-	public static final float[] coordinateX = {35, 67, 102, 27, 65, 105, 20, 62, 107};
-	public static final float[] coordinateY = {167, 167, 167, 215, 215, 215, 265, 265, 265};
+	public static final float[] coordinateX = {35, 67.5f, 102.5f, 27.5f, 66.25f, 105, 20, 62.5f, 107.5f};
+	public static final float[] coordinateY = {75.5f, 75.5f, 75.5f, 124.5f, 124.5f, 124.5f, 173.5f, 173.5f, 173.5f};
 	
 	private float x, y;
 	
@@ -27,7 +27,7 @@ public class GameWorld {
 		x = randX.nextInt(8) + 1;
 		y = randY.nextInt(8) + 1;
 		
-		dummy = new Dummy(500, x, y, 33, 48);
+		dummy = new Dummy(500, x, y, 35, 50);
 		dummy.spawn(coordinateX[x], coordinateY[y]);
 	}
 	
@@ -36,7 +36,7 @@ public class GameWorld {
 		dummies = new ArrayList<Dummy>();
 		
 		for(int counter = 0; counter < 1; counter++){
-			dummy = new Dummy(500, x, y, 55, 85);
+			dummy = new Dummy(500, x, y, 35, 50);
 			dummy.setX(coordinateX[counter]);
 			dummy.setY(coordinateY[counter]);
 			dummies.add(dummy);
@@ -51,9 +51,7 @@ public class GameWorld {
 	public void checkToRemove(){
 		for(int i = 0; i < dummies.size(); i++){
 			dummies.get(i);
-			
 		}
-		
 	}
 	
 	public Dummy getDummy(){

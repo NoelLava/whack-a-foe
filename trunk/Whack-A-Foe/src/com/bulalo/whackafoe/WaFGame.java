@@ -16,7 +16,7 @@ public class WaFGame extends Game {
 		mainMenu = new MenuScreen(this);
 		gameScreen = new GameScreen(this);
 		AssetLoader.load();
-		setScreen(new MenuScreen());
+		setScreen(new GameScreen());
 	}
 	
 	@Override

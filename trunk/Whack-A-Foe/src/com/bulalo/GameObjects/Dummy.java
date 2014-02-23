@@ -1,54 +1,80 @@
 package com.bulalo.GameObjects;
 
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
 public class Dummy {
 	private Vector2 position;
-	private Vector2 velocity;
 
 	private int life;
 	private int width;
 	private int height;
 	private Dummy myDummy;
 	
+	private Rectangle bounds;
+	
 	private boolean markedForRemoval;
+	private boolean isPressed = false;
 	
 	public Dummy(int life, float x, float y, int width, int height){
 		this.life = 500;
-		this.width = 33;
-		this.height = 48;
+		this.width = 35;
+		this.height = 50;
 		position = new Vector2(x,y);
-		velocity = new Vector2(0, -5);
+		
+		bounds = new Rectangle(x*2, y*2, (float)width*2, (float)height*2);
 	}
 	
 	public void update(float delta){
 		life--;
-		System.out.println(life);
-		
-		if(position.y < 47)
-			velocity.y = 0;
-			if(life < 1){
-				life = 0;
-				System.out.println(velocity.y);
-			}
-		
-		position.add(velocity.cpy().scl(delta));
-		System.out.println(position);
+		//System.out.println(life);
+		//System.out.println(position);
 	}
 	
-	public void onClick(float x, float y){
-		x = myDummy.getX();
-		y = myDummy.getY();
-		position.y = 95;
-		System.out.println("clicked");
+	public boolean onClick(int screenX, int screenY){
+		System.out.println("Dummy - clicked");
+		return bounds.contains(screenX, screenY);
 	}
+	
+	public void displayResult(){
+		if(isPressed){
+			System.out.println("Dummy - hit");
+		}else{
+			System.out.println("not hit");
+		}
+	}
+	
+	public boolean isTouchDown(int screenX, int screenY) {
+
+        if (bounds.contains(screenX, screenY)) {
+            isPressed = true;
+            System.out.println("Dummy - hit");
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isTouchUp(int screenX, int screenY) {
+        
+        // It only counts as a touchUp if the button is in a pressed state.
+        if (bounds.contains(screenX, screenY) && isPressed) {
+            isPressed = false;
+            System.out.println("Dummy - touch up");
+            return true;
+        }
+        
+        // Whenever a finger is released, we will cancel any presses.
+        isPressed = false;
+        return false;
+    }
+	
 	
 	public void spawn(float x, float y){
 		System.out.println("Dummy - spawn");
 		myDummy = new Dummy(life, x, y, width, height);
 		position = new Vector2(x,y);
-		velocity = new Vector2(0, -30);
 		
+		bounds = new Rectangle(x, y, (float)width, (float)height);
 		markedForRemoval = false;
 	}
 	
@@ -60,12 +86,12 @@ public class Dummy {
 		return markedForRemoval;
 	}
 	
-	public void setX(float counter){
-		position.x = counter;
+	public void setX(float newX){
+		position.x = newX;
 	}
 	
-	public void setY(float counter){
-		position.y = counter;
+	public void setY(float newY){
+		position.y = newY;
 	}
 	
     public float getX() {
