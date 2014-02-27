@@ -4,7 +4,9 @@ package com.bulalo.GameWorld;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.bulalo.GameObjects.Dummy;
@@ -18,6 +20,12 @@ public class GameRenderer {
 	
 	private SpriteBatch batcher;
 	
+	private Dummy dummy;
+	
+	private TextureRegion table;
+	private Animation dummyAnimation;
+	private Animation dummyDies;
+	
 	public GameRenderer(GameWorld world){
 		myWorld = world;
 		
@@ -29,11 +37,32 @@ public class GameRenderer {
 		
 		shapeRenderer = new ShapeRenderer();
 		shapeRenderer.setProjectionMatrix(cam.combined);
+		
+		initGameObjects();
+		initAssets();
 	}
 	
-	public void render(float runTime){
-		Dummy dummy = myWorld.getDummy();
-		
+	private void initGameObjects(){
+		dummy = myWorld.getDummy();
+	}
+	
+	private void initAssets(){
+		table = AssetLoader.table;
+		dummyAnimation = AssetLoader.dummyAnimation;
+		dummyDies = AssetLoader.dummyDies;
+	}
+	
+	public void drawDummy(float runTime){
+	    if(dummy.isAlive()){   
+			batcher.draw(dummyAnimation.getKeyFrame(runTime),
+	                dummy.getX(), dummy.getY(), dummy.getWidth(), dummy.getHeight());
+	    }else{
+	    	batcher.draw(dummyDies.getKeyFrame(runTime),
+	                dummy.getX(), dummy.getY(), dummy.getWidth(), dummy.getHeight());
+	    }
+	}
+	
+	public void render(float runTime){		
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
         
@@ -54,15 +83,11 @@ public class GameRenderer {
         // This is good for performance when drawing images that do not require
         // transparency.
         batcher.disableBlending();
-        batcher.draw(AssetLoader.table, 0, 0, 160, 256);
-
-        // The bird needs transparency, so we enable that again.
-        batcher.enableBlending();
+        batcher.draw(table, 0, 0, 160, 256);
         
-        // Draw bird at its coordinates. Retrieve the Animation object from AssetLoader
-        // Pass in the runTime variable to get the current frame.
-        batcher.draw(AssetLoader.dummy,
-                dummy.getX(), dummy.getY(), dummy.getWidth(), dummy.getHeight());
+        batcher.enableBlending();
+ 
+        drawDummy(runTime);
         
         // End SpriteBatch
         batcher.end();

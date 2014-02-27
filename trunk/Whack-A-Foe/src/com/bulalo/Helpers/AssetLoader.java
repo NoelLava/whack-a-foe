@@ -3,12 +3,16 @@ package com.bulalo.Helpers;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 public class AssetLoader {
 	public static Texture gameTexture;
 	public static TextureRegion table;
-	public static TextureRegion dummy;
+	public static TextureRegion dummy1;
+	public static TextureRegion dummy2;
+	public static TextureRegion dummy3;
+	public static TextureRegion dummy4;
 	
 	public static Texture tSTexture;
 	public static TextureRegion titleBg;
@@ -18,6 +22,9 @@ public class AssetLoader {
 	public static TextureRegion yellowPressed;
 	public static TextureRegion blueButton;
 	public static TextureRegion bluePressed;
+	
+	public static Animation dummyAnimation;
+	public static Animation dummyDies;
 	
 	public static void load(){
 		gameTexture = new Texture(Gdx.files.internal("data/GameScreenTexture.png"));
@@ -52,8 +59,21 @@ public class AssetLoader {
 		table = new TextureRegion(gameTexture, 0, 0, 320, 512);
 		table.flip(false, true);
 		
-		dummy = new TextureRegion(gameTexture, 320, 0, 55, 85);
-		dummy.flip(false, true);
+		dummy1 = new TextureRegion(gameTexture, 320, 0, 65, 95);
+		dummy2 = new TextureRegion(gameTexture, 385, 0, 65, 95);
+		dummy3 = new TextureRegion(gameTexture, 320, 95, 65, 95);
+		dummy4 = new TextureRegion(gameTexture, 385, 95, 65, 95);
+		
+		dummy1.flip(false, true);
+		dummy2.flip(false, true);
+		dummy3.flip(false, true);
+		dummy4.flip(false, true);
+		
+		TextureRegion[] dummies = {dummy1, dummy2, dummy3, dummy4};
+		dummyAnimation = new Animation(0.025f, dummies);
+		dummyAnimation.setPlayMode(Animation.NORMAL);
+		dummyDies = new Animation(0.3f, dummies);
+		dummyDies.setPlayMode(Animation.REVERSED);
 	}
 	
 	public static void dispose() {

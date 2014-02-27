@@ -8,8 +8,9 @@ import com.bulalo.GameObjects.Dummy;
 
 public class GameWorld {
 	private Dummy dummy;
-	public static final float[] coordinateX = {35, 67.5f, 102.5f, 27.5f, 66.25f, 105, 20, 62.5f, 107.5f};
-	public static final float[] coordinateY = {75.5f, 75.5f, 75.5f, 124.5f, 124.5f, 124.5f, 173.5f, 173.5f, 173.5f};
+	public static final float[] coordinateX = {27f, 63.25f, 99.5f, 22.5f, 63.75f, 102.5f, 18.75f, 63.75f, 107f};
+	public static final float[] coordinateY = {65f, 65f, 65f, 120f, 120f, 120f, 175.5f, 175.5f, 175.5f};
+	//public static final Vector2[] position = {(31.25f, 67.5f), (67.5f, 67.5f)};
 	
 	private float x, y;
 	
@@ -20,25 +21,26 @@ public class GameWorld {
 	
 	private ArrayList<Dummy> dummies;
 	
+	Random rand = new Random();
+	
 	public GameWorld(){
-		Random randX = new Random();
-		Random randY = new Random();
-		int x,y;	
-		x = randX.nextInt(8) + 1;
-		y = randY.nextInt(8) + 1;
+
+		int x = rand.nextInt(8) + 1;
+		//int y = rand.nextInt(8) + 1;
 		
-		dummy = new Dummy(500, x, y, 35, 50);
-		dummy.spawn(coordinateX[x], coordinateY[y]);
+		dummy = new Dummy(500, x, y, 32.5f, 47.5f);
+		dummy.spawn(coordinateX[x], coordinateY[x]);
 	}
 	
 	//adds multiple dummies in the arraylist
 	public void inGame(){
 		dummies = new ArrayList<Dummy>();
 		
-		for(int counter = 0; counter < 1; counter++){
-			dummy = new Dummy(500, x, y, 35, 50);
-			dummy.setX(coordinateX[counter]);
-			dummy.setY(coordinateY[counter]);
+		for(int ctr = 0; ctr < 1; ctr++){
+			
+			dummy = new Dummy(500, x, y, 32.5f, 47.5f);
+			dummy.setX(coordinateX[ctr]);
+			dummy.setY(coordinateY[ctr]);
 			dummies.add(dummy);
 		}
 	}

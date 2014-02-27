@@ -16,18 +16,21 @@ public class Dummy {
 	private boolean markedForRemoval;
 	private boolean isPressed = false;
 	
-	public Dummy(int life, float x, float y, int width, int height){
-		this.life = 500;
+	public Dummy(int life, float x, float y, float width, float height){
+		this.life = 200;
 		this.width = 35;
 		this.height = 50;
 		position = new Vector2(x,y);
 		
-		bounds = new Rectangle(x*2, y*2, (float)width*2, (float)height*2);
+		bounds = new Rectangle(x*2, y*2, width*2, height*2);
 	}
 	
 	public void update(float delta){
 		life--;
-		//System.out.println(life);
+		if(life <= 0){
+			life = 0;
+		}
+		System.out.println(life);
 		//System.out.println(position);
 	}
 	
@@ -48,6 +51,7 @@ public class Dummy {
 
         if (bounds.contains(screenX, screenY)) {
             isPressed = true;
+            life = 0;
             System.out.println("Dummy - hit");
             return true;
         }
@@ -62,7 +66,6 @@ public class Dummy {
             System.out.println("Dummy - touch up");
             return true;
         }
-        
         // Whenever a finger is released, we will cancel any presses.
         isPressed = false;
         return false;
@@ -108,6 +111,14 @@ public class Dummy {
 
     public float getHeight() {
         return height;
+    }
+    
+    public boolean isAlive(){
+    	if(life < 1){
+    		return false;
+    	}else{ 
+    		return true;
+    	}
     }
 
 }
