@@ -16,8 +16,8 @@ public class Dummy {
 	private boolean markedForRemoval;
 	private boolean isPressed = false;
 	
-	public Dummy(int life, float x, float y, float width, float height){
-		this.life = 200;
+	public Dummy(int life, float x, float y, int width, int height){
+		this.life = life;
 		this.width = 35;
 		this.height = 50;
 		position = new Vector2(x,y);
@@ -43,7 +43,7 @@ public class Dummy {
 		if(isPressed){
 			System.out.println("Dummy - hit");
 		}else{
-			System.out.println("not hit");
+			System.out.println("Dummy - not hit");
 		}
 	}
 	
@@ -84,6 +84,10 @@ public class Dummy {
 	public void remove(){
 		markedForRemoval = true;
 	}	
+	
+	public void isNotMarked(){
+		markedForRemoval = false;
+	}
 	
 	public boolean isMarked(){
 		return markedForRemoval;
