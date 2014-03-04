@@ -41,7 +41,7 @@ public class MenuRenderer {
 	}
 	
 	private void drawButtons(){
-		for (Button button : menuButtons) {
+		for(Button button : menuButtons) {
             button.draw(batcher);
         }		
 	}
