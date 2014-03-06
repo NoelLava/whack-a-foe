@@ -1,5 +1,6 @@
 package com.bulalo.GameObjects;
 
+
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
@@ -12,7 +13,6 @@ public class Dummy {
 	private Dummy myDummy;
 	
 	private Rectangle bounds;
-	
 	private boolean markedForRemoval;
 	private boolean isPressed = false;
 	
@@ -79,6 +79,7 @@ public class Dummy {
 		
 		bounds = new Rectangle(x, y, (float)width, (float)height);
 		markedForRemoval = false;
+	
 	}
 	
 	public void remove(){

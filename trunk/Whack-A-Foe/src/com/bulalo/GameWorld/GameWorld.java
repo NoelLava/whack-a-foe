@@ -26,12 +26,14 @@ public class GameWorld {
 	Random rand = new Random();
 	
 	public GameWorld(){
-
 		int x = rand.nextInt(9);
-		//int y = rand.nextInt(8) + 1;
+	
+		//int y = rand.nextInt(9);
 		
 		dummy = new Dummy(500, x, y, 35, 50);
 		dummy.spawn(coordinateX[x], coordinateY[x]);
+		
+		
 	}
 	
 	//adds multiple dummies in the arraylist
@@ -97,7 +99,6 @@ public class GameWorld {
 		inGame();
 		
 		while(escapeCounter < 50){
-			long startTime = System.currentTimeMillis();
 			//update(float delta);
 		}
 		

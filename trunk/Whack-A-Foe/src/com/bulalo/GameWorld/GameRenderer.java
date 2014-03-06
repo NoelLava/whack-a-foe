@@ -92,5 +92,7 @@ public class GameRenderer {
         // End SpriteBatch
         batcher.end();
 
+        
+        
     }	
 }
