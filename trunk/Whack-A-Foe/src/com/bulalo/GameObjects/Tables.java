@@ -25,7 +25,7 @@ public class Tables {
             isPressed = true;
             System.out.println("Dummy - hit");
             return true;
-        }
+        } 
         return false;
     }
 
