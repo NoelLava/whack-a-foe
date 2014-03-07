@@ -19,7 +19,7 @@ public class WaFGame extends Game {
 		gameScreen = new GameScreen(this);
 		customizeScreen = new CustomizeScreen(this);
 		AssetLoader.load();
-		setScreen(new CustomizeScreen());
+		setScreen(new GameScreen());
 	}
 	
 	@Override

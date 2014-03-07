@@ -99,9 +99,9 @@ public class AssetLoader {
 		carbon.flip(false, true);
 		*/
 		TextureRegion[] dummies = {dummy1, dummy2, dummy3, dummy4};
-		dummyAnimation = new Animation(0.025f, dummies);
+		dummyAnimation = new Animation(0.03f, dummies);
 		dummyAnimation.setPlayMode(Animation.NORMAL);
-		dummyDies = new Animation(0.3f, dummies);
+		dummyDies = new Animation(0.03f, dummies);
 		dummyDies.setPlayMode(Animation.REVERSED);
 	}
 	
@@ -109,9 +109,9 @@ public class AssetLoader {
 		//We must dispose of the textures when we are finished, beki si kim
 		gameTexture.dispose();
 		tSTexture.dispose();
-		cSTexture.dispose();
-		woodTexture.dispose();
-		steelTexture.dispose();
-		carbonTexture.dispose();
+//		cSTexture.dispose();
+//		woodTexture.dispose();
+//		steelTexture.dispose();
+//		carbonTexture.dispose();
 	}
 }

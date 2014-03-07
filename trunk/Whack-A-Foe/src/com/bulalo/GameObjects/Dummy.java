@@ -30,7 +30,7 @@ public class Dummy {
 		if(life <= 0){
 			life = 0;
 		}
-		System.out.println(life);
+		//System.out.println(life);
 		//System.out.println(position);
 	}
 	

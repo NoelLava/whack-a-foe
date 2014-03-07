@@ -7,7 +7,7 @@ import java.util.Random;
 import com.bulalo.GameObjects.Dummy;
 
 public class GameWorld {
-	private Dummy dummy;
+	private Dummy dummy, dummy2;
 	public static final float[] coordinateX = {27f, 63.25f, 99f, 21f, 62.75f, 103.5f, 17.75f, 62.75f, 108f};
 	public static final float[] coordinateY = {65f, 65f, 65f, 120f, 120f, 120f, 175.5f, 175.5f, 175.5f};
 	//public static final Vector2[] position = {(31.25f, 67.5f), (67.5f, 67.5f)};
@@ -19,58 +19,82 @@ public class GameWorld {
 	private int[] removeCounter = {0, 0, 0, 0, 0, 0, 0, 0, 0};
 	private int escapeCounter = 0;
 	
-	private int usedTime;
+	private long usedTime;
 	
 	private ArrayList<Dummy> dummies;
 	
 	Random rand = new Random();
 	
 	public GameWorld(){
-		int x = rand.nextInt(9);
+		dummies = new ArrayList<Dummy>(10);
+		int r = rand.nextInt(9);
 	
-		//int y = rand.nextInt(9);
-		
 		dummy = new Dummy(500, x, y, 35, 50);
-		dummy.spawn(coordinateX[x], coordinateY[x]);
+		dummy.spawn(coordinateX[r], coordinateY[r]);
+		dummies.add(dummy);
 		
-		
-	}
-	
-	//adds multiple dummies in the arraylist
-	public void inGame(){
-		dummies = new ArrayList<Dummy>();
-		
-		for(int ctr = 0; ctr < 1; ctr++){
-			dummy = new Dummy(500, x, y, 35, 50);
-			dummy.setX(coordinateX[ctr]);
-			dummy.setY(coordinateY[ctr]);
-			dummies.add(dummy);
-		}
 	}
 	
 	public void update(float delta){	
 		dummy.update(delta);
+		//updateRunning();
+		inGame();
+		updateGame();
+		checkHit();
+		respawn();
+		//checkToRemove();
+		System.out.println("array size - " + dummies.size());
+				
+	}	
+	
+	//adds multiple dummies in the arraylist
+	public void inGame(){
+		//dummies = new ArrayList<Dummy>();
 		
-//		int i = 0;
-//		while(i < dummies.size()){
-//			Dummy dum = dummies.get(i);
-//			checkToRemove();
-//			if(dum.isMarked()){
-//				dum.remove();
-//				removed[i] = true;
-//				dum.isNotMarked();
-//			}else{
-//				i++;
-//			}
-//		}
+		for(int ctr = 0; ctr < 1; ctr++){
+			int r = rand.nextInt(9);
+			dummy = new Dummy(500, x, y, 35, 50);
+			dummy.setX(coordinateX[r]);
+			dummy.setY(coordinateY[r]);
+			dummies.add(dummy);
+		}
+	}
+	
+	public void updateRunning(){
+		if(!dummy.isAlive()){
+			dummies.remove(dummy);
+			
+			dummy = null;
+			int r = rand.nextInt(9);		
+			dummy = new Dummy(500, x, y, 35, 50);
+			dummy.spawn(coordinateX[r], coordinateY[r]);
+			dummies.add(dummy);
+		}
 		
+		
+	}
+	
+	public void updateGame(){
+		int i = 0;
+		while(i < dummies.size()){
+			Dummy dum = dummies.get(i);
+			checkToRemove();
+			if(dum.isMarked()){
+				dum.remove();
+				removed[i] = true;
+				dum.isNotMarked();
+			}else{
+				i++;
+			}
+		}	
 	}
 	
 	//this method checks if a dummy should be removed
 	public void checkToRemove(){
 		for(int i = 0; i < dummies.size(); i++){
 			Dummy dum = dummies.get(i);
-			if(removeCounter[i] >= 200){
+			if(!dummy.isAlive()/*removeCounter[i] >= 200*/){
+				System.out.println("should remove" + i);
 				dummies.remove(i);
 				removed[i] = true;
 				dum.isNotMarked();
@@ -85,11 +109,12 @@ public class GameWorld {
 	
 	public void checkHit(){
 		for(int i = 0; i < dummies.size(); i++){
+			System.out.println("check hit - " + i);
 			Dummy dum = dummies.get(i);
 			if(dum.isAlive()){
-				for(int x = 0; x < dummies.size(); x++){
-					removeCounter[x] = 0;
-				}
+			//	for(int x = 0; x < dummies.size(); x++){
+					removeCounter[i] = 0;
+				//}
 			}
 		}
 	}
@@ -99,20 +124,24 @@ public class GameWorld {
 		inGame();
 		
 		while(escapeCounter < 50){
-			//update(float delta);
-		}
-		
+			//long startTime = System.currentTimeMillis();
+			updateGame();
+			checkHit();
+			respawn();
+			//usedTime = System.currentTimeMillis() - startTime;
+		}	
 	}
 	
 	public void respawn(){
 		for(int i = 0; i < 9; i++){
 			if(removed[i] == true){
 				if(respawnCounter[i] >= 200){
+					System.out.println("respawn method");
 					Dummy dum = new Dummy(500, x, y, 35, 50);
 					respawnCounter[i] = 0;
 					removed[i] = false;
-					int x = rand.nextInt(9);
-					dum.spawn(coordinateX[x], coordinateY[x]);
+					int r = rand.nextInt(9);
+					dum.spawn(coordinateX[r], coordinateY[r]);
 					
 					for(int y = 0; y < dummies.size(); y++){
 						removeCounter[y] = 0;
@@ -121,7 +150,8 @@ public class GameWorld {
 					respawnCounter[i] += 1;
 				}
 			}else{
-				removeCounter[i] += 1;
+				removeCounter[i]++;
+				System.out.println("remove counter for " + i + " - "+ removeCounter[i]);
 			}
 		}
 	}
