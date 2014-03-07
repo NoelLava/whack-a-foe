@@ -7,24 +7,24 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
-import com.bulalo.GameWorld.GameWorld;
+import com.bulalo.GameObjects.Tables;
 import com.bulalo.Helpers.AssetLoader;
 
 public class CustomizeRenderer {
-
+	private CustomWorld custom;
 	private ShapeRenderer shapeRenderer;
 	
 	private OrthographicCamera cam;
 	
 	private SpriteBatch batcher;
-	
+	private Tables table;
 	private TextureRegion csbg;
 	private TextureRegion wood;
 	private TextureRegion steel;
 	private TextureRegion carbon;
 
-	public CustomizeRenderer(){
-		
+	public CustomizeRenderer(CustomWorld customWorld){
+		custom = customWorld;
 		cam = new OrthographicCamera();
 		cam.setToOrtho(true, 160, 256);
 		
@@ -46,9 +46,14 @@ public class CustomizeRenderer {
 	}
 
 	private void initGameObjects() {
-		// TODO Auto-generated method stub
-		
+		table = custom.getTable();
 	}
+	
+	public void drawTable(float runTime){
+	      
+			batcher.draw(
+	                wood, table.getX(), table.getY(), table.getWidth(), table.getHeight());
+	    }
 	
 	public void render(float runTime){		
         Gdx.gl.glClearColor(0, 0, 0, 1);
@@ -72,10 +77,10 @@ public class CustomizeRenderer {
         // transparency.
         batcher.disableBlending();
         batcher.draw(csbg, 0, 0, 160, 256);
-        
+        /*
         batcher.enableBlending();
         batcher.draw(wood,0,50,22,42);
-        
+        */
         // End SpriteBatch
         batcher.end();
 

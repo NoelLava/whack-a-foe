@@ -1,13 +1,16 @@
 package com.bulalo.Screens;
 
 import com.badlogic.gdx.Screen;
+import com.bulalo.CustomizeWorld.CustomWorld;
 import com.bulalo.CustomizeWorld.CustomizeRenderer;
+import com.bulalo.GameObjects.Tables;
 import com.bulalo.whackafoe.WaFGame;
 
 public class CustomizeScreen implements Screen {
 	WaFGame game;
 	CustomizeRenderer renderer;
 	private float runTime = 0;
+	private CustomWorld custom;
 	
 	public CustomizeScreen(WaFGame game){
 		this.game = game;
@@ -15,15 +18,17 @@ public class CustomizeScreen implements Screen {
 	
 	public CustomizeScreen(){
 		System.out.println("Game Screen Attached");
-		
-		renderer = new CustomizeRenderer(); // initialize the gameRenderer
+		custom = new CustomWorld();			//initialize the gameWorld
+		renderer = new CustomizeRenderer(custom);  //initialize the gameRenderer
 		
 	}
 
 	@Override
 	public void render(float delta) {
-		// TODO Auto-generated method stub
-		
+		runTime += delta;
+		custom.update(delta);
+		renderer.render(runTime);
+
 	}
 
 	@Override
