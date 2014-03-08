@@ -11,7 +11,6 @@ public class GameWorld {
 	private Dummy dummy, dummy2;
 	public static final float[] coordinateX = {27f, 63.25f, 99f, 21f, 62.75f, 103.5f, 17.75f, 62.75f, 108f};
 	public static final float[] coordinateY = {65f, 65f, 65f, 120f, 120f, 120f, 175.5f, 175.5f, 175.5f};
-	//public static final Vector2[] position = {(31.25f, 67.5f), (67.5f, 67.5f)};
 	
 	private float x, y;
 	
@@ -54,13 +53,13 @@ public class GameWorld {
 			System.out.println("dummies list is full");
 		}else{
 			System.out.println("dummies list is null");
-//			for(int ctr = 0; ctr < 1; ctr++){
-//				int r = rand.nextInt(9);
-//				dummy = new Dummy(500, x, y, 35, 50);
-//				dummy.setX(coordinateX[r]);
-//				dummy.setY(coordinateY[r]);
-//				dummies.add(dummy);
-//			}
+			for(int ctr = 0; ctr < 1; ctr++){
+				int r = rand.nextInt(9);
+				dummy = new Dummy(500, x, y, 35, 50);
+				dummy.setX(coordinateX[r]);
+				dummy.setY(coordinateY[r]);
+				dummies.add(dummy);
+			}
 		}
 		
 	}
