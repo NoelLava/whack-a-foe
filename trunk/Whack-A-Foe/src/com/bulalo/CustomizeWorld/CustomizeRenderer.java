@@ -41,6 +41,7 @@ public class CustomizeRenderer {
 	private void initAssets() {
 		csbg = AssetLoader.csBg;
 		wood = AssetLoader.wood;
+		
 		steel = AssetLoader.steel;
 		carbon = AssetLoader.carbon;
 	}
