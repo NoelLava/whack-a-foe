@@ -26,12 +26,13 @@ public class GameWorld {
 	Random rand = new Random();
 	
 	public GameWorld(){
-		dummies = new ArrayList<Dummy>(10);
+		//dummies = new ArrayList<Dummy>();
+
 		int r = rand.nextInt(9);
 	
 		dummy = new Dummy(500, x, y, 35, 50);
 		dummy.spawn(coordinateX[r], coordinateY[r]);
-		dummies.add(dummy);
+		//dummies.add(dummy);
 		
 	}
 	
@@ -49,15 +50,20 @@ public class GameWorld {
 	
 	//adds multiple dummies in the arraylist
 	public void inGame(){
-		//dummies = new ArrayList<Dummy>();
-		
-		for(int ctr = 0; ctr < 1; ctr++){
-			int r = rand.nextInt(9);
-			dummy = new Dummy(500, x, y, 35, 50);
-			dummy.setX(coordinateX[r]);
-			dummy.setY(coordinateY[r]);
-			dummies.add(dummy);
+		dummies = new ArrayList<Dummy>();
+		if(dummies.size() != 0){
+			System.out.println("add a dummy");
+			for(int ctr = 0; ctr < 1; ctr++){
+				int r = rand.nextInt(9);
+				dummy = new Dummy(500, x, y, 35, 50);
+				dummy.setX(coordinateX[r]);
+				dummy.setY(coordinateY[r]);
+				dummies.add(dummy);
+			}
+		}else{
+			System.out.println("array is full");
 		}
+		
 	}
 	
 	public void updateRunning(){
@@ -69,9 +75,7 @@ public class GameWorld {
 			dummy = new Dummy(500, x, y, 35, 50);
 			dummy.spawn(coordinateX[r], coordinateY[r]);
 			dummies.add(dummy);
-		}
-		
-		
+		}		
 	}
 	
 	public void updateGame(){
@@ -93,14 +97,16 @@ public class GameWorld {
 	public void checkToRemove(){
 		for(int i = 0; i < dummies.size(); i++){
 			Dummy dum = dummies.get(i);
-			if(!dummy.isAlive()/*removeCounter[i] >= 200*/){
+			if(dum.isAlive()/*removeCounter[i] >= 200*/){
+				System.out.println("dummy " + i + " is still alive");
+			}else{
 				System.out.println("should remove" + i);
-				dummies.remove(i);
+				dummies.remove(dum);
 				removed[i] = true;
 				dum.isNotMarked();
 				removeCounter[i] = 0;
 				escapeCounter += 1;
-				for(int x = 0; x < dummies.size(); x++){
+				for(int x = 0; x < dummies.size() - 1; x++){
 					removeCounter[x] = 0;
 				}
 			}
@@ -111,10 +117,13 @@ public class GameWorld {
 		for(int i = 0; i < dummies.size(); i++){
 			System.out.println("check hit - " + i);
 			Dummy dum = dummies.get(i);
-			if(dum.isAlive()){
-			//	for(int x = 0; x < dummies.size(); x++){
+			if(dum.isAlive() == false){
+				System.out.println("dummy dies");
+				for(int x = 0; x < dummies.size(); x++){
 					removeCounter[i] = 0;
-				//}
+				}
+			}else{
+				
 			}
 		}
 	}
@@ -150,7 +159,7 @@ public class GameWorld {
 					respawnCounter[i] += 1;
 				}
 			}else{
-				removeCounter[i]++;
+				removeCounter[i] += 1;
 				System.out.println("remove counter for " + i + " - "+ removeCounter[i]);
 			}
 		}
