@@ -44,7 +44,7 @@ public class Tables {
     }
     public void update(float delta){
 		System.out.println("table shown");
-		//System.out.println(position);
+		System.out.println(position);
 	}
     public void setX(float newX){
 		position.x = newX;

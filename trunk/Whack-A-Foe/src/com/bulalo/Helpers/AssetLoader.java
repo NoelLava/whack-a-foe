@@ -1,6 +1,7 @@
 package com.bulalo.Helpers;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.GLTexture;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.g2d.Animation;
@@ -36,6 +37,8 @@ public class AssetLoader {
 	public static Animation dummyDies;
 	
 	public static void load(){
+		Texture.setEnforcePotImages(false);
+		
 		gameTexture = new Texture(Gdx.files.internal("data/GameScreenTexture.png"));
 		gameTexture.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
 		
@@ -46,12 +49,11 @@ public class AssetLoader {
 		cSTexture.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
 		woodTexture = new Texture(Gdx.files.internal("data/Wood.png"));
 		woodTexture.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
-		/*steelTexture = new Texture(Gdx.files.internal("data/Steel.png"));
+		steelTexture = new Texture(Gdx.files.internal("data/Steel.png"));
 		steelTexture.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
 		carbonTexture = new Texture(Gdx.files.internal("data/Carbon.png"));
 		carbonTexture.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
-		*/
-		//TitleScreen Textures
+			//TitleScreen Textures
 		titleBg = new TextureRegion(tSTexture, 0, 0, 320, 512);
 		titleBg.flip(false, true);
 		
@@ -90,14 +92,14 @@ public class AssetLoader {
 		//CustomizeScreen Textures
 		csBg = new TextureRegion(cSTexture, 0, 0, 512, 512);
 		wood = new TextureRegion(woodTexture, 0, 0, 512, 512);
-		/*steel = new TextureRegion(steelTexture, 0, 0, 320, 512);
+		steel = new TextureRegion(steelTexture, 0, 0, 320, 512);
 		carbon = new TextureRegion(carbonTexture, 0, 0, 320, 512);
-		*/
+		
 		csBg.flip(false, true);
 		wood.flip(false, true);
-		/*steel.flip(false, true);
+		steel.flip(false, true);
 		carbon.flip(false, true);
-		*/
+		
 		TextureRegion[] dummies = {dummy1, dummy2, dummy3, dummy4};
 		dummyAnimation = new Animation(0.025f, dummies);
 		dummyAnimation.setPlayMode(Animation.NORMAL);

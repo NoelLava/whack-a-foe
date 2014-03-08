@@ -77,10 +77,11 @@ public class CustomizeRenderer {
         // transparency.
         batcher.disableBlending();
         batcher.draw(csbg, 0, 0, 160, 256);
-        /*
+        
         batcher.enableBlending();
         batcher.draw(wood,0,50,22,42);
-        */
+        batcher.draw(steel,40,50,22,42);
+        batcher.draw(carbon,80,50,22,42);
         // End SpriteBatch
         batcher.end();
 
