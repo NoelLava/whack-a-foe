@@ -108,9 +108,9 @@ public class AssetLoader {
 	}
 	
 	public static void getTableName(){
-		if(){
-			
-		}
+//		if(){
+//			
+//		}
 	}
 	
 	public static void dispose() {

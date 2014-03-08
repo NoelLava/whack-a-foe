@@ -30,7 +30,7 @@ public class Tables {
 	public boolean isTouchDown(float screenX, float screenY) {
 	
         if (bounds.contains(screenX,screenY)) {
-        	background = 
+        	//background = 
             return true;
         } 
         return false;
