@@ -12,8 +12,8 @@ public class Tables {
 	private boolean isPressed;
 	
 	public Tables(float x, float y, int width, int height){
-		this.width = 50;
-		this.height = 72;
+		this.width = 22;
+		this.height = 42;
 		position = new Vector2(x,y);
 		
 		bounds = new Rectangle(x*2, y*2, width*2, height*2);

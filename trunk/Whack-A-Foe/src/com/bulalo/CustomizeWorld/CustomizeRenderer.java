@@ -50,10 +50,10 @@ public class CustomizeRenderer {
 		table = custom.getTable();
 	}
 	
-	public void drawTable(float runTime){
+	public void drawTable(TextureRegion region,float x, float y, float runTime){
 	      
 			batcher.draw(
-	                wood, table.getX(), table.getY(), table.getWidth(), table.getHeight());
+	                region, x, y, table.getWidth(), table.getHeight());
 	    }
 	
 	public void render(float runTime){		
@@ -80,11 +80,16 @@ public class CustomizeRenderer {
         batcher.draw(csbg, 0, 0, 160, 256);
         
         batcher.enableBlending();
-        batcher.draw(wood,0,50,22,42);
-        batcher.draw(steel,40,50,22,42);
-        batcher.draw(carbon,80,50,22,42);
+       // batcher.draw(wood,0,50,22,42);
+        //batcher.draw(steel,40,50,22,42);
+        //batcher.draw(carbon,80,50,22,42);
         // End SpriteBatch
+        drawTable(wood,0,50,runTime);
+        drawTable(steel,40,50,runTime);
+        drawTable(carbon,80,50,runTime);
+        
         batcher.end();
 
+        
     }
 }
