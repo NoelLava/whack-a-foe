@@ -1,11 +1,14 @@
 package com.bulalo.Helpers;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.GLTexture;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.bulalo.CustomizeWorld.CustomWorld;
+import com.bulalo.GameObjects.Tables;
+import com.bulalo.GameObjects.Tables1;
+import com.bulalo.GameObjects.Tables2;
 
 public class AssetLoader {
 	public static Texture gameTexture;
@@ -14,6 +17,11 @@ public class AssetLoader {
 	public static TextureRegion dummy2;
 	public static TextureRegion dummy3;
 	public static TextureRegion dummy4;
+	
+	private static Tables table1;
+	private static Tables1 table2;
+	private static Tables2 table3;
+	private static CustomWorld custom = new CustomWorld();
 	
 	public static Texture tSTexture;
 	public static TextureRegion titleBg;
@@ -32,6 +40,7 @@ public class AssetLoader {
 	public static TextureRegion wood;
 	public static TextureRegion steel;
 	public static TextureRegion carbon;
+	public static TextureRegion background;
 	
 	public static Animation dummyAnimation;
 	public static Animation dummyDies;
@@ -107,10 +116,31 @@ public class AssetLoader {
 		dummyDies.setPlayMode(Animation.REVERSED);
 	}
 	
+<<<<<<< HEAD
 	public static void getTableName(){
 //		if(){
 //			
 //		}
+=======
+	public static TextureRegion getBackground(){
+		table1 = custom.getTable();
+		table2 = custom.getTable1();
+		table3 = custom.getTable2();
+		if(table1.onClick(20, 50)){
+			System.out.println("changed to wood");
+			background = AssetLoader.wood;
+			
+		}
+		else if(table2.onClick1(60, 50)){
+			System.out.println("changed to carbon");
+			background=AssetLoader.carbon;
+		}
+		else if (table3.onClick2(100, 50)){
+			System.out.println("changed to steel");
+			background=AssetLoader.steel;
+		}
+		return background;
+>>>>>>> 3db055992ccc4715cd8f677c07fa2d3fa6ed63fd
 	}
 	
 	public static void dispose() {

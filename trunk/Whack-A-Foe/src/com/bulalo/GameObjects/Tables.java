@@ -2,6 +2,8 @@ package com.bulalo.GameObjects;
 
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+import com.bulalo.CustomizeWorld.CustomizeRenderer;
+import com.bulalo.Helpers.AssetLoader;
 
 
 public class Tables {
@@ -9,9 +11,10 @@ public class Tables {
 	private Rectangle bounds;
 	private int width;
 	private int height;
-	private boolean isPressed;
+	private boolean isPressed = false;
 	private Tables table;
 	private String background ="";
+	private CustomizeRenderer render;
 	
 	public Tables(float x, float y, int width, int height){
 		this.width = 22;
@@ -30,8 +33,13 @@ public class Tables {
 	public boolean isTouchDown(float screenX, float screenY) {
 	
         if (bounds.contains(screenX,screenY)) {
+<<<<<<< HEAD
         	//background = 
             return true;
+=======
+        	isPressed = true;
+        	return true;
+>>>>>>> 3db055992ccc4715cd8f677c07fa2d3fa6ed63fd
         } 
         return false;
     }
