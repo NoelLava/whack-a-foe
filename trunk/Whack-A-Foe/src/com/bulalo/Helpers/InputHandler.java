@@ -1,5 +1,7 @@
 package com.bulalo.Helpers;
 
+import java.util.List;
+
 import com.badlogic.gdx.InputProcessor;
 import com.bulalo.CustomizeWorld.CustomWorld;
 import com.bulalo.GameObjects.Dummy;
@@ -8,13 +10,14 @@ import com.bulalo.GameWorld.GameWorld;
 
 public class InputHandler implements InputProcessor {
 	private Dummy myDummy;
+	private static List<Dummy> dummies;
 	private GameWorld myWorld;
 	private CustomWorld customize;
 	private Tables table;
 	
 	public InputHandler(GameWorld myWorld){
 		this.myWorld = myWorld;
-		myDummy = myWorld.getDummy();
+		dummies = myWorld.getDummies();
 	}
 
     public InputHandler(CustomWorld customize){
@@ -25,26 +28,30 @@ public class InputHandler implements InputProcessor {
 	
 	@Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-    	//myDummy.isTouchDown(screenX/2,screenY/2);
-    	//myDummy.displayResult();
-    	table.isTouchDown(screenX/2,screenY/2);
-    	table.displayResult();
+    	for(Dummy dummy:dummies){
+    		dummy.isTouchDown(screenX/2,screenY/2);
+    		dummy.displayResult();
+    	}
+    	//table.isTouchDown(screenX/2,screenY/2);
+    	//table.displayResult();
     	
     	return true;
-    
 	}
     
     @Override
     public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-        //if(myDummy.isTouchUp(screenX/2,screenY/2)){
-        //	return true;
-       // }
-        if(table.isTouchUp(screenX/2, screenY/2)){
+        for(Dummy dummy:dummies){
+        	if(dummy.isTouchUp(screenX/2,screenY/2)){
         	return true;
-        }
-        //myDummy.displayResult();
-        table.displayResult();
-    	return false;
+	        }
+	//        if(table.isTouchUp(screenX/2, screenY/2)){
+	//        	return true;
+	//        }
+	        dummy.displayResult();
+	//        table.displayResult();
+	        
+        }	
+        return false;
     }
 
     @Override
@@ -76,5 +83,9 @@ public class InputHandler implements InputProcessor {
     public boolean scrolled(int amount) {
         return false;
     }
+    
+	public static List<Dummy> getDummies(){
+		return dummies;
+	}
 	
 }
