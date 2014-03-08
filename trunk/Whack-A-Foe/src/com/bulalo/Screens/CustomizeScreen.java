@@ -1,9 +1,11 @@
 package com.bulalo.Screens;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.bulalo.CustomizeWorld.CustomWorld;
 import com.bulalo.CustomizeWorld.CustomizeRenderer;
 import com.bulalo.GameObjects.Tables;
+import com.bulalo.Helpers.InputHandler;
 import com.bulalo.whackafoe.WaFGame;
 
 public class CustomizeScreen implements Screen {
@@ -20,7 +22,7 @@ public class CustomizeScreen implements Screen {
 		System.out.println("Game Screen Attached");
 		custom = new CustomWorld();			//initialize the gameWorld
 		renderer = new CustomizeRenderer(custom);  //initialize the gameRenderer
-		
+		Gdx.input.setInputProcessor(new InputHandler(custom));
 	}
 
 	@Override

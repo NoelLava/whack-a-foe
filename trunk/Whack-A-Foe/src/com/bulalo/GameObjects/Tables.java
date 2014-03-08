@@ -22,7 +22,6 @@ public class Tables {
 	public boolean isTouchDown(int screenX, int screenY) {
 
         if (bounds.contains(screenX, screenY)) {
-            isPressed = true;
             System.out.println("Dummy - hit");
             return true;
         } 
@@ -33,15 +32,21 @@ public class Tables {
         
         // It only counts as a touchUp if the button is in a pressed state.
         if (bounds.contains(screenX, screenY) && isPressed) {
-            isPressed = false;
             System.out.println("Dummy - touch up");
             return true;
         }
         // Whenever a finger is released, we will cancel any presses.
-        isPressed = false;
         return false;
 
     }
+    
+    public void displayResult(){
+		if(isPressed){
+			System.out.println("table - clicked");
+		}else{
+			System.out.println("Dummy - not hit");
+		}
+	}
     public void update(float delta){
 		System.out.println("table shown");
 		System.out.println(position);
