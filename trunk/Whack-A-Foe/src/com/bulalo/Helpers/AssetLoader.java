@@ -107,6 +107,12 @@ public class AssetLoader {
 		dummyDies.setPlayMode(Animation.REVERSED);
 	}
 	
+	public static void getTableName(){
+		if(){
+			
+		}
+	}
+	
 	public static void dispose() {
 		//We must dispose of the textures when we are finished, beki si kim
 		gameTexture.dispose();

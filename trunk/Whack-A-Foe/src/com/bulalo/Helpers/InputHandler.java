@@ -4,6 +4,8 @@ import com.badlogic.gdx.InputProcessor;
 import com.bulalo.CustomizeWorld.CustomWorld;
 import com.bulalo.GameObjects.Dummy;
 import com.bulalo.GameObjects.Tables;
+import com.bulalo.GameObjects.Tables1;
+import com.bulalo.GameObjects.Tables2;
 import com.bulalo.GameWorld.GameWorld;
 
 public class InputHandler implements InputProcessor {
@@ -11,7 +13,10 @@ public class InputHandler implements InputProcessor {
 	private GameWorld myWorld;
 	private CustomWorld customize;
 	private Tables table;
+	private Tables1 table1;
+	private Tables2 table2;
 	
+
 	public InputHandler(GameWorld myWorld){
 		this.myWorld = myWorld;
 		myDummy = myWorld.getDummy();
@@ -20,6 +25,8 @@ public class InputHandler implements InputProcessor {
     public InputHandler(CustomWorld customize){
 		this.customize = customize;
 		table = customize.getTable();
+		table1 = customize.getTable1();
+		table2 = customize.getTable2();
 		
     }
 	
@@ -29,6 +36,12 @@ public class InputHandler implements InputProcessor {
     	//myDummy.displayResult();
     	table.isTouchDown(screenX/2,screenY/2);
     	table.displayResult();
+    	
+    	table1.isTouchDown1(screenX/2,screenY/2);
+    	table1.displayResult1();
+    	
+    	table2.isTouchDown2(screenX/2,screenY/2);
+    	table2.displayResult2();
     	
     	return true;
     

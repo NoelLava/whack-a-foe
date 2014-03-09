@@ -11,13 +11,14 @@ public class Tables {
 	private int height;
 	private boolean isPressed;
 	private Tables table;
+	private String background ="";
 	
 	public Tables(float x, float y, int width, int height){
 		this.width = 22;
 		this.height = 42;
-		position = new Vector2(x,y);
+		position = new Vector2(20,50);
 		
-		bounds = new Rectangle(x*2, y*2, width*2, height*2);
+		bounds = new Rectangle(x, y, width, height);
 		
 	}
 	
@@ -29,9 +30,7 @@ public class Tables {
 	public boolean isTouchDown(float screenX, float screenY) {
 	
         if (bounds.contains(screenX,screenY)) {
-        	System.out.println("table on GameScreen changed");
-            String boundS = bounds.toString();
-            System.out.println(boundS);
+        	background = 
             return true;
         } 
         return false;
@@ -50,7 +49,8 @@ public class Tables {
     }
     
     public void displayResult(){
-		/*if(table.isTouchDown(20,-50)){
+		//System.out.println("pic1 clicked");
+    	/*if(table.isTouchDown(20,-50)){
 			System.out.println("table - clicked");
 		}else{
 			System.out.println("Dummy - not hit");

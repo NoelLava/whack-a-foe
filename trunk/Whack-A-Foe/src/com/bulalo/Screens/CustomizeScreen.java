@@ -11,6 +11,7 @@ import com.bulalo.whackafoe.WaFGame;
 public class CustomizeScreen implements Screen {
 	WaFGame game;
 	CustomizeRenderer renderer;
+	private String background = "";
 	private float runTime = 0;
 	private CustomWorld custom;
 	private Tables table;
@@ -31,6 +32,10 @@ public class CustomizeScreen implements Screen {
 		custom.update(delta);
 		renderer.render(runTime);
 
+	}
+	
+	public String getBackground(){
+		return background;
 	}
 
 	@Override
