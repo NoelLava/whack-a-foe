@@ -13,7 +13,7 @@ public class CustomizeScreen implements Screen {
 	CustomizeRenderer renderer;
 	private float runTime = 0;
 	private CustomWorld custom;
-	
+	private Tables table;
 	public CustomizeScreen(WaFGame game){
 		this.game = game;
 	}

@@ -20,14 +20,14 @@ public class InputHandler implements InputProcessor {
     public InputHandler(CustomWorld customize){
 		this.customize = customize;
 		table = customize.getTable();
-    	
+		
     }
 	
 	@Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-    	myDummy.isTouchDown(screenX/2,screenY/2);
-    	myDummy.displayResult();
-    	table.isTouchDown(screenX/2, screenY/2);
+    	//myDummy.isTouchDown(screenX/2,screenY/2);
+    	//myDummy.displayResult();
+    	table.isTouchDown(screenX/2,screenY/2);
     	table.displayResult();
     	
     	return true;
@@ -36,13 +36,13 @@ public class InputHandler implements InputProcessor {
     
     @Override
     public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-        if(myDummy.isTouchUp(screenX/2,screenY/2)){
-        	return true;
-        }
+        //if(myDummy.isTouchUp(screenX/2,screenY/2)){
+        //	return true;
+       // }
         if(table.isTouchUp(screenX/2, screenY/2)){
         	return true;
         }
-        myDummy.displayResult();
+        //myDummy.displayResult();
         table.displayResult();
     	return false;
     }

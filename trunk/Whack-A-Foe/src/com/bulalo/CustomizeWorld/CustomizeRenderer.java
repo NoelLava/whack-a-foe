@@ -84,9 +84,9 @@ public class CustomizeRenderer {
         //batcher.draw(steel,40,50,22,42);
         //batcher.draw(carbon,80,50,22,42);
         // End SpriteBatch
-        drawTable(wood,0,50,runTime);
-        drawTable(steel,40,50,runTime);
-        drawTable(carbon,80,50,runTime);
+        drawTable(wood,20,50,runTime);
+        drawTable(steel,60,50,runTime);
+        drawTable(carbon,100,50,runTime);
         
         batcher.end();
 

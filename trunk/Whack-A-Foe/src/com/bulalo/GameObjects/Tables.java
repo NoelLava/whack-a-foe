@@ -10,6 +10,7 @@ public class Tables {
 	private int width;
 	private int height;
 	private boolean isPressed;
+	private Tables table;
 	
 	public Tables(float x, float y, int width, int height){
 		this.width = 22;
@@ -17,12 +18,20 @@ public class Tables {
 		position = new Vector2(x,y);
 		
 		bounds = new Rectangle(x*2, y*2, width*2, height*2);
+		
 	}
 	
-	public boolean isTouchDown(int screenX, int screenY) {
-
-        if (bounds.contains(screenX, screenY)) {
-            System.out.println("Dummy - hit");
+	public boolean onClick(int screenX, int screenY){
+		System.out.println("table on GameScreen changed");
+		return bounds.contains(screenX, screenY);
+	}
+	
+	public boolean isTouchDown(float screenX, float screenY) {
+	
+        if (bounds.contains(screenX,screenY)) {
+        	System.out.println("table on GameScreen changed");
+            String boundS = bounds.toString();
+            System.out.println(boundS);
             return true;
         } 
         return false;
@@ -41,15 +50,15 @@ public class Tables {
     }
     
     public void displayResult(){
-		if(isPressed){
+		/*if(table.isTouchDown(20,-50)){
 			System.out.println("table - clicked");
 		}else{
 			System.out.println("Dummy - not hit");
-		}
+		}*/
 	}
     public void update(float delta){
-		System.out.println("table shown");
-		System.out.println(position);
+		//System.out.println("table shown");
+		//System.out.println(position);
 	}
     public void setX(float newX){
 		position.x = newX;

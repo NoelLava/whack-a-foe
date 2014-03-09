@@ -8,7 +8,7 @@ public class CustomWorld {
 	private Vector2 position;
 	public CustomWorld(){
 		
-		table = new Tables(0f, 10f, 200, 200);	
+		table = new Tables(0f, 10f, 22, 42);	
 		table.setX(0f);
 		table.setY(50f);
 		position = new Vector2(0,50);
@@ -22,4 +22,6 @@ public class CustomWorld {
 	public Tables getTable(){
 		return table;
 	}
+	
+	
 }
