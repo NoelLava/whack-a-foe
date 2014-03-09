@@ -11,7 +11,7 @@ public class Tables {
 	private Rectangle bounds;
 	private int width;
 	private int height;
-	private boolean isPressed;
+	private boolean isPressed = false;
 	private Tables table;
 	private String background ="";
 	private CustomizeRenderer render;
@@ -33,7 +33,7 @@ public class Tables {
 	public boolean isTouchDown(float screenX, float screenY) {
 	
         if (bounds.contains(screenX,screenY)) {
-        	render.drawBackground(AssetLoader.wood);
+        	isPressed = true;
         	return true;
         } 
         return false;

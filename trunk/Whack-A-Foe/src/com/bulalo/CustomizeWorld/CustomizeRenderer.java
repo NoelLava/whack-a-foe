@@ -50,6 +50,7 @@ public class CustomizeRenderer {
 		
 		steel = AssetLoader.steel;
 		carbon = AssetLoader.carbon;
+		background = AssetLoader.getBackground();
 		
 	}
 
@@ -103,7 +104,9 @@ public class CustomizeRenderer {
         // transparency.
         batcher.disableBlending();
         //batcher.draw(background, 0, 0, 160, 256);
+        
         drawBackground(background);
+        
         batcher.enableBlending();
        // batcher.draw(wood,0,50,22,42);
         //batcher.draw(steel,40,50,22,42);
