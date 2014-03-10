@@ -9,8 +9,8 @@ public class Tables2 {
 	private Rectangle bounds2;
 	private int width;
 	private int height;
-	private boolean isPressed;
-	private Tables table;
+	private boolean isPressed = false;
+	private Tables table2;
 	
 	
 	public Tables2(float x, float y, int width, int height){
@@ -24,6 +24,7 @@ public class Tables2 {
 	
 	public boolean onClick2(int screenX, int screenY){
 		System.out.println("table2 on GameScreen changed");
+		setPressed(true);
 		return bounds2.contains(100, 50);
 	}
 	
@@ -33,6 +34,7 @@ public class Tables2 {
         	System.out.println("table2 on GameScreen changed");
             String boundS2 = bounds2.toString();
             System.out.println(boundS2);
+            isPressed = true;
             return true;
         } 
         return false;
@@ -85,5 +87,22 @@ public class Tables2 {
     public float getHeight() {
         return height;
     }
+    
+    public boolean isClicked(){
+    	if(table2.isPressed()){
+    		return true;
+    	}
+    	else{
+    		return false;
+    	}
+    }
+    
+	public boolean isPressed() {
+		return isPressed;
+	}
+
+	public void setPressed(boolean isPressed) {
+		this.isPressed = isPressed;
+	}
 
 }

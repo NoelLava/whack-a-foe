@@ -13,21 +13,21 @@ import com.bulalo.GameObjects.Tables2;
 import com.bulalo.Helpers.AssetLoader;
 
 public class CustomizeRenderer {
-	private CustomWorld custom;
+	private static CustomWorld custom = new CustomWorld();
 	private ShapeRenderer shapeRenderer;
 	
 	private OrthographicCamera cam;
 	
 	private SpriteBatch batcher;
-	private Tables table;
-	private Tables1 table1;
-	private Tables2 table2;
+	private static Tables table;
+	private static Tables1 table1;
+	private static Tables2 table2;
 	private TextureRegion csbg;
 	private TextureRegion wood;
 	private TextureRegion steel;
 	private TextureRegion carbon;
 	
-	private TextureRegion background;
+	private static TextureRegion background;
 
 	public CustomizeRenderer(CustomWorld customWorld){
 		custom = customWorld;
@@ -44,13 +44,33 @@ public class CustomizeRenderer {
 		initAssets();
 	}
 
+	public static TextureRegion getBackground() {
+		table = custom.getTable();
+		table1 = custom.getTable1();
+		table2 = custom.getTable2();
+		if (table.isPressed() == true) {
+			System.out.println("changed to wood");
+			background = AssetLoader.wood;
+		} else if (table1.isPressed() == true) {
+			System.out.println("changed to carbon");
+			background = AssetLoader.carbon;
+		} else if (table2.isPressed() == true) {
+			System.out.println("changed to steel");
+			background = AssetLoader.steel;
+		} else {
+			System.out.println("default bg");
+			background = AssetLoader.csBg;
+		}System.out.println("click tester");
+		return background;
+	}
+	
 	private void initAssets() {
 		csbg = AssetLoader.csBg;
 		wood = AssetLoader.wood;
 		
 		steel = AssetLoader.steel;
 		carbon = AssetLoader.carbon;
-		background = AssetLoader.getBackground();
+		background = getBackground();
 		
 	}
 

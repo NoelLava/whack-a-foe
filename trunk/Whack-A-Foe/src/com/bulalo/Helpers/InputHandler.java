@@ -35,35 +35,34 @@ public class InputHandler implements InputProcessor {
 	
 	@Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-    	/*for(Dummy dummy:dummies){
+    	for(Dummy dummy:dummies){
     		dummy.isTouchDown(screenX/2,screenY/2);
     		dummy.displayResult();
-    	}*/
-    	table.isTouchDown(screenX/2,screenY/2);
-    	table.displayResult();
-    	
-    	table1.isTouchDown1(screenX/2,screenY/2);
-    	table1.displayResult1();
-    	
-    	table2.isTouchDown2(screenX/2,screenY/2);
-    	table2.displayResult2();
+    	}
+//    	table.isTouchDown(screenX/2,screenY/2);
+//    	table.displayResult();
+//    	
+//    	table1.isTouchDown1(screenX/2,screenY/2);
+//    	table1.displayResult1();
+//    	
+//    	table2.isTouchDown2(screenX/2,screenY/2);
+//    	table2.displayResult2();
     	
     	return true;
 	}
     
     @Override
     public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-       // for(Dummy dummy:dummies){
-        //	if(dummy.isTouchUp(screenX/2,screenY/2)){
-        	//return true;
-	       // }
-	        if(table.isTouchUp(screenX/2, screenY/2)){
-	        	return true;
+        for(Dummy dummy:dummies){
+        	if(dummy.isTouchUp(screenX/2,screenY/2)){
+        	return true;
 	        }
-	        //dummy.displayResult();
-	//        table.displayResult();
-	        
-       // }	
+//	        if(table.isTouchUp(screenX/2, screenY/2)){
+//	        	return true;
+//	        }
+	        dummy.displayResult();
+	        //table.displayResult();
+    	}	
         return false;
     }
 
