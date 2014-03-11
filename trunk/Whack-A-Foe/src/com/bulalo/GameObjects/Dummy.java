@@ -30,7 +30,7 @@ public class Dummy {
 		if(life <= 0){
 			life = 0;
 		}
-		//System.out.println(life);
+		System.out.println(life);
 		//System.out.println(position);
 	}
 	
@@ -82,7 +82,7 @@ public class Dummy {
 	
 	}
 	
-	public void remove(){
+	public void markToRemove(){
 		markedForRemoval = true;
 	}	
 	
@@ -125,5 +125,13 @@ public class Dummy {
     		return true;
     	}
     }
+
+	public int getLife() {
+		return life;
+	}
+
+	public void setLife(int life) {
+		this.life = life;
+	}
 
 }

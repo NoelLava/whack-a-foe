@@ -53,7 +53,7 @@ public class CustomWorld {
 	
 	public void update(float delta){	
 		table.update(delta);
-	
+		
 	}
 	
 	public Tables getTable(){

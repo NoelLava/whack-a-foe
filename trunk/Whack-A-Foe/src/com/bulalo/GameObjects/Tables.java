@@ -3,7 +3,6 @@ package com.bulalo.GameObjects;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.bulalo.CustomizeWorld.CustomizeRenderer;
-import com.bulalo.Helpers.AssetLoader;
 
 
 public class Tables {
@@ -24,13 +23,23 @@ public class Tables {
 	
 	public boolean onClick(int screenX, int screenY){
 		System.out.println("table on GameScreen changed");
+		setPressed(true);
 		return bounds.contains(screenX, screenY);
 	}
 	
 	public boolean isTouchDown(float screenX, float screenY) {
 	
+<<<<<<< HEAD
        /* if (bounds.contains(screenX,screenY)) {
         	AssetLoader.getBackground();
+=======
+        if (bounds.contains(screenX,screenY)) {
+        	System.out.println("table1 on GameScreen changed");
+            String boundS1 = bounds.toString();
+            System.out.println(boundS1);
+        	//background = 
+        	setPressed(true);
+>>>>>>> bac9c1b009c398e52d6057a9d9496b71e26aade3
         	return true;
         } */
         return false;
@@ -39,7 +48,8 @@ public class Tables {
     public boolean isTouchUp(int screenX, int screenY) {
         
         // It only counts as a touchUp if the button is in a pressed state.
-        if (bounds.contains(screenX, screenY) && isPressed) {
+        if (bounds.contains(screenX, screenY) && isPressed()) {
+        	
             System.out.println("Dummy - touch up");
             return true;
         }
@@ -83,5 +93,22 @@ public class Tables {
     public float getHeight() {
         return height;
     }
+    
+    public boolean isClicked(){
+    	if(table.isPressed()){
+    		return true;
+    	}
+    	else{
+    		return false;
+    	}
+    }
+
+	public boolean isPressed() {
+		return isPressed;
+	}
+
+	public void setPressed(boolean isPressed) {
+		this.isPressed = isPressed;
+	}
 
 }
