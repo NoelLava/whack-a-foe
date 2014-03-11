@@ -56,6 +56,7 @@ public class GameRenderer {
 	public void drawDummy(float runTime){
 	    for(Dummy dummy:dummies){
 	    	if(dummy.isAlive()){
+	    		
 				batcher.draw(dummyAnimation.getKeyFrame(runTime),
 		                dummy.getX(), dummy.getY(), dummy.getWidth(), dummy.getHeight());
 		    }else{

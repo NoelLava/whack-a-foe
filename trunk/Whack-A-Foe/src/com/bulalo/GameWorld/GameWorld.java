@@ -29,7 +29,7 @@ public class GameWorld {
 		dummies = new ArrayList<Dummy>();
 		int r = rand.nextInt(9);
 	
-		dummy = new Dummy(500, x, y, 35, 50);
+		dummy = new Dummy(300, x, y, 35, 50);
 		dummy.spawn(coordinateX[r], coordinateY[r]);
 		dummies.add(dummy);
 	}
@@ -52,7 +52,7 @@ public class GameWorld {
 			System.out.println("dummies list is null");
 			for(int ctr = 0; ctr < 1; ctr++){
 				int r = rand.nextInt(9);
-				dummy = new Dummy(500, x, y, 35, 50);
+				dummy = new Dummy(300, x, y, 35, 50);
 				dummy.spawn(coordinateX[r], coordinateY[r]);
 				dummies.add(dummy);
 			}
@@ -66,12 +66,10 @@ public class GameWorld {
 			
 			dummy = null;
 			int r = rand.nextInt(9);		
-			dummy = new Dummy(500, x, y, 35, 50);
+			dummy = new Dummy(300, x, y, 35, 50);
 			dummy.spawn(coordinateX[r], coordinateY[r]);
 			dummies.add(dummy);
 		}
-		
-		
 	}
 	
 	public void updateGame(){
@@ -80,7 +78,8 @@ public class GameWorld {
 			Dummy dum = dummies.get(i);
 			checkToRemove();
 			if(dum.isMarked()){
-				dum.remove();
+				System.out.println("mark " + i);
+				dum.markToRemove();
 				removed[i] = true;
 				dum.isNotMarked();
 			}else{
@@ -93,14 +92,14 @@ public class GameWorld {
 	public void checkToRemove(){
 		for(int i = 0; i < dummies.size(); i++){
 			Dummy dum = dummies.get(i);
-			if(dum.isAlive()/*removeCounter[i] >= 200*/){
+			if(dum.isAlive()){
 				System.out.println("checkToRemove - alive");
 			}else{
 				System.out.println("should remove " + i);
 				dummies.remove(i);
 				removed[i] = true;
 				
-				dum.isNotMarked();
+				//dum.isNotMarked();
 				removeCounter[i] = 0;
 				escapeCounter += 1;
 				for(int x = 0; x < dummies.size(); x++){
@@ -112,7 +111,6 @@ public class GameWorld {
 	
 	public void checkHit(){
 		for(int i = 0; i < dummies.size(); i++){
-			//System.out.println("check hit - " + i);
 			Dummy dum = dummies.get(i);
 			if(!dum.isAlive()){
 				for(int x = 0; x < dummies.size(); x++){
@@ -137,24 +135,26 @@ public class GameWorld {
 	
 	public void respawn(){
 		for(int i = 0; i < 9; i++){
+			
 			if(removed[i] == true){
 				if(respawnCounter[i] >= 200){
 					System.out.println("respawn method");
-					Dummy dum = new Dummy(500, x, y, 35, 50);
-					respawnCounter[i] = 0;
-					removed[i] = false;
+					Dummy dum = new Dummy(300, x, y, 35, 50);
 					int r = rand.nextInt(9);
 					dum.spawn(coordinateX[r], coordinateY[r]);
 					dummies.add(dum);
+					
+					respawnCounter[i] = 0;
+					removed[i] = false;
 					for(int y = 0; y < dummies.size(); y++){
 						removeCounter[y] = 0;
 					}
 				}else{
 					respawnCounter[i] += 1;
-					System.out.println("remove counter for " + i + " - "+ respawnCounter[i]);
+					System.out.println("respawn counter for " + i + " - "+ respawnCounter[i]);
 				}
 			}else{
-				removeCounter[i]++;
+				removeCounter[i] += 1;
 				System.out.println("remove counter for " + i + " - "+ removeCounter[i]);
 			}
 		}

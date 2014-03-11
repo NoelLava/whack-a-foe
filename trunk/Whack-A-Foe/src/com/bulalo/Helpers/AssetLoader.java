@@ -110,12 +110,13 @@ public class AssetLoader {
 		TextureRegion[] dummies = { dummy1, dummy2, dummy3, dummy4 };
 		dummyAnimation = new Animation(0.03f, dummies);
 		dummyAnimation.setPlayMode(Animation.NORMAL);
-		dummyDies = new Animation(0.25f, dummies);
-		dummyDies.setPlayMode(Animation.REVERSED);
+		TextureRegion[] dummyRev = {dummy4, dummy3, dummy2, dummy1};
+		dummyDies = new Animation(0.03f, dummyRev);
+		dummyDies.setPlayMode(Animation.NORMAL);
 	}
 
 	public static void dispose() {
-		// We must dispose of the textures when we are finished, beki si kim
+		// We must dispose of the textures when we are finished
 		gameTexture.dispose();
 		tSTexture.dispose();
 		// cSTexture.dispose();
