@@ -12,14 +12,11 @@ public class Tables {
 	private int width;
 	private int height;
 	private boolean isPressed = false;
-	private Tables table;
-	private String background ="";
-	private CustomizeRenderer render;
 	
 	public Tables(float x, float y, int width, int height){
 		this.width = 22;
 		this.height = 42;
-		position = new Vector2(20,50);
+		position = new Vector2(x,y);
 		
 		bounds = new Rectangle(x, y, width, height);
 		
@@ -32,10 +29,10 @@ public class Tables {
 	
 	public boolean isTouchDown(float screenX, float screenY) {
 	
-        if (bounds.contains(screenX,screenY)) {
-        	isPressed = true;
+       /* if (bounds.contains(screenX,screenY)) {
+        	AssetLoader.getBackground();
         	return true;
-        } 
+        } */
         return false;
     }
 
