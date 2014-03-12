@@ -47,7 +47,6 @@ public class MenuRenderer {
 	}
 
 	public void render(float runTime) {
-		
 		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
 
@@ -68,12 +67,13 @@ public class MenuRenderer {
 		// This is good for performance when drawing images that do not require
 		// transparency.
 		batcher.disableBlending();
-		batcher.draw(titleBg, 0, 0, 160, 256);
-		drawButtons();
+		batcher.draw(titleBg, 0, 0, Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight()/2);
 
-		// The bird needs transparency, so we enable that again.
+		// The buttons need transparency, so we enable that again.
 		batcher.enableBlending();
-
+		
+		drawButtons();
+		
 		// End SpriteBatch
 		batcher.end();
 

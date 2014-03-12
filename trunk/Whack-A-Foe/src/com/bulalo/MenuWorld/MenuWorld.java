@@ -3,6 +3,7 @@ package com.bulalo.MenuWorld;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.badlogic.gdx.Gdx;
 import com.bulalo.Helpers.AssetLoader;
 import com.bulalo.UI.Button;
 
@@ -18,14 +19,9 @@ public class MenuWorld {
 	public MenuWorld(){
 		menuButtons = new ArrayList<Button>();
 		
-//		playButton = new Button(10.5f, 111.75f, 65 , 65, AssetLoader.redButton, AssetLoader.redPressed);
-//		shopButton = new Button(22.5f, 149.75f, 65, 65, AssetLoader.yellowButton, AssetLoader.yellowPressed);
-//		customButton = new Button(22.5f, 187.75f, 65, 65, AssetLoader.blueButton, AssetLoader.bluePressed);
-		
-		playButton = new Button(320/2 - (AssetLoader.redButton.getRegionWidth() * 2.12f), 512/2 - (AssetLoader.redButton.getRegionWidth() * 2.22f), 65 / 2 , 65 / 2, AssetLoader.redButton, AssetLoader.redPressed);
-		shopButton = new Button(320/2 - (AssetLoader.redButton.getRegionWidth() * 2.12f), 512/2 - (AssetLoader.redButton.getRegionWidth() * 1.63f), 65 / 2, 65 / 2, AssetLoader.yellowButton, AssetLoader.yellowPressed);
-		customButton = new Button(320/2 - (AssetLoader.redButton.getRegionWidth() * 2.12f), 512/2 - (AssetLoader.redButton.getRegionWidth() * 1.05f), 65 / 2, 65 / 2, AssetLoader.blueButton, AssetLoader.bluePressed);
-		//111.75f, 149.75f, 187.75f
+		playButton = new Button(Gdx.graphics.getWidth()/2 - (AssetLoader.redButton.getRegionWidth() * 1.675f), Gdx.graphics.getHeight()/2 - (AssetLoader.redButton.getRegionHeight() * 1.8f),  AssetLoader.redButton.getRegionWidth() / 2 , AssetLoader.redButton.getRegionHeight() / 2, AssetLoader.redButton, AssetLoader.redPressed);
+		shopButton = new Button(Gdx.graphics.getWidth()/2 - (AssetLoader.redButton.getRegionWidth() * 1.675f), Gdx.graphics.getHeight()/2 - (AssetLoader.redButton.getRegionHeight() * 1.32f), AssetLoader.redButton.getRegionWidth() / 2 , AssetLoader.redButton.getRegionHeight() / 2, AssetLoader.yellowButton, AssetLoader.yellowPressed);
+		customButton = new Button(Gdx.graphics.getWidth()/2 - (AssetLoader.redButton.getRegionWidth() * 1.675f), Gdx.graphics.getHeight()/2 - (AssetLoader.redButton.getRegionHeight() * 0.835f), AssetLoader.redButton.getRegionWidth() / 2 , AssetLoader.redButton.getRegionHeight() / 2, AssetLoader.blueButton, AssetLoader.bluePressed);
 		
 		menuButtons.add(playButton);
 		menuButtons.add(shopButton);
@@ -33,7 +29,7 @@ public class MenuWorld {
 	}
 	
 	public void update(float delta){	
-		runTime += delta;
+		runTime += delta;		
 	}
 
 	private void updateReady(float delta) {
