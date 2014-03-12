@@ -8,7 +8,7 @@ import com.bulalo.Screens.MenuScreen;
 
 public class WaFGame extends Game {
 
-	MenuScreen mainMenu;
+	public MenuScreen mainMenu;
 	public GameScreen gameScreen;
 	public CustomizeScreen customizeScreen;
 	
@@ -19,7 +19,7 @@ public class WaFGame extends Game {
 		gameScreen = new GameScreen(this);
 		customizeScreen = new CustomizeScreen(this);
 		AssetLoader.load();
-		setScreen(new CustomizeScreen());
+		setScreen(new MenuScreen());
 	}
 	
 	@Override

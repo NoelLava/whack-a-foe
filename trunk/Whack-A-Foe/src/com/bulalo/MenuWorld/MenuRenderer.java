@@ -25,7 +25,7 @@ public class MenuRenderer {
 	
 	public MenuRenderer(MenuWorld world) {
 		menu = world;
-        this.menuButtons = MenuInputHandler.getMenuButtons();
+        this.menuButtons = MenuWorld.getMenuButtons();
 		cam = new OrthographicCamera();
 		cam.setToOrtho(true, 160, 256);
 		shapeRenderer = new ShapeRenderer();
@@ -42,7 +42,7 @@ public class MenuRenderer {
 	
 	private void drawButtons(){
 		for(Button button : menuButtons) {
-            button.draw(batcher);
+			button.draw(batcher);
         }		
 	}
 

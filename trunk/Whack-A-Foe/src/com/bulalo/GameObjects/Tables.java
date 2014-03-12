@@ -2,8 +2,6 @@ package com.bulalo.GameObjects;
 
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
-import com.bulalo.CustomizeWorld.CustomizeRenderer;
-
 
 public class Tables {
 	private Vector2 position;

@@ -1,6 +1,8 @@
 package com.bulalo.Screens;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.bulalo.MenuWorld.MenuInputHandler;
 import com.bulalo.MenuWorld.MenuRenderer;
 import com.bulalo.MenuWorld.MenuWorld;
 import com.bulalo.whackafoe.WaFGame;
@@ -21,7 +23,8 @@ public class MenuScreen implements Screen{
 		menu = new MenuWorld();
 		System.out.println("MenuWorld initialized");
 		render = new MenuRenderer(menu);
-		//Gdx.input.setInputProcessor(new InputHandler(menu.getPlayButton()));
+		
+		Gdx.input.setInputProcessor(new MenuInputHandler(menu));
 	}
 	
 	@Override

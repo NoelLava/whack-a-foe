@@ -32,7 +32,8 @@ public class Button {
 	}
 	
 	public void draw(SpriteBatch batcher) {
-        if (isPressed) {
+        if (this.isPressed) {
+        	System.out.println("button pressed");
             batcher.draw(buttonDown, x, y, width, height);
         } else {
             batcher.draw(buttonUp, x, y, width, height);
@@ -60,4 +61,68 @@ public class Button {
         isPressed = false;
         return false;
     }
+
+	public float getX() {
+		return x;
+	}
+
+	public float getY() {
+		return y;
+	}
+
+	public float getWidth() {
+		return width;
+	}
+
+	public float getHeight() {
+		return height;
+	}
+
+	public Circle getBounds() {
+		return bounds;
+	}
+
+	public boolean isPressed() {
+		return isPressed;
+	}
+
+	public void setX(float x) {
+		this.x = x;
+	}
+
+	public void setY(float y) {
+		this.y = y;
+	}
+
+	public void setWidth(float width) {
+		this.width = width;
+	}
+
+	public void setHeight(float height) {
+		this.height = height;
+	}
+
+	public void setBounds(Circle bounds) {
+		this.bounds = bounds;
+	}
+
+	public void setPressed(boolean isPressed) {
+		this.isPressed = isPressed;
+	}
+
+	public TextureRegion getButtonUp() {
+		return buttonUp;
+	}
+
+	public TextureRegion getButtonDown() {
+		return buttonDown;
+	}
+
+	public void setButtonUp(TextureRegion buttonUp) {
+		this.buttonUp = buttonUp;
+	}
+
+	public void setButtonDown(TextureRegion buttonDown) {
+		this.buttonDown = buttonDown;
+	}
 }
