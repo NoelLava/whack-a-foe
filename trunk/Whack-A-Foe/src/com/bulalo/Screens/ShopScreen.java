@@ -4,22 +4,25 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.bulalo.ShopScreen.ShopRenderer;
 import com.bulalo.ShopScreen.ShopWorld;
+import com.bulalo.whackafoe.WaFGame;
 import com.bulalo.Helpers.InputHandler;
 
 public class ShopScreen implements Screen {
 
-	ShopWorld world;
+	WaFGame game;
 	ShopRenderer renderer;
-	
 	private float runTime = 0;
+	private ShopWorld world;
+	private ShopWorld shop;
+	public ShopScreen(WaFGame game){
+		this.game = game;
+	}
 	
 	public ShopScreen(){
 		System.out.println("ShopScreen Attached");
-		
 		world = new ShopWorld();
 		renderer = new ShopRenderer(world); 
-		
-		//Gdx.input.setInputProcessor(new InputHandler(world.getDummy()));
+		Gdx.input.setInputProcessor(new InputHandler(world));
 	}
 
 	@Override

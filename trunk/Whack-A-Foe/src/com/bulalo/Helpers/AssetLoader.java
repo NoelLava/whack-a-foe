@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.bulalo.CustomizeWorld.CustomWorld;
 import com.bulalo.GameObjects.Tables;
 
+
 public class AssetLoader {
 	public static Texture gameTexture;
 	public static TextureRegion table;
@@ -37,6 +38,11 @@ public class AssetLoader {
 	public static TextureRegion steel;
 	public static TextureRegion carbon;
 	public static TextureRegion background;
+	
+	public static Texture shopTexture;
+	public static TextureRegion hammer;
+	public static TextureRegion hammer1;
+	public static TextureRegion hammer2;
 
 	public static Animation dummyAnimation;
 	public static Animation dummyDies;
@@ -60,6 +66,8 @@ public class AssetLoader {
 		steelTexture.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
 		carbonTexture = new Texture(Gdx.files.internal("data/Carbon.png"));
 		carbonTexture.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
+		shopTexture = new Texture(Gdx.files.internal("data/ShopS.png"));
+		shopTexture.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
 		
 		// TitleScreen Textures
 		titleBg = new TextureRegion(tSTexture, 0, 0, 320, 512);
@@ -114,6 +122,16 @@ public class AssetLoader {
 		TextureRegion[] dummyRev = {dummy4, dummy3, dummy2, dummy1};
 		dummyDies = new Animation(0.03f, dummyRev);
 		dummyDies.setPlayMode(Animation.NORMAL);
+		
+		//ShopScreen Textures
+		hammer = new TextureRegion(shopTexture, 0, 0, 512,512);
+		hammer1 = new TextureRegion(shopTexture, 20, 0, 512, 512);
+		hammer2 = new TextureRegion(shopTexture, 40, 0, 320, 512);
+		
+		hammer.flip(false, true);
+		hammer1.flip(false, true);
+		hammer2.flip(false, true);
+		
 	}
 	
 	/*public static TextureRegion getBackground(){

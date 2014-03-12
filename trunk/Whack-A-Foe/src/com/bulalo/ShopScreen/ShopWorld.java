@@ -1,8 +1,13 @@
 package com.bulalo.ShopScreen;
 
 import com.badlogic.gdx.math.Rectangle;
+import com.bulalo.GameObjects.Hammers;
 
 public class ShopWorld {
+	
+	private Hammers hammer;
+	private Hammers hammer1;
+	private Hammers hammer2;
 	private Rectangle rect = new Rectangle(0, 0, 17, 12);
 	
 	public void update(float delta) {
@@ -15,6 +20,18 @@ public class ShopWorld {
 	
 	public Rectangle getRect() {
 		return rect;
+	}
+	
+	public Hammers getHammer(){
+		return hammer;
+	}
+	
+	public Hammers getHammer1(){
+		return hammer1;
+	}
+	
+	public Hammers getHammer2(){
+		return hammer2;
 	}
 	
 	

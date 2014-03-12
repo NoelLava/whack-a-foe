@@ -5,8 +5,10 @@ import java.util.List;
 import com.badlogic.gdx.InputProcessor;
 import com.bulalo.CustomizeWorld.CustomWorld;
 import com.bulalo.GameObjects.Dummy;
+import com.bulalo.GameObjects.Hammers;
 import com.bulalo.GameObjects.Tables;
 import com.bulalo.GameWorld.GameWorld;
+import com.bulalo.ShopScreen.ShopWorld;
 
 public class InputHandler implements InputProcessor {
 	private Dummy myDummy;
@@ -16,6 +18,10 @@ public class InputHandler implements InputProcessor {
 	private Tables table;
 	private Tables table1;
 	private Tables table2;
+	private ShopWorld shopWorld;
+	private Hammers hammer;
+	private Hammers hammer1;
+	private Hammers hammer2;
 	
 
 	public InputHandler(GameWorld myWorld){
@@ -29,6 +35,14 @@ public class InputHandler implements InputProcessor {
 		table1 = customize.getTable();
 		table2 = customize.getTable();
 		
+    }
+    
+    public InputHandler(ShopWorld shopWorld){
+    	this.shopWorld = shopWorld;
+    	hammer = shopWorld.getHammer();
+    	hammer1 = shopWorld.getHammer1();
+    	hammer2 = shopWorld.getHammer2();
+    	
     }
 	
 	@Override
