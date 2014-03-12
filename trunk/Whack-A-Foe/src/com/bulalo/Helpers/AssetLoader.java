@@ -15,14 +15,10 @@ public class AssetLoader {
 	public static TextureRegion dummy2;
 	public static TextureRegion dummy3;
 	public static TextureRegion dummy4;
-<<<<<<< HEAD
 	
 	private static Tables table1;
 	private static CustomWorld custom = new CustomWorld();
 	
-=======
-
->>>>>>> bac9c1b009c398e52d6057a9d9496b71e26aade3
 	public static Texture tSTexture;
 	public static TextureRegion titleBg;
 	public static TextureRegion redButton;
@@ -119,7 +115,6 @@ public class AssetLoader {
 		dummyDies = new Animation(0.03f, dummyRev);
 		dummyDies.setPlayMode(Animation.NORMAL);
 	}
-<<<<<<< HEAD
 	
 	/*public static TextureRegion getBackground(){
 		table1 = custom.getTable();
@@ -141,9 +136,6 @@ public class AssetLoader {
 		return background;
 	}*/
 	
-=======
-
->>>>>>> bac9c1b009c398e52d6057a9d9496b71e26aade3
 	public static void dispose() {
 		// We must dispose of the textures when we are finished
 		gameTexture.dispose();

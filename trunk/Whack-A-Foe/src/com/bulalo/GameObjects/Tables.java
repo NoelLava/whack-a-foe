@@ -29,19 +29,16 @@ public class Tables {
 	
 	public boolean isTouchDown(float screenX, float screenY) {
 	
-<<<<<<< HEAD
-       /* if (bounds.contains(screenX,screenY)) {
-        	AssetLoader.getBackground();
-=======
+       // if (bounds.contains(screenX,screenY)) {
+        //	AssetLoader.getBackground();
         if (bounds.contains(screenX,screenY)) {
         	System.out.println("table1 on GameScreen changed");
             String boundS1 = bounds.toString();
             System.out.println(boundS1);
         	//background = 
         	setPressed(true);
->>>>>>> bac9c1b009c398e52d6057a9d9496b71e26aade3
         	return true;
-        } */
+        } 
         return false;
     }
 

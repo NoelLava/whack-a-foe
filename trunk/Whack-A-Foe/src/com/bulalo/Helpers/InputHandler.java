@@ -36,17 +36,6 @@ public class InputHandler implements InputProcessor {
     	for(Dummy dummy:dummies){
     		dummy.isTouchDown(screenX/2,screenY/2);
     		dummy.displayResult();
-<<<<<<< HEAD
-    	}*/
-    	table.isTouchDown(screenX/2,screenY/2);
-    	table.displayResult();
-    	
-    	table1.isTouchDown(screenX/2,screenY/2);
-    	table1.displayResult();
-    	
-    	table2.isTouchDown(screenX/2,screenY/2);
-    	table2.displayResult();
-=======
     	}
 //    	table.isTouchDown(screenX/2,screenY/2);
 //    	table.displayResult();
@@ -56,7 +45,6 @@ public class InputHandler implements InputProcessor {
 //    	
 //    	table2.isTouchDown2(screenX/2,screenY/2);
 //    	table2.displayResult2();
->>>>>>> bac9c1b009c398e52d6057a9d9496b71e26aade3
     	
     	return true;
 	}
