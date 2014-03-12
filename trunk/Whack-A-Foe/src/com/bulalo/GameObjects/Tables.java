@@ -91,14 +91,14 @@ public class Tables {
         return height;
     }
     
-    public boolean isClicked(){
+    /*public boolean isClicked(){
     	if(table.isPressed()){
     		return true;
     	}
     	else{
     		return false;
     	}
-    }
+    }*/
 
 	public boolean isPressed() {
 		return isPressed;
