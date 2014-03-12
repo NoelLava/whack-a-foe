@@ -5,13 +5,11 @@ import com.bulalo.GameObjects.Cdummy1;
 import com.bulalo.GameObjects.Cdummy2;
 import com.bulalo.GameObjects.Cdummy3;
 import com.bulalo.GameObjects.Tables;
-import com.bulalo.GameObjects.Tables1;
-import com.bulalo.GameObjects.Tables2;
 
 public class CustomWorld {
 	private Tables table;
-	private Tables1 table1;
-	private Tables2 table2;
+	private Tables table1;
+	private Tables table2;
 	
 	private Cdummy1 cdummy1;
 	private Cdummy2 cdummy2;
@@ -42,12 +40,12 @@ public class CustomWorld {
 		table.setY(50);
 		position = new Vector2(20,50);
 		
-		table1 = new Tables1(60, 50, 22, 42);	
+		table1 = new Tables(60, 50, 22, 42);	
 		table1.setX(60);
 		table1.setY(50);
 		position = new Vector2(60,50);
 		
-		table2 = new Tables2(100, 50, 22, 42);	
+		table2 = new Tables(100, 50, 22, 42);	
 		table2.setX(100);
 		table2.setY(50);
 		position = new Vector2(100,50);
@@ -60,14 +58,6 @@ public class CustomWorld {
 	
 	public Tables getTable(){
 		return table;
-	}
-	
-	public Tables1 getTable1(){
-		return table1;
-	}
-	
-	public Tables2 getTable2(){
-		return table2;
 	}
 	
 	public Cdummy1 getCdummy1(){

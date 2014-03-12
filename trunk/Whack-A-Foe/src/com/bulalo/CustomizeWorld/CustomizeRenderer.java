@@ -8,8 +8,6 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.bulalo.GameObjects.Tables;
-import com.bulalo.GameObjects.Tables1;
-import com.bulalo.GameObjects.Tables2;
 import com.bulalo.Helpers.AssetLoader;
 
 public class CustomizeRenderer {
@@ -19,9 +17,13 @@ public class CustomizeRenderer {
 	private OrthographicCamera cam;
 	
 	private SpriteBatch batcher;
+<<<<<<< HEAD
+	private Tables table,table1,table2;
+=======
 	private static Tables table;
 	private static Tables1 table1;
 	private static Tables2 table2;
+>>>>>>> bac9c1b009c398e52d6057a9d9496b71e26aade3
 	private TextureRegion csbg;
 	private TextureRegion wood;
 	private TextureRegion steel;
@@ -70,14 +72,18 @@ public class CustomizeRenderer {
 		
 		steel = AssetLoader.steel;
 		carbon = AssetLoader.carbon;
+<<<<<<< HEAD
+		//background = AssetLoader.getBackground();
+=======
 		background = getBackground();
+>>>>>>> bac9c1b009c398e52d6057a9d9496b71e26aade3
 		
 	}
 
 	private void initGameObjects() {
 		table = custom.getTable();
-		table1 = custom.getTable1();
-		table2 = custom.getTable2();
+		table1 = custom.getTable();
+		table2 = custom.getTable();
 	}
 	
 	public void drawBackground(TextureRegion region){
@@ -125,7 +131,7 @@ public class CustomizeRenderer {
         batcher.disableBlending();
         //batcher.draw(background, 0, 0, 160, 256);
         
-        drawBackground(background);
+        drawBackground(csbg);
         
         batcher.enableBlending();
        // batcher.draw(wood,0,50,22,42);

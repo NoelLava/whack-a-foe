@@ -7,8 +7,6 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.bulalo.CustomizeWorld.CustomWorld;
 import com.bulalo.GameObjects.Tables;
-import com.bulalo.GameObjects.Tables1;
-import com.bulalo.GameObjects.Tables2;
 
 public class AssetLoader {
 	public static Texture gameTexture;
@@ -17,7 +15,14 @@ public class AssetLoader {
 	public static TextureRegion dummy2;
 	public static TextureRegion dummy3;
 	public static TextureRegion dummy4;
+<<<<<<< HEAD
+	
+	private static Tables table1;
+	private static CustomWorld custom = new CustomWorld();
+	
+=======
 
+>>>>>>> bac9c1b009c398e52d6057a9d9496b71e26aade3
 	public static Texture tSTexture;
 	public static TextureRegion titleBg;
 	public static TextureRegion redButton;
@@ -114,7 +119,31 @@ public class AssetLoader {
 		dummyDies = new Animation(0.03f, dummyRev);
 		dummyDies.setPlayMode(Animation.NORMAL);
 	}
+<<<<<<< HEAD
+	
+	/*public static TextureRegion getBackground(){
+		table1 = custom.getTable();
+		table2 = custom.getTable1();
+		table3 = custom.getTable2();
+		if(table1.onClick(20, 50)){
+			System.out.println("changed to wood");
+			background = AssetLoader.wood;
+		}
+		else if(table2.onClick1(60, 50)){
+			System.out.println("changed to carbon");
+			background=AssetLoader.carbon;
+		}
+		else if (table3.onClick2(100, 50)){
+			System.out.println("changed to steel");
+			background=AssetLoader.steel;
+		}
+		System.out.println("enter");
+		return background;
+	}*/
+	
+=======
 
+>>>>>>> bac9c1b009c398e52d6057a9d9496b71e26aade3
 	public static void dispose() {
 		// We must dispose of the textures when we are finished
 		gameTexture.dispose();
