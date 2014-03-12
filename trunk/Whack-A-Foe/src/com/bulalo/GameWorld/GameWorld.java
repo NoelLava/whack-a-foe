@@ -36,7 +36,7 @@ public class GameWorld {
 	
 	public void update(float delta){	
 		dummy.update(delta);
-		//inGame();
+		inGame();
 		updateGame();
 		checkHit();
 		respawn();
