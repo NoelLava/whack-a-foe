@@ -20,56 +20,30 @@ public class CustomWorld {
 	
 	public CustomWorld(){
 		
-		cdummy1 = new Cdummy1(20, 150, 22, 42);	
-		cdummy1.setX(20);
-		cdummy1.setY(150);
-		position = new Vector2(20,150);
-		
-		cdummy2 = new Cdummy2(60, 150, 22, 42);	
-		cdummy2.setX(60);
-		cdummy2.setY(150);
-		position = new Vector2(60,150);
-		
-		cdummy3 = new Cdummy3(100, 150, 22, 42);	
-		cdummy3.setX(100);
-		cdummy3.setY(150);
-		position = new Vector2(100,150);
 		
 		table = new Tables(20, 50, 22, 42);	
-		table.setX(20);
-		table.setY(50);
-		position = new Vector2(20,50);
 		
 		table1 = new Tables(60, 50, 22, 42);	
-		table1.setX(60);
-		table1.setY(50);
-		position = new Vector2(60,50);
 		
 		table2 = new Tables(100, 50, 22, 42);	
-		table2.setX(100);
-		table2.setY(50);
-		position = new Vector2(100,50);
 	}
 	
 	public void update(float delta){	
 		table.update(delta);
-		
+		table1.update(delta);
+		table2.update(delta);
 	}
 	
 	public Tables getTable(){
 		return table;
 	}
 	
-	public Cdummy1 getCdummy1(){
-		return cdummy1;
+	public Tables getTable1(){
+		return table1;
 	}
 	
-	public Cdummy2 getCdummy2(){
-		return cdummy2;
-	}
-	
-	public Cdummy3 getCdummy3(){
-		return cdummy3;
+	public Tables getTable2(){
+		return table2;
 	}
 	
 }

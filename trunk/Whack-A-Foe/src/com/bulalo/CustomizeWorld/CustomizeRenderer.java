@@ -73,8 +73,8 @@ public class CustomizeRenderer {
 
 	private void initGameObjects() {
 		table = custom.getTable();
-		table1 = custom.getTable();
-		table2 = custom.getTable();
+		table1 = custom.getTable1();
+		table2 = custom.getTable2();
 	}
 	
 	public void drawBackground(TextureRegion region){
