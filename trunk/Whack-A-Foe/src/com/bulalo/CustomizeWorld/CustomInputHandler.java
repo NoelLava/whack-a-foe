@@ -14,6 +14,10 @@ public class CustomInputHandler implements InputProcessor{
 	private Tables table1;
 	private Tables table2;
 	
+	private static boolean tableTrue;
+	private static boolean table1True;
+	private static boolean table2True;
+	
 	private static List<Button> customButtons;
 
 	float scaleFactorX;
@@ -33,18 +37,37 @@ public class CustomInputHandler implements InputProcessor{
 	
 	}
 	
+	public CustomInputHandler(){
+		System.out.println("initialized");
+	}
+	
+	public boolean checkTable(){
+		return tableTrue;
+	}
+	
+	public boolean checkTable1(){
+		return table1True;
+	}
+	
+	public boolean checkTable2(){
+		return table2True;
+	}
+	
 	@Override
 	public boolean touchDown(int screenX, int screenY, int pointer, int button) {
 		screenX = scaleX(screenX);
 		screenY = scaleY(screenY);
 		
 		if(table.isTouchDown(screenX, screenY)){
+			tableTrue = true;
 			System.out.println("table touched");
 		}
 		else if(table1.isTouchDown(screenX, screenY)){
+			table1True = true;
 			System.out.println("table1 touched");
 		}
 		else if(table2.isTouchDown(screenX, screenY)){
+			table2True = true;
 			System.out.println("table2 touched");
 		}
 		
@@ -60,11 +83,17 @@ public class CustomInputHandler implements InputProcessor{
 		screenX = scaleX(screenX);
 		screenY = scaleY(screenY);
 		
-		if(table.isTouchUp(screenX, screenY) || table1.isTouchUp(screenX, screenY) ||
-					table2.isTouchUp(screenX, screenY)){
+		if(table.isTouchUp(screenX, screenY)){
 			return true;
 		}
-			
+		
+		if(table1.isTouchUp(screenX, screenY)){
+			return true;
+		}
+		
+		if(table2.isTouchUp(screenX, screenY)){
+			return true;
+		}
 		
 		for (Button thisButton : customButtons) {
 			if (thisButton.isTouchUp(screenX, screenY)) {
@@ -118,5 +147,17 @@ public class CustomInputHandler implements InputProcessor{
 	private int scaleY(int screenY) {
 		return (int) (screenY / scaleFactorY);
 	}
+	
+	public boolean falseCheck(){
+		return tableTrue = false;
+	}
+	
+	public boolean falseCheck1(){
+		return table1True = false;
+	}
 
+	public boolean falseCheck2(){
+		return table2True = false;
+	}
+	
 }

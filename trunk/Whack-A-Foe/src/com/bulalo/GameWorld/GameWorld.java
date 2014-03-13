@@ -24,7 +24,10 @@ public class GameWorld {
 
 	Random rand = new Random();
 	float runTime = 0;
-	
+
+	private static List<Button> gameButtons;
+	Button pauseButton;
+
 	private float x, y;
 
 	private boolean[] removed = { false, false, false, false, false, false,
@@ -39,8 +42,13 @@ public class GameWorld {
 
 		dummy = new Dummy(300, x, y, 35, 50);
 		dummy.spawn(coordinateX[r], coordinateY[r]);
-		dummies.add(dummy);	
-		
+		dummies.add(dummy);
+
+		gameButtons = new ArrayList<Button>();
+		pauseButton = new Button(137.85f, 1.85f, 21.5f, 20.5f,
+				AssetLoader.pauseButton, AssetLoader.pausePressed);
+
+		gameButtons.add(pauseButton);
 	}
 
 	public void update(float delta) {
@@ -176,4 +184,7 @@ public class GameWorld {
 		return dummies;
 	}
 
+	public static List<Button> getGameButtons() {
+		return gameButtons;
+	}
 }

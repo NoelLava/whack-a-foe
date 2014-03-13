@@ -11,6 +11,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
+import com.bulalo.CustomizeWorld.CustomInputHandler;
 import com.bulalo.GameObjects.Dummy;
 import com.bulalo.Helpers.AssetLoader;
 import com.bulalo.Helpers.InputHandler;
@@ -21,28 +22,31 @@ public class GameRenderer {
 	private ShapeRenderer shapeRenderer;
 	
 	private OrthographicCamera cam;
-	
+	private CustomInputHandler custom = new CustomInputHandler();
 	private SpriteBatch batcher;
 	
 	private Dummy dummy;
 	private List<Dummy> dummies;
+	private List<Button> gameButtons;
 	
 	private TextureRegion table;
 	private Animation dummyAnimation;
 	private Animation dummyDies;
 	
-//	private List<Button> buttons;
-	
 	public GameRenderer(GameWorld world){
 		myWorld = world;
 		this.dummies = InputHandler.getDummies();
-//		this.buttons = InputHandler.getButtons();
+		this.gameButtons = GameWorld.getGameButtons();
+		
 		cam = new OrthographicCamera();
 		cam.setToOrtho(true, 160, 256);
+		
 		batcher = new SpriteBatch();
 		batcher.setProjectionMatrix(cam.combined);
+		
 		shapeRenderer = new ShapeRenderer();
 		shapeRenderer.setProjectionMatrix(cam.combined);
+		
 		initGameObjects();
 		initAssets();
 	}
@@ -53,6 +57,7 @@ public class GameRenderer {
 	
 	private void initAssets(){
 		table = AssetLoader.table;
+		
 		dummyAnimation = AssetLoader.dummyAnimation;
 		dummyDies = AssetLoader.dummyDies;
 	}
@@ -71,11 +76,15 @@ public class GameRenderer {
 	    }
 	}
 	
-//	private void drawButtons(){
-//		for(Button button : buttons) {
-//			button.draw(batcher);
-//        }		
-//	}
+	private void drawButtons(){
+		for(Button button : gameButtons) {
+			button.draw(batcher);
+        }		
+	}
+	
+	private TextureRegion getTable(){
+		return this.table;
+	}
 	
 	public void render(float runTime){		
         Gdx.gl.glClearColor(0, 0, 0, 1);
@@ -98,12 +107,25 @@ public class GameRenderer {
         // This is good for performance when drawing images that do not require
         // transparency.
         batcher.disableBlending();
+        if(custom.checkTable() == true){
+    		this.table = AssetLoader.wood;
+    		custom.falseCheck();
+        	}
+    		else if(custom.checkTable1() == true){
+    			this.table = AssetLoader.steel;
+    			custom.falseCheck1();
+    		}
+    		else if(custom.checkTable2() == true){
+    			this.table = AssetLoader.carbon;
+    			custom.falseCheck2();
+    		}
+        getTable();
         batcher.draw(table, 0, 0, 160, 256);
         
         batcher.enableBlending();
  
         drawDummy(runTime);
-        //drawButtons();
+        drawButtons();
         
         // End SpriteBatch
         batcher.end();
