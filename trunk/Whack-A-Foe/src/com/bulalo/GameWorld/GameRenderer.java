@@ -15,6 +15,7 @@ import com.bulalo.CustomizeWorld.CustomInputHandler;
 import com.bulalo.GameObjects.Dummy;
 import com.bulalo.Helpers.AssetLoader;
 import com.bulalo.Helpers.InputHandler;
+import com.bulalo.UI.Button;
 
 public class GameRenderer {
 	private GameWorld myWorld;
@@ -108,12 +109,15 @@ public class GameRenderer {
         batcher.disableBlending();
         if(custom.checkTable() == true){
     		this.table = AssetLoader.wood;
-    		}
+    		custom.falseCheck();
+        	}
     		else if(custom.checkTable1() == true){
     			this.table = AssetLoader.steel;
+    			custom.falseCheck1();
     		}
     		else if(custom.checkTable2() == true){
     			this.table = AssetLoader.carbon;
+    			custom.falseCheck2();
     		}
         getTable();
         batcher.draw(table, 0, 0, 160, 256);
