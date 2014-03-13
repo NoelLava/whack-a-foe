@@ -17,20 +17,13 @@ public class WaFGame extends Game {
 	@Override
 	public void create() {
 		System.out.println("Game created");
-<<<<<<< HEAD
-		mainMenu = new MenuScreen(this);
-		gameScreen = new GameScreen(this);
-		customizeScreen = new CustomizeScreen(this);
-		shopScreen = new ShopScreen(this);
-		AssetLoader.load();
-		setScreen(new ShopScreen());
-=======
+
 		//mainMenu = new MenuScreen(this);
 		gameScreen = new GameScreen();
 		customizeScreen = new CustomizeScreen();
 		AssetLoader.load();
 		setScreen(new MenuScreen(this));
->>>>>>> cbc06c2254950dcc058f5ebfa19fed48e97333a0
+
 	}
 	
 	@Override
