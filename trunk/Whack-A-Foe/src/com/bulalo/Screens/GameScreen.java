@@ -20,6 +20,7 @@ public class GameScreen implements Screen{
 	}
 	
 	public GameScreen(){
+		//this.game = game;
 		System.out.println("Game Screen Attached");
 		
 		world = new GameWorld();			//initialize the gameWorld

@@ -3,6 +3,7 @@ package com.bulalo.UI;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Circle;
+import com.badlogic.gdx.math.Rectangle;
 
 public class Button {
 
@@ -11,9 +12,10 @@ public class Button {
 	private TextureRegion buttonUp;
 	private TextureRegion buttonDown;
 
-	private Circle bounds;
+	private Rectangle bounds;
 
 	boolean isPressed = false;
+	boolean justPressed = false;
 	
 	public Button(float x, float y, float width, float height,
 			TextureRegion buttonUp, TextureRegion buttonDown) {
@@ -24,7 +26,7 @@ public class Button {
 		this.buttonUp = buttonUp;
 		this.buttonDown = buttonDown;
 		
-		bounds = new Circle(x, y, width/2);
+		bounds = new Rectangle(x, y, width, height);
 	}
 	
 	public boolean isClicked(int screenX, int screenY){
@@ -33,7 +35,6 @@ public class Button {
 	
 	public void draw(SpriteBatch batcher) {
         if (this.isPressed) {
-        	System.out.println("button pressed");
             batcher.draw(buttonDown, x, y, width, height);
         } else {
             batcher.draw(buttonUp, x, y, width, height);
@@ -54,11 +55,13 @@ public class Button {
         // It only counts as a touchUp if the button is in a pressed state.
         if (bounds.contains(screenX, screenY) && isPressed) {
             isPressed = false;
+            justPressed = true;
             return true;
         }
         
         // Whenever a finger is released, we will cancel any presses.
         isPressed = false;
+        justPressed = false;
         return false;
     }
 
@@ -78,7 +81,7 @@ public class Button {
 		return height;
 	}
 
-	public Circle getBounds() {
+	public Rectangle getBounds() {
 		return bounds;
 	}
 
@@ -102,7 +105,7 @@ public class Button {
 		this.height = height;
 	}
 
-	public void setBounds(Circle bounds) {
+	public void setBounds(Rectangle bounds) {
 		this.bounds = bounds;
 	}
 
@@ -124,5 +127,13 @@ public class Button {
 
 	public void setButtonDown(TextureRegion buttonDown) {
 		this.buttonDown = buttonDown;
+	}
+
+	public boolean isJustPressed() {
+		return justPressed;
+	}
+
+	public void setJustPressed(boolean justPressed) {
+		this.justPressed = justPressed;
 	}
 }

@@ -18,14 +18,10 @@ public class MenuInputHandler implements InputProcessor {
 
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-//        screenX = (screenX);
-//        screenY = (screenY);
-        
-       // System.out.println(screenX + " " + screenY);
+
         for(Button thisButton : menuButtons){
         	thisButton.isTouchDown(screenX / 2, screenY / 2);
         }
-    	//myDummy.onClick(screenX,screenY);
     	return true;
     }
     
@@ -34,7 +30,6 @@ public class MenuInputHandler implements InputProcessor {
     	
     	for(Button thisButton : menuButtons){
     		if(thisButton.isTouchUp(screenX / 2, screenY / 2)){
-    			//myworld.ready();
     			return true;
     		}
     	}
