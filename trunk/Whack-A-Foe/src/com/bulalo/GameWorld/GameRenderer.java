@@ -11,17 +11,17 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
+import com.bulalo.CustomizeWorld.CustomInputHandler;
 import com.bulalo.GameObjects.Dummy;
 import com.bulalo.Helpers.AssetLoader;
 import com.bulalo.Helpers.InputHandler;
-import com.bulalo.UI.Button;
 
 public class GameRenderer {
 	private GameWorld myWorld;
 	private ShapeRenderer shapeRenderer;
 	
 	private OrthographicCamera cam;
-	
+	private CustomInputHandler custom = new CustomInputHandler();
 	private SpriteBatch batcher;
 	
 	private Dummy dummy;
@@ -53,6 +53,7 @@ public class GameRenderer {
 	
 	private void initAssets(){
 		table = AssetLoader.table;
+		
 		dummyAnimation = AssetLoader.dummyAnimation;
 		dummyDies = AssetLoader.dummyDies;
 	}
@@ -77,6 +78,10 @@ public class GameRenderer {
 //        }		
 //	}
 	
+	private TextureRegion getTable(){
+		return this.table;
+	}
+	
 	public void render(float runTime){		
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
@@ -98,6 +103,16 @@ public class GameRenderer {
         // This is good for performance when drawing images that do not require
         // transparency.
         batcher.disableBlending();
+        if(custom.checkTable() == true){
+    		this.table = AssetLoader.wood;
+    		}
+    		else if(custom.checkTable1() == true){
+    			this.table = AssetLoader.steel;
+    		}
+    		else if(custom.checkTable2() == true){
+    			this.table = AssetLoader.carbon;
+    		}
+        getTable();
         batcher.draw(table, 0, 0, 160, 256);
         
         batcher.enableBlending();

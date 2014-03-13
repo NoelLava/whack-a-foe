@@ -14,6 +14,10 @@ public class CustomInputHandler implements InputProcessor{
 	private Tables table1;
 	private Tables table2;
 	
+	private static boolean tableTrue = false;
+	private static boolean table1True = false;
+	private static boolean table2True = false;
+	
 	private static List<Button> customButtons;
 
 	float scaleFactorX;
@@ -33,18 +37,37 @@ public class CustomInputHandler implements InputProcessor{
 	
 	}
 	
+	public CustomInputHandler(){
+		System.out.println("initialized");
+	}
+	
+	public boolean checkTable(){
+		return tableTrue;
+	}
+	
+	public boolean checkTable1(){
+		return table1True;
+	}
+	
+	public boolean checkTable2(){
+		return table2True;
+	}
+	
 	@Override
 	public boolean touchDown(int screenX, int screenY, int pointer, int button) {
 		screenX = scaleX(screenX);
 		screenY = scaleY(screenY);
 		
 		if(table.isTouchDown(screenX, screenY)){
+			tableTrue = true;
 			System.out.println("table touched");
 		}
 		else if(table1.isTouchDown(screenX, screenY)){
+			table1True = true;
 			System.out.println("table1 touched");
 		}
 		else if(table2.isTouchDown(screenX, screenY)){
+			table2True = true;
 			System.out.println("table2 touched");
 		}
 		
