@@ -9,27 +9,37 @@ public class MenuInputHandler implements InputProcessor {
 
 	private MenuWorld menuWorld;
 	
+	float scaleFactorX;
+	float scaleFactorY;
+	
 	private static List<Button> menuButtons;
 	
-	public MenuInputHandler(MenuWorld menuWorld){
+	public MenuInputHandler(MenuWorld menuWorld, float scaleFactorX, float scaleFactorY){
 		this.menuWorld = menuWorld;		
 		menuButtons = MenuWorld.getMenuButtons();
+		
+		this.scaleFactorX = scaleFactorX;
+        this.scaleFactorY = scaleFactorY;
 	}
 
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-
+    	screenX = scaleX(screenX);
+		screenY = scaleY(screenY);
+		
         for(Button thisButton : menuButtons){
-        	thisButton.isTouchDown(screenX / 2, screenY / 2);
+        	thisButton.isTouchDown(screenX, screenY);
         }
     	return true;
     }
     
     @Override
     public boolean touchUp(int screenX, int screenY, int pointer, int button) {
+    	screenX = scaleX(screenX);
+        screenY = scaleY(screenY);
     	
     	for(Button thisButton : menuButtons){
-    		if(thisButton.isTouchUp(screenX / 2, screenY / 2)){
+    		if(thisButton.isTouchUp(screenX, screenY)){
     			return true;
     		}
     	}
@@ -66,5 +76,12 @@ public class MenuInputHandler implements InputProcessor {
         return false;
     }
     
+	private int scaleX(int screenX) {
+        return (int) (screenX / scaleFactorX);
+    }
 
+    private int scaleY(int screenY) {
+        return (int) (screenY / scaleFactorY);
+    }
+    
 }

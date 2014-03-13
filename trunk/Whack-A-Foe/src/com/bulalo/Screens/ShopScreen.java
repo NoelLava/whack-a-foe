@@ -12,23 +12,33 @@ public class ShopScreen implements Screen {
 	WaFGame game;
 	ShopRenderer renderer;
 	private float runTime = 0;
-	private ShopWorld world;
 	private ShopWorld shop;
+	
+	float screenWidth;
+    float screenHeight;
+    float gameWidth;
+    float gameHeight;   
+	
 	public ShopScreen(WaFGame game){
 		this.game = game;
 	}
 	
 	public ShopScreen(){
+		screenWidth = Gdx.graphics.getWidth();
+        screenHeight = Gdx.graphics.getHeight();
+        gameWidth = 160;
+        gameHeight = screenHeight / (screenWidth / gameWidth); 
+        
 		System.out.println("ShopScreen Attached");
-		world = new ShopWorld();
-		renderer = new ShopRenderer(world); 
-		Gdx.input.setInputProcessor(new InputHandler(world));
+		shop = new ShopWorld();
+		renderer = new ShopRenderer(shop); 
+		Gdx.input.setInputProcessor(new InputHandler(shop, screenWidth/gameWidth, screenHeight/gameHeight));
 	}
 
 	@Override
 	public void render(float delta) {
 		runTime += delta;
-		world.update(delta);
+		shop.update(delta);
 		renderer.render(runTime);
 		
 	}

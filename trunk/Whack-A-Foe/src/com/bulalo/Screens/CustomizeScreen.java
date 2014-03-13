@@ -15,15 +15,26 @@ public class CustomizeScreen implements Screen {
 	private float runTime = 0;
 	private CustomWorld custom;
 	private Tables table;
+	
+	float screenWidth;
+    float screenHeight;
+    float gameWidth;
+    float gameHeight;   
+	
 	public CustomizeScreen(WaFGame game){
 		this.game = game;
 	}
 	
 	public CustomizeScreen(){
-		System.out.println("Game Screen Attached");
+		screenWidth = Gdx.graphics.getWidth();
+        screenHeight = Gdx.graphics.getHeight();
+        gameWidth = 160;
+        gameHeight = screenHeight / (screenWidth / gameWidth);
+		
+		System.out.println("Custom Screen Attached");
 		custom = new CustomWorld();			//initialize the gameWorld
 		renderer = new CustomizeRenderer(custom);  //initialize the gameRenderer
-		Gdx.input.setInputProcessor(new InputHandler(custom));
+		Gdx.input.setInputProcessor(new InputHandler(custom, screenWidth/gameWidth, screenHeight/gameHeight));
 	}
 
 	@Override

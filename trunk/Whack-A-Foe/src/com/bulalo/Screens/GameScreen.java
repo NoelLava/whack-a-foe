@@ -15,18 +15,27 @@ public class GameScreen implements Screen{
 	
 	private float runTime = 0;
 	
+	float screenWidth;
+    float screenHeight;
+    float gameWidth;
+    float gameHeight;   
+	
 	public GameScreen(WaFGame game){
 		this.game = game;
 	}
 	
 	public GameScreen(){
-		//this.game = game;
-		System.out.println("Game Screen Attached");
+		screenWidth = Gdx.graphics.getWidth();
+        screenHeight = Gdx.graphics.getHeight();
+        gameWidth = 160;
+        gameHeight = screenHeight / (screenWidth / gameWidth);   
+		
+        System.out.println("Game Screen Attached");
 		
 		world = new GameWorld();			//initialize the gameWorld
 		renderer = new GameRenderer(world);  //initialize the gameRenderer
 		
-		Gdx.input.setInputProcessor(new InputHandler(world));
+		Gdx.input.setInputProcessor(new InputHandler(world, screenWidth/gameWidth, screenHeight/gameHeight));
 	}
 	
 	@Override

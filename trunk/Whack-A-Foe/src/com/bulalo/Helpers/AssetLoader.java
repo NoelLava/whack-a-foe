@@ -8,7 +8,6 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.bulalo.CustomizeWorld.CustomWorld;
 import com.bulalo.GameObjects.Tables;
 
-
 public class AssetLoader {
 	public static Texture gameTexture;
 	public static TextureRegion table;
@@ -16,10 +15,10 @@ public class AssetLoader {
 	public static TextureRegion dummy2;
 	public static TextureRegion dummy3;
 	public static TextureRegion dummy4;
-	
+
 	private static Tables table1;
 	private static CustomWorld custom = new CustomWorld();
-	
+
 	public static Texture tSTexture;
 	public static TextureRegion titleBg;
 	public static TextureRegion redButton;
@@ -38,8 +37,9 @@ public class AssetLoader {
 	public static TextureRegion steel;
 	public static TextureRegion carbon;
 	public static TextureRegion background;
-	
+
 	public static Texture shopTexture;
+	public static TextureRegion shopBg;
 	public static TextureRegion hammer;
 	public static TextureRegion hammer1;
 	public static TextureRegion hammer2;
@@ -58,17 +58,21 @@ public class AssetLoader {
 				Gdx.files.internal("data/TitleScreenTexture.png"));
 		tSTexture.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
 
-		cSTexture = new Texture(Gdx.files.internal("data/CustomizeS.png"));
+		cSTexture = new Texture(Gdx.files.internal("data/CustomScreenTexture.png"));
 		cSTexture.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
+		
 		woodTexture = new Texture(Gdx.files.internal("data/Wood.png"));
 		woodTexture.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
+		
 		steelTexture = new Texture(Gdx.files.internal("data/Steel.png"));
 		steelTexture.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
+		
 		carbonTexture = new Texture(Gdx.files.internal("data/Carbon.png"));
 		carbonTexture.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
-		shopTexture = new Texture(Gdx.files.internal("data/ShopS.png"));
-		shopTexture.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
 		
+		shopTexture = new Texture(Gdx.files.internal("data/ShopScreenTexture.png"));
+		shopTexture.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
+
 		// TitleScreen Textures
 		titleBg = new TextureRegion(tSTexture, 0, 0, 320, 512);
 		titleBg.flip(false, true);
@@ -106,7 +110,7 @@ public class AssetLoader {
 		dummy4.flip(false, true);
 
 		// CustomizeScreen Textures
-		csBg = new TextureRegion(cSTexture, 0, 0, 512, 512);
+		csBg = new TextureRegion(cSTexture, 0, 0, 320, 512);
 		wood = new TextureRegion(woodTexture, 0, 0, 512, 512);
 		steel = new TextureRegion(steelTexture, 0, 0, 320, 512);
 		carbon = new TextureRegion(carbonTexture, 0, 0, 320, 512);
@@ -116,44 +120,39 @@ public class AssetLoader {
 		steel.flip(false, true);
 		carbon.flip(false, true);
 
-		TextureRegion[] dummies = { dummy1, dummy2, dummy3, dummy4 };
-		dummyAnimation = new Animation(0.03f, dummies);
-		dummyAnimation.setPlayMode(Animation.NORMAL);
-		TextureRegion[] dummyRev = {dummy4, dummy3, dummy2, dummy1};
-		dummyDies = new Animation(0.03f, dummyRev);
-		dummyDies.setPlayMode(Animation.NORMAL);
+		// ShopScreen Textures
+		shopBg = new TextureRegion(shopTexture, 0, 0, 320, 512);
+		shopBg.flip(false, true);
 		
-		//ShopScreen Textures
-		hammer = new TextureRegion(shopTexture, 0, 0, 512,512);
+		hammer = new TextureRegion(shopTexture, 0, 0, 512, 512);
 		hammer1 = new TextureRegion(shopTexture, 20, 0, 512, 512);
 		hammer2 = new TextureRegion(shopTexture, 40, 0, 320, 512);
-		
+
 		hammer.flip(false, true);
 		hammer1.flip(false, true);
 		hammer2.flip(false, true);
-		
+
+		// Animations
+		TextureRegion[] dummies = { dummy1, dummy2, dummy3, dummy4 };
+		dummyAnimation = new Animation(0.03f, dummies);
+		dummyAnimation.setPlayMode(Animation.NORMAL);
+		TextureRegion[] dummyRev = { dummy4, dummy3, dummy2, dummy1 };
+		dummyDies = new Animation(0.03f, dummyRev);
+		dummyDies.setPlayMode(Animation.NORMAL);
+
 	}
-	
-	/*public static TextureRegion getBackground(){
-		table1 = custom.getTable();
-		table2 = custom.getTable1();
-		table3 = custom.getTable2();
-		if(table1.onClick(20, 50)){
-			System.out.println("changed to wood");
-			background = AssetLoader.wood;
-		}
-		else if(table2.onClick1(60, 50)){
-			System.out.println("changed to carbon");
-			background=AssetLoader.carbon;
-		}
-		else if (table3.onClick2(100, 50)){
-			System.out.println("changed to steel");
-			background=AssetLoader.steel;
-		}
-		System.out.println("enter");
-		return background;
-	}*/
-	
+
+	/*
+	 * public static TextureRegion getBackground(){ table1 = custom.getTable();
+	 * table2 = custom.getTable1(); table3 = custom.getTable2();
+	 * if(table1.onClick(20, 50)){ System.out.println("changed to wood");
+	 * background = AssetLoader.wood; } else if(table2.onClick1(60, 50)){
+	 * System.out.println("changed to carbon"); background=AssetLoader.carbon; }
+	 * else if (table3.onClick2(100, 50)){
+	 * System.out.println("changed to steel"); background=AssetLoader.steel; }
+	 * System.out.println("enter"); return background; }
+	 */
+
 	public static void dispose() {
 		// We must dispose of the textures when we are finished
 		gameTexture.dispose();

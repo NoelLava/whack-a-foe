@@ -67,7 +67,7 @@ public class MenuRenderer {
 		// This is good for performance when drawing images that do not require
 		// transparency.
 		batcher.disableBlending();
-		batcher.draw(titleBg, 0, 0, Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight()/2);
+		batcher.draw(titleBg, 0, 0, 160, 256);
 
 		// The buttons need transparency, so we enable that again.
 		batcher.enableBlending();

@@ -88,7 +88,7 @@ public class GameRenderer {
         // This is good for performance when drawing images that do not require
         // transparency.
         batcher.disableBlending();
-        batcher.draw(table, 0, 0, Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight()/2);
+        batcher.draw(table, 0, 0, 160, 256);
         
         batcher.enableBlending();
  

@@ -21,6 +21,7 @@ public class WaFGame extends Game {
 		//mainMenu = new MenuScreen(this);
 		gameScreen = new GameScreen();
 		customizeScreen = new CustomizeScreen();
+		shopScreen = new ShopScreen();
 		AssetLoader.load();
 		setScreen(new MenuScreen(this));
 

@@ -22,19 +22,29 @@ public class MenuScreen implements Screen {
 	private Button playButton;
 	private Button shopButton;
 	private Button customButton;
+	
+	float screenWidth;
+    float screenHeight;
+    float gameWidth;
+    float gameHeight;   
 
 //	public MenuScreen(WaFGame game) {
 //		this.game = game;
 //	}
 
 	public MenuScreen(WaFGame game) {
+		screenWidth = Gdx.graphics.getWidth();
+        screenHeight = Gdx.graphics.getHeight();
+        gameWidth = 160;
+        gameHeight = screenHeight / (screenWidth / gameWidth);        
+		
 		this.game = game;
 		System.out.println("Main Menu initialized");
 		menu = new MenuWorld();
 		System.out.println("MenuWorld initialized");
 		render = new MenuRenderer(menu);
 
-		Gdx.input.setInputProcessor(new MenuInputHandler(menu));
+		Gdx.input.setInputProcessor(new MenuInputHandler(menu, screenWidth/gameWidth, screenHeight/gameHeight));
 		
 		menuButtons = MenuWorld.getMenuButtons();
 		playButton = menuButtons.get(0);
@@ -52,7 +62,7 @@ public class MenuScreen implements Screen {
 		if(playButton.isJustPressed()){
 			game.setScreen(new GameScreen());
 		}else if(shopButton.isJustPressed()){
-			
+			game.setScreen(new ShopScreen());
 		}else if(customButton.isJustPressed()){
 			game.setScreen(new CustomizeScreen());
 		}
@@ -83,6 +93,38 @@ public class MenuScreen implements Screen {
 
 	@Override
 	public void dispose() {
+	}
+
+	public float getScreenWidth() {
+		return screenWidth;
+	}
+
+	public float getScreenHeight() {
+		return screenHeight;
+	}
+
+	public float getGameWidth() {
+		return gameWidth;
+	}
+
+	public float getGameHeight() {
+		return gameHeight;
+	}
+
+	public void setScreenWidth(float screenWidth) {
+		this.screenWidth = screenWidth;
+	}
+
+	public void setScreenHeight(float screenHeight) {
+		this.screenHeight = screenHeight;
+	}
+
+	public void setGameWidth(float gameWidth) {
+		this.gameWidth = gameWidth;
+	}
+
+	public void setGameHeight(float gameHeight) {
+		this.gameHeight = gameHeight;
 	}
 
 }

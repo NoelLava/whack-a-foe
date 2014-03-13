@@ -23,13 +23,19 @@ public class InputHandler implements InputProcessor {
 	private Hammers hammer1;
 	private Hammers hammer2;
 	
+	float scaleFactorX;
+	float scaleFactorY;
+	
 
-	public InputHandler(GameWorld myWorld){
+	public InputHandler(GameWorld myWorld, float scaleFactorX, float scaleFactorY){
 		this.myWorld = myWorld;
 		dummies = myWorld.getDummies();
+		
+		this.scaleFactorX = scaleFactorX;
+        this.scaleFactorY = scaleFactorY;
 	}
 
-    public InputHandler(CustomWorld customize){
+    public InputHandler(CustomWorld customize, float scaleFactorX, float scaleFactorY){
 		this.customize = customize;
 		table = customize.getTable();
 		table1 = customize.getTable();
@@ -37,7 +43,7 @@ public class InputHandler implements InputProcessor {
 		
     }
     
-    public InputHandler(ShopWorld shopWorld){
+    public InputHandler(ShopWorld shopWorld, float scaleFactorX, float scaleFactorY){
     	this.shopWorld = shopWorld;
     	hammer = shopWorld.getHammer();
     	hammer1 = shopWorld.getHammer1();
@@ -47,8 +53,11 @@ public class InputHandler implements InputProcessor {
 	
 	@Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+		screenX = scaleX(screenX);
+		screenY = scaleY(screenY);
+		
     	for(Dummy dummy:dummies){
-    		dummy.isTouchDown(screenX/2,screenY/2);
+    		dummy.isTouchDown(screenX, screenY);
     		dummy.displayResult();
     	}
 //    	table.isTouchDown(screenX/2,screenY/2);
@@ -65,8 +74,11 @@ public class InputHandler implements InputProcessor {
     
     @Override
     public boolean touchUp(int screenX, int screenY, int pointer, int button) {
+    	screenX = scaleX(screenX);
+		screenY = scaleY(screenY);
+    	
         for(Dummy dummy:dummies){
-        	if(dummy.isTouchUp(screenX/2,screenY/2)){
+        	if(dummy.isTouchUp(screenX, screenY)){
         	return true;
 	        }
 //	        if(table.isTouchUp(screenX/2, screenY/2)){
@@ -106,6 +118,14 @@ public class InputHandler implements InputProcessor {
     @Override
     public boolean scrolled(int amount) {
         return false;
+    }
+    
+	private int scaleX(int screenX) {
+        return (int) (screenX / scaleFactorX);
+    }
+
+    private int scaleY(int screenY) {
+        return (int) (screenY / scaleFactorY);
     }
     
 	public static List<Dummy> getDummies(){

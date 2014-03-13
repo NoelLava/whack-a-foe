@@ -9,7 +9,6 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.bulalo.GameObjects.Hammers;
 import com.bulalo.Helpers.AssetLoader;
-import com.bulalo.Helpers.AssetsLoader;
 
 public class ShopRenderer {
 	private ShopWorld shopWorld = new ShopWorld();
@@ -19,6 +18,7 @@ public class ShopRenderer {
 	
 	private SpriteBatch batcher;
 	private static Hammers wood, steel, gold;
+	private TextureRegion shopBg;
 	private TextureRegion hammer;
 	private TextureRegion hammer1;
 	private TextureRegion hammer2;
@@ -43,6 +43,7 @@ public class ShopRenderer {
 		hammer = AssetLoader.hammer;
 		hammer1 = AssetLoader.hammer1;
 		hammer2 = AssetLoader.hammer2;
+		shopBg = AssetLoader.shopBg;
 	
 	}
 	
@@ -68,7 +69,7 @@ public class ShopRenderer {
 		batcher.begin();
 		
 		batcher.disableBlending();
-		batcher.draw(AssetsLoader.sbg, 0, 0, 160, 256);
+		batcher.draw(AssetLoader.shopBg, 0, 0, 160, 256);
 		
 		
 		batcher.enableBlending();
