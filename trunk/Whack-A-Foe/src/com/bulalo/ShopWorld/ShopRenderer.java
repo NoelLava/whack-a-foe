@@ -11,26 +11,25 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.bulalo.GameObjects.Hammers;
 import com.bulalo.Helpers.AssetLoader;
-import com.bulalo.MenuWorld.MenuWorld;
 import com.bulalo.UI.Button;
 
 public class ShopRenderer {
-	private ShopWorld shopWorld = new ShopWorld();
+	private static ShopWorld shop = new ShopWorld();
 	private ShapeRenderer shapeRenderer;
 	
 	private OrthographicCamera cam;
 	
 	private SpriteBatch batcher;
-	private static Hammers wood, steel, gold;
-	private TextureRegion shopBg;
-	private TextureRegion hammer;
-	private TextureRegion hammer1;
-	private TextureRegion hammer2;
+	private static Hammers hammer, hammer1, hammer2;
+	private TextureRegion ssbg;
+	private TextureRegion kahoy;
+	private TextureRegion bakal;
+	private TextureRegion ginto;
 	
 	private List<Button> shopButtons;
 	
-	public ShopRenderer(ShopWorld ShopScreen) {
-		shopWorld = ShopScreen;
+	public ShopRenderer(ShopWorld ShopWorld) {
+		shop = ShopWorld;
 		this.shopButtons = ShopWorld.getShopButtons();
 		
 		cam = new OrthographicCamera();
@@ -48,17 +47,38 @@ public class ShopRenderer {
 	}
 	
 	private void initAssets(){
-		hammer = AssetLoader.hammer;
-		hammer1 = AssetLoader.hammer1;
-		hammer2 = AssetLoader.hammer2;
-		shopBg = AssetLoader.shopBg;
-	
+		ssbg = AssetLoader.ssBg;
+		kahoy = AssetLoader.kahoy;
+		bakal = AssetLoader.bakal;
+		ginto = AssetLoader.ginto;
+
 	}
 	
 	private void initGameObjects(){
-		wood = shopWorld.getHammer();
-		steel = shopWorld.getHammer1();
-		gold = shopWorld.getHammer2();
+		hammer = shop.getHammer();
+		hammer1 = shop.getHammer1();
+		hammer2 = shop.getHammer2();
+
+	}
+	
+	public void drawBackground(TextureRegion region){
+		batcher.draw(region, 0, 0, 160, 256);
+	}
+	
+	public void drawHammer(TextureRegion region, float x, float y, float runTime){
+		batcher.draw(region, hammer.getX(), hammer.getY(), hammer.getWidth(),
+				hammer.getHeight());
+	}
+	
+	public void drawHammer1(TextureRegion region, float x, float y, float runTime){
+		batcher.draw(region, hammer1.getX(), hammer1.getY(), hammer1.getWidth(),
+				hammer1.getHeight());
+		
+	}
+	
+	public void drawHammer2(TextureRegion region, float x, float y, float runTime){
+		batcher.draw(region, hammer2.getX(), hammer2.getY(), hammer2.getWidth(),
+				hammer2.getHeight());
 	}
 	
 	private void drawButtons(){
@@ -68,8 +88,6 @@ public class ShopRenderer {
 	}
 	
 	public void render(float runTime) {
-		//UpgradeDummy dummy = upgradeScreen.getDummy();
-		
 		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
 		
@@ -83,12 +101,16 @@ public class ShopRenderer {
 		batcher.begin();
 		
 		batcher.disableBlending();
-		batcher.draw(AssetLoader.shopBg, 0, 0, 160, 256);
 		
+		drawBackground(ssbg);;
 		
 		batcher.enableBlending();
 		
 		drawButtons();
+		drawHammer(kahoy, 20, 50, runTime);
+		drawHammer1(bakal, 100, 50, runTime);
+		drawHammer2(ginto, 180, 50, runTime);
+
 		
 		batcher.end();
 	}

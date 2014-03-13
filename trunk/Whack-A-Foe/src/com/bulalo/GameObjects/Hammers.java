@@ -21,19 +21,16 @@ public class Hammers {
 	
 	public boolean onClick(int screenX, int screenY){
 		System.out.println("Hammer is changed");
-		setPressed(true);
 		return bounds.contains(screenX, screenY);
 	}
 	
 	public boolean isTouchDown(float screenX, float screenY) {
 	
         if (bounds.contains(screenX,screenY)) {
-        	System.out.println("hammer on GameScreen changed");
-            String boundS1 = bounds.toString();
-            System.out.println(boundS1);
-        	//background = 
-        	setPressed(true);
+        	isPressed = true;
+        	System.out.println("hammer - hit");
         	return true;
+
         } 
         return false;
     }
@@ -42,22 +39,23 @@ public class Hammers {
         
         // It only counts as a touchUp if the button is in a pressed state.
         if (bounds.contains(screenX, screenY) && isPressed()) {
-        	
+        	isPressed = false;
             System.out.println("Dummy - touch up");
             return true;
         }
         // Whenever a finger is released, we will cancel any presses.
+        isPressed = false;
         return false;
 
     }
     
     public void displayResult(){
-		//System.out.println("pic1 clicked");
-    	/*if(table.isTouchDown(20,-50)){
-			System.out.println("table - clicked");
+		System.out.println("pic1 clicked");
+    	if(isPressed){
+			System.out.println("hammer - clicked");
 		}else{
-			System.out.println("Dummy - not hit");
-		}*/
+			System.out.println("hammer - not hit");
+		}
 	}
     public void update(float delta){
 		//System.out.println("table shown");

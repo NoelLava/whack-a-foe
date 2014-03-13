@@ -42,11 +42,12 @@ public class AssetLoader {
 	public static TextureRegion carbon;
 	public static TextureRegion background;
 
-	public static Texture shopTexture;
-	public static TextureRegion shopBg;
-	public static TextureRegion hammer;
-	public static TextureRegion hammer1;
-	public static TextureRegion hammer2;
+	public static Texture sSTexture;
+	public static Texture hammersTexture;
+	public static TextureRegion ssBg;
+	public static TextureRegion kahoy;
+	public static TextureRegion bakal;
+	public static TextureRegion ginto;
 
 	public static Animation dummyAnimation;
 	public static Animation dummyDies;
@@ -74,8 +75,8 @@ public class AssetLoader {
 		carbonTexture = new Texture(Gdx.files.internal("data/Carbon.png"));
 		carbonTexture.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
 		
-		shopTexture = new Texture(Gdx.files.internal("data/ShopScreenTexture.png"));
-		shopTexture.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
+		sSTexture = new Texture(Gdx.files.internal("data/ShopScreenTexture.png"));
+		sSTexture.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
 
 		// TitleScreen Textures
 		titleBg = new TextureRegion(tSTexture, 0, 0, 320, 512);
@@ -128,17 +129,16 @@ public class AssetLoader {
 		steel.flip(false, true);
 		carbon.flip(false, true);
 
-		// ShopScreen Textures
-		shopBg = new TextureRegion(shopTexture, 0, 0, 320, 512);
-		shopBg.flip(false, true);
-		
-		hammer = new TextureRegion(shopTexture, 0, 0, 512, 512);
-		hammer1 = new TextureRegion(shopTexture, 20, 0, 512, 512);
-		hammer2 = new TextureRegion(shopTexture, 40, 0, 320, 512);
+		// ShopScreen Textures	
+		ssBg = new TextureRegion(sSTexture, 0, 0, 320, 512);
+		kahoy = new TextureRegion(hammersTexture, 110, 40, 90, 175);
+		bakal = new TextureRegion(hammersTexture, 190, 40, 90, 175);
+		ginto = new TextureRegion(hammersTexture, 270, 40, 90, 175);
 
-		hammer.flip(false, true);
-		hammer1.flip(false, true);
-		hammer2.flip(false, true);
+		ssBg.flip(false, true);
+		kahoy.flip(false, true);
+		bakal.flip(false, true);
+		ginto.flip(false, true);
 
 		// Animations
 		TextureRegion[] dummies = { dummy1, dummy2, dummy3, dummy4 };
@@ -165,7 +165,8 @@ public class AssetLoader {
 		// We must dispose of the textures when we are finished
 		gameTexture.dispose();
 		tSTexture.dispose();
-		shopTexture.dispose();
+		// sSTexture.dispose();
+		// hammersTexture.dispose();
 		// cSTexture.dispose();
 		// woodTexture.dispose();
 		// steelTexture.dispose();

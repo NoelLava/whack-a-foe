@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.math.Rectangle;
 import com.bulalo.GameObjects.Hammers;
 import com.bulalo.Helpers.AssetLoader;
 import com.bulalo.UI.Button;
@@ -16,7 +15,6 @@ public class ShopWorld {
 	private Hammers hammer;
 	private Hammers hammer1;
 	private Hammers hammer2;
-	private Rectangle rect = new Rectangle(0, 0, 17, 12);
 
 	float runTime = 0;
 
@@ -28,19 +26,18 @@ public class ShopWorld {
 				AssetLoader.backButton, AssetLoader.backPressed);
 
 		shopButtons.add(backButton);
+		
+		hammer = new Hammers (20, 50, 22, 42);
+		
+		hammer1 = new Hammers (60, 50, 22, 42);
+		
+		hammer2 = new Hammers (100, 50, 22, 42);
 	}
 
 	public void update(float delta) {
-		// runTime += delta;
-
-		rect.x++;
-		if (rect.x > 137) {
-			rect.x = 0;
-		}
-	}
-
-	public Rectangle getRect() {
-		return rect;
+		hammer.update(delta);
+		hammer1.update(delta);
+		hammer2.update(delta);
 	}
 
 	public Hammers getHammer() {

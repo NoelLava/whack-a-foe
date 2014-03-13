@@ -8,17 +8,18 @@ import com.bulalo.UI.Button;
 
 public class ShopInputHandler implements InputProcessor {
 	private ShopWorld shopWorld;
+	
 	private Hammers hammer;
 	private Hammers hammer1;
 	private Hammers hammer2;
 	
+	private static List<Button> shopButtons;
+	
 	float scaleFactorX;
 	float scaleFactorY;
 	
-	private static List<Button> shopButtons;
-	
 	public ShopInputHandler(ShopWorld shopWorld, float scaleFactorX,
-			float scaleFactorY) {
+		float scaleFactorY) {
 		this.shopWorld = shopWorld;
 		
 		shopButtons = ShopWorld.getShopButtons();
@@ -36,10 +37,22 @@ public class ShopInputHandler implements InputProcessor {
 		screenX = scaleX(screenX);
 		screenY = scaleY(screenY);
 		
-        for(Button thisButton : shopButtons){
-        	thisButton.isTouchDown(screenX, screenY);
-        }
-    	return true;
+		if(hammer.isTouchDown(screenX, screenY)){
+			System.out.println("hammer touched");
+
+		}else if(hammer1.isTouchDown(screenX, screenY)){
+			System.out.println("hammer1 touched");
+		
+		}else if(hammer2.isTouchDown(screenX, screenY)){
+			System.out.println("hammer2 touched");
+		}
+		
+		for (Button thisButton : shopButtons) {
+			thisButton.isTouchDown(screenX, screenY);
+		}
+			
+    	return false;
+    	
 	}
 	
 	@Override
@@ -47,7 +60,12 @@ public class ShopInputHandler implements InputProcessor {
 		screenX = scaleX(screenX);
         screenY = scaleY(screenY);
     	
-    	for(Button thisButton : shopButtons){
+    	if(hammer.isTouchUp(screenX, screenY) || hammer1.isTouchUp(screenX, screenY) ||
+    			hammer2.isTouchUp(screenX, screenY)){
+    		return true;
+    	}
+        
+        for(Button thisButton : shopButtons){
     		if(thisButton.isTouchUp(screenX, screenY)){
     			return true;
     		}
