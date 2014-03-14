@@ -87,7 +87,10 @@ public class AssetLoader {
 		
 		sSTexture = new Texture(Gdx.files.internal("data/ShopScreenTexture.png"));
 		sSTexture.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
-
+		
+		hammersTexture = new Texture(Gdx.files.internal("data/hammers.png"));
+		hammersTexture.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
+		
 		// TitleScreen Textures
 		titleBg = new TextureRegion(tSTexture, 0, 0, 320, 512);
 		titleBg.flip(false, true);
