@@ -21,45 +21,40 @@ public class Tables {
 	
 	public boolean onClick(int screenX, int screenY){
 		System.out.println("table on GameScreen changed");
-		setPressed(true);
 		return bounds.contains(screenX, screenY);
 	}
 	
 	public boolean isTouchDown(float screenX, float screenY) {
 	
-       // if (bounds.contains(screenX,screenY)) {
-        //	AssetLoader.getBackground();
-        if (bounds.contains(screenX,screenY)) {
-        	System.out.println("table1 on GameScreen changed");
-            String boundS1 = bounds.toString();
-            System.out.println(boundS1);
-        	//background = 
-        	setPressed(true);
-        	return true;
-        } 
-        return false;
+		 if (bounds.contains(screenX, screenY)) {
+	            isPressed = true;
+	            System.out.println("table - hit");
+	            return true;
+	        }
+	        return false;
     }
 
     public boolean isTouchUp(int screenX, int screenY) {
         
-        // It only counts as a touchUp if the button is in a pressed state.
-        if (bounds.contains(screenX, screenY) && isPressed()) {
-        	
-            System.out.println("Dummy - touch up");
+    	// It only counts as a touchUp if the button is in a pressed state.
+        if (bounds.contains(screenX, screenY) && isPressed) {
+            isPressed = false;
+            System.out.println("table - touch up");
             return true;
         }
         // Whenever a finger is released, we will cancel any presses.
+        isPressed = false;
         return false;
 
     }
     
     public void displayResult(){
-		//System.out.println("pic1 clicked");
-    	/*if(table.isTouchDown(20,-50)){
+		System.out.println("pic1 clicked");
+    	if(isPressed){
 			System.out.println("table - clicked");
 		}else{
-			System.out.println("Dummy - not hit");
-		}*/
+			System.out.println("table - not hit");
+		}
 	}
     public void update(float delta){
 		//System.out.println("table shown");
