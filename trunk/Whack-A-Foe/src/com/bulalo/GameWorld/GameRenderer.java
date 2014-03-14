@@ -15,6 +15,7 @@ import com.bulalo.CustomizeWorld.CustomInputHandler;
 import com.bulalo.GameObjects.Dummy;
 import com.bulalo.Helpers.AssetLoader;
 import com.bulalo.Helpers.InputHandler;
+import com.bulalo.UI.Button;
 
 public class GameRenderer {
 	private GameWorld myWorld;
