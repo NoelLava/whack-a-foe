@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
+import com.bulalo.GameObjects.CustomDummy;
 import com.bulalo.GameObjects.Tables;
 import com.bulalo.Helpers.AssetLoader;
 import com.bulalo.UI.Button;
@@ -21,10 +22,15 @@ public class CustomizeRenderer {
 	
 	private SpriteBatch batcher;
 	private static Tables table,table1,table2;
+	private CustomDummy dummy,dummy1,dummy2;
+	
 	private TextureRegion csbg;
 	private TextureRegion wood;
 	private TextureRegion steel;
 	private TextureRegion carbon;
+	private TextureRegion dummyDefault;
+	private TextureRegion dummyOffice;
+	private TextureRegion dummyJanitor;
 	
 	private static TextureRegion background;
 	
@@ -73,6 +79,10 @@ public class CustomizeRenderer {
 		
 		steel = AssetLoader.steel;
 		carbon = AssetLoader.carbon;
+		dummyDefault = AssetLoader.dummyDefault;
+		dummyOffice = AssetLoader.dummyOffice;
+		dummyJanitor = AssetLoader.dummyJanitor;
+		
 		//background = AssetLoader.getBackground();
 		//background = getBackground();
 		
@@ -82,6 +92,10 @@ public class CustomizeRenderer {
 		table = custom.getTable();
 		table1 = custom.getTable1();
 		table2 = custom.getTable2();
+	
+		dummy = custom.getDummy();
+		dummy1 = custom.getDummy1();
+		dummy2 = custom.getDummy2();
 	}
 	
 	public void drawBackground(TextureRegion region) {
@@ -101,6 +115,21 @@ public class CustomizeRenderer {
 	public void drawTable2(TextureRegion region, float x, float y, float runTime) {
 		batcher.draw(region, table2.getX(), table2.getY(), table2.getWidth(),
 				table2.getHeight());
+	}
+	
+	public void drawDummy(TextureRegion region, float x, float y, float runTime) {
+		batcher.draw(region, dummy.getX(), dummy.getY(), dummy.getWidth(),
+				dummy.getHeight());
+	}
+	
+	public void drawDummy1(TextureRegion region, float x, float y, float runTime) {
+		batcher.draw(region, dummy1.getX(), dummy1.getY(), dummy1.getWidth(),
+				dummy1.getHeight());
+	}
+	
+	public void drawDummy2(TextureRegion region, float x, float y, float runTime) {
+		batcher.draw(region, dummy2.getX(), dummy2.getY(), dummy2.getWidth(),
+				dummy2.getHeight());
 	}
 	
 	private void drawButtons(){
@@ -144,6 +173,9 @@ public class CustomizeRenderer {
         drawTable(wood,20,50,runTime);
         drawTable1(steel,100,50,runTime);
         drawTable2(carbon,180,50,runTime);
+        drawDummy(dummyOffice,20,150,runTime);
+        drawDummy1(dummyJanitor,100,150,runTime);
+        drawDummy2(dummyDefault,180,150,runTime);
         
         batcher.end();
 

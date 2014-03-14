@@ -50,6 +50,12 @@ public class AssetLoader {
 
 	public static Animation dummyAnimation;
 	public static Animation dummyDies;
+	
+	public static Texture dummy;
+	public static TextureRegion dummyJanitor;
+	public static TextureRegion dummyDefault;
+	public static TextureRegion dummyOffice;
+	
 
 	public static void load() {
 		Texture.setEnforcePotImages(false);
@@ -57,7 +63,11 @@ public class AssetLoader {
 		gameTexture = new Texture(
 				Gdx.files.internal("data/GameScreenTexture.png"));
 		gameTexture.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
-
+		
+		dummy = new Texture(
+				Gdx.files.internal("data/dummies.png"));
+		dummy.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
+		
 		tSTexture = new Texture(
 				Gdx.files.internal("data/TitleScreenTexture.png"));
 		tSTexture.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
@@ -122,7 +132,14 @@ public class AssetLoader {
 		wood = new TextureRegion(woodTexture, 0, 0, 512, 512);
 		steel = new TextureRegion(steelTexture, 0, 0, 320, 512);
 		carbon = new TextureRegion(carbonTexture, 0, 0, 320, 512);
-
+		
+		dummyJanitor = new TextureRegion(dummy,184,0,65,95);
+		dummyOffice = new TextureRegion(dummy,184,83,65,95);
+		dummyDefault = new TextureRegion(dummy,176,173,65,95);
+		
+		dummyJanitor.flip(false, true);
+		dummyOffice.flip(false, true);
+		dummyDefault.flip(false, true);
 		csBg.flip(false, true);
 		wood.flip(false, true);
 		steel.flip(false, true);
