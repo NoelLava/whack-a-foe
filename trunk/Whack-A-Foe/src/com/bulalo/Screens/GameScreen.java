@@ -54,7 +54,6 @@ public class GameScreen implements Screen{
 		runTime += delta;
 		
 		if(pause.isJustPressed()){
-			System.out.println("pause is pressed");
 			game.setScreen(new MenuScreen(game));
 		}
 		
