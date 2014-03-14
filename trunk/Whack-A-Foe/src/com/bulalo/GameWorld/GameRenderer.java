@@ -14,6 +14,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.bulalo.GameObjects.Dummy;
 import com.bulalo.Helpers.AssetLoader;
 import com.bulalo.Helpers.InputHandler;
+import com.bulalo.UI.Button;
 
 public class GameRenderer {
 	private GameWorld myWorld;
@@ -30,9 +31,12 @@ public class GameRenderer {
 	private Animation dummyAnimation;
 	private Animation dummyDies;
 	
+//	private List<Button> buttons;
+	
 	public GameRenderer(GameWorld world){
 		myWorld = world;
 		this.dummies = InputHandler.getDummies();
+//		this.buttons = InputHandler.getButtons();
 		cam = new OrthographicCamera();
 		cam.setToOrtho(true, 160, 256);
 		batcher = new SpriteBatch();
@@ -67,6 +71,12 @@ public class GameRenderer {
 	    }
 	}
 	
+//	private void drawButtons(){
+//		for(Button button : buttons) {
+//			button.draw(batcher);
+//        }		
+//	}
+	
 	public void render(float runTime){		
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
@@ -93,6 +103,7 @@ public class GameRenderer {
         batcher.enableBlending();
  
         drawDummy(runTime);
+        //drawButtons();
         
         // End SpriteBatch
         batcher.end();

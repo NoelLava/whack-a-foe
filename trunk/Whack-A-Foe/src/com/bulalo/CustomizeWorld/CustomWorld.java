@@ -1,12 +1,21 @@
 package com.bulalo.CustomizeWorld;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Vector2;
 import com.bulalo.GameObjects.Cdummy1;
 import com.bulalo.GameObjects.Cdummy2;
 import com.bulalo.GameObjects.Cdummy3;
 import com.bulalo.GameObjects.Tables;
+import com.bulalo.Helpers.AssetLoader;
+import com.bulalo.UI.Button;
 
 public class CustomWorld {
+	private static List<Button> customButtons;
+	private Button backButton;
+	
 	private Tables table;
 	private Tables table1;
 	private Tables table2;
@@ -19,7 +28,13 @@ public class CustomWorld {
 	private float x,y;
 	
 	public CustomWorld(){
-		
+		customButtons = new ArrayList<Button>();
+
+		backButton = new Button(Gdx.graphics.getWidth() / 2 - 30.1f,
+				Gdx.graphics.getHeight() / 2 - 252.15f, 28.67f, 27.33f,
+				AssetLoader.backButton, AssetLoader.backPressed);
+
+		customButtons.add(backButton);
 		
 		table = new Tables(20, 50, 22, 42);	
 		
@@ -44,6 +59,10 @@ public class CustomWorld {
 	
 	public Tables getTable2(){
 		return table2;
+	}
+	
+	public static List<Button> getCustomButtons() {
+		return customButtons;
 	}
 	
 }

@@ -1,5 +1,7 @@
 package com.bulalo.CustomizeWorld;
 
+import java.util.List;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -9,6 +11,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.bulalo.GameObjects.Tables;
 import com.bulalo.Helpers.AssetLoader;
+import com.bulalo.UI.Button;
 
 public class CustomizeRenderer {
 	private static CustomWorld custom = new CustomWorld();
@@ -24,9 +27,13 @@ public class CustomizeRenderer {
 	private TextureRegion carbon;
 	
 	private static TextureRegion background;
+	
+	private List<Button> customButtons;
 
 	public CustomizeRenderer(CustomWorld customWorld){
 		custom = customWorld;
+		this.customButtons = CustomWorld.getCustomButtons();
+		
 		cam = new OrthographicCamera();
 		cam.setToOrtho(true, 160, 256);
 		
@@ -77,27 +84,30 @@ public class CustomizeRenderer {
 		table2 = custom.getTable2();
 	}
 	
-	public void drawBackground(TextureRegion region){
+	public void drawBackground(TextureRegion region) {
 		batcher.draw(region, 0, 0, 160, 256);
 	}
+
+	public void drawTable(TextureRegion region, float x, float y, float runTime) {
+		batcher.draw(region, table.getX(), table.getY(), table.getWidth(),
+				table.getHeight());
+	}
+
+	public void drawTable1(TextureRegion region, float x, float y, float runTime) {
+		batcher.draw(region, table1.getX(), table1.getY(), table1.getWidth(),
+				table1.getHeight());
+	}
+
+	public void drawTable2(TextureRegion region, float x, float y, float runTime) {
+		batcher.draw(region, table2.getX(), table2.getY(), table2.getWidth(),
+				table2.getHeight());
+	}
 	
-	public void drawTable(TextureRegion region,float x, float y, float runTime){
-	      
-			batcher.draw(
-	                region, table.getX(), table.getY(), table.getWidth(), table.getHeight());
-	    }
-	
-	public void drawTable1(TextureRegion region,float x, float y, float runTime){
-	     
-		batcher.draw(
-                region, table1.getX(), table1.getY(), table1.getWidth(), table1.getHeight());
-    }
-	
-	public void drawTable2(TextureRegion region,float x, float y, float runTime){
-	      
-		batcher.draw(
-                region, table2.getX(), table2.getY(), table2.getWidth(), table2.getHeight());
-    }
+	private void drawButtons(){
+		for(Button button : customButtons) {
+			button.draw(batcher);
+        }		
+	}
 	
 	public void render(float runTime){		
         Gdx.gl.glClearColor(0, 0, 0, 1);
@@ -129,12 +139,13 @@ public class CustomizeRenderer {
         //batcher.draw(steel,40,50,22,42);
         //batcher.draw(carbon,80,50,22,42);
         // End SpriteBatch
+        
+        drawButtons();
         drawTable(wood,20,50,runTime);
         drawTable1(steel,100,50,runTime);
         drawTable2(carbon,180,50,runTime);
         
         batcher.end();
 
-        
     }
 }

@@ -1,11 +1,14 @@
 package com.bulalo.Screens;
 
+import java.util.List;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.bulalo.CustomizeWorld.CustomWorld;
 import com.bulalo.CustomizeWorld.CustomizeRenderer;
 import com.bulalo.GameObjects.Tables;
 import com.bulalo.Helpers.InputHandler;
+import com.bulalo.UI.Button;
 import com.bulalo.whackafoe.WaFGame;
 
 public class CustomizeScreen implements Screen {
@@ -16,16 +19,21 @@ public class CustomizeScreen implements Screen {
 	private CustomWorld custom;
 	private Tables table;
 	
+	private static List<Button> customButtons;
+	private Button backButton;
+	
 	float screenWidth;
     float screenHeight;
     float gameWidth;
     float gameHeight;   
+
+	
+//	public CustomizeScreen(WaFGame game){
+//		this.game = game;
+//	}
 	
 	public CustomizeScreen(WaFGame game){
 		this.game = game;
-	}
-	
-	public CustomizeScreen(){
 		screenWidth = Gdx.graphics.getWidth();
         screenHeight = Gdx.graphics.getHeight();
         gameWidth = 160;
@@ -35,11 +43,19 @@ public class CustomizeScreen implements Screen {
 		custom = new CustomWorld();			//initialize the gameWorld
 		renderer = new CustomizeRenderer(custom);  //initialize the gameRenderer
 		Gdx.input.setInputProcessor(new InputHandler(custom, screenWidth/gameWidth, screenHeight/gameHeight));
+		
+		customButtons = CustomWorld.getCustomButtons();
+		backButton = customButtons.get(0);
 	}
 
 	@Override
 	public void render(float delta) {
 		runTime += delta;
+		
+		if(backButton.isJustPressed()){
+			game.setScreen(new MenuScreen(game));
+		}
+		
 		custom.update(delta);
 		renderer.render(runTime);
 

@@ -27,7 +27,11 @@ public class AssetLoader {
 	public static TextureRegion yellowPressed;
 	public static TextureRegion blueButton;
 	public static TextureRegion bluePressed;
-
+	public static TextureRegion backButton;
+	public static TextureRegion backPressed;
+	public static TextureRegion pauseButton;
+	public static TextureRegion pausePressed;
+	
 	public static Texture cSTexture;
 	public static Texture woodTexture;
 	public static Texture steelTexture;
@@ -78,22 +82,26 @@ public class AssetLoader {
 		titleBg.flip(false, true);
 
 		redButton = new TextureRegion(tSTexture, 330, 0, 86, 82);
-		redButton.flip(false, true);
-
 		redPressed = new TextureRegion(tSTexture, 420, 0, 86, 82);
-		redPressed.flip(false, true);
-
 		yellowButton = new TextureRegion(tSTexture, 330, 82, 86, 82);
-		yellowButton.flip(false, true);
-
 		yellowPressed = new TextureRegion(tSTexture, 420, 82, 86, 82);
-		yellowPressed.flip(false, true);
-
 		blueButton = new TextureRegion(tSTexture, 330, 164, 86, 82);
-		blueButton.flip(false, true);
-
 		bluePressed = new TextureRegion(tSTexture, 420, 164, 86, 82);
+		backButton = new TextureRegion(tSTexture, 330, 246, 86, 82); 
+		backPressed = new TextureRegion(tSTexture, 420, 246, 86, 82);
+		pauseButton = new TextureRegion(tSTexture, 330, 328, 86, 82);
+		pausePressed = new TextureRegion(tSTexture, 420, 328, 86, 82);
+		
+		redButton.flip(false, true);
+		redPressed.flip(false, true);	
+		yellowButton.flip(false, true);
+		yellowPressed.flip(false, true);
+		blueButton.flip(false, true);
 		bluePressed.flip(false, true);
+		backButton.flip(false, true);
+		backPressed.flip(false, true);
+		pauseButton.flip(false, true);
+		pausePressed.flip(false, true);
 
 		// GameScreen Textures
 		table = new TextureRegion(gameTexture, 0, 0, 320, 512);
@@ -157,6 +165,7 @@ public class AssetLoader {
 		// We must dispose of the textures when we are finished
 		gameTexture.dispose();
 		tSTexture.dispose();
+		shopTexture.dispose();
 		// cSTexture.dispose();
 		// woodTexture.dispose();
 		// steelTexture.dispose();

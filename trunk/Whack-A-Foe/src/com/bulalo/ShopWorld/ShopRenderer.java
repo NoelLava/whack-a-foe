@@ -1,4 +1,6 @@
-package com.bulalo.ShopScreen;
+package com.bulalo.ShopWorld;
+
+import java.util.List;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL10;
@@ -9,6 +11,8 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.bulalo.GameObjects.Hammers;
 import com.bulalo.Helpers.AssetLoader;
+import com.bulalo.MenuWorld.MenuWorld;
+import com.bulalo.UI.Button;
 
 public class ShopRenderer {
 	private ShopWorld shopWorld = new ShopWorld();
@@ -23,8 +27,12 @@ public class ShopRenderer {
 	private TextureRegion hammer1;
 	private TextureRegion hammer2;
 	
+	private List<Button> shopButtons;
+	
 	public ShopRenderer(ShopWorld ShopScreen) {
 		shopWorld = ShopScreen;
+		this.shopButtons = ShopWorld.getShopButtons();
+		
 		cam = new OrthographicCamera();
 		cam.setToOrtho(true, 160, 256);
 		
@@ -53,6 +61,12 @@ public class ShopRenderer {
 		gold = shopWorld.getHammer2();
 	}
 	
+	private void drawButtons(){
+		for(Button button : shopButtons) {
+			button.draw(batcher);
+        }		
+	}
+	
 	public void render(float runTime) {
 		//UpgradeDummy dummy = upgradeScreen.getDummy();
 		
@@ -74,8 +88,7 @@ public class ShopRenderer {
 		
 		batcher.enableBlending();
 		
-		//batcher.draw(AssetsLoader.dummy,
-				//UpgradeDummy.getRect()); dummy.getY(), dummy.getWidth(), dummy.getHeight());
+		drawButtons();
 		
 		batcher.end();
 	}

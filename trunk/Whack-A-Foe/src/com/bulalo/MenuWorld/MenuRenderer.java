@@ -26,10 +26,13 @@ public class MenuRenderer {
 	public MenuRenderer(MenuWorld world) {
 		menu = world;
         this.menuButtons = MenuWorld.getMenuButtons();
+        
 		cam = new OrthographicCamera();
 		cam.setToOrtho(true, 160, 256);
+		
 		shapeRenderer = new ShapeRenderer();
 		shapeRenderer.setProjectionMatrix(cam.combined);
+		
 		batcher = new SpriteBatch();
 		batcher.setProjectionMatrix(cam.combined);
 

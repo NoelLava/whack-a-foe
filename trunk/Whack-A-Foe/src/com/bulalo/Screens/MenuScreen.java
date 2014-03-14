@@ -22,6 +22,7 @@ public class MenuScreen implements Screen {
 	private Button playButton;
 	private Button shopButton;
 	private Button customButton;
+	private Button backButton;
 	
 	float screenWidth;
     float screenHeight;
@@ -50,7 +51,6 @@ public class MenuScreen implements Screen {
 		playButton = menuButtons.get(0);
 		shopButton = menuButtons.get(1);
 		customButton = menuButtons.get(2);
-		
 	}
 
 	@Override
@@ -62,9 +62,9 @@ public class MenuScreen implements Screen {
 		if(playButton.isJustPressed()){
 			game.setScreen(new GameScreen());
 		}else if(shopButton.isJustPressed()){
-			game.setScreen(new ShopScreen());
+			game.setScreen(new ShopScreen(game));
 		}else if(customButton.isJustPressed()){
-			game.setScreen(new CustomizeScreen());
+			game.setScreen(new CustomizeScreen(game));
 		}
 	
 		menu.update(delta);

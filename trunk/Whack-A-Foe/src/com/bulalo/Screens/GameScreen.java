@@ -1,14 +1,20 @@
 //This class is the very screen of the game which displays the game when play button is pressed
 package com.bulalo.Screens;
 
+import java.util.List;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.bulalo.GameWorld.GameRenderer;
 import com.bulalo.GameWorld.GameWorld;
 import com.bulalo.Helpers.InputHandler;
+import com.bulalo.UI.Button;
 import com.bulalo.whackafoe.WaFGame;
 
 public class GameScreen implements Screen{
+	private static List<Button> buttons;
+	Button pause;
+	
 	GameWorld world;
 	GameRenderer renderer;
 	WaFGame game;
@@ -36,11 +42,21 @@ public class GameScreen implements Screen{
 		renderer = new GameRenderer(world);  //initialize the gameRenderer
 		
 		Gdx.input.setInputProcessor(new InputHandler(world, screenWidth/gameWidth, screenHeight/gameHeight));
+		
+//		buttons = InputHandler.getButtons();
+//		pause = buttons.get(0);
+		
 	}
 	
 	@Override
 	public void render(float delta) {
 		runTime += delta;
+		
+//		if(pause.isJustPressed()){
+//			System.out.println("pause is pressed");
+//			//game.setScreen(new GameScreen());
+//		}
+		
 		world.update(delta);
 		renderer.render(runTime);
 	}
