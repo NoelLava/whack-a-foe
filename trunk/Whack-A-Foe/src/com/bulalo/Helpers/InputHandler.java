@@ -18,10 +18,6 @@ public class InputHandler implements InputProcessor {
 	private Dummy myDummy;
 	private static List<Dummy> dummies;
 	private GameWorld myWorld;
-	private CustomWorld customize;
-	private Tables table;
-	private Tables table1;
-	private Tables table2;
 	
 	private static List<Button> buttons;
 
@@ -37,20 +33,6 @@ public class InputHandler implements InputProcessor {
 		this.scaleFactorX = scaleFactorX;
 		this.scaleFactorY = scaleFactorY;
 
-	}
-
-	public InputHandler(CustomWorld customize, float scaleFactorX,
-			float scaleFactorY) {
-		buttons = new ArrayList<Button>();
-		
-		this.customize = customize;
-		table = customize.getTable();
-		table1 = customize.getTable();
-		table2 = customize.getTable();
-		
-		this.scaleFactorX = scaleFactorX;
-        this.scaleFactorY = scaleFactorY;
-	
 	}
 
 	@Override
