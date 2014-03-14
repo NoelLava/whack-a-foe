@@ -23,8 +23,10 @@ public class ShopWorld {
 	public ShopWorld() {
 		shopButtons = new ArrayList<Button>();
 
-		backButton = new Button(Gdx.graphics.getWidth() / 2 - 30.1f,
-				Gdx.graphics.getHeight() / 2 - 252.15f, 28.67f, 27.33f,
+//		backButton = new Button(Gdx.graphics.getWidth() / 2 - 30.1f,
+//				Gdx.graphics.getHeight() / 2 - 252.15f, 28.67f, 27.33f,
+//				AssetLoader.backButton, AssetLoader.backPressed);
+		backButton = new Button(137.85f, 1.85f, 21.5f, 20.5f,
 				AssetLoader.backButton, AssetLoader.backPressed);
 
 		shopButtons.add(backButton);

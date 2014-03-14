@@ -22,8 +22,7 @@ public class MenuScreen implements Screen {
 	private Button playButton;
 	private Button shopButton;
 	private Button customButton;
-	private Button backButton;
-	
+
 	float screenWidth;
     float screenHeight;
     float gameWidth;

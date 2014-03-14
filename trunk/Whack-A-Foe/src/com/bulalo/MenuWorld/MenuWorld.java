@@ -20,22 +20,23 @@ public class MenuWorld {
 	public MenuWorld() {
 		menuButtons = new ArrayList<Button>();
 
-		playButton = new Button(Gdx.graphics.getWidth() / 2 - (AssetLoader.redButton.getRegionWidth() * 1.675f),
-				Gdx.graphics.getHeight() / 2 - (AssetLoader.redButton.getRegionHeight() * 1.8f),
-				AssetLoader.redButton.getRegionWidth() / 2,
-				AssetLoader.redButton.getRegionHeight() / 2,
-				AssetLoader.redButton, AssetLoader.redPressed);
-		shopButton = new Button(Gdx.graphics.getWidth() / 2	- (AssetLoader.redButton.getRegionWidth() * 1.675f),
-				Gdx.graphics.getHeight() / 2 - (AssetLoader.redButton.getRegionHeight() * 1.32f),
-				AssetLoader.redButton.getRegionWidth() / 2,
-				AssetLoader.redButton.getRegionHeight() / 2,
+		// playButton = new Button(Gdx.graphics.getWidth() / 2 - 144.05f,
+		// Gdx.graphics.getHeight() / 2 - 147.6f, 43, 41,
+		// AssetLoader.redButton, AssetLoader.redPressed);
+		// shopButton = new Button(Gdx.graphics.getWidth() / 2 - 144.05f,
+		// Gdx.graphics.getHeight() / 2 - 108.24f, 43, 41,
+		// AssetLoader.yellowButton, AssetLoader.yellowPressed);
+		// customButton = new Button(Gdx.graphics.getWidth() / 2 - 144.05f,
+		// Gdx.graphics.getHeight() / 2 - 68.47f, 43, 41,
+		// AssetLoader.blueButton, AssetLoader.bluePressed);
+
+		playButton = new Button(15.95f, 108.4f, 43, 41, AssetLoader.redButton,
+				AssetLoader.redPressed);
+		shopButton = new Button(15.95f, 147.46f, 43, 41,
 				AssetLoader.yellowButton, AssetLoader.yellowPressed);
-		customButton = new Button(Gdx.graphics.getWidth() / 2 - (AssetLoader.redButton.getRegionWidth() * 1.675f),
-				Gdx.graphics.getHeight() / 2 - (AssetLoader.redButton.getRegionHeight() * 0.835f),
-				AssetLoader.redButton.getRegionWidth() / 2,
-				AssetLoader.redButton.getRegionHeight() / 2,
+		customButton = new Button(15.95f, 187.53f, 43, 41,
 				AssetLoader.blueButton, AssetLoader.bluePressed);
-		
+
 		menuButtons.add(playButton);
 		menuButtons.add(shopButton);
 		menuButtons.add(customButton);
@@ -44,7 +45,6 @@ public class MenuWorld {
 	public void update(float delta) {
 		runTime += delta;
 	}
-
 
 	public static List<Button> getMenuButtons() {
 		return menuButtons;
