@@ -12,7 +12,7 @@ import com.bulalo.UI.Button;
 import com.bulalo.whackafoe.WaFGame;
 
 public class GameScreen implements Screen{
-	private static List<Button> buttons;
+	private static List<Button> gameButtons;
 	Button pause;
 	
 	GameWorld world;
@@ -26,11 +26,12 @@ public class GameScreen implements Screen{
     float gameWidth;
     float gameHeight;   
 	
+//	public GameScreen(WaFGame game){
+//		this.game = game;
+//	}
+	
 	public GameScreen(WaFGame game){
 		this.game = game;
-	}
-	
-	public GameScreen(){
 		screenWidth = Gdx.graphics.getWidth();
         screenHeight = Gdx.graphics.getHeight();
         gameWidth = 160;
@@ -43,8 +44,8 @@ public class GameScreen implements Screen{
 		
 		Gdx.input.setInputProcessor(new InputHandler(world, screenWidth/gameWidth, screenHeight/gameHeight));
 		
-//		buttons = InputHandler.getButtons();
-//		pause = buttons.get(0);
+		gameButtons = GameWorld.getGameButtons();
+		pause = gameButtons.get(0);
 		
 	}
 	
@@ -52,10 +53,10 @@ public class GameScreen implements Screen{
 	public void render(float delta) {
 		runTime += delta;
 		
-//		if(pause.isJustPressed()){
-//			System.out.println("pause is pressed");
-//			//game.setScreen(new GameScreen());
-//		}
+		if(pause.isJustPressed()){
+			System.out.println("pause is pressed");
+			game.setScreen(new MenuScreen(game));
+		}
 		
 		world.update(delta);
 		renderer.render(runTime);

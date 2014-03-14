@@ -19,7 +19,7 @@ public class InputHandler implements InputProcessor {
 	private static List<Dummy> dummies;
 	private GameWorld myWorld;
 	
-	private static List<Button> buttons;
+	private static List<Button> gameButtons;
 
 	float scaleFactorX;
 	float scaleFactorY;
@@ -28,7 +28,7 @@ public class InputHandler implements InputProcessor {
 			float scaleFactorY) {
 		this.myWorld = myWorld;
 		dummies = myWorld.getDummies();
-//		buttons = new ArrayList<Button>();
+		gameButtons = GameWorld.getGameButtons();
 
 		this.scaleFactorX = scaleFactorX;
 		this.scaleFactorY = scaleFactorY;
@@ -45,7 +45,7 @@ public class InputHandler implements InputProcessor {
 			dummy.displayResult();
 		}
 
-		for (Button thisButton : buttons) {
+		for (Button thisButton : gameButtons) {
 			thisButton.isTouchDown(screenX, screenY);
 		}
 
@@ -64,7 +64,7 @@ public class InputHandler implements InputProcessor {
 			dummy.displayResult();
 		}
 		
-		for (Button thisButton : buttons) {
+		for (Button thisButton : gameButtons) {
 			if (thisButton.isTouchUp(screenX, screenY)) {
 				return true;
 			}

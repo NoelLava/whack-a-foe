@@ -26,23 +26,26 @@ public class GameRenderer {
 	
 	private Dummy dummy;
 	private List<Dummy> dummies;
+	private List<Button> gameButtons;
 	
 	private TextureRegion table;
 	private Animation dummyAnimation;
 	private Animation dummyDies;
 	
-//	private List<Button> buttons;
-	
 	public GameRenderer(GameWorld world){
 		myWorld = world;
 		this.dummies = InputHandler.getDummies();
-//		this.buttons = InputHandler.getButtons();
+		this.gameButtons = GameWorld.getGameButtons();
+		
 		cam = new OrthographicCamera();
 		cam.setToOrtho(true, 160, 256);
+		
 		batcher = new SpriteBatch();
 		batcher.setProjectionMatrix(cam.combined);
+		
 		shapeRenderer = new ShapeRenderer();
 		shapeRenderer.setProjectionMatrix(cam.combined);
+		
 		initGameObjects();
 		initAssets();
 	}
@@ -71,11 +74,11 @@ public class GameRenderer {
 	    }
 	}
 	
-//	private void drawButtons(){
-//		for(Button button : buttons) {
-//			button.draw(batcher);
-//        }		
-//	}
+	private void drawButtons(){
+		for(Button button : gameButtons) {
+			button.draw(batcher);
+        }		
+	}
 	
 	public void render(float runTime){		
         Gdx.gl.glClearColor(0, 0, 0, 1);
@@ -103,7 +106,7 @@ public class GameRenderer {
         batcher.enableBlending();
  
         drawDummy(runTime);
-        //drawButtons();
+        drawButtons();
         
         // End SpriteBatch
         batcher.end();

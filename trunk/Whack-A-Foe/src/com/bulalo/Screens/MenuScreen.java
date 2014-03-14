@@ -60,7 +60,7 @@ public class MenuScreen implements Screen {
 		// game.setScreen(game.gameScreen);
 		
 		if(playButton.isJustPressed()){
-			game.setScreen(new GameScreen());
+			game.setScreen(new GameScreen(game));
 		}else if(shopButton.isJustPressed()){
 			game.setScreen(new ShopScreen(game));
 		}else if(customButton.isJustPressed()){
