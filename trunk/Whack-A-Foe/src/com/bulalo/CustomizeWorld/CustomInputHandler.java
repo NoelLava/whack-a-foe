@@ -14,9 +14,9 @@ public class CustomInputHandler implements InputProcessor{
 	private Tables table1;
 	private Tables table2;
 	
-	private static boolean tableTrue = false;
-	private static boolean table1True = false;
-	private static boolean table2True = false;
+	private static boolean tableTrue;
+	private static boolean table1True;
+	private static boolean table2True;
 	
 	private static List<Button> customButtons;
 
@@ -83,11 +83,17 @@ public class CustomInputHandler implements InputProcessor{
 		screenX = scaleX(screenX);
 		screenY = scaleY(screenY);
 		
-		if(table.isTouchUp(screenX, screenY) || table1.isTouchUp(screenX, screenY) ||
-					table2.isTouchUp(screenX, screenY)){
+		if(table.isTouchUp(screenX, screenY)){
 			return true;
 		}
-			
+		
+		if(table1.isTouchUp(screenX, screenY)){
+			return true;
+		}
+		
+		if(table2.isTouchUp(screenX, screenY)){
+			return true;
+		}
 		
 		for (Button thisButton : customButtons) {
 			if (thisButton.isTouchUp(screenX, screenY)) {
@@ -141,5 +147,17 @@ public class CustomInputHandler implements InputProcessor{
 	private int scaleY(int screenY) {
 		return (int) (screenY / scaleFactorY);
 	}
+	
+	public boolean falseCheck(){
+		return tableTrue = false;
+	}
+	
+	public boolean falseCheck1(){
+		return table1True = false;
+	}
 
+	public boolean falseCheck2(){
+		return table2True = false;
+	}
+	
 }
