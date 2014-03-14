@@ -24,8 +24,6 @@ public class InputHandler implements InputProcessor {
 	private Tables table2;
 	
 	private static List<Button> buttons;
-	private static Button pauseButton;
-	private static Button backButton;
 
 	float scaleFactorX;
 	float scaleFactorY;

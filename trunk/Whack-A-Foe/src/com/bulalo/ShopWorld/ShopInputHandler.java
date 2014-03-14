@@ -7,7 +7,6 @@ import com.bulalo.GameObjects.Hammers;
 import com.bulalo.UI.Button;
 
 public class ShopInputHandler implements InputProcessor {
-	
 	private ShopWorld shopWorld;
 	private Hammers hammer;
 	private Hammers hammer1;
