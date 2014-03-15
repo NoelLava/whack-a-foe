@@ -43,7 +43,6 @@ public class AssetLoader {
 	public static TextureRegion background;
 
 	public static Texture sSTexture;
-	public static Texture hammersTexture;
 	public static TextureRegion ssBg;
 	public static TextureRegion kahoy;
 	public static TextureRegion bakal;
@@ -87,9 +86,6 @@ public class AssetLoader {
 		
 		sSTexture = new Texture(Gdx.files.internal("data/ShopScreenTexture.png"));
 		sSTexture.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
-		
-		hammersTexture = new Texture(Gdx.files.internal("data/hammers.png"));
-		hammersTexture.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
 		
 		// TitleScreen Textures
 		titleBg = new TextureRegion(tSTexture, 0, 0, 320, 512);
@@ -151,9 +147,9 @@ public class AssetLoader {
 
 		// ShopScreen Textures	
 		ssBg = new TextureRegion(sSTexture, 0, 0, 320, 512);
-		kahoy = new TextureRegion(hammersTexture, 110, 40, 90, 175);
-		bakal = new TextureRegion(hammersTexture, 190, 40, 90, 175);
-		ginto = new TextureRegion(hammersTexture, 270, 40, 90, 175);
+		kahoy = new TextureRegion(sSTexture, 320, 130, 95, 130);
+		bakal = new TextureRegion(sSTexture, 320, 0, 95, 130);
+		ginto = new TextureRegion(sSTexture, 414, 0, 97, 130);
 
 		ssBg.flip(false, true);
 		kahoy.flip(false, true);
@@ -170,26 +166,14 @@ public class AssetLoader {
 
 	}
 
-	/*
-	 * public static TextureRegion getBackground(){ table1 = custom.getTable();
-	 * table2 = custom.getTable1(); table3 = custom.getTable2();
-	 * if(table1.onClick(20, 50)){ System.out.println("changed to wood");
-	 * background = AssetLoader.wood; } else if(table2.onClick1(60, 50)){
-	 * System.out.println("changed to carbon"); background=AssetLoader.carbon; }
-	 * else if (table3.onClick2(100, 50)){
-	 * System.out.println("changed to steel"); background=AssetLoader.steel; }
-	 * System.out.println("enter"); return background; }
-	 */
-
 	public static void dispose() {
 		// We must dispose of the textures when we are finished
 		gameTexture.dispose();
 		tSTexture.dispose();
-		// sSTexture.dispose();
-		// hammersTexture.dispose();
-		// cSTexture.dispose();
-		// woodTexture.dispose();
-		// steelTexture.dispose();
-		// carbonTexture.dispose();
+		sSTexture.dispose();
+		cSTexture.dispose();
+		woodTexture.dispose();
+		steelTexture.dispose();
+		carbonTexture.dispose();
 	}
 }
