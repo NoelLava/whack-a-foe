@@ -1,25 +1,20 @@
 package com.bulalo.Helpers;
 
-import java.util.ArrayList;
 import java.util.List;
 
-
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
-import com.bulalo.CustomizeWorld.CustomWorld;
 import com.bulalo.GameObjects.Dummy;
-import com.bulalo.GameObjects.Hammers;
-import com.bulalo.GameObjects.Tables;
+import com.bulalo.GameObjects.HammerAction;
 import com.bulalo.GameWorld.GameWorld;
-import com.bulalo.ShopWorld.ShopWorld;
 import com.bulalo.UI.Button;
 
 public class InputHandler implements InputProcessor {
-	private Dummy myDummy;
-	private static List<Dummy> dummies;
 	private GameWorld myWorld;
+	private Dummy myDummy;
 	
+	private static List<Dummy> dummies;	
 	private static List<Button> gameButtons;
+	private static List<HammerAction> hammerAngles;
 
 	float scaleFactorX;
 	float scaleFactorY;
@@ -27,8 +22,9 @@ public class InputHandler implements InputProcessor {
 	public InputHandler(GameWorld myWorld, float scaleFactorX,
 			float scaleFactorY) {
 		this.myWorld = myWorld;
-		dummies = myWorld.getDummies();
+		dummies = GameWorld.getDummies();
 		gameButtons = GameWorld.getGameButtons();
+		hammerAngles = GameWorld.getHammerAngles();
 
 		this.scaleFactorX = scaleFactorX;
 		this.scaleFactorY = scaleFactorY;
@@ -48,6 +44,10 @@ public class InputHandler implements InputProcessor {
 		for (Button thisButton : gameButtons) {
 			thisButton.isTouchDown(screenX, screenY);
 		}
+		
+		for(HammerAction hammerAngle : hammerAngles){
+			hammerAngle.isTouchDown(screenX, screenY);
+		}
 
 		return true;
 	}
@@ -66,6 +66,12 @@ public class InputHandler implements InputProcessor {
 		
 		for (Button thisButton : gameButtons) {
 			if (thisButton.isTouchUp(screenX, screenY)) {
+				return true;
+			}
+		}
+		
+		for(HammerAction hammerAngle : hammerAngles){
+			if(hammerAngle.isTouchUp(screenX, screenY)){
 				return true;
 			}
 		}

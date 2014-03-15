@@ -10,11 +10,15 @@ import com.bulalo.GameObjects.Tables;
 
 public class AssetLoader {
 	public static Texture gameTexture;
+	public static Texture hammerAngles;
 	public static TextureRegion table;
 	public static TextureRegion dummy1;
 	public static TextureRegion dummy2;
 	public static TextureRegion dummy3;
 	public static TextureRegion dummy4;
+	public static TextureRegion HamWoodLeft, HamWoodMid, HamWoodRight;
+	public static TextureRegion HamSteelLeft, HamSteelMid, HamSteelRight;
+	public static TextureRegion HamGoldLeft, HamGoldMid, HamGoldRight;
 
 	private static Tables table1;
 	private static CustomWorld custom = new CustomWorld();
@@ -31,7 +35,7 @@ public class AssetLoader {
 	public static TextureRegion backPressed;
 	public static TextureRegion pauseButton;
 	public static TextureRegion pausePressed;
-	
+
 	public static Texture cSTexture;
 	public static Texture woodTexture;
 	public static Texture steelTexture;
@@ -50,12 +54,11 @@ public class AssetLoader {
 
 	public static Animation dummyAnimation;
 	public static Animation dummyDies;
-	
+
 	public static Texture dummy;
 	public static TextureRegion dummyJanitor;
 	public static TextureRegion dummyDefault;
 	public static TextureRegion dummyOffice;
-	
 
 	public static void load() {
 		Texture.setEnforcePotImages(false);
@@ -63,30 +66,35 @@ public class AssetLoader {
 		gameTexture = new Texture(
 				Gdx.files.internal("data/GameScreenTexture.png"));
 		gameTexture.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
-		
-		dummy = new Texture(
-				Gdx.files.internal("data/dummies.png"));
+
+		hammerAngles = new Texture(
+				Gdx.files.internal("data/HammerAngleTexture.png"));
+		hammerAngles.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
+
+		dummy = new Texture(Gdx.files.internal("data/dummies.png"));
 		dummy.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
-		
+
 		tSTexture = new Texture(
 				Gdx.files.internal("data/TitleScreenTexture.png"));
 		tSTexture.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
 
-		cSTexture = new Texture(Gdx.files.internal("data/CustomScreenTexture.png"));
+		cSTexture = new Texture(
+				Gdx.files.internal("data/CustomScreenTexture.png"));
 		cSTexture.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
-		
+
 		woodTexture = new Texture(Gdx.files.internal("data/Wood.png"));
 		woodTexture.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
-		
+
 		steelTexture = new Texture(Gdx.files.internal("data/Steel.png"));
 		steelTexture.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
-		
+
 		carbonTexture = new Texture(Gdx.files.internal("data/Carbon.png"));
 		carbonTexture.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
-		
-		sSTexture = new Texture(Gdx.files.internal("data/ShopScreenTexture.png"));
+
+		sSTexture = new Texture(
+				Gdx.files.internal("data/ShopScreenTexture.png"));
 		sSTexture.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
-		
+
 		// TitleScreen Textures
 		titleBg = new TextureRegion(tSTexture, 0, 0, 320, 512);
 		titleBg.flip(false, true);
@@ -97,13 +105,13 @@ public class AssetLoader {
 		yellowPressed = new TextureRegion(tSTexture, 420, 82, 86, 82);
 		blueButton = new TextureRegion(tSTexture, 330, 164, 86, 82);
 		bluePressed = new TextureRegion(tSTexture, 420, 164, 86, 82);
-		backButton = new TextureRegion(tSTexture, 330, 246, 86, 82); 
+		backButton = new TextureRegion(tSTexture, 330, 246, 86, 82);
 		backPressed = new TextureRegion(tSTexture, 420, 246, 86, 82);
 		pauseButton = new TextureRegion(tSTexture, 330, 328, 86, 82);
 		pausePressed = new TextureRegion(tSTexture, 420, 328, 86, 82);
-		
+
 		redButton.flip(false, true);
-		redPressed.flip(false, true);	
+		redPressed.flip(false, true);
 		yellowButton.flip(false, true);
 		yellowPressed.flip(false, true);
 		blueButton.flip(false, true);
@@ -127,16 +135,36 @@ public class AssetLoader {
 		dummy3.flip(false, true);
 		dummy4.flip(false, true);
 
+		HamWoodLeft = new TextureRegion(hammerAngles, 0, 0, 107, 170);
+		HamWoodMid = new TextureRegion(hammerAngles, 107, 0, 107, 170);
+		HamWoodRight = new TextureRegion(hammerAngles, 214, 0, 107, 170);
+		HamSteelLeft = new TextureRegion(hammerAngles, 0, 170, 107, 170);
+		HamSteelMid = new TextureRegion(hammerAngles, 107, 170, 107, 170);
+		HamSteelRight = new TextureRegion(hammerAngles, 214, 170, 107, 170);
+		HamGoldLeft = new TextureRegion(hammerAngles, 0, 340, 107, 170);
+		HamGoldMid = new TextureRegion(hammerAngles, 107, 340, 107, 170);
+		HamGoldRight = new TextureRegion(hammerAngles, 214, 340, 107, 170);
+		
+		HamWoodLeft.flip(false, true);
+		HamWoodMid.flip(false, true);
+		HamWoodRight.flip(false, true);
+		HamSteelLeft.flip(false, true);
+		HamSteelMid.flip(false, true);
+		HamSteelRight.flip(false, true);
+		HamGoldLeft.flip(false, true);
+		HamGoldMid.flip(false, true);
+		HamGoldRight.flip(false, true);
+
 		// CustomizeScreen Textures
 		csBg = new TextureRegion(cSTexture, 0, 0, 320, 512);
 		wood = new TextureRegion(woodTexture, 0, 0, 512, 512);
 		steel = new TextureRegion(steelTexture, 0, 0, 320, 512);
 		carbon = new TextureRegion(carbonTexture, 0, 0, 320, 512);
-		
-		dummyJanitor = new TextureRegion(dummy,184,0,65,95);
-		dummyOffice = new TextureRegion(dummy,184,83,65,95);
-		dummyDefault = new TextureRegion(dummy,176,173,65,95);
-		
+
+		dummyJanitor = new TextureRegion(dummy, 184, 0, 65, 95);
+		dummyOffice = new TextureRegion(dummy, 184, 83, 65, 95);
+		dummyDefault = new TextureRegion(dummy, 176, 173, 65, 95);
+
 		dummyJanitor.flip(false, true);
 		dummyOffice.flip(false, true);
 		dummyDefault.flip(false, true);
@@ -145,7 +173,7 @@ public class AssetLoader {
 		steel.flip(false, true);
 		carbon.flip(false, true);
 
-		// ShopScreen Textures	
+		// ShopScreen Textures
 		ssBg = new TextureRegion(sSTexture, 0, 0, 320, 512);
 		kahoy = new TextureRegion(sSTexture, 320, 130, 95, 130);
 		bakal = new TextureRegion(sSTexture, 320, 0, 95, 130);
@@ -175,5 +203,6 @@ public class AssetLoader {
 		woodTexture.dispose();
 		steelTexture.dispose();
 		carbonTexture.dispose();
+		hammerAngles.dispose();
 	}
 }

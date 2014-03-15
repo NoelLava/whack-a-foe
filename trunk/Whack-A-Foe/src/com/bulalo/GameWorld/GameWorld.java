@@ -5,8 +5,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.bulalo.GameObjects.Dummy;
+import com.bulalo.GameObjects.HammerAction;
 import com.bulalo.Helpers.AssetLoader;
 import com.bulalo.UI.Button;
 
@@ -17,26 +18,29 @@ public class GameWorld {
 			103.5f, 17.75f, 62.75f, 108f };
 	public static final float[] coordinateY = { 65f, 65f, 65f, 120f, 120f,
 			120f, 175.5f, 175.5f, 175.5f };
-
-	private long usedTime;
-
-	private static List<Dummy> dummies;
-
-	Random rand = new Random();
-	float runTime = 0;
-
-	private static List<Button> gameButtons;
-	Button pauseButton;
-
-	private float x, y;
-
+	
 	private boolean[] removed = { false, false, false, false, false, false,
 			false, false, false };
 	private int[] respawnCounter = { 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 	private int[] removeCounter = { 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 	private int escapeCounter = 0;
 
+	private long usedTime;
+
+	private static List<Dummy> dummies;
+	private static List<Button> gameButtons;
+	Button pauseButton;
+	
+	private static List<HammerAction> hammerPosition;
+	HammerAction hammer;
+
+	private float x, y;
+	Random rand = new Random();
+	float runTime = 0;
+
 	public GameWorld() {
+		
+		// dummies ==========================================
 		dummies = new ArrayList<Dummy>();
 		int r = rand.nextInt(9);
 
@@ -44,11 +48,21 @@ public class GameWorld {
 		dummy.spawn(coordinateX[r], coordinateY[r]);
 		dummies.add(dummy);
 
+		// buttons ==========================================
 		gameButtons = new ArrayList<Button>();
 		pauseButton = new Button(137.85f, 1.85f, 21.5f, 20.5f,
 				AssetLoader.pauseButton, AssetLoader.pausePressed);
 
 		gameButtons.add(pauseButton);
+		
+		// holes/hammer regions =============================
+		hammerPosition = new ArrayList<HammerAction>(9);
+		for(int ctr = 0; ctr < 9; ctr++){
+			hammer = new HammerAction(coordinateX[ctr], coordinateY[ctr], 35, 50, ctr);
+			hammerPosition.add(hammer);
+		}
+		
+		
 	}
 
 	public void update(float delta) {
@@ -186,5 +200,9 @@ public class GameWorld {
 
 	public static List<Button> getGameButtons() {
 		return gameButtons;
+	}
+	
+	public static List<HammerAction> getHammerAngles(){
+		return hammerPosition;
 	}
 }

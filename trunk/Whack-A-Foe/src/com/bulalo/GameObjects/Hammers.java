@@ -11,8 +11,8 @@ public class Hammers {
 	private boolean isPressed = false;
 	
 	public Hammers(float x, float y, int width, int height){
-		this.width = 12;
-		this.height = 27;
+		this.width = width;
+		this.height = height;
 		position = new Vector2(x,y);
 		
 		bounds = new Rectangle(x, y, width, height);
