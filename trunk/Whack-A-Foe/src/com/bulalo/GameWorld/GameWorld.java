@@ -18,7 +18,7 @@ public class GameWorld {
 			103.5f, 17.75f, 62.75f, 108f };
 	public static final float[] coordinateY = { 65f, 65f, 65f, 120f, 120f,
 			120f, 175.5f, 175.5f, 175.5f };
-	
+
 	private boolean[] removed = { false, false, false, false, false, false,
 			false, false, false };
 	private int[] respawnCounter = { 0, 0, 0, 0, 0, 0, 0, 0, 0 };
@@ -30,7 +30,7 @@ public class GameWorld {
 	private static List<Dummy> dummies;
 	private static List<Button> gameButtons;
 	Button pauseButton;
-	
+
 	private static List<HammerAction> hammerPosition;
 	HammerAction hammer;
 
@@ -39,7 +39,7 @@ public class GameWorld {
 	float runTime = 0;
 
 	public GameWorld() {
-		
+
 		// dummies ==========================================
 		dummies = new ArrayList<Dummy>();
 		int r = rand.nextInt(9);
@@ -54,15 +54,19 @@ public class GameWorld {
 				AssetLoader.pauseButton, AssetLoader.pausePressed);
 
 		gameButtons.add(pauseButton);
-		
+
 		// holes/hammer regions =============================
-		hammerPosition = new ArrayList<HammerAction>(9);
-		for(int ctr = 0; ctr < 9; ctr++){
-			hammer = new HammerAction(coordinateX[ctr], coordinateY[ctr], 35, 50, ctr);
-			hammerPosition.add(hammer);
+		hammerPosition = new ArrayList<HammerAction>(10);
+		for (int ctr = 0; ctr < 10; ctr++) {
+			if (ctr == 9) {
+				hammer = new HammerAction(coordinateX[7], 211.5f, 35, 50, ctr);
+				hammerPosition.add(hammer);
+			} else {
+				hammer = new HammerAction(coordinateX[ctr], coordinateY[ctr],
+						35, 50, ctr);
+				hammerPosition.add(hammer);
+			}
 		}
-		
-		
 	}
 
 	public void update(float delta) {
@@ -201,8 +205,8 @@ public class GameWorld {
 	public static List<Button> getGameButtons() {
 		return gameButtons;
 	}
-	
-	public static List<HammerAction> getHammerAngles(){
+
+	public static List<HammerAction> getHammerAngles() {
 		return hammerPosition;
 	}
 }

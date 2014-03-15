@@ -29,7 +29,7 @@ public class GameRenderer {
 	private Dummy dummy;
 	private List<Dummy> dummies;
 	private List<Button> gameButtons;
-	private List<HammerAction> hammerPosition;
+	private List<HammerAction> hammerPositions;
 
 	private TextureRegion hammerAngle;
 	private TextureRegion table;
@@ -40,7 +40,7 @@ public class GameRenderer {
 		myWorld = world;
 		this.dummies = InputHandler.getDummies();
 		this.gameButtons = GameWorld.getGameButtons();
-		this.hammerPosition = GameWorld.getHammerAngles();
+		this.hammerPositions = GameWorld.getHammerAngles();
 
 		cam = new OrthographicCamera();
 		cam.setToOrtho(true, 160, 256);
@@ -89,8 +89,22 @@ public class GameRenderer {
 	}
 
 	private void drawHammers(){
-		for(HammerAction position : hammerPosition){
-			position.draw(batcher);
+		if (hammerPositions.get(0).isPressed()
+				|| hammerPositions.get(1).isPressed()
+				|| hammerPositions.get(2).isPressed()
+				|| hammerPositions.get(3).isPressed()
+				|| hammerPositions.get(4).isPressed()
+				|| hammerPositions.get(5).isPressed()
+				|| hammerPositions.get(6).isPressed()
+				|| hammerPositions.get(7).isPressed()
+				|| hammerPositions.get(8).isPressed()) {
+			hammerPositions.get(9).setPressed(true);
+		}else{
+			hammerPositions.get(9).setPressed(false);
+		}
+		
+		for(HammerAction hammerPosition : hammerPositions){
+			hammerPosition.draw(batcher);
 		}
 	}
 	

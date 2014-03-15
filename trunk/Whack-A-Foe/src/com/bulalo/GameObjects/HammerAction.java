@@ -38,14 +38,16 @@ public class HammerAction {
 		
         if (this.isPressed) {
         	if(position == 0 || position == 3 || position == 6){
-        		batcher.draw(hamLeft, x, y, AssetLoader.HamWoodLeft.getRegionWidth()/2, AssetLoader.HamWoodLeft.getRegionHeight()/2);
+        		batcher.draw(hamLeft, x - (AssetLoader.HamWoodLeft.getRegionWidth()/12), y + (AssetLoader.HamWoodLeft.getRegionHeight()/(x*2.75f)), AssetLoader.HamWoodLeft.getRegionWidth()/2, AssetLoader.HamWoodLeft.getRegionHeight()/2);
         	}else if(position == 1 || position == 4 || position == 7){
-        		batcher.draw(hamMid, x, y, AssetLoader.HamWoodMid.getRegionWidth()/2, AssetLoader.HamWoodMid.getRegionHeight()/2);
+        		batcher.draw(hamMid, x - (AssetLoader.HamWoodLeft.getRegionWidth()/12), y + (AssetLoader.HamWoodLeft.getRegionHeight()/(x*0.75f)), AssetLoader.HamWoodMid.getRegionWidth()/2, AssetLoader.HamWoodMid.getRegionHeight()/2);
         	}else if(position == 2 || position == 5 || position == 8){
-        		batcher.draw(hamRight, x, y, AssetLoader.HamWoodRight.getRegionWidth()/2, AssetLoader.HamWoodRight.getRegionHeight()/2);
+        		batcher.draw(hamRight, x - (AssetLoader.HamWoodLeft.getRegionWidth()/12), y + (AssetLoader.HamWoodLeft.getRegionHeight()/(x*0.5f)), AssetLoader.HamWoodRight.getRegionWidth()/2, AssetLoader.HamWoodRight.getRegionHeight()/2);
         	}
         } else {
-            batcher.draw(hamMid, 42.75f, 211.5f, width * 1.5f, height * 1.5f);
+        	if(position == 9){
+        		batcher.draw(hamMid, x - (AssetLoader.HamWoodLeft.getRegionWidth()/12), y, AssetLoader.HamWoodLeft.getRegionWidth()/2, AssetLoader.HamWoodLeft.getRegionHeight()/2);
+        	}
         }
     }
 
@@ -135,5 +137,13 @@ public class HammerAction {
 
 	public void setJustPressed(boolean justPressed) {
 		this.justPressed = justPressed;
+	}
+
+	public int getPosition() {
+		return position;
+	}
+
+	public void setPosition(int position) {
+		this.position = position;
 	}
 }
