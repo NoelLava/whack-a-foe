@@ -28,7 +28,7 @@ public class SplashScreen implements Screen {
 
     @Override
     public void show() {
-    	AssetLoader.bulaloil.play();
+    	playSplashSound();
         sprite = new Sprite(AssetLoader.bulalo);
         sprite.setColor(1, 1, 1, 0);
 
@@ -55,7 +55,7 @@ public class SplashScreen implements Screen {
             }
         };
 
-        Tween.to(sprite, SpriteAccessor.ALPHA, 3f).target(1)
+        Tween.to(sprite, SpriteAccessor.ALPHA, 2f).target(1)
                 .ease(TweenEquations.easeInOutQuad).repeatYoyo(1, .4f)
                 .setCallback(cb).setCallbackTriggers(TweenCallback.COMPLETE)
                 .start(manager);
@@ -71,6 +71,10 @@ public class SplashScreen implements Screen {
         batcher.end();
     }
 
+    public void playSplashSound(){
+    	AssetLoader.bulaloil.play();
+    }
+    
     @Override
     public void resize(int width, int height) {
     }

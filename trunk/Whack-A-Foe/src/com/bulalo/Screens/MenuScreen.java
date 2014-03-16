@@ -61,10 +61,13 @@ public class MenuScreen implements Screen {
 
 		if(playButton.isJustPressed()){
 			game.setScreen(new GameScreen(game));
+			this.dispose();
 		}else if(shopButton.isJustPressed()){
 			game.setScreen(new ShopScreen(game));
+			this.dispose();
 		}else if(customButton.isJustPressed()){
 			game.setScreen(new CustomizeScreen(game));
+			this.dispose();
 		}
 	
 		menu.update(delta);
@@ -77,11 +80,6 @@ public class MenuScreen implements Screen {
 
 	@Override
 	public void show() {
-		if(AssetLoader.gameMusic.isPlaying()){
-			AssetLoader.gameMusic.stop();
-		}else if(AssetLoader.gameMusic2.isPlaying()){
-			AssetLoader.gameMusic2.stop();
-		}
 		AssetLoader.titleMusic.play();
 	}
 
@@ -99,6 +97,7 @@ public class MenuScreen implements Screen {
 
 	@Override
 	public void dispose() {
+		AssetLoader.titleMusic.stop();
 	}
 
 	public float getScreenWidth() {

@@ -55,6 +55,7 @@ public class CustomizeScreen implements Screen {
 		
 		if(backButton.isJustPressed()){
 			game.setScreen(new MenuScreen(game));
+			this.dispose();
 		}
 		
 		custom.update(delta);
@@ -72,9 +73,6 @@ public class CustomizeScreen implements Screen {
 
 	@Override
 	public void show() {
-		if(AssetLoader.titleMusic.isPlaying()){
-			AssetLoader.titleMusic.stop();
-		}
 		AssetLoader.gameMusic.play();
 	}
 
@@ -92,6 +90,7 @@ public class CustomizeScreen implements Screen {
 
 	@Override
 	public void dispose() {
+		AssetLoader.gameMusic.stop();
 	}
 
 }

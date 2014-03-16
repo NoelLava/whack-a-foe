@@ -29,7 +29,7 @@ public class ShopScreen implements Screen {
 //	public ShopScreen(WaFGame game){
 //		this.game = game;
 //	}
-//	
+    
 	public ShopScreen(WaFGame game){
 		this.game = game;
 		screenWidth = Gdx.graphics.getWidth();
@@ -52,6 +52,7 @@ public class ShopScreen implements Screen {
 		
 		if(backButton.isJustPressed()){
 			game.setScreen(new MenuScreen(game));
+			this.dispose();
 		}
 		
 		shop.update(delta);
@@ -65,9 +66,6 @@ public class ShopScreen implements Screen {
 
 	@Override
 	public void show() {
-		if(AssetLoader.titleMusic.isPlaying()){
-			AssetLoader.titleMusic.stop();
-		}
 		AssetLoader.gameMusic.play();
 	}
 
@@ -85,6 +83,7 @@ public class ShopScreen implements Screen {
 
 	@Override
 	public void dispose() {
+		AssetLoader.gameMusic.stop();
 	}
 
 }

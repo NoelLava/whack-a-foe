@@ -56,6 +56,7 @@ public class GameScreen implements Screen{
 		
 		if(pause.isJustPressed()){
 			game.setScreen(new MenuScreen(game));
+			this.dispose();
 		}
 		
 		world.update(delta);
@@ -68,9 +69,6 @@ public class GameScreen implements Screen{
 
 	@Override
 	public void show() {
-		if(AssetLoader.titleMusic.isPlaying()){
-			AssetLoader.titleMusic.stop();
-		}
 		AssetLoader.gameStart.play();
 		AssetLoader.gameMusic2.play();
 	}
@@ -89,6 +87,7 @@ public class GameScreen implements Screen{
 
 	@Override
 	public void dispose() {
-
+		AssetLoader.gameStart.stop();
+		AssetLoader.gameMusic2.stop();
 	}	
 }
