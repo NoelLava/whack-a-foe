@@ -2,21 +2,22 @@ package com.bulalo.GameObjects;
 
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+import com.bulalo.GameWorld.GameWorld;
 
 public class Hammers {
-	private Vector2 position;
+	//private Vector2 position;
 	private Rectangle bounds;
-	private int width;
-	private int height;
+	private float x, y, width, height;
 	private boolean isPressed = false;
 	
-	public Hammers(float x, float y, int width, int height){
+	public Hammers(float x, float y, float width, float height){
+		this.x = x;
+		this.y = y;
 		this.width = width;
 		this.height = height;
-		position = new Vector2(x,y);
+		//position = new Vector2(x,y);
 		
-		bounds = new Rectangle(x, y, width, height);
-		
+		bounds = new Rectangle(x, y, width, height);	
 	}
 	
 	public boolean onClick(int screenX, int screenY){
@@ -28,9 +29,8 @@ public class Hammers {
 	
         if (bounds.contains(screenX,screenY)) {
         	isPressed = true;
-        	System.out.println("hammer - hit");
+        	System.out.println("hammer - pressed");
         	return true;
-
         } 
         return false;
     }
@@ -62,19 +62,19 @@ public class Hammers {
 		//System.out.println(position);
 	}
     public void setX(float newX){
-		position.x = newX;
+		x = newX;
 	}
 	
 	public void setY(float newY){
-		position.y = newY;
+		y = newY;
 	}
 	
     public float getX() {
-        return position.x;
+        return x;
     }
 
     public float getY() {
-        return position.y;
+        return y;
     }
 
     public float getWidth() {

@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.bulalo.Helpers.AssetLoader;
 import com.bulalo.MenuWorld.MenuInputHandler;
 import com.bulalo.MenuWorld.MenuRenderer;
 import com.bulalo.MenuWorld.MenuWorld;
@@ -57,7 +58,7 @@ public class MenuScreen implements Screen {
 		runTime += delta;
 		// if (Gdx.input.justTouched()) // use your own criterion here
 		// game.setScreen(game.gameScreen);
-		
+
 		if(playButton.isJustPressed()){
 			game.setScreen(new GameScreen(game));
 		}else if(shopButton.isJustPressed()){
@@ -76,6 +77,12 @@ public class MenuScreen implements Screen {
 
 	@Override
 	public void show() {
+		if(AssetLoader.gameMusic.isPlaying()){
+			AssetLoader.gameMusic.stop();
+		}else if(AssetLoader.gameMusic2.isPlaying()){
+			AssetLoader.gameMusic2.stop();
+		}
+		AssetLoader.titleMusic.play();
 	}
 
 	@Override

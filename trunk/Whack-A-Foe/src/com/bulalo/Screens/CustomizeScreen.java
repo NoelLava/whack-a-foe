@@ -8,6 +8,7 @@ import com.bulalo.CustomizeWorld.CustomInputHandler;
 import com.bulalo.CustomizeWorld.CustomWorld;
 import com.bulalo.CustomizeWorld.CustomizeRenderer;
 import com.bulalo.GameObjects.Tables;
+import com.bulalo.Helpers.AssetLoader;
 import com.bulalo.UI.Button;
 import com.bulalo.whackafoe.WaFGame;
 
@@ -66,39 +67,31 @@ public class CustomizeScreen implements Screen {
 	}
 
 	@Override
-	public void resize(int width, int height) {
-		// TODO Auto-generated method stub
-		
+	public void resize(int width, int height) {	
 	}
 
 	@Override
 	public void show() {
-		// TODO Auto-generated method stub
-		
+		if(AssetLoader.titleMusic.isPlaying()){
+			AssetLoader.titleMusic.stop();
+		}
+		AssetLoader.gameMusic.play();
 	}
 
 	@Override
-	public void hide() {
-		// TODO Auto-generated method stub
-		
+	public void hide() {		
 	}
 
 	@Override
-	public void pause() {
-		// TODO Auto-generated method stub
-		
+	public void pause() {		
 	}
 
 	@Override
 	public void resume() {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void dispose() {
-		// TODO Auto-generated method stub
-		
 	}
 
 }

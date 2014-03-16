@@ -6,6 +6,7 @@ import com.bulalo.Screens.CustomizeScreen;
 import com.bulalo.Screens.GameScreen;
 import com.bulalo.Screens.MenuScreen;
 import com.bulalo.Screens.ShopScreen;
+import com.bulalo.Screens.SplashScreen;
 
 public class WaFGame extends Game {
 
@@ -20,12 +21,12 @@ public class WaFGame extends Game {
 		System.out.println("Game created");
 
 		game = this;
-		//mainMenu = new MenuScreen(this);
+		mainMenu = new MenuScreen(this);
 		gameScreen = new GameScreen(this);
 		customizeScreen = new CustomizeScreen(this);
 		shopScreen = new ShopScreen(this);
 		AssetLoader.load();
-		setScreen(new MenuScreen(this));
+		setScreen(new SplashScreen(this));
 
 	}
 	

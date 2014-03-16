@@ -2,8 +2,8 @@ package com.bulalo.UI;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Rectangle;
+import com.bulalo.Helpers.AssetLoader;
 
 public class Button {
 
@@ -45,6 +45,7 @@ public class Button {
 
         if (bounds.contains(screenX, screenY)) {
             isPressed = true;
+            AssetLoader.buttonDown.play();
             return true;
         }
         return false;
@@ -54,6 +55,7 @@ public class Button {
         
         // It only counts as a touchUp if the button is in a pressed state.
         if (bounds.contains(screenX, screenY) && isPressed) {
+        	AssetLoader.buttonUp.play();
             isPressed = false;
             justPressed = true;
             return true;

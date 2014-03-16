@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.bulalo.Helpers.AssetLoader;
 import com.bulalo.ShopWorld.ShopInputHandler;
 import com.bulalo.ShopWorld.ShopRenderer;
 import com.bulalo.ShopWorld.ShopWorld;
@@ -41,7 +42,7 @@ public class ShopScreen implements Screen {
 		renderer = new ShopRenderer(shop); 
 		Gdx.input.setInputProcessor(new ShopInputHandler(shop, screenWidth/gameWidth, screenHeight/gameHeight));
 		
-		shopButtons = shop.getShopButtons();
+		shopButtons = ShopWorld.getShopButtons();
 		backButton = shopButtons.get(0);
 	}
 
@@ -60,38 +61,30 @@ public class ShopScreen implements Screen {
 
 	@Override
 	public void resize(int width, int height) {
-		System.out.println("Resizing");
-		
 	}
 
 	@Override
 	public void show() {
-		System.out.println("Show");
-		
+		if(AssetLoader.titleMusic.isPlaying()){
+			AssetLoader.titleMusic.stop();
+		}
+		AssetLoader.gameMusic.play();
 	}
 
 	@Override
-	public void hide() {
-		System.out.println("hide");
-		
+	public void hide() {	
 	}
 
 	@Override
 	public void pause() {
-		System.out.println("pause");
-		
 	}
 
 	@Override
-	public void resume() {
-		System.out.println("resume");
-		
+	public void resume() {	
 	}
 
 	@Override
 	public void dispose() {
-		System.out.println("dispose");
-		
 	}
 
 }

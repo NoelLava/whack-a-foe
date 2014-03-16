@@ -13,7 +13,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.bulalo.CustomizeWorld.CustomInputHandler;
 import com.bulalo.GameObjects.Dummy;
-import com.bulalo.GameObjects.HammerAction;
+import com.bulalo.GameObjects.HammerPosition;
 import com.bulalo.Helpers.AssetLoader;
 import com.bulalo.Helpers.InputHandler;
 import com.bulalo.UI.Button;
@@ -29,7 +29,7 @@ public class GameRenderer {
 	private Dummy dummy;
 	private List<Dummy> dummies;
 	private List<Button> gameButtons;
-	private List<HammerAction> hammerPositions;
+	private List<HammerPosition> hammerPositions;
 
 	private TextureRegion hammerAngle;
 	private TextureRegion table;
@@ -103,7 +103,7 @@ public class GameRenderer {
 			hammerPositions.get(9).setPressed(false);
 		}
 		
-		for(HammerAction hammerPosition : hammerPositions){
+		for(HammerPosition hammerPosition : hammerPositions){
 			hammerPosition.draw(batcher);
 		}
 	}

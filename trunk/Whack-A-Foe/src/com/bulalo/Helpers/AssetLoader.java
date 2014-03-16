@@ -1,6 +1,8 @@
 package com.bulalo.Helpers;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.g2d.Animation;
@@ -19,9 +21,6 @@ public class AssetLoader {
 	public static TextureRegion HamWoodLeft, HamWoodMid, HamWoodRight;
 	public static TextureRegion HamSteelLeft, HamSteelMid, HamSteelRight;
 	public static TextureRegion HamGoldLeft, HamGoldMid, HamGoldRight;
-
-	private static Tables table1;
-	private static CustomWorld custom = new CustomWorld();
 
 	public static Texture tSTexture;
 	public static TextureRegion titleBg;
@@ -59,6 +58,13 @@ public class AssetLoader {
 	public static TextureRegion dummyJanitor;
 	public static TextureRegion dummyDefault;
 	public static TextureRegion dummyOffice;
+	
+	public static Texture splashScreen;
+	public static TextureRegion bulalo;
+	
+	public static Sound gameStart, hitSmash, buttonDown, buttonUp, bulaloil;
+	public static Sound gameOver, hitEmpty, hitFriend, hitFunny;
+	public static Music titleMusic, gameMusic, gameMusic2;
 
 	public static void load() {
 		Texture.setEnforcePotImages(false);
@@ -94,8 +100,30 @@ public class AssetLoader {
 		sSTexture = new Texture(
 				Gdx.files.internal("data/ShopScreenTexture.png"));
 		sSTexture.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
+		
+		splashScreen = new Texture(Gdx.files.internal("data/WaFSplash.png"));
+		splashScreen.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
+		
+		bulalo = new TextureRegion(splashScreen, 0, 0, 335, 512);
+		
+		// Sounds ==========================================================================================
 
-		// TitleScreen Textures
+		gameStart = Gdx.audio.newSound(Gdx.files.internal("sfx/playSFX.mp3"));
+		hitSmash = Gdx.audio.newSound(Gdx.files.internal("sfx/smashSFX.mp3"));
+		buttonDown = Gdx.audio.newSound(Gdx.files.internal("sfx/buttonDown.mp3"));
+		buttonUp = Gdx.audio.newSound(Gdx.files.internal("sfx/buttonUp.mp3"));
+		bulaloil = Gdx.audio.newSound(Gdx.files.internal("sfx/boil1.mp3"));
+		gameOver = Gdx.audio.newSound(Gdx.files.internal("sfx/clear2.mp3"));
+		hitEmpty = Gdx.audio.newSound(Gdx.files.internal("sfx/SFX1.mp3"));
+		hitFriend = Gdx.audio.newSound(Gdx.files.internal("sfx/SFX3.mp3"));
+		hitFunny = Gdx.audio.newSound(Gdx.files.internal("sfx/SFX4.mp3"));
+		
+		titleMusic = Gdx.audio.newMusic(Gdx.files.internal("music/menuBGM1.mp3"));
+		gameMusic = Gdx.audio.newMusic(Gdx.files.internal("music/playBGM1.mp3"));
+		gameMusic2 = Gdx.audio.newMusic(Gdx.files.internal("music/playBGM2.mp3"));
+		
+		
+		// TitleScreen Textures ==========================================================================================
 		titleBg = new TextureRegion(tSTexture, 0, 0, 320, 512);
 		titleBg.flip(false, true);
 
@@ -121,7 +149,7 @@ public class AssetLoader {
 		pauseButton.flip(false, true);
 		pausePressed.flip(false, true);
 
-		// GameScreen Textures
+		// GameScreen Textures ==========================================================================================
 		table = new TextureRegion(gameTexture, 0, 0, 320, 512);
 		table.flip(false, true);
 
@@ -155,7 +183,7 @@ public class AssetLoader {
 		HamGoldMid.flip(false, true);
 		HamGoldRight.flip(false, true);
 
-		// CustomizeScreen Textures
+		// CustomizeScreen Textures ==========================================================================================
 		csBg = new TextureRegion(cSTexture, 0, 0, 320, 512);
 		wood = new TextureRegion(woodTexture, 0, 0, 512, 512);
 		steel = new TextureRegion(steelTexture, 0, 0, 320, 512);
@@ -173,7 +201,7 @@ public class AssetLoader {
 		steel.flip(false, true);
 		carbon.flip(false, true);
 
-		// ShopScreen Textures
+		// ShopScreen Textures ==========================================================================================
 		ssBg = new TextureRegion(sSTexture, 0, 0, 320, 512);
 		kahoy = new TextureRegion(sSTexture, 320, 130, 95, 130);
 		bakal = new TextureRegion(sSTexture, 320, 0, 95, 130);
@@ -183,8 +211,8 @@ public class AssetLoader {
 		kahoy.flip(false, true);
 		bakal.flip(false, true);
 		ginto.flip(false, true);
-
-		// Animations
+		
+		// Animations ==========================================================================================
 		TextureRegion[] dummies = { dummy1, dummy2, dummy3, dummy4 };
 		dummyAnimation = new Animation(0.03f, dummies);
 		dummyAnimation.setPlayMode(Animation.NORMAL);
@@ -204,5 +232,19 @@ public class AssetLoader {
 		steelTexture.dispose();
 		carbonTexture.dispose();
 		hammerAngles.dispose();
+		splashScreen.dispose();
+		
+		gameStart.dispose();
+		hitSmash.dispose();
+		buttonDown.dispose();
+		buttonUp.dispose();
+		bulaloil.dispose();
+		gameOver.dispose();
+		hitEmpty.dispose();
+		hitFriend.dispose();
+		hitFunny.dispose();
+		titleMusic.dispose();
+		gameMusic.dispose();
+		gameMusic2.dispose();
 	}
 }

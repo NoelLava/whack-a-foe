@@ -5,9 +5,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Rectangle;
 import com.bulalo.GameObjects.Dummy;
-import com.bulalo.GameObjects.HammerAction;
+import com.bulalo.GameObjects.HammerPosition;
 import com.bulalo.Helpers.AssetLoader;
 import com.bulalo.UI.Button;
 
@@ -31,9 +31,9 @@ public class GameWorld {
 	private static List<Button> gameButtons;
 	Button pauseButton;
 
-	private static List<HammerAction> hammerPosition;
-	HammerAction hammer;
-
+	private static List<HammerPosition> hammerPosition;
+	HammerPosition hammer;
+	
 	private float x, y;
 	Random rand = new Random();
 	float runTime = 0;
@@ -56,17 +56,18 @@ public class GameWorld {
 		gameButtons.add(pauseButton);
 
 		// holes/hammer regions =============================
-		hammerPosition = new ArrayList<HammerAction>(10);
+		hammerPosition = new ArrayList<HammerPosition>(10);
 		for (int ctr = 0; ctr < 10; ctr++) {
 			if (ctr == 9) {
-				hammer = new HammerAction(coordinateX[7], 211.5f, 35, 50, ctr);
+				hammer = new HammerPosition(coordinateX[7], 211.5f, 35, 50, ctr);
 				hammerPosition.add(hammer);
 			} else {
-				hammer = new HammerAction(coordinateX[ctr], coordinateY[ctr],
+				hammer = new HammerPosition(coordinateX[ctr], coordinateY[ctr],
 						35, 50, ctr);
 				hammerPosition.add(hammer);
 			}
 		}
+		
 	}
 
 	public void update(float delta) {
@@ -77,6 +78,8 @@ public class GameWorld {
 		checkHit();
 		respawn();
 		System.out.println("array size - " + dummies.size());
+		
+		
 	}
 
 	// adds multiple dummies in the arraylist
@@ -206,7 +209,8 @@ public class GameWorld {
 		return gameButtons;
 	}
 
-	public static List<HammerAction> getHammerAngles() {
+	public static List<HammerPosition> getHammerAngles() {
 		return hammerPosition;
 	}
+	
 }

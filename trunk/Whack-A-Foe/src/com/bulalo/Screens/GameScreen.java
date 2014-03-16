@@ -7,6 +7,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.bulalo.GameWorld.GameRenderer;
 import com.bulalo.GameWorld.GameWorld;
+import com.bulalo.Helpers.AssetLoader;
 import com.bulalo.Helpers.InputHandler;
 import com.bulalo.UI.Button;
 import com.bulalo.whackafoe.WaFGame;
@@ -63,27 +64,27 @@ public class GameScreen implements Screen{
 
 	@Override
 	public void resize(int width, int height) {
-		System.out.println("GameScreen - resizing");
 	}
 
 	@Override
 	public void show() {
-		System.out.println("GameScreen - show calleD");
+		if(AssetLoader.titleMusic.isPlaying()){
+			AssetLoader.titleMusic.stop();
+		}
+		AssetLoader.gameStart.play();
+		AssetLoader.gameMusic2.play();
 	}
 
 	@Override
 	public void hide() {
-		System.out.println("GameScreen - hide called");
 	}
 
 	@Override
 	public void pause() {
-		System.out.println("GameScreen - pause called");
 	}
 
 	@Override
 	public void resume() {
-		System.out.println("GameScreen - resume called");
 	}
 
 	@Override

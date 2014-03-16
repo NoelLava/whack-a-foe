@@ -1,8 +1,8 @@
 package com.bulalo.GameObjects;
 
-
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+import com.bulalo.Helpers.AssetLoader;
 
 public class Dummy {
 	private Vector2 position;
@@ -52,7 +52,7 @@ public class Dummy {
         if (bounds.contains(screenX, screenY)) {
             isPressed = true;
             life = 0;
-            System.out.println("Dummy - hit");
+            //AssetLoader.hitSmash.play();
             return true;
         }
         return false;
@@ -132,6 +132,14 @@ public class Dummy {
 
 	public void setLife(int life) {
 		this.life = life;
+	}
+
+	public boolean isPressed() {
+		return isPressed;
+	}
+
+	public void setPressed(boolean isPressed) {
+		this.isPressed = isPressed;
 	}
 
 }
