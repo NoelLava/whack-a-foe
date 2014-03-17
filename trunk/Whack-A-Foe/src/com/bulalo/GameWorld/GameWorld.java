@@ -5,28 +5,29 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.utils.TimeUtils;
 import com.bulalo.GameObjects.Dummy;
 import com.bulalo.GameObjects.HammerPosition;
+import com.bulalo.GameObjects.Timer;
 import com.bulalo.Helpers.AssetLoader;
 import com.bulalo.UI.Button;
 
 public class GameWorld {
+	private Timer timer, dummyTimer;
 	private Dummy dummy;
 
+	// Game Counters ===============================================================
 	public static final float[] coordinateX = { 27f, 63.25f, 99f, 21f, 62.75f,
 			103.5f, 17.75f, 62.75f, 108f };
 	public static final float[] coordinateY = { 65f, 65f, 65f, 120f, 120f,
 			120f, 175.5f, 175.5f, 175.5f };
-
 	private boolean[] removed = { false, false, false, false, false, false,
 			false, false, false };
 	private int[] respawnCounter = { 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 	private int[] removeCounter = { 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 	private int escapeCounter = 0;
 
-	private long usedTime;
-
+	// Dummies and Buttons =========================================================
 	private static List<Dummy> dummies;
 	private static List<Button> gameButtons;
 	Button pauseButton;
@@ -34,25 +35,29 @@ public class GameWorld {
 	private static List<HammerPosition> hammerPosition;
 	HammerPosition hammer;
 	
+	// Misc Variables ==============================================================
 	private float x, y;
 	Random rand = new Random();
 	float runTime = 0;
+	
+	private int score;
+	private int millis = 0;
+	private long start, seconds = 60;
 
 	public GameWorld() {
 
 		// dummies ==========================================
 		dummies = new ArrayList<Dummy>();
-		int r = rand.nextInt(9);
-
-		dummy = new Dummy(300, x, y, 35, 50);
-		dummy.spawn(coordinateX[r], coordinateY[r]);
-		dummies.add(dummy);
+//		int r = rand.nextInt(9);
+//
+//		dummy = new Dummy(300, x, y, 35, 50);
+//		dummy.spawn(coordinateX[r], coordinateY[r]);
+//		dummies.add(dummy);
 
 		// buttons ==========================================
 		gameButtons = new ArrayList<Button>();
 		pauseButton = new Button(137.85f, 1.85f, 21.5f, 20.5f,
 				AssetLoader.pauseButton, AssetLoader.pausePressed);
-
 		gameButtons.add(pauseButton);
 
 		// holes/hammer regions =============================
@@ -66,20 +71,25 @@ public class GameWorld {
 						35, 50, ctr);
 				hammerPosition.add(hammer);
 			}
-		}
+		}		
+		timer = new Timer(1/1000);
+		timer.start();
 		
+		dummyTimer = new Timer(1/7);
+		dummyTimer.start();
 	}
+	
 
-	public void update(float delta) {
+	public void update(float delta) {		
+		checkTimer();
+
 		runTime += delta;
-		dummy.update(delta);
 		inGame();
 		updateGame();
-		checkHit();
+		//checkHit();
 		respawn();
-		System.out.println("array size - " + dummies.size());
-		
-		
+		//System.out.println("array size - " + dummies.size());
+		System.out.println("TIMER :  " + seconds + " : " + millis);
 	}
 
 	// adds multiple dummies in the arraylist
@@ -102,7 +112,7 @@ public class GameWorld {
 	public void updateRunning() {
 		if (!dummy.isAlive()) {
 			dummies.remove(dummy);
-
+	
 			dummy = null;
 			int r = rand.nextInt(9);
 			dummy = new Dummy(300, x, y, 35, 50);
@@ -137,7 +147,6 @@ public class GameWorld {
 				System.out.println("should remove " + i);
 				dummies.remove(i);
 				removed[i] = true;
-
 				// dum.isNotMarked();
 				removeCounter[i] = 0;
 				escapeCounter += 1;
@@ -154,21 +163,9 @@ public class GameWorld {
 			if (!dum.isAlive()) {
 				for (int x = 0; x < dummies.size(); x++) {
 					removeCounter[i] = 0;
+					
 				}
 			}
-		}
-	}
-
-	public void game() {
-		usedTime = 1000;
-		inGame();
-
-		while (escapeCounter < 50) {
-			// long startTime = System.currentTimeMillis();
-			updateGame();
-			checkHit();
-			respawn();
-			// usedTime = System.currentTimeMillis() - startTime;
 		}
 	}
 
@@ -199,6 +196,33 @@ public class GameWorld {
 						+ removeCounter[i]);
 			}
 		}
+	}
+	
+	public void checkTimer(){
+		if(timer.hasCompleted()){
+			millis++;
+			if(millis >= 60){
+				seconds--;
+				millis = 0;
+			}
+			timer.start();
+		}
+	}
+	
+	public int getScore() {
+		return score;
+	}
+	
+	public int getMilis(){
+		return millis;
+	}
+	
+	public long getSeconds(){
+		return seconds;
+	}
+
+	public void addScore(int increment) {
+		score += increment;
 	}
 
 	public static List<Dummy> getDummies() {
