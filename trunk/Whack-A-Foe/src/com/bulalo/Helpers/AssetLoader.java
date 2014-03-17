@@ -76,6 +76,10 @@ public class AssetLoader {
 	public static TextureRegion kahoy;
 	public static TextureRegion bakal;
 	public static TextureRegion ginto;
+	public static TextureRegion timeBoostUp;
+	public static TextureRegion timeBoostDown;
+	public static TextureRegion scoreBoostUp;
+	public static TextureRegion scoreBoostDown;
 
 	public static Animation defaultDummyAnimation;
 	public static Animation defaultDummyDies;
@@ -287,11 +291,19 @@ public class AssetLoader {
 		kahoy = new TextureRegion(sSTexture, 320, 130, 95, 130);
 		bakal = new TextureRegion(sSTexture, 320, 0, 95, 130);
 		ginto = new TextureRegion(sSTexture, 414, 0, 97, 130);
+		
+		timeBoostUp  = new TextureRegion(sSTexture, 324, 260, 69, 87);
+		timeBoostDown = new TextureRegion(sSTexture, 416, 260, 69, 87);
+		scoreBoostUp = new TextureRegion(sSTexture, 324, 352, 69, 87);
+		scoreBoostDown = new TextureRegion(sSTexture, 416, 352, 69, 87);
 
 		ssBg.flip(false, true);
 		kahoy.flip(false, true);
 		bakal.flip(false, true);
 		ginto.flip(false, true);
+		timeBoostUp.flip(false, true);
+		timeBoostDown.flip(false, true);
+		scoreBoostUp.flip(false, true);
 		
 		// Fonts ===============================================================================================
 		
