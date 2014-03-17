@@ -34,12 +34,9 @@ public class GameRenderer {
 	private List<Button> gameButtons;
 	private List<HammerPosition> hammerPositions;
 
-<<<<<<< HEAD
 	private TextureRegion hammerAngle;
 	//private TextureRegion hammer;
-=======
 	private TextureRegion hamLeft, hamMid, hamRight;
->>>>>>> 81f6376e008a03b89aa3e01cd908296f8ad54f02
 	private TextureRegion table;
 	private Animation dummyDefault;
 	private Animation dummyDefaultDies;
@@ -74,8 +71,7 @@ public class GameRenderer {
 	}
 
 	private void initGameObjects() {
-		dummies = GameWorld.getDummies();
-	}
+		dummies = GameWorld.getDummies();	}
 
 	private void initAssets() {
 		table = AssetLoader.table;
@@ -207,6 +203,19 @@ public class GameRenderer {
 		drawDummy(thisAnimation,thisAnimationDies,runTime);
 		drawScoreTime(runTime);
 		
+		if (shop.checkHammer() == true){
+			this.hammerAngle = AssetLoader.kahoy;
+			shop.falseCheck();
+		} else if(shop.checkHammer1() == true){
+			this.hammerAngle = AssetLoader.bakal;
+			shop.falseCheck1();
+		} else if(shop.checkHammer2() == true){
+			this.hammerAngle = AssetLoader.ginto;
+			shop.falseCheck2();
+		}
+		
+		getHammer();
+		
 		drawButtons();
 		drawHammers();
 
@@ -226,36 +235,9 @@ public class GameRenderer {
 			this.table = AssetLoader.carbon;
 			custom.falseCheck2();
 		}
-<<<<<<< HEAD
 		
-		getTable();
-		batcher.draw(table, 0, 0, 160, 256);
-		
-		if (shop.checkHammer() == true){
-			this.hammerAngle = AssetLoader.kahoy;
-			shop.falseCheck();
-		} else if(shop.checkHammer1() == true){
-			this.hammerAngle = AssetLoader.bakal;
-			shop.falseCheck1();
-		} else if(shop.checkHammer2() == true){
-			this.hammerAngle = AssetLoader.ginto;
-			shop.falseCheck2();
-		}
-		
-		getHammer();
-		batcher.draw(hammerAngle, 0, 0, 160, 256);
-
-		batcher.enableBlending();
-
-		drawDummy(runTime);
-		drawButtons();
-		drawHammers();
-
-		// End SpriteBatch
-		batcher.end();
-
-=======
 		return this.table;
->>>>>>> 81f6376e008a03b89aa3e01cd908296f8ad54f02
 	}
+
+	
 }
