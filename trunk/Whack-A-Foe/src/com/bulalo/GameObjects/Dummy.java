@@ -36,21 +36,12 @@ public class Dummy {
 		}
 		
 		System.out.println(life);
-		//System.out.println(position);
 	}
 	
 	public boolean onClick(int screenX, int screenY){
 		System.out.println("Dummy - clicked");
 		return bounds.contains(screenX, screenY);
 	}
-	
-//	public void displayResult(){
-//		if(isPressed){
-//			System.out.println("Dummy - hit");
-//		}else{
-//			System.out.println("Dummy - not hit");
-//		}
-//	}
 	
 	public boolean isTouchDown(int screenX, int screenY) {
 
@@ -68,7 +59,6 @@ public class Dummy {
         // It only counts as a touchUp if the button is in a pressed state.
         if (bounds.contains(screenX, screenY) && isPressed) {
             isPressed = false;
-            System.out.println("Dummy - touch up");
             return true;
         }
         // Whenever a finger is released, we will cancel any presses.

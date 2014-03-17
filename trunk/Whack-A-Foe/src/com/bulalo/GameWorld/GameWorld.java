@@ -13,21 +13,21 @@ import com.bulalo.Helpers.AssetLoader;
 import com.bulalo.UI.Button;
 
 public class GameWorld {
-	private Timer timer;
+	private Timer timer, dummyTimer;
 	private Dummy dummy;
 
+	// Game Counters ===============================================================
 	public static final float[] coordinateX = { 27f, 63.25f, 99f, 21f, 62.75f,
 			103.5f, 17.75f, 62.75f, 108f };
 	public static final float[] coordinateY = { 65f, 65f, 65f, 120f, 120f,
 			120f, 175.5f, 175.5f, 175.5f };
-
 	private boolean[] removed = { false, false, false, false, false, false,
 			false, false, false };
 	private int[] respawnCounter = { 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 	private int[] removeCounter = { 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 	private int escapeCounter = 0;
 
-
+	// Dummies and Buttons =========================================================
 	private static List<Dummy> dummies;
 	private static List<Button> gameButtons;
 	Button pauseButton;
@@ -35,6 +35,7 @@ public class GameWorld {
 	private static List<HammerPosition> hammerPosition;
 	HammerPosition hammer;
 	
+	// Misc Variables ==============================================================
 	private float x, y;
 	Random rand = new Random();
 	float runTime = 0;
@@ -47,11 +48,11 @@ public class GameWorld {
 
 		// dummies ==========================================
 		dummies = new ArrayList<Dummy>();
-		int r = rand.nextInt(9);
-
-		dummy = new Dummy(300, x, y, 35, 50);
-		dummy.spawn(coordinateX[r], coordinateY[r]);
-		dummies.add(dummy);
+//		int r = rand.nextInt(9);
+//
+//		dummy = new Dummy(300, x, y, 35, 50);
+//		dummy.spawn(coordinateX[r], coordinateY[r]);
+//		dummies.add(dummy);
 
 		// buttons ==========================================
 		gameButtons = new ArrayList<Button>();
@@ -70,29 +71,19 @@ public class GameWorld {
 						35, 50, ctr);
 				hammerPosition.add(hammer);
 			}
-		}
-		
-		
+		}		
 		timer = new Timer(1/1000);
 		timer.start();
+		
+		dummyTimer = new Timer(1/7);
+		dummyTimer.start();
 	}
 	
-	public void checkTimer(){
-		if(timer.hasCompleted()){
-			millis++;
-			if(millis >= 60){
-				seconds--;
-				millis = 0;
-			}
-			timer.start();
-		}
-	}
 
 	public void update(float delta) {		
 		checkTimer();
 
 		runTime += delta;
-		dummy.update(delta);
 		inGame();
 		updateGame();
 		//checkHit();
@@ -204,6 +195,17 @@ public class GameWorld {
 				System.out.println("remove counter for " + i + " - "
 						+ removeCounter[i]);
 			}
+		}
+	}
+	
+	public void checkTimer(){
+		if(timer.hasCompleted()){
+			millis++;
+			if(millis >= 60){
+				seconds--;
+				millis = 0;
+			}
+			timer.start();
 		}
 	}
 	

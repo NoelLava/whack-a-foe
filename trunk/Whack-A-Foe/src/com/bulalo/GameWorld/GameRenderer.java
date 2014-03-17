@@ -14,6 +14,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.bulalo.CustomizeWorld.CustomInputHandler;
 import com.bulalo.GameObjects.Dummy;
 import com.bulalo.GameObjects.HammerPosition;
+import com.bulalo.GameObjects.Timer;
 import com.bulalo.Helpers.AssetLoader;
 import com.bulalo.Helpers.InputHandler;
 import com.bulalo.UI.Button;
@@ -36,6 +37,7 @@ public class GameRenderer {
 	private Animation dummyAnimation;
 	private Animation dummyDies;
 	private Animation tableScreen;
+	
 
 	public GameRenderer(GameWorld world) {
 		myWorld = world;
@@ -75,7 +77,7 @@ public class GameRenderer {
 	public void drawDummy(float runTime) {
 		for (Dummy dummy : dummies) {
 			if (dummy.isAlive()) {
-
+				
 				batcher.draw(dummyAnimation.getKeyFrame(runTime), dummy.getX(),
 						dummy.getY(), dummy.getWidth(), dummy.getHeight());
 			} else {

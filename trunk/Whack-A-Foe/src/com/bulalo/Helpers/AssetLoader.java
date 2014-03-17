@@ -44,6 +44,24 @@ public class AssetLoader {
 	public static TextureRegion steel;
 	public static TextureRegion carbon;
 	public static TextureRegion background;
+	
+	public static TextureRegion useUp;
+	public static TextureRegion useDown;
+	public static TextureRegion buyUp;
+	public static TextureRegion buyDown;
+	public static TextureRegion woodIconUp;
+	public static TextureRegion woodIconDown;
+	public static TextureRegion steelIconUp;
+	public static TextureRegion steelIconDown;
+	public static TextureRegion carbonIconUp;
+	public static TextureRegion carbonIconDown;
+	public static TextureRegion bossIconUp;
+	public static TextureRegion bossIconDown;
+	public static TextureRegion boyIconUp;
+	public static TextureRegion boyIconDown;
+	public static TextureRegion farmerIconUp;
+	public static TextureRegion farmerIconDown;
+	
 
 	public static Texture sSTexture;
 	public static TextureRegion ssBg;
@@ -108,7 +126,7 @@ public class AssetLoader {
 		
 		bulalo = new TextureRegion(splashScreen, 0, 0, 335, 512);
 		
-		// Sounds ==========================================================================================
+		// Sounds ==============================================================================================
 
 		gameStart = Gdx.audio.newSound(Gdx.files.internal("sfx/playSFX.mp3"));
 		hitSmash = Gdx.audio.newSound(Gdx.files.internal("sfx/smashSFX.mp3"));
@@ -125,7 +143,7 @@ public class AssetLoader {
 		gameMusic2 = Gdx.audio.newMusic(Gdx.files.internal("music/playBGM2.mp3"));
 		
 		
-		// TitleScreen Textures ==========================================================================================
+		// TitleScreen Textures ================================================================================
 		titleBg = new TextureRegion(tSTexture, 0, 0, 320, 512);
 		titleBg.flip(false, true);
 
@@ -151,7 +169,7 @@ public class AssetLoader {
 		pauseButton.flip(false, true);
 		pausePressed.flip(false, true);
 
-		// GameScreen Textures ==========================================================================================
+		// GameScreen Textures =================================================================================
 		table = new TextureRegion(gameTexture, 0, 0, 320, 512);
 		table.flip(false, true);
 
@@ -195,7 +213,7 @@ public class AssetLoader {
 		tableScreen = new Animation(2f, timeLogo);
 		tableScreen.setPlayMode(Animation.LOOP);
 
-		// CustomizeScreen Textures ==========================================================================================
+		// CustomizeScreen Textures ============================================================================
 		csBg = new TextureRegion(cSTexture, 0, 0, 320, 512);
 		wood = new TextureRegion(woodTexture, 0, 0, 512, 512);
 		steel = new TextureRegion(steelTexture, 0, 0, 320, 512);
@@ -204,6 +222,23 @@ public class AssetLoader {
 		dummyJanitor = new TextureRegion(dummy, 184, 0, 65, 95);
 		dummyOffice = new TextureRegion(dummy, 184, 83, 65, 95);
 		dummyDefault = new TextureRegion(dummy, 176, 173, 65, 95);
+		
+		useUp = new TextureRegion(cSTexture, 330, 3, 69, 27);
+		useDown = new TextureRegion(cSTexture, 409, 3, 69, 27);
+		buyUp = new TextureRegion(cSTexture, 330, 35, 69, 27);
+		buyDown = new TextureRegion(cSTexture, 409, 35, 69, 27);
+		woodIconUp = new TextureRegion(cSTexture, 330, 65, 67, 67);
+		woodIconDown = new TextureRegion(cSTexture, 409, 65, 67, 67);
+		steelIconUp = new TextureRegion(cSTexture, 330, 135, 67, 67);
+		steelIconDown = new TextureRegion(cSTexture, 409, 135, 67, 67);
+		carbonIconUp = new TextureRegion(cSTexture, 330, 205, 67, 67);
+		carbonIconDown = new TextureRegion(cSTexture, 409, 205, 67, 67);
+		bossIconUp = new TextureRegion(cSTexture, 330, 275, 67, 67);
+		bossIconDown = new TextureRegion(cSTexture, 409, 275, 67, 67);
+		boyIconUp = new TextureRegion(cSTexture, 330, 345, 67, 67);
+		boyIconDown = new TextureRegion(cSTexture, 409, 345, 67, 67);
+		farmerIconUp = new TextureRegion(cSTexture, 330, 415, 67, 67);
+		farmerIconDown = new TextureRegion(cSTexture, 409, 415, 67, 67);
 
 		dummyJanitor.flip(false, true);
 		dummyOffice.flip(false, true);
@@ -212,8 +247,25 @@ public class AssetLoader {
 		wood.flip(false, true);
 		steel.flip(false, true);
 		carbon.flip(false, true);
+		
+		useUp.flip(false, true);
+		useDown.flip(false, true);
+		buyUp.flip(false, true);
+		buyDown.flip(false, true);
+		woodIconUp.flip(false, true);
+		woodIconDown.flip(false, true);
+		steelIconUp.flip(false, true);
+		steelIconDown.flip(false, true);
+		carbonIconUp.flip(false, true);
+		carbonIconDown.flip(false, true);
+		bossIconUp.flip(false, true);
+		bossIconDown.flip(false, true);
+		boyIconUp.flip(false, true);
+		boyIconDown.flip(false, true);
+		farmerIconUp.flip(false, true);
+		farmerIconDown.flip(false, true);
 
-		// ShopScreen Textures ==========================================================================================
+		// ShopScreen Textures =================================================================================
 		ssBg = new TextureRegion(sSTexture, 0, 0, 320, 512);
 		kahoy = new TextureRegion(sSTexture, 320, 130, 95, 130);
 		bakal = new TextureRegion(sSTexture, 320, 0, 95, 130);
