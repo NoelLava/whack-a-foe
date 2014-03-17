@@ -71,6 +71,7 @@ public class GameScreen implements Screen{
 	public void show() {
 		AssetLoader.gameStart.play();
 		AssetLoader.gameMusic2.play();
+		AssetLoader.gameMusic2.setLooping(true);
 	}
 
 	@Override

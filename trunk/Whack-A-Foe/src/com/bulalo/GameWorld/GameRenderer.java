@@ -31,10 +31,11 @@ public class GameRenderer {
 	private List<Button> gameButtons;
 	private List<HammerPosition> hammerPositions;
 
-	private TextureRegion hammerAngle;
+	private TextureRegion hamLeft, hamMid, hamRight;
 	private TextureRegion table;
 	private Animation dummyAnimation;
 	private Animation dummyDies;
+	private Animation tableScreen;
 
 	public GameRenderer(GameWorld world) {
 		myWorld = world;
@@ -62,10 +63,13 @@ public class GameRenderer {
 	private void initAssets() {
 		table = AssetLoader.table;
 		
-		hammerAngle = AssetLoader.HamWoodMid;
+		hamLeft = AssetLoader.HamWoodMid;
+		hamMid = AssetLoader.HamWoodMid;
+		hamRight = AssetLoader.HamWoodRight;
 		
 		dummyAnimation = AssetLoader.dummyAnimation;
 		dummyDies = AssetLoader.dummyDies;
+		tableScreen = AssetLoader.tableScreen;
 	}
 
 	public void drawDummy(float runTime) {
@@ -104,12 +108,20 @@ public class GameRenderer {
 		}
 		
 		for(HammerPosition hammerPosition : hammerPositions){
-			hammerPosition.draw(batcher);
+			hammerPosition.draw(batcher, hamLeft, hamMid, hamRight);
 		}
 	}
 	
-	private TextureRegion getTable() {
-		return this.table;
+	private void drawScoreTime(float runTime){
+		batcher.draw(tableScreen.getKeyFrame(runTime), 32f, 24, 94, 38.5f);
+		batcher.draw(AssetLoader.timeScore, 32f, 24, 94, 38.5f);
+		
+		int length = ("" + myWorld.getScore()).length();
+		AssetLoader.digitalShadow.draw(batcher, "" + myWorld.getScore(), 54 - (3 * length), 44.75f);
+		AssetLoader.digital.draw(batcher, "" + myWorld.getScore(), 54 - (3 * length), 43.75f);
+		
+		AssetLoader.digitalShadow.draw(batcher, "" + myWorld.getSeconds() + ":" + myWorld.getMilis(), 95 - (3 * length), 44.75f);
+		AssetLoader.digital.draw(batcher, "" + myWorld.getSeconds() + ":" + myWorld.getMilis(), 95 - (3 * length), 43.75f);
 	}
 
 	public void render(float runTime) {
@@ -133,7 +145,24 @@ public class GameRenderer {
 		// This is good for performance when drawing images that do not require
 		// transparency.
 		batcher.disableBlending();
+			
+		getTable();
+		batcher.draw(table, 0, 0, 160, 256);
+
+		batcher.enableBlending();
+
+		drawScoreTime(runTime);
 		
+		drawDummy(runTime);
+		drawButtons();
+		drawHammers();
+
+		// End SpriteBatch
+		batcher.end();
+	}
+	
+	
+	private TextureRegion getTable() {
 		if (custom.checkTable() == true) {
 			this.table = AssetLoader.wood;
 			custom.falseCheck();
@@ -144,18 +173,6 @@ public class GameRenderer {
 			this.table = AssetLoader.carbon;
 			custom.falseCheck2();
 		}
-		
-		getTable();
-		batcher.draw(table, 0, 0, 160, 256);
-
-		batcher.enableBlending();
-
-		drawDummy(runTime);
-		drawButtons();
-		drawHammers();
-
-		// End SpriteBatch
-		batcher.end();
-
+		return this.table;
 	}
 }

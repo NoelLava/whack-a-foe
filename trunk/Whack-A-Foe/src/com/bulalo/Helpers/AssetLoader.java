@@ -6,9 +6,8 @@ import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.bulalo.CustomizeWorld.CustomWorld;
-import com.bulalo.GameObjects.Tables;
 
 public class AssetLoader {
 	public static Texture gameTexture;
@@ -21,7 +20,8 @@ public class AssetLoader {
 	public static TextureRegion HamWoodLeft, HamWoodMid, HamWoodRight;
 	public static TextureRegion HamSteelLeft, HamSteelMid, HamSteelRight;
 	public static TextureRegion HamGoldLeft, HamGoldMid, HamGoldRight;
-
+	public static TextureRegion gameLogo, timeScore;
+	
 	public static Texture tSTexture;
 	public static TextureRegion titleBg;
 	public static TextureRegion redButton;
@@ -51,8 +51,8 @@ public class AssetLoader {
 	public static TextureRegion bakal;
 	public static TextureRegion ginto;
 
-	public static Animation dummyAnimation;
-	public static Animation dummyDies;
+	public static Animation dummyAnimation, dummyDies;
+	public static Animation tableScreen;
 
 	public static Texture dummy;
 	public static TextureRegion dummyJanitor;
@@ -65,6 +65,8 @@ public class AssetLoader {
 	public static Sound gameStart, hitSmash, buttonDown, buttonUp, bulaloil;
 	public static Sound gameOver, hitEmpty, hitFriend, hitFunny;
 	public static Music titleMusic, gameMusic, gameMusic2;
+	
+	public static BitmapFont digital, digitalShadow, bit;
 
 	public static void load() {
 		Texture.setEnforcePotImages(false);
@@ -182,6 +184,16 @@ public class AssetLoader {
 		HamGoldLeft.flip(false, true);
 		HamGoldMid.flip(false, true);
 		HamGoldRight.flip(false, true);
+		
+		gameLogo = new TextureRegion(gameTexture, 320, 207, 188, 77);
+		timeScore = new TextureRegion(gameTexture, 320, 305, 188, 77);
+		
+		gameLogo.flip(false, true);
+		timeScore.flip(false, true);
+		
+		TextureRegion[] timeLogo = {timeScore, gameLogo};
+		tableScreen = new Animation(2f, timeLogo);
+		tableScreen.setPlayMode(Animation.LOOP);
 
 		// CustomizeScreen Textures ==========================================================================================
 		csBg = new TextureRegion(cSTexture, 0, 0, 320, 512);
@@ -211,6 +223,16 @@ public class AssetLoader {
 		kahoy.flip(false, true);
 		bakal.flip(false, true);
 		ginto.flip(false, true);
+		
+		// Fonts ===============================================================================================
+		
+		digital = new BitmapFont(Gdx.files.internal("font/Digital.fnt"));
+		digitalShadow = new BitmapFont(Gdx.files.internal("font/DigitalShadow.fnt"));
+		bit = new BitmapFont(Gdx.files.internal("font/8bit.fnt"));
+		
+		digital.setScale(.5f, -.5f);
+		digitalShadow.setScale(.5f, -.5f);
+		bit.setScale(.25f, -.25f);
 		
 		// Animations ==========================================================================================
 		TextureRegion[] dummies = { dummy1, dummy2, dummy3, dummy4 };
@@ -246,5 +268,9 @@ public class AssetLoader {
 		titleMusic.dispose();
 		gameMusic.dispose();
 		gameMusic2.dispose();
+		
+		digital.dispose();
+		digitalShadow.dispose();
+		bit.dispose();
 	}
 }

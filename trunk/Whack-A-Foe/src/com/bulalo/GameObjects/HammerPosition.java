@@ -34,14 +34,14 @@ public class HammerPosition {
 		return bounds.contains(screenX, screenY);
 	}
 	
-	public void draw(SpriteBatch batcher) {
-		hamLeft = AssetLoader.HamWoodLeft;
-		hamMid = AssetLoader.HamWoodMid;
-		hamRight = AssetLoader.HamWoodRight;
+	public void draw(SpriteBatch batcher, TextureRegion hamLeft, TextureRegion hamMid, TextureRegion hamRight) {
+//		hamLeft = AssetLoader.HamWoodLeft;
+//		hamMid = AssetLoader.HamWoodMid;
+//		hamRight = AssetLoader.HamWoodRight;
 		
         if (this.isPressed) {
         	if(position == 0 || position == 3 || position == 6){
-        		batcher.draw(hamLeft, x - (AssetLoader.HamWoodLeft.getRegionWidth()/12), y + (AssetLoader.HamWoodLeft.getRegionHeight()/(x*2.75f)), AssetLoader.HamWoodLeft.getRegionWidth()/2, AssetLoader.HamWoodLeft.getRegionHeight()/2);
+        		batcher.draw(hamLeft, x - (hamLeft.getRegionWidth()/12), y + (AssetLoader.HamWoodLeft.getRegionHeight()/(x*2.75f)), AssetLoader.HamWoodLeft.getRegionWidth()/2, AssetLoader.HamWoodLeft.getRegionHeight()/2);
         	}else if(position == 1 || position == 4 || position == 7){
         		batcher.draw(hamMid, x - (AssetLoader.HamWoodLeft.getRegionWidth()/12), y + (AssetLoader.HamWoodLeft.getRegionHeight()/(x*0.75f)), AssetLoader.HamWoodMid.getRegionWidth()/2, AssetLoader.HamWoodMid.getRegionHeight()/2);
         	}else if(position == 2 || position == 5 || position == 8){

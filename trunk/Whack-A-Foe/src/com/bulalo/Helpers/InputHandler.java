@@ -11,8 +11,8 @@ import com.bulalo.UI.Button;
 public class InputHandler implements InputProcessor {
 	private GameWorld myWorld;
 	private Dummy myDummy;
-	
-	private static List<Dummy> dummies;	
+
+	private static List<Dummy> dummies;
 	private static List<Button> gameButtons;
 	private static List<HammerPosition> hammerAngles;
 
@@ -38,22 +38,25 @@ public class InputHandler implements InputProcessor {
 
 		for (Dummy dummy : dummies) {
 			dummy.isTouchDown(screenX, screenY);
-			dummy.displayResult();
-			
-			for(HammerPosition hammerAngle : hammerAngles){
+
+			for (HammerPosition hammerAngle : hammerAngles) {
 				hammerAngle.isTouchDown(screenX, screenY);
-				if(dummy.isPressed() || hammerAngle.isPressed()){
+				if (dummy.isPressed() || hammerAngle.isPressed()) {
 					hammerAngle.setHitSound(AssetLoader.hitSmash);
-				}else{
+				} else {
 					hammerAngle.setHitSound(AssetLoader.hitEmpty);
 				}
+			}
+
+			if (dummy.isPressed()) {
+				addScore(1);
 			}
 		}
 
 		for (Button thisButton : gameButtons) {
 			thisButton.isTouchDown(screenX, screenY);
 		}
-		
+
 		return true;
 	}
 
@@ -66,21 +69,20 @@ public class InputHandler implements InputProcessor {
 			if (dummy.isTouchUp(screenX, screenY)) {
 				return true;
 			}
-			dummy.displayResult();
 		}
-		
+
 		for (Button thisButton : gameButtons) {
 			if (thisButton.isTouchUp(screenX, screenY)) {
 				return true;
 			}
 		}
-		
-		for(HammerPosition hammerAngle : hammerAngles){
-			if(hammerAngle.isTouchUp(screenX, screenY)){
+
+		for (HammerPosition hammerAngle : hammerAngles) {
+			if (hammerAngle.isTouchUp(screenX, screenY)) {
 				return true;
 			}
 		}
-		
+
 		return false;
 	}
 
@@ -120,6 +122,10 @@ public class InputHandler implements InputProcessor {
 
 	private int scaleY(int screenY) {
 		return (int) (screenY / scaleFactorY);
+	}
+
+	private void addScore(int increment) {
+		myWorld.addScore(increment);
 	}
 
 	public static List<Dummy> getDummies() {

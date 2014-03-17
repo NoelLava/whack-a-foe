@@ -81,6 +81,7 @@ public class MenuScreen implements Screen {
 	@Override
 	public void show() {
 		AssetLoader.titleMusic.play();
+		AssetLoader.titleMusic.setLooping(true);
 	}
 
 	@Override
