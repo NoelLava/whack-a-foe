@@ -6,22 +6,30 @@ import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.bulalo.CustomizeWorld.CustomWorld;
-import com.bulalo.GameObjects.Tables;
 
 public class AssetLoader {
 	public static Texture gameTexture;
 	public static Texture hammerAngles;
 	public static TextureRegion table;
-	public static TextureRegion dummy1;
-	public static TextureRegion dummy2;
-	public static TextureRegion dummy3;
-	public static TextureRegion dummy4;
+	public static TextureRegion dummyDefault1;
+	public static TextureRegion dummyDefault2;
+	public static TextureRegion dummyDefault3;
+	public static TextureRegion dummyDefault4;
+	public static TextureRegion dummyJanitor1;
+	public static TextureRegion dummyJanitor2;
+	public static TextureRegion dummyJanitor3;
+	public static TextureRegion dummyJanitor4;
+	public static TextureRegion dummyOffice1;
+	public static TextureRegion dummyOffice2;
+	public static TextureRegion dummyOffice3;
+	public static TextureRegion dummyOffice4;
 	public static TextureRegion HamWoodLeft, HamWoodMid, HamWoodRight;
 	public static TextureRegion HamSteelLeft, HamSteelMid, HamSteelRight;
 	public static TextureRegion HamGoldLeft, HamGoldMid, HamGoldRight;
-
+	public static TextureRegion gameLogo, timeScore;
+	
 	public static Texture tSTexture;
 	public static TextureRegion titleBg;
 	public static TextureRegion redButton;
@@ -44,6 +52,24 @@ public class AssetLoader {
 	public static TextureRegion steel;
 	public static TextureRegion carbon;
 	public static TextureRegion background;
+	
+	public static TextureRegion useUp;
+	public static TextureRegion useDown;
+	public static TextureRegion buyUp;
+	public static TextureRegion buyDown;
+	public static TextureRegion woodIconUp;
+	public static TextureRegion woodIconDown;
+	public static TextureRegion steelIconUp;
+	public static TextureRegion steelIconDown;
+	public static TextureRegion carbonIconUp;
+	public static TextureRegion carbonIconDown;
+	public static TextureRegion bossIconUp;
+	public static TextureRegion bossIconDown;
+	public static TextureRegion boyIconUp;
+	public static TextureRegion boyIconDown;
+	public static TextureRegion farmerIconUp;
+	public static TextureRegion farmerIconDown;
+	
 
 	public static Texture sSTexture;
 	public static TextureRegion ssBg;
@@ -51,13 +77,16 @@ public class AssetLoader {
 	public static TextureRegion bakal;
 	public static TextureRegion ginto;
 
-	public static Animation dummyAnimation;
-	public static Animation dummyDies;
+	public static Animation defaultDummyAnimation;
+	public static Animation defaultDummyDies;
+	public static Animation officeDummyAnimation;
+	public static Animation officeDummyDies;
+	public static Animation janitorDummyAnimation;
+	public static Animation janitorDummyDies;
+	public static Animation dummyAnimation, dummyDies;
+	public static Animation tableScreen;
 
 	public static Texture dummy;
-	public static TextureRegion dummyJanitor;
-	public static TextureRegion dummyDefault;
-	public static TextureRegion dummyOffice;
 	
 	public static Texture splashScreen;
 	public static TextureRegion bulalo;
@@ -65,6 +94,8 @@ public class AssetLoader {
 	public static Sound gameStart, hitSmash, buttonDown, buttonUp, bulaloil;
 	public static Sound gameOver, hitEmpty, hitFriend, hitFunny;
 	public static Music titleMusic, gameMusic, gameMusic2;
+	
+	public static BitmapFont digital, digitalShadow, bit;
 
 	public static void load() {
 		Texture.setEnforcePotImages(false);
@@ -106,7 +137,7 @@ public class AssetLoader {
 		
 		bulalo = new TextureRegion(splashScreen, 0, 0, 335, 512);
 		
-		// Sounds ==========================================================================================
+		// Sounds ==============================================================================================
 
 		gameStart = Gdx.audio.newSound(Gdx.files.internal("sfx/playSFX.mp3"));
 		hitSmash = Gdx.audio.newSound(Gdx.files.internal("sfx/smashSFX.mp3"));
@@ -123,7 +154,7 @@ public class AssetLoader {
 		gameMusic2 = Gdx.audio.newMusic(Gdx.files.internal("music/playBGM2.mp3"));
 		
 		
-		// TitleScreen Textures ==========================================================================================
+		// TitleScreen Textures ================================================================================
 		titleBg = new TextureRegion(tSTexture, 0, 0, 320, 512);
 		titleBg.flip(false, true);
 
@@ -149,19 +180,19 @@ public class AssetLoader {
 		pauseButton.flip(false, true);
 		pausePressed.flip(false, true);
 
-		// GameScreen Textures ==========================================================================================
+		// GameScreen Textures =================================================================================
 		table = new TextureRegion(gameTexture, 0, 0, 320, 512);
 		table.flip(false, true);
 
-		dummy1 = new TextureRegion(gameTexture, 320, 0, 65, 95);
-		dummy2 = new TextureRegion(gameTexture, 385, 0, 65, 95);
-		dummy3 = new TextureRegion(gameTexture, 320, 95, 65, 95);
-		dummy4 = new TextureRegion(gameTexture, 385, 95, 65, 95);
+		dummyDefault1 = new TextureRegion(dummy, 1, 174, 65, 90);
+		dummyDefault2 = new TextureRegion(dummy, 56, 174, 65, 90);
+		dummyDefault3 = new TextureRegion(dummy, 117, 174, 65, 90);
+		dummyDefault4 = new TextureRegion(dummy, 179, 174, 65, 90);
 
-		dummy1.flip(false, true);
-		dummy2.flip(false, true);
-		dummy3.flip(false, true);
-		dummy4.flip(false, true);
+		dummyDefault1.flip(false, true);
+		dummyDefault2.flip(false, true);
+		dummyDefault3.flip(false, true);
+		dummyDefault4.flip(false, true);
 
 		HamWoodLeft = new TextureRegion(hammerAngles, 0, 0, 107, 170);
 		HamWoodMid = new TextureRegion(hammerAngles, 107, 0, 107, 170);
@@ -182,26 +213,76 @@ public class AssetLoader {
 		HamGoldLeft.flip(false, true);
 		HamGoldMid.flip(false, true);
 		HamGoldRight.flip(false, true);
+		
+		gameLogo = new TextureRegion(gameTexture, 320, 207, 188, 77);
+		timeScore = new TextureRegion(gameTexture, 320, 305, 188, 77);
+		
+		gameLogo.flip(false, true);
+		timeScore.flip(false, true);
+		
+		TextureRegion[] timeLogo = {timeScore, gameLogo};
+		tableScreen = new Animation(2f, timeLogo);
+		tableScreen.setPlayMode(Animation.LOOP);
 
-		// CustomizeScreen Textures ==========================================================================================
+		// CustomizeScreen Textures ============================================================================
 		csBg = new TextureRegion(cSTexture, 0, 0, 320, 512);
 		wood = new TextureRegion(woodTexture, 0, 0, 512, 512);
 		steel = new TextureRegion(steelTexture, 0, 0, 320, 512);
 		carbon = new TextureRegion(carbonTexture, 0, 0, 320, 512);
+		
+		dummyJanitor1 = new TextureRegion(dummy, 45, 0, 65, 90);
+		dummyJanitor2 = new TextureRegion(dummy, 84, 0, 65, 90);
+		dummyJanitor3 = new TextureRegion(dummy, 130, 0, 65, 90);
+		dummyJanitor4 = new TextureRegion(dummy, 184, 0, 65, 90);
+		
+		dummyOffice1 = new TextureRegion(dummy, 40, 83, 65, 90);
+		dummyOffice2 = new TextureRegion(dummy, 84, 83, 65, 90);
+		dummyOffice3 = new TextureRegion(dummy, 129, 83, 65, 90);
+		dummyOffice4 = new TextureRegion(dummy, 184, 83, 65, 90);
+		
+		dummyJanitor4.flip(false, true);
+		dummyOffice4.flip(false, true);
+	
+		useUp = new TextureRegion(cSTexture, 330, 3, 69, 27);
+		useDown = new TextureRegion(cSTexture, 409, 3, 69, 27);
+		buyUp = new TextureRegion(cSTexture, 330, 35, 69, 27);
+		buyDown = new TextureRegion(cSTexture, 409, 35, 69, 27);
+		woodIconUp = new TextureRegion(cSTexture, 330, 65, 67, 67);
+		woodIconDown = new TextureRegion(cSTexture, 409, 65, 67, 67);
+		steelIconUp = new TextureRegion(cSTexture, 330, 135, 67, 67);
+		steelIconDown = new TextureRegion(cSTexture, 409, 135, 67, 67);
+		carbonIconUp = new TextureRegion(cSTexture, 330, 205, 67, 67);
+		carbonIconDown = new TextureRegion(cSTexture, 409, 205, 67, 67);
+		bossIconUp = new TextureRegion(cSTexture, 330, 275, 67, 67);
+		bossIconDown = new TextureRegion(cSTexture, 409, 275, 67, 67);
+		boyIconUp = new TextureRegion(cSTexture, 330, 345, 67, 67);
+		boyIconDown = new TextureRegion(cSTexture, 409, 345, 67, 67);
+		farmerIconUp = new TextureRegion(cSTexture, 330, 415, 67, 67);
+		farmerIconDown = new TextureRegion(cSTexture, 409, 415, 67, 67);
 
-		dummyJanitor = new TextureRegion(dummy, 184, 0, 65, 95);
-		dummyOffice = new TextureRegion(dummy, 184, 83, 65, 95);
-		dummyDefault = new TextureRegion(dummy, 176, 173, 65, 95);
-
-		dummyJanitor.flip(false, true);
-		dummyOffice.flip(false, true);
-		dummyDefault.flip(false, true);
 		csBg.flip(false, true);
 		wood.flip(false, true);
 		steel.flip(false, true);
 		carbon.flip(false, true);
+		
+		useUp.flip(false, true);
+		useDown.flip(false, true);
+		buyUp.flip(false, true);
+		buyDown.flip(false, true);
+		woodIconUp.flip(false, true);
+		woodIconDown.flip(false, true);
+		steelIconUp.flip(false, true);
+		steelIconDown.flip(false, true);
+		carbonIconUp.flip(false, true);
+		carbonIconDown.flip(false, true);
+		bossIconUp.flip(false, true);
+		bossIconDown.flip(false, true);
+		boyIconUp.flip(false, true);
+		boyIconDown.flip(false, true);
+		farmerIconUp.flip(false, true);
+		farmerIconDown.flip(false, true);
 
-		// ShopScreen Textures ==========================================================================================
+		// ShopScreen Textures =================================================================================
 		ssBg = new TextureRegion(sSTexture, 0, 0, 320, 512);
 		kahoy = new TextureRegion(sSTexture, 320, 130, 95, 130);
 		bakal = new TextureRegion(sSTexture, 320, 0, 95, 130);
@@ -212,13 +293,37 @@ public class AssetLoader {
 		bakal.flip(false, true);
 		ginto.flip(false, true);
 		
+		// Fonts ===============================================================================================
+		
+		digital = new BitmapFont(Gdx.files.internal("font/Digital.fnt"));
+		digitalShadow = new BitmapFont(Gdx.files.internal("font/DigitalShadow.fnt"));
+		bit = new BitmapFont(Gdx.files.internal("font/8bit.fnt"));
+		
+		digital.setScale(.5f, -.5f);
+		digitalShadow.setScale(.5f, -.5f);
+		bit.setScale(.25f, -.25f);
+		
 		// Animations ==========================================================================================
-		TextureRegion[] dummies = { dummy1, dummy2, dummy3, dummy4 };
-		dummyAnimation = new Animation(0.03f, dummies);
-		dummyAnimation.setPlayMode(Animation.NORMAL);
-		TextureRegion[] dummyRev = { dummy4, dummy3, dummy2, dummy1 };
-		dummyDies = new Animation(0.03f, dummyRev);
-		dummyDies.setPlayMode(Animation.NORMAL);
+		TextureRegion[] dummiesDefault = { dummyDefault1, dummyDefault2, dummyDefault3, dummyDefault4 };
+		defaultDummyAnimation = new Animation(0.03f, dummiesDefault);
+		defaultDummyAnimation.setPlayMode(Animation.NORMAL);
+		TextureRegion[] dummyDefaultRev = { dummyDefault4, dummyDefault3, dummyDefault2, dummyDefault1 };
+		defaultDummyDies = new Animation(0.03f, dummyDefaultRev);
+		defaultDummyDies.setPlayMode(Animation.NORMAL);
+		
+		TextureRegion[] dummiesOffice = { dummyOffice1, dummyOffice2, dummyOffice3, dummyOffice4 };
+		officeDummyAnimation = new Animation(0.03f, dummiesOffice);
+		officeDummyAnimation.setPlayMode(Animation.NORMAL);
+		TextureRegion[] dummyOfficeRev = { dummyOffice4, dummyOffice3, dummyOffice2, dummyOffice1 };
+		officeDummyDies = new Animation(0.03f, dummyOfficeRev);
+		officeDummyDies.setPlayMode(Animation.NORMAL);
+		
+		TextureRegion[] dummiesJanitor = { dummyJanitor1, dummyJanitor2, dummyJanitor3, dummyJanitor4 };
+		janitorDummyAnimation = new Animation(0.03f, dummiesJanitor);
+		janitorDummyAnimation.setPlayMode(Animation.NORMAL);
+		TextureRegion[] dummyJanitorRev = { dummyJanitor4, dummyJanitor3, dummyJanitor2, dummyJanitor1 };
+		janitorDummyDies = new Animation(0.03f, dummyJanitorRev);
+		janitorDummyDies.setPlayMode(Animation.NORMAL);
 
 	}
 
@@ -233,6 +338,7 @@ public class AssetLoader {
 		carbonTexture.dispose();
 		hammerAngles.dispose();
 		splashScreen.dispose();
+		dummy.dispose();
 		
 		gameStart.dispose();
 		hitSmash.dispose();
@@ -246,5 +352,9 @@ public class AssetLoader {
 		titleMusic.dispose();
 		gameMusic.dispose();
 		gameMusic2.dispose();
+		
+		digital.dispose();
+		digitalShadow.dispose();
+		bit.dispose();
 	}
 }

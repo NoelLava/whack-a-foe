@@ -2,7 +2,6 @@ package com.bulalo.GameObjects;
 
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
-import com.bulalo.Helpers.AssetLoader;
 
 public class Dummy {
 	private Vector2 position;
@@ -15,6 +14,8 @@ public class Dummy {
 	private Rectangle bounds;
 	private boolean markedForRemoval;
 	private boolean isPressed = false;
+	
+	private int score;
 	
 	public Dummy(int life, float x, float y, int width, int height){
 		this.life = life;
@@ -30,8 +31,11 @@ public class Dummy {
 		if(life <= 0){
 			life = 0;
 		}
+		if(this.isPressed()){
+			
+		}
+		
 		System.out.println(life);
-		//System.out.println(position);
 	}
 	
 	public boolean onClick(int screenX, int screenY){
@@ -39,20 +43,12 @@ public class Dummy {
 		return bounds.contains(screenX, screenY);
 	}
 	
-	public void displayResult(){
-		if(isPressed){
-			System.out.println("Dummy - hit");
-		}else{
-			System.out.println("Dummy - not hit");
-		}
-	}
-	
 	public boolean isTouchDown(int screenX, int screenY) {
 
         if (bounds.contains(screenX, screenY)) {
             isPressed = true;
             life = 0;
-            //AssetLoader.hitSmash.play();
+
             return true;
         }
         return false;
@@ -63,7 +59,6 @@ public class Dummy {
         // It only counts as a touchUp if the button is in a pressed state.
         if (bounds.contains(screenX, screenY) && isPressed) {
             isPressed = false;
-            System.out.println("Dummy - touch up");
             return true;
         }
         // Whenever a finger is released, we will cancel any presses.

@@ -74,6 +74,7 @@ public class ShopScreen implements Screen {
 	@Override
 	public void show() {
 		AssetLoader.gameMusic.play();
+		AssetLoader.gameMusic.setLooping(true);
 	}
 
 	@Override

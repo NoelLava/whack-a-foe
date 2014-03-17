@@ -14,6 +14,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.bulalo.CustomizeWorld.CustomInputHandler;
 import com.bulalo.GameObjects.Dummy;
 import com.bulalo.GameObjects.HammerPosition;
+import com.bulalo.GameObjects.Timer;
 import com.bulalo.Helpers.AssetLoader;
 import com.bulalo.Helpers.InputHandler;
 import com.bulalo.ShopWorld.ShopInputHandler;
@@ -33,11 +34,25 @@ public class GameRenderer {
 	private List<Button> gameButtons;
 	private List<HammerPosition> hammerPositions;
 
+<<<<<<< HEAD
 	private TextureRegion hammerAngle;
 	//private TextureRegion hammer;
+=======
+	private TextureRegion hamLeft, hamMid, hamRight;
+>>>>>>> 81f6376e008a03b89aa3e01cd908296f8ad54f02
 	private TextureRegion table;
+	private Animation dummyDefault;
+	private Animation dummyDefaultDies;
+	private Animation dummyJanitor;
+	private Animation dummyJanitorDies;
+	private Animation dummyOffice;
+	private Animation dummyOfficeDies;
+	private Animation thisAnimation;
+	private Animation thisAnimationDies;
 	private Animation dummyAnimation;
 	private Animation dummyDies;
+	private Animation tableScreen;
+	
 
 	public GameRenderer(GameWorld world) {
 		myWorld = world;
@@ -65,21 +80,28 @@ public class GameRenderer {
 	private void initAssets() {
 		table = AssetLoader.table;
 		
-		hammerAngle = AssetLoader.HamWoodMid;
+		hamLeft = AssetLoader.HamWoodMid;
+		hamMid = AssetLoader.HamWoodMid;
+		hamRight = AssetLoader.HamWoodRight;
 		
+		thisAnimation = AssetLoader.defaultDummyAnimation;
+		thisAnimationDies = AssetLoader.defaultDummyDies;
+		
+				
 		dummyAnimation = AssetLoader.dummyAnimation;
 		dummyDies = AssetLoader.dummyDies;
+		tableScreen = AssetLoader.tableScreen;
 	}
 
-	public void drawDummy(float runTime) {
+	public void drawDummy(Animation animation, Animation animationDies,float runTime) {
 		for (Dummy dummy : dummies) {
 			if (dummy.isAlive()) {
 
-				batcher.draw(dummyAnimation.getKeyFrame(runTime), dummy.getX(),
+				batcher.draw(animation.getKeyFrame(runTime), dummy.getX(),
 						dummy.getY(), dummy.getWidth(), dummy.getHeight());
 			} else {
 				System.out.println("Renderer draw dies");
-				batcher.draw(dummyDies.getKeyFrame(runTime), dummy.getX(),
+				batcher.draw(animationDies.getKeyFrame(runTime), dummy.getX(),
 						dummy.getY(), dummy.getWidth(), dummy.getHeight());
 			}
 		}
@@ -107,12 +129,28 @@ public class GameRenderer {
 		}
 		
 		for(HammerPosition hammerPosition : hammerPositions){
-			hammerPosition.draw(batcher);
+			hammerPosition.draw(batcher, hamLeft, hamMid, hamRight);
 		}
 	}
 	
-	private TextureRegion getTable() {
-		return this.table;
+	private void drawScoreTime(float runTime){
+		batcher.draw(tableScreen.getKeyFrame(runTime), 32f, 24, 94, 38.5f);
+		batcher.draw(AssetLoader.timeScore, 32f, 24, 94, 38.5f);
+		
+		int length = ("" + myWorld.getScore()).length();
+		AssetLoader.digitalShadow.draw(batcher, "" + myWorld.getScore(), 54 - (3 * length), 44.75f);
+		AssetLoader.digital.draw(batcher, "" + myWorld.getScore(), 54 - (3 * length), 43.75f);
+		
+		AssetLoader.digitalShadow.draw(batcher, "" + myWorld.getSeconds() + ":" + myWorld.getMilis(), 95 - (3 * length), 44.75f);
+		AssetLoader.digital.draw(batcher, "" + myWorld.getSeconds() + ":" + myWorld.getMilis(), 95 - (3 * length), 43.75f);
+	}
+	
+	private Animation getAnimation(){
+		return this.thisAnimation;
+	}
+	
+	private Animation getAnimationDies(){
+		return this.thisAnimationDies;
 	}
 	
 	private TextureRegion getHammer(){
@@ -140,7 +178,44 @@ public class GameRenderer {
 		// This is good for performance when drawing images that do not require
 		// transparency.
 		batcher.disableBlending();
+			
+		getTable();
+		batcher.draw(table, 0, 0, 160, 256);
+
+		batcher.enableBlending();
+
+		if (custom.checkDummy2() == true) {
+			this.thisAnimation = AssetLoader.defaultDummyAnimation;
+			this.thisAnimationDies = AssetLoader.defaultDummyDies;
+			
+			custom.falseDummy2();
+		} else if (custom.checkDummy() == true) {
+			this.thisAnimation = AssetLoader.officeDummyAnimation;
+			this.thisAnimationDies = AssetLoader.officeDummyDies;
+			
+			custom.falseDummy();
+		} else if (custom.checkDummy1() == true) {
+			this.thisAnimation = AssetLoader.janitorDummyAnimation;
+			this.thisAnimationDies = AssetLoader.janitorDummyDies;
+			
+			custom.falseDummy1();
+		}
 		
+		getAnimation();
+		getAnimationDies();
+		
+		drawDummy(thisAnimation,thisAnimationDies,runTime);
+		drawScoreTime(runTime);
+		
+		drawButtons();
+		drawHammers();
+
+		// End SpriteBatch
+		batcher.end();
+	}
+	
+	
+	private TextureRegion getTable() {
 		if (custom.checkTable() == true) {
 			this.table = AssetLoader.wood;
 			custom.falseCheck();
@@ -151,6 +226,7 @@ public class GameRenderer {
 			this.table = AssetLoader.carbon;
 			custom.falseCheck2();
 		}
+<<<<<<< HEAD
 		
 		getTable();
 		batcher.draw(table, 0, 0, 160, 256);
@@ -178,5 +254,8 @@ public class GameRenderer {
 		// End SpriteBatch
 		batcher.end();
 
+=======
+		return this.table;
+>>>>>>> 81f6376e008a03b89aa3e01cd908296f8ad54f02
 	}
 }
