@@ -140,13 +140,25 @@ public class GameRenderer {
 		AssetLoader.digital.draw(batcher, "" + myWorld.getSeconds() + ":" + myWorld.getMilis(), 95 - (3 * length), 43.75f);
 	}
 	
-	private Animation getAnimation(){
-		return this.thisAnimation;
+	private void getAnimation(){
+		if (custom.checkDummy2() == true) {
+			this.thisAnimation = AssetLoader.defaultDummyAnimation;
+			this.thisAnimationDies = AssetLoader.defaultDummyDies;
+			
+			custom.falseDummy2();
+		} else if (custom.checkDummy() == true) {
+			this.thisAnimation = AssetLoader.officeDummyAnimation;
+			this.thisAnimationDies = AssetLoader.officeDummyDies;
+			
+			custom.falseDummy();
+		} else if (custom.checkDummy1() == true) {
+			this.thisAnimation = AssetLoader.janitorDummyAnimation;
+			this.thisAnimationDies = AssetLoader.janitorDummyDies;
+			
+			custom.falseDummy1();
+		}
 	}
 	
-	private Animation getAnimationDies(){
-		return this.thisAnimationDies;
-	}
 	
 	private TextureRegion getHammer(){
 		return this.hammerAngle;
@@ -179,25 +191,9 @@ public class GameRenderer {
 
 		batcher.enableBlending();
 
-		if (custom.checkDummy2() == true) {
-			this.thisAnimation = AssetLoader.defaultDummyAnimation;
-			this.thisAnimationDies = AssetLoader.defaultDummyDies;
-			
-			custom.falseDummy2();
-		} else if (custom.checkDummy() == true) {
-			this.thisAnimation = AssetLoader.officeDummyAnimation;
-			this.thisAnimationDies = AssetLoader.officeDummyDies;
-			
-			custom.falseDummy();
-		} else if (custom.checkDummy1() == true) {
-			this.thisAnimation = AssetLoader.janitorDummyAnimation;
-			this.thisAnimationDies = AssetLoader.janitorDummyDies;
-			
-			custom.falseDummy1();
-		}
+		
 		
 		getAnimation();
-		getAnimationDies();
 		
 		drawDummy(thisAnimation,thisAnimationDies,runTime);
 		drawScoreTime(runTime);
