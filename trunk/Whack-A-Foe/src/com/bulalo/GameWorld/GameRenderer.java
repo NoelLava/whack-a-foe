@@ -33,8 +33,14 @@ public class GameRenderer {
 
 	private TextureRegion hammerAngle;
 	private TextureRegion table;
-	private Animation dummyAnimation;
-	private Animation dummyDies;
+	private Animation dummyDefault;
+	private Animation dummyDefaultDies;
+	private Animation dummyJanitor;
+	private Animation dummyJanitorDies;
+	private Animation dummyOffice;
+	private Animation dummyOfficeDies;
+	private Animation thisAnimation;
+	private Animation thisAnimationDies;
 
 	public GameRenderer(GameWorld world) {
 		myWorld = world;
@@ -64,19 +70,21 @@ public class GameRenderer {
 		
 		hammerAngle = AssetLoader.HamWoodMid;
 		
-		dummyAnimation = AssetLoader.dummyAnimation;
-		dummyDies = AssetLoader.dummyDies;
+		thisAnimation = AssetLoader.defaultDummyAnimation;
+		thisAnimationDies = AssetLoader.defaultDummyDies;
+		
+				
 	}
 
-	public void drawDummy(float runTime) {
+	public void drawDummy(Animation animation, Animation animationDies,float runTime) {
 		for (Dummy dummy : dummies) {
 			if (dummy.isAlive()) {
 
-				batcher.draw(dummyAnimation.getKeyFrame(runTime), dummy.getX(),
+				batcher.draw(animation.getKeyFrame(runTime), dummy.getX(),
 						dummy.getY(), dummy.getWidth(), dummy.getHeight());
 			} else {
 				System.out.println("Renderer draw dies");
-				batcher.draw(dummyDies.getKeyFrame(runTime), dummy.getX(),
+				batcher.draw(animationDies.getKeyFrame(runTime), dummy.getX(),
 						dummy.getY(), dummy.getWidth(), dummy.getHeight());
 			}
 		}
@@ -110,6 +118,14 @@ public class GameRenderer {
 	
 	private TextureRegion getTable() {
 		return this.table;
+	}
+	
+	private Animation getAnimation(){
+		return this.thisAnimation;
+	}
+	
+	private Animation getAnimationDies(){
+		return this.thisAnimationDies;
 	}
 
 	public void render(float runTime) {
@@ -150,7 +166,27 @@ public class GameRenderer {
 
 		batcher.enableBlending();
 
-		drawDummy(runTime);
+		if (custom.checkDummy2() == true) {
+			this.thisAnimation = AssetLoader.defaultDummyAnimation;
+			this.thisAnimationDies = AssetLoader.defaultDummyDies;
+			
+			custom.falseDummy2();
+		} else if (custom.checkDummy() == true) {
+			this.thisAnimation = AssetLoader.officeDummyAnimation;
+			this.thisAnimationDies = AssetLoader.officeDummyDies;
+			
+			custom.falseDummy();
+		} else if (custom.checkDummy1() == true) {
+			this.thisAnimation = AssetLoader.janitorDummyAnimation;
+			this.thisAnimationDies = AssetLoader.janitorDummyDies;
+			
+			custom.falseDummy1();
+		}
+		
+		getAnimation();
+		getAnimationDies();
+		
+		drawDummy(thisAnimation,thisAnimationDies,runTime);
 		drawButtons();
 		drawHammers();
 

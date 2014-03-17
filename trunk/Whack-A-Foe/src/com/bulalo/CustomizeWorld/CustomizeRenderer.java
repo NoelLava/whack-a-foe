@@ -22,7 +22,7 @@ public class CustomizeRenderer {
 	
 	private SpriteBatch batcher;
 	private static Tables table,table1,table2;
-	private CustomDummy dummy,dummy1,dummy2;
+	private static CustomDummy dummy,dummy1,dummy2;
 	
 	private TextureRegion csbg;
 	private TextureRegion wood;
@@ -79,9 +79,9 @@ public class CustomizeRenderer {
 		
 		steel = AssetLoader.steel;
 		carbon = AssetLoader.carbon;
-		dummyDefault = AssetLoader.dummyDefault;
-		dummyOffice = AssetLoader.dummyOffice;
-		dummyJanitor = AssetLoader.dummyJanitor;
+		dummyDefault = AssetLoader.dummyDefault4;
+		dummyOffice = AssetLoader.dummyOffice4;
+		dummyJanitor = AssetLoader.dummyJanitor4;
 		
 		//background = AssetLoader.getBackground();
 		//background = getBackground();

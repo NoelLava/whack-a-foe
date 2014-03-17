@@ -14,10 +14,18 @@ public class AssetLoader {
 	public static Texture gameTexture;
 	public static Texture hammerAngles;
 	public static TextureRegion table;
-	public static TextureRegion dummy1;
-	public static TextureRegion dummy2;
-	public static TextureRegion dummy3;
-	public static TextureRegion dummy4;
+	public static TextureRegion dummyDefault1;
+	public static TextureRegion dummyDefault2;
+	public static TextureRegion dummyDefault3;
+	public static TextureRegion dummyDefault4;
+	public static TextureRegion dummyJanitor1;
+	public static TextureRegion dummyJanitor2;
+	public static TextureRegion dummyJanitor3;
+	public static TextureRegion dummyJanitor4;
+	public static TextureRegion dummyOffice1;
+	public static TextureRegion dummyOffice2;
+	public static TextureRegion dummyOffice3;
+	public static TextureRegion dummyOffice4;
 	public static TextureRegion HamWoodLeft, HamWoodMid, HamWoodRight;
 	public static TextureRegion HamSteelLeft, HamSteelMid, HamSteelRight;
 	public static TextureRegion HamGoldLeft, HamGoldMid, HamGoldRight;
@@ -51,13 +59,14 @@ public class AssetLoader {
 	public static TextureRegion bakal;
 	public static TextureRegion ginto;
 
-	public static Animation dummyAnimation;
-	public static Animation dummyDies;
+	public static Animation defaultDummyAnimation;
+	public static Animation defaultDummyDies;
+	public static Animation officeDummyAnimation;
+	public static Animation officeDummyDies;
+	public static Animation janitorDummyAnimation;
+	public static Animation janitorDummyDies;
 
 	public static Texture dummy;
-	public static TextureRegion dummyJanitor;
-	public static TextureRegion dummyDefault;
-	public static TextureRegion dummyOffice;
 	
 	public static Texture splashScreen;
 	public static TextureRegion bulalo;
@@ -153,15 +162,15 @@ public class AssetLoader {
 		table = new TextureRegion(gameTexture, 0, 0, 320, 512);
 		table.flip(false, true);
 
-		dummy1 = new TextureRegion(gameTexture, 320, 0, 65, 95);
-		dummy2 = new TextureRegion(gameTexture, 385, 0, 65, 95);
-		dummy3 = new TextureRegion(gameTexture, 320, 95, 65, 95);
-		dummy4 = new TextureRegion(gameTexture, 385, 95, 65, 95);
+		dummyDefault1 = new TextureRegion(dummy, 1, 174, 65, 90);
+		dummyDefault2 = new TextureRegion(dummy, 56, 174, 65, 90);
+		dummyDefault3 = new TextureRegion(dummy, 117, 174, 65, 90);
+		dummyDefault4 = new TextureRegion(dummy, 179, 174, 65, 90);
 
-		dummy1.flip(false, true);
-		dummy2.flip(false, true);
-		dummy3.flip(false, true);
-		dummy4.flip(false, true);
+		dummyDefault1.flip(false, true);
+		dummyDefault2.flip(false, true);
+		dummyDefault3.flip(false, true);
+		dummyDefault4.flip(false, true);
 
 		HamWoodLeft = new TextureRegion(hammerAngles, 0, 0, 107, 170);
 		HamWoodMid = new TextureRegion(hammerAngles, 107, 0, 107, 170);
@@ -188,14 +197,19 @@ public class AssetLoader {
 		wood = new TextureRegion(woodTexture, 0, 0, 512, 512);
 		steel = new TextureRegion(steelTexture, 0, 0, 320, 512);
 		carbon = new TextureRegion(carbonTexture, 0, 0, 320, 512);
-
-		dummyJanitor = new TextureRegion(dummy, 184, 0, 65, 95);
-		dummyOffice = new TextureRegion(dummy, 184, 83, 65, 95);
-		dummyDefault = new TextureRegion(dummy, 176, 173, 65, 95);
-
-		dummyJanitor.flip(false, true);
-		dummyOffice.flip(false, true);
-		dummyDefault.flip(false, true);
+		
+		dummyJanitor1 = new TextureRegion(dummy, 45, 0, 65, 90);
+		dummyJanitor2 = new TextureRegion(dummy, 84, 0, 65, 90);
+		dummyJanitor3 = new TextureRegion(dummy, 130, 0, 65, 90);
+		dummyJanitor4 = new TextureRegion(dummy, 184, 0, 65, 90);
+		
+		dummyOffice1 = new TextureRegion(dummy, 40, 83, 65, 90);
+		dummyOffice2 = new TextureRegion(dummy, 84, 83, 65, 90);
+		dummyOffice3 = new TextureRegion(dummy, 129, 83, 65, 90);
+		dummyOffice4 = new TextureRegion(dummy, 184, 83, 65, 90);
+		
+		dummyJanitor4.flip(false, true);
+		dummyOffice4.flip(false, true);
 		csBg.flip(false, true);
 		wood.flip(false, true);
 		steel.flip(false, true);
@@ -213,12 +227,26 @@ public class AssetLoader {
 		ginto.flip(false, true);
 		
 		// Animations ==========================================================================================
-		TextureRegion[] dummies = { dummy1, dummy2, dummy3, dummy4 };
-		dummyAnimation = new Animation(0.03f, dummies);
-		dummyAnimation.setPlayMode(Animation.NORMAL);
-		TextureRegion[] dummyRev = { dummy4, dummy3, dummy2, dummy1 };
-		dummyDies = new Animation(0.03f, dummyRev);
-		dummyDies.setPlayMode(Animation.NORMAL);
+		TextureRegion[] dummiesDefault = { dummyDefault1, dummyDefault2, dummyDefault3, dummyDefault4 };
+		defaultDummyAnimation = new Animation(0.03f, dummiesDefault);
+		defaultDummyAnimation.setPlayMode(Animation.NORMAL);
+		TextureRegion[] dummyDefaultRev = { dummyDefault4, dummyDefault3, dummyDefault2, dummyDefault1 };
+		defaultDummyDies = new Animation(0.03f, dummyDefaultRev);
+		defaultDummyDies.setPlayMode(Animation.NORMAL);
+		
+		TextureRegion[] dummiesOffice = { dummyOffice1, dummyOffice2, dummyOffice3, dummyOffice4 };
+		officeDummyAnimation = new Animation(0.03f, dummiesOffice);
+		officeDummyAnimation.setPlayMode(Animation.NORMAL);
+		TextureRegion[] dummyOfficeRev = { dummyOffice4, dummyOffice3, dummyOffice2, dummyOffice1 };
+		officeDummyDies = new Animation(0.03f, dummyOfficeRev);
+		officeDummyDies.setPlayMode(Animation.NORMAL);
+		
+		TextureRegion[] dummiesJanitor = { dummyJanitor1, dummyJanitor2, dummyJanitor3, dummyJanitor4 };
+		janitorDummyAnimation = new Animation(0.03f, dummiesJanitor);
+		janitorDummyAnimation.setPlayMode(Animation.NORMAL);
+		TextureRegion[] dummyJanitorRev = { dummyJanitor4, dummyJanitor3, dummyJanitor2, dummyJanitor1 };
+		janitorDummyDies = new Animation(0.03f, dummyJanitorRev);
+		janitorDummyDies.setPlayMode(Animation.NORMAL);
 
 	}
 
@@ -233,6 +261,7 @@ public class AssetLoader {
 		carbonTexture.dispose();
 		hammerAngles.dispose();
 		splashScreen.dispose();
+		dummy.dispose();
 		
 		gameStart.dispose();
 		hitSmash.dispose();
