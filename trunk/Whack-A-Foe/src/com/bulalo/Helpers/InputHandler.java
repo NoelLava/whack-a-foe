@@ -41,10 +41,10 @@ public class InputHandler implements InputProcessor {
 
 			for (HammerPosition hammerAngle : hammerAngles) {
 				hammerAngle.isTouchDown(screenX, screenY);
-				if (dummy.isPressed() || hammerAngle.isPressed()) {
-					hammerAngle.setHitSound(AssetLoader.hitSmash);
-				} else {
-					hammerAngle.setHitSound(AssetLoader.hitEmpty);
+				if (dummy.isPressed() && hammerAngle.isPressed()) {
+					AssetLoader.hitSmash.play();
+				} else if(hammerAngle.isPressed()){
+					AssetLoader.hitEmpty.play();
 				}
 			}
 

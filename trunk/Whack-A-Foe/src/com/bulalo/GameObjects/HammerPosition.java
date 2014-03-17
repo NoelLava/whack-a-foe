@@ -1,17 +1,14 @@
 package com.bulalo.GameObjects;
 
-import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
-import com.bulalo.Helpers.AssetLoader;
 
 public class HammerPosition {
 	private float x, y, width, height;
 	private int position;
 	TextureRegion hammerAngle;
 	TextureRegion hamLeft, hamMid, hamRight;
-	private static Sound hitSound;
 	
 	private Rectangle bounds;
 	
@@ -35,21 +32,18 @@ public class HammerPosition {
 	}
 	
 	public void draw(SpriteBatch batcher, TextureRegion hamLeft, TextureRegion hamMid, TextureRegion hamRight) {
-//		hamLeft = AssetLoader.HamWoodLeft;
-//		hamMid = AssetLoader.HamWoodMid;
-//		hamRight = AssetLoader.HamWoodRight;
 		
         if (this.isPressed) {
         	if(position == 0 || position == 3 || position == 6){
-        		batcher.draw(hamLeft, x - (hamLeft.getRegionWidth()/12), y + (AssetLoader.HamWoodLeft.getRegionHeight()/(x*2.75f)), AssetLoader.HamWoodLeft.getRegionWidth()/2, AssetLoader.HamWoodLeft.getRegionHeight()/2);
+        		batcher.draw(hamLeft, x - (hamLeft.getRegionWidth()/12), y + (hamLeft.getRegionHeight()/(x*2.75f)), hamLeft.getRegionWidth()/2, hamLeft.getRegionHeight()/2);
         	}else if(position == 1 || position == 4 || position == 7){
-        		batcher.draw(hamMid, x - (AssetLoader.HamWoodLeft.getRegionWidth()/12), y + (AssetLoader.HamWoodLeft.getRegionHeight()/(x*0.75f)), AssetLoader.HamWoodMid.getRegionWidth()/2, AssetLoader.HamWoodMid.getRegionHeight()/2);
+        		batcher.draw(hamMid, x - (hamMid.getRegionWidth()/12), y + (hamMid.getRegionHeight()/(x*0.75f)), hamMid.getRegionWidth()/2, hamMid.getRegionHeight()/2);
         	}else if(position == 2 || position == 5 || position == 8){
-        		batcher.draw(hamRight, x - (AssetLoader.HamWoodLeft.getRegionWidth()/12), y + (AssetLoader.HamWoodLeft.getRegionHeight()/(x*0.5f)), AssetLoader.HamWoodRight.getRegionWidth()/2, AssetLoader.HamWoodRight.getRegionHeight()/2);
+        		batcher.draw(hamRight, x - (hamLeft.getRegionWidth()/12), y + (hamRight.getRegionHeight()/(x*0.5f)), hamRight.getRegionWidth()/2, hamRight.getRegionHeight()/2);
         	}
         } else {
         	if(position == 9){
-        		batcher.draw(hamMid, x - (AssetLoader.HamWoodLeft.getRegionWidth()/12), y, AssetLoader.HamWoodLeft.getRegionWidth()/2, AssetLoader.HamWoodLeft.getRegionHeight()/2);
+        		batcher.draw(hamMid, x - (hamMid.getRegionWidth()/12), y, hamMid.getRegionWidth()/2, hamMid.getRegionHeight()/2);
         	}
         }
     }
@@ -58,7 +52,6 @@ public class HammerPosition {
 
         if (bounds.contains(screenX, screenY)) {
             isPressed = true;
-            hitSound.play();
             return true;
         }
         return false;
@@ -151,11 +144,4 @@ public class HammerPosition {
 		this.position = position;
 	}
 
-	public Sound getHitSound() {
-		return hitSound;
-	}
-
-	public void setHitSound(Sound hitSound) {
-		this.hitSound = hitSound;
-	}
 }
