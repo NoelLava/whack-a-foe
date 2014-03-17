@@ -79,7 +79,7 @@ public class GameRenderer {
 		
 		thisAnimation = AssetLoader.defaultDummyAnimation;
 		thisAnimationDies = AssetLoader.defaultDummyDies;
-		
+		 
 				
 		dummyAnimation = AssetLoader.dummyAnimation;
 		dummyDies = AssetLoader.dummyDies;
