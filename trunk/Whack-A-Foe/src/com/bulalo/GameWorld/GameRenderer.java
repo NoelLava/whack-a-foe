@@ -16,6 +16,7 @@ import com.bulalo.GameObjects.Dummy;
 import com.bulalo.GameObjects.HammerPosition;
 import com.bulalo.Helpers.AssetLoader;
 import com.bulalo.Helpers.InputHandler;
+import com.bulalo.ShopWorld.ShopInputHandler;
 import com.bulalo.UI.Button;
 
 public class GameRenderer {
@@ -24,6 +25,7 @@ public class GameRenderer {
 
 	private OrthographicCamera cam;
 	private CustomInputHandler custom = new CustomInputHandler();
+	private ShopInputHandler shop = new ShopInputHandler();
 	private SpriteBatch batcher;
 
 	private Dummy dummy;
@@ -32,6 +34,7 @@ public class GameRenderer {
 	private List<HammerPosition> hammerPositions;
 
 	private TextureRegion hammerAngle;
+	//private TextureRegion hammer;
 	private TextureRegion table;
 	private Animation dummyAnimation;
 	private Animation dummyDies;
@@ -111,6 +114,10 @@ public class GameRenderer {
 	private TextureRegion getTable() {
 		return this.table;
 	}
+	
+	private TextureRegion getHammer(){
+		return this.hammerAngle;
+	}
 
 	public void render(float runTime) {
 		Gdx.gl.glClearColor(0, 0, 0, 1);
@@ -147,6 +154,20 @@ public class GameRenderer {
 		
 		getTable();
 		batcher.draw(table, 0, 0, 160, 256);
+		
+		if (shop.checkHammer() == true){
+			this.hammerAngle = AssetLoader.kahoy;
+			shop.falseCheck();
+		} else if(shop.checkHammer1() == true){
+			this.hammerAngle = AssetLoader.bakal;
+			shop.falseCheck1();
+		} else if(shop.checkHammer2() == true){
+			this.hammerAngle = AssetLoader.ginto;
+			shop.falseCheck2();
+		}
+		
+		getHammer();
+		batcher.draw(hammerAngle, 0, 0, 160, 256);
 
 		batcher.enableBlending();
 

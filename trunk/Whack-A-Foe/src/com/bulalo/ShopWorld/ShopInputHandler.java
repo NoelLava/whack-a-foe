@@ -13,6 +13,10 @@ public class ShopInputHandler implements InputProcessor {
 	private Hammers hammer1;
 	private Hammers hammer2;
 	
+	private static boolean hammerTrue;
+	private static boolean hammer1True;
+	private static boolean hammer2True;
+	
 	private static List<Button> shopButtons;
 	
 	float scaleFactorX;
@@ -32,18 +36,42 @@ public class ShopInputHandler implements InputProcessor {
         this.scaleFactorY = scaleFactorY;
 	}
 	
+	public ShopInputHandler(){
+		System.out.println("initialized");
+	
+	}
+	
+	public boolean checkHammer(){
+		return hammerTrue;
+	
+	}
+	
+	public boolean checkHammer1(){
+		return hammer1True;
+		
+	}
+	
+	public boolean checkHammer2(){
+		return hammer2True;
+		
+	}
+	
+	
 	@Override
 	public boolean touchDown(int screenX, int screenY, int pointer, int button) {
 		screenX = scaleX(screenX);
 		screenY = scaleY(screenY);
 		
 		if(hammer.isTouchDown(screenX, screenY)){
+			hammerTrue = true;
 			System.out.println("hammer touched");
 
 		}else if(hammer1.isTouchDown(screenX, screenY)){
+			hammer1True = true;
 			System.out.println("hammer1 touched");
 		
 		}else if(hammer2.isTouchDown(screenX, screenY)){
+			hammer2True = true;
 			System.out.println("hammer2 touched");
 		}
 		
@@ -60,10 +88,18 @@ public class ShopInputHandler implements InputProcessor {
 		screenX = scaleX(screenX);
         screenY = scaleY(screenY);
     	
-    	if(hammer.isTouchUp(screenX, screenY) || hammer1.isTouchUp(screenX, screenY) ||
-    			hammer2.isTouchUp(screenX, screenY)){
-    		return true;
-    	}
+        if(hammer.isTouchUp(screenX, screenY)){
+        	return true;
+        }
+        
+        if(hammer1.isTouchUp(screenX, screenY)){
+        	return true;
+        	
+        }
+        
+        if(hammer2.isTouchUp(screenX, screenY)){
+        	return true;
+        }
         
         for(Button thisButton : shopButtons){
     		if(thisButton.isTouchUp(screenX, screenY)){
@@ -115,6 +151,21 @@ public class ShopInputHandler implements InputProcessor {
 
     private int scaleY(int screenY) {
         return (int) (screenY / scaleFactorY);
+    }
+    
+    public boolean falseCheck(){
+    	return hammerTrue = false;
+    
+    }
+    
+    public boolean falseCheck1(){
+    	return hammer1True = false;
+    
+    }
+    
+    public boolean falseCheck2(){
+    	return hammer2True = false;
+    
     }
 
 }
