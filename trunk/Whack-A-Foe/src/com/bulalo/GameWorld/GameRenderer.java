@@ -34,8 +34,6 @@ public class GameRenderer {
 	private List<Button> gameButtons;
 	private List<HammerPosition> hammerPositions;
 
-	private TextureRegion hammerAngle;
-	//private TextureRegion hammer;
 	private TextureRegion hamLeft, hamMid, hamRight;
 	private TextureRegion table;
 	private Animation dummyDefault;
@@ -76,7 +74,7 @@ public class GameRenderer {
 	private void initAssets() {
 		table = AssetLoader.table;
 		
-		hamLeft = AssetLoader.HamWoodMid;
+		hamLeft = AssetLoader.HamWoodLeft;
 		hamMid = AssetLoader.HamWoodMid;
 		hamRight = AssetLoader.HamWoodRight;
 		
@@ -148,10 +146,6 @@ public class GameRenderer {
 	private Animation getAnimationDies(){
 		return this.thisAnimationDies;
 	}
-	
-	private TextureRegion getHammer(){
-		return this.hammerAngle;
-	}
 
 	public void render(float runTime) {
 		Gdx.gl.glClearColor(0, 0, 0, 1);
@@ -176,7 +170,7 @@ public class GameRenderer {
 		batcher.disableBlending();
 			
 		getTable();
-		batcher.draw(table, 0, 0, 160, 256);
+		batcher.draw(table, 0, 0, 160, 256);		
 
 		batcher.enableBlending();
 
@@ -203,19 +197,7 @@ public class GameRenderer {
 		drawDummy(thisAnimation,thisAnimationDies,runTime);
 		drawScoreTime(runTime);
 		
-		if (shop.checkHammer() == true){
-			this.hammerAngle = AssetLoader.kahoy;
-			shop.falseCheck();
-		} else if(shop.checkHammer1() == true){
-			this.hammerAngle = AssetLoader.bakal;
-			shop.falseCheck1();
-		} else if(shop.checkHammer2() == true){
-			this.hammerAngle = AssetLoader.ginto;
-			shop.falseCheck2();
-		}
-		
-		getHammer();
-		
+		changeHammer();
 		drawButtons();
 		drawHammers();
 
@@ -237,6 +219,55 @@ public class GameRenderer {
 		}
 		
 		return this.table;
+	}
+	
+	private TextureRegion getHammerLeft(){
+		if (shop.checkHammer() == true){
+			this.hamLeft = AssetLoader.HamWoodLeft;
+			shop.falseCheck();
+		} else if(shop.checkHammer1() == true){
+			this.hamLeft = AssetLoader.HamSteelLeft;
+			shop.falseCheck1();
+		} else if(shop.checkHammer2() == true){
+			this.hamLeft = AssetLoader.HamGoldLeft;
+			shop.falseCheck2();
+		}
+		return hamLeft;
+	}
+	
+	private TextureRegion getHammerMid(){
+		if (shop.checkHammer() == true){
+			this.hamMid = AssetLoader.HamWoodMid;
+			shop.falseCheck();
+		} else if(shop.checkHammer1() == true){
+			this.hamMid = AssetLoader.HamSteelMid;
+			shop.falseCheck1();
+		} else if(shop.checkHammer2() == true){
+			this.hamMid = AssetLoader.HamGoldMid;
+			shop.falseCheck2();
+		}
+		return hamMid;
+	}
+	
+	private TextureRegion getHammerRight(){
+		if (shop.checkHammer() == true){
+			this.hamRight = AssetLoader.HamWoodRight;
+			shop.falseCheck();
+		} else if(shop.checkHammer1() == true){
+			this.hamRight = AssetLoader.HamSteelRight;
+			shop.falseCheck1();
+		} else if(shop.checkHammer2() == true){
+			this.hamRight = AssetLoader.HamGoldRight;
+			shop.falseCheck2();
+		}
+		return hamRight;
+	}
+	
+	private void changeHammer(){
+		hamMid = getHammerMid();
+		hamLeft = getHammerLeft();
+		hamRight = getHammerRight();
+
 	}
 
 	
