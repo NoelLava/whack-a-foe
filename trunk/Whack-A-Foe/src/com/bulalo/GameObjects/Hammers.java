@@ -5,7 +5,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.bulalo.GameWorld.GameWorld;
 
 public class Hammers {
-	//private Vector2 position;
+	private Vector2 position;
 	private Rectangle bounds;
 	private float x, y, width, height;
 	private boolean isPressed = false;
@@ -15,7 +15,7 @@ public class Hammers {
 		this.y = y;
 		this.width = width;
 		this.height = height;
-		//position = new Vector2(x,y);
+		position = new Vector2(x,y);
 		
 		bounds = new Rectangle(x, y, width, height);	
 	}
@@ -29,7 +29,7 @@ public class Hammers {
 	
         if (bounds.contains(screenX,screenY)) {
         	isPressed = true;
-        	System.out.println("hammer - pressed");
+        	System.out.println("hammer - hit");
         	return true;
         } 
         return false;
@@ -40,7 +40,7 @@ public class Hammers {
         // It only counts as a touchUp if the button is in a pressed state.
         if (bounds.contains(screenX, screenY) && isPressed()) {
         	isPressed = false;
-            System.out.println("Dummy - touch up");
+            System.out.println("hammer - touch up");
             return true;
         }
         // Whenever a finger is released, we will cancel any presses.
@@ -62,19 +62,19 @@ public class Hammers {
 		//System.out.println(position);
 	}
     public void setX(float newX){
-		x = newX;
+		position.x = newX;
 	}
 	
 	public void setY(float newY){
-		y = newY;
+		position.y = newY;
 	}
 	
     public float getX() {
-        return x;
+        return position.x;
     }
 
     public float getY() {
-        return y;
+        return position.y;
     }
 
     public float getWidth() {

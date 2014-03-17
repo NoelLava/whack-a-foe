@@ -17,6 +17,7 @@ import com.bulalo.GameObjects.HammerPosition;
 import com.bulalo.GameObjects.Timer;
 import com.bulalo.Helpers.AssetLoader;
 import com.bulalo.Helpers.InputHandler;
+import com.bulalo.ShopWorld.ShopInputHandler;
 import com.bulalo.UI.Button;
 
 public class GameRenderer {
@@ -25,6 +26,7 @@ public class GameRenderer {
 
 	private OrthographicCamera cam;
 	private CustomInputHandler custom = new CustomInputHandler();
+	private ShopInputHandler shop = new ShopInputHandler();
 	private SpriteBatch batcher;
 
 	private Dummy dummy;
@@ -32,7 +34,12 @@ public class GameRenderer {
 	private List<Button> gameButtons;
 	private List<HammerPosition> hammerPositions;
 
+<<<<<<< HEAD
+	private TextureRegion hammerAngle;
+	//private TextureRegion hammer;
+=======
 	private TextureRegion hamLeft, hamMid, hamRight;
+>>>>>>> 81f6376e008a03b89aa3e01cd908296f8ad54f02
 	private TextureRegion table;
 	private Animation dummyDefault;
 	private Animation dummyDefaultDies;
@@ -145,6 +152,10 @@ public class GameRenderer {
 	private Animation getAnimationDies(){
 		return this.thisAnimationDies;
 	}
+	
+	private TextureRegion getHammer(){
+		return this.hammerAngle;
+	}
 
 	public void render(float runTime) {
 		Gdx.gl.glClearColor(0, 0, 0, 1);
@@ -215,6 +226,36 @@ public class GameRenderer {
 			this.table = AssetLoader.carbon;
 			custom.falseCheck2();
 		}
+<<<<<<< HEAD
+		
+		getTable();
+		batcher.draw(table, 0, 0, 160, 256);
+		
+		if (shop.checkHammer() == true){
+			this.hammerAngle = AssetLoader.kahoy;
+			shop.falseCheck();
+		} else if(shop.checkHammer1() == true){
+			this.hammerAngle = AssetLoader.bakal;
+			shop.falseCheck1();
+		} else if(shop.checkHammer2() == true){
+			this.hammerAngle = AssetLoader.ginto;
+			shop.falseCheck2();
+		}
+		
+		getHammer();
+		batcher.draw(hammerAngle, 0, 0, 160, 256);
+
+		batcher.enableBlending();
+
+		drawDummy(runTime);
+		drawButtons();
+		drawHammers();
+
+		// End SpriteBatch
+		batcher.end();
+
+=======
 		return this.table;
+>>>>>>> 81f6376e008a03b89aa3e01cd908296f8ad54f02
 	}
 }

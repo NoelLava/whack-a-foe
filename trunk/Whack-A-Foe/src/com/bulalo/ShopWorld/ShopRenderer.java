@@ -26,6 +26,8 @@ public class ShopRenderer {
 	private TextureRegion bakal;
 	private TextureRegion ginto;
 	
+	private static TextureRegion pamalo;
+	
 	private List<Button> shopButtons;
 	
 	public ShopRenderer(ShopWorld ShopWorld) {
@@ -44,6 +46,25 @@ public class ShopRenderer {
 		initGameObjects();
 		initAssets();
 		
+	}
+	
+	public static TextureRegion getHammer(){
+		hammer = shop.getHammer();
+		hammer1 = shop.getHammer();
+		hammer2 = shop.getHammer();
+		
+		if(hammer.isPressed() == true){
+			System.out.println("naging kahoy");
+			pamalo = AssetLoader.kahoy;
+		} else if(hammer1.isPressed() == true){
+			System.out.println("naging bakal");
+			pamalo = AssetLoader.bakal;
+		} else if(hammer2.isPressed() == true){
+			System.out.println("naging ginto");
+			pamalo = AssetLoader.ginto;		
+		}System.out.println("click tester");
+		
+		return pamalo;
 	}
 	
 	private void initAssets(){
