@@ -20,7 +20,7 @@ public class ShopScreen implements Screen {
 	private float runTime = 0;
 	private ShopWorld shop;
 	private Hammers hammer;
-	
+	 
 	private static List<Button> shopButtons;
 	private Button backButton;
 	

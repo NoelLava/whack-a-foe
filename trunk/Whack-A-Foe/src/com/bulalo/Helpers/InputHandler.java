@@ -3,6 +3,7 @@ package com.bulalo.Helpers;
 import java.util.List;
 
 import com.badlogic.gdx.InputProcessor;
+import com.bulalo.CustomizeWorld.CustomWorld;
 import com.bulalo.GameObjects.Dummy;
 import com.bulalo.GameObjects.HammerPosition;
 import com.bulalo.GameWorld.GameWorld;
@@ -15,7 +16,10 @@ public class InputHandler implements InputProcessor {
 	private static List<Dummy> dummies;
 	private static List<Button> gameButtons;
 	private static List<HammerPosition> hammerAngles;
-
+	private static List<Button> customButton; 
+	
+	private static boolean woodTrue,steelTrue,carbonTrue,bossTrue,farmerTrue,boyTrue;
+	
 	float scaleFactorX;
 	float scaleFactorY;
 
@@ -25,7 +29,8 @@ public class InputHandler implements InputProcessor {
 		dummies = GameWorld.getDummies();
 		gameButtons = GameWorld.getGameButtons();
 		hammerAngles = GameWorld.getHammerAngles();
-
+		customButton = CustomWorld.getCustomButtons();
+		
 		this.scaleFactorX = scaleFactorX;
 		this.scaleFactorY = scaleFactorY;
 
@@ -42,7 +47,7 @@ public class InputHandler implements InputProcessor {
 			for (HammerPosition hammerAngle : hammerAngles) {
 				hammerAngle.isTouchDown(screenX, screenY);
 				if (dummy.isPressed() && hammerAngle.isPressed()) {
-					AssetLoader.hitSmash.play();
+		 			AssetLoader.hitSmash.play();
 				} else if(hammerAngle.isPressed()){
 					AssetLoader.hitEmpty.play();
 				}
@@ -55,6 +60,29 @@ public class InputHandler implements InputProcessor {
 
 		for (Button thisButton : gameButtons) {
 			thisButton.isTouchDown(screenX, screenY);
+		}
+		
+		for (Button buttons : customButton){
+			buttons.isTouchDown(screenX, screenY);
+			if(customButton.get(0).isJustPressed()){
+				woodTrue = true;
+			}
+			else if(customButton.get(1).isJustPressed()){
+				steelTrue = true;
+			}
+			else if(customButton.get(2).isJustPressed()){
+				carbonTrue = true;
+			}
+			
+			if(customButton.get(3).isJustPressed()){
+				bossTrue = true;
+			}
+			else if(customButton.get(4).isJustPressed()){
+				farmerTrue = true;
+			}
+			else if(customButton.get(5).isJustPressed()){
+				boyTrue = true;
+			}
 		}
 
 		return true;
@@ -79,6 +107,12 @@ public class InputHandler implements InputProcessor {
 
 		for (HammerPosition hammerAngle : hammerAngles) {
 			if (hammerAngle.isTouchUp(screenX, screenY)) {
+				return true;
+			}
+		}
+		
+		for (Button buttons : customButton){
+			if (buttons.isTouchUp(screenX, screenY)) {
 				return true;
 			}
 		}
@@ -130,6 +164,10 @@ public class InputHandler implements InputProcessor {
 
 	public static List<Dummy> getDummies() {
 		return dummies;
+	}
+	
+	public static List<Button> getCustomButton(){
+		return customButton;
 	}
 
 }

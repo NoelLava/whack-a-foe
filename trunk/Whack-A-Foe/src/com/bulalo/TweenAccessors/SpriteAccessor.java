@@ -3,7 +3,7 @@ package com.bulalo.TweenAccessors;
 import aurelienribon.tweenengine.TweenAccessor;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
-
+ 
 public class SpriteAccessor implements TweenAccessor<Sprite> {
 
     public static final int ALPHA = 1;
