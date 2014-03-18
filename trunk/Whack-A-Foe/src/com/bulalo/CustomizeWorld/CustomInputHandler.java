@@ -114,7 +114,7 @@ public class CustomInputHandler implements InputProcessor{
 	
 	@Override
 	public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-		screenX = scaleX(screenX);
+		 screenX = scaleX(screenX);
 		screenY = scaleY(screenY);
 		
 		if(table.isTouchUp(screenX, screenY)){

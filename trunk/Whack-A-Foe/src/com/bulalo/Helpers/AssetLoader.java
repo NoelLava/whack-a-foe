@@ -234,7 +234,7 @@ public class AssetLoader {
 		dummyJanitor2 = new TextureRegion(dummy, 84, 0, 65, 90);
 		dummyJanitor3 = new TextureRegion(dummy, 130, 0, 65, 90);
 		dummyJanitor4 = new TextureRegion(dummy, 184, 0, 65, 90);
-		
+		 
 		dummyOffice1 = new TextureRegion(dummy, 40, 83, 65, 90);
 		dummyOffice2 = new TextureRegion(dummy, 84, 83, 65, 90);
 		dummyOffice3 = new TextureRegion(dummy, 129, 83, 65, 90);

@@ -15,7 +15,7 @@ import com.bulalo.whackafoe.WaFGame;
 public class GameScreen implements Screen{
 	private static List<Button> gameButtons;
 	Button pause;
-	
+	 
 	GameWorld world;
 	GameRenderer renderer;
 	WaFGame game;

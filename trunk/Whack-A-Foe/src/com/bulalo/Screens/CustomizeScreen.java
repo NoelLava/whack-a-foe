@@ -12,7 +12,7 @@ import com.bulalo.Helpers.AssetLoader;
 import com.bulalo.Helpers.InputHandler;
 import com.bulalo.UI.Button;
 import com.bulalo.whackafoe.WaFGame;
-
+ 
 public class CustomizeScreen implements Screen {
 	WaFGame game;
 	CustomizeRenderer renderer;

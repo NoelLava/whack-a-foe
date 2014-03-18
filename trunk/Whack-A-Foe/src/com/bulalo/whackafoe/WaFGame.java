@@ -1,5 +1,5 @@
 package com.bulalo.whackafoe;
-
+ 
 import com.badlogic.gdx.Game;
 import com.bulalo.Helpers.AssetLoader;
 import com.bulalo.Screens.CustomizeScreen;

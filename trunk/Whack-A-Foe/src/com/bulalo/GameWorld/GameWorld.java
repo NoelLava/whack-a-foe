@@ -45,7 +45,7 @@ public class GameWorld {
 	private long seconds = 60;
 
 	public GameWorld() {
-
+ 
 		// dummies ==========================================
 		dummies = new ArrayList<Dummy>();
 //		int r = rand.nextInt(9);

@@ -90,7 +90,7 @@ public class CustomizeRenderer {
 		batcher.draw(region, table.getX(), table.getY(), table.getWidth(),
 				table.getHeight());
 	}
-
+ 
 	public void drawTable1(TextureRegion region, float x, float y, float runTime) {
 		batcher.draw(region, table1.getX(), table1.getY(), table1.getWidth(),
 				table1.getHeight());
