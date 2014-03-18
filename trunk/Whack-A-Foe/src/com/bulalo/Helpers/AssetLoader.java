@@ -304,6 +304,7 @@ public class AssetLoader {
 		timeBoostUp.flip(false, true);
 		timeBoostDown.flip(false, true);
 		scoreBoostUp.flip(false, true);
+		scoreBoostDown.flip(false, true);
 		
 		// Fonts ===============================================================================================
 		digital = new BitmapFont(Gdx.files.internal("font/Digital.fnt"));
