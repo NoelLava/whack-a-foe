@@ -4,11 +4,12 @@ import java.util.List;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
-import com.bulalo.CustomizeWorld.CustomInputHandler;
 import com.bulalo.CustomizeWorld.CustomWorld;
 import com.bulalo.CustomizeWorld.CustomizeRenderer;
 import com.bulalo.GameObjects.Tables;
+import com.bulalo.GameWorld.GameWorld;
 import com.bulalo.Helpers.AssetLoader;
+import com.bulalo.Helpers.InputHandler;
 import com.bulalo.UI.Button;
 import com.bulalo.whackafoe.WaFGame;
 
@@ -19,6 +20,7 @@ public class CustomizeScreen implements Screen {
 	private float runTime = 0;
 	private CustomWorld custom;
 	private Tables table;
+	private GameWorld world;
 	
 	private static List<Button> customButtons;
 	private Button backButton;
@@ -43,7 +45,7 @@ public class CustomizeScreen implements Screen {
 		System.out.println("Custom Screen Attached");
 		custom = new CustomWorld();			//initialize the gameWorld
 		renderer = new CustomizeRenderer(custom);  //initialize the gameRenderer
-		Gdx.input.setInputProcessor(new CustomInputHandler(custom, screenWidth/gameWidth, screenHeight/gameHeight));
+		Gdx.input.setInputProcessor(new InputHandler(world, screenWidth/gameWidth, screenHeight/gameHeight));
 		
 		customButtons = CustomWorld.getCustomButtons();
 		backButton = customButtons.get(0);
