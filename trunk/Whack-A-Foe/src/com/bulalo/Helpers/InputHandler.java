@@ -1,0 +1,173 @@
+package com.bulalo.Helpers;
+
+import java.util.List;
+
+import com.badlogic.gdx.InputProcessor;
+import com.bulalo.CustomizeWorld.CustomWorld;
+import com.bulalo.GameObjects.Dummy;
+import com.bulalo.GameObjects.HammerPosition;
+import com.bulalo.GameWorld.GameWorld;
+import com.bulalo.UI.Button;
+
+public class InputHandler implements InputProcessor {
+	private GameWorld myWorld;
+	private Dummy myDummy;
+
+	private static List<Dummy> dummies;
+	private static List<Button> gameButtons;
+	private static List<HammerPosition> hammerAngles;
+	private static List<Button> customButton; 
+	
+	private static boolean woodTrue,steelTrue,carbonTrue,bossTrue,farmerTrue,boyTrue;
+	
+	float scaleFactorX;
+	float scaleFactorY;
+
+	public InputHandler(GameWorld myWorld, float scaleFactorX,
+			float scaleFactorY) {
+		this.myWorld = myWorld;
+		dummies = GameWorld.getDummies();
+		gameButtons = GameWorld.getGameButtons();
+		hammerAngles = GameWorld.getHammerAngles();
+		customButton = CustomWorld.getCustomButtons();
+		
+		this.scaleFactorX = scaleFactorX;
+		this.scaleFactorY = scaleFactorY;
+
+	}
+
+	@Override
+	public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+		screenX = scaleX(screenX);
+		screenY = scaleY(screenY);
+
+		for (Dummy dummy : dummies) {
+			dummy.isTouchDown(screenX, screenY);
+
+			for (HammerPosition hammerAngle : hammerAngles) {
+				hammerAngle.isTouchDown(screenX, screenY);
+				if (dummy.isPressed() && hammerAngle.isPressed()) {
+		 			AssetLoader.hitSmash.play();
+				} else if(hammerAngle.isPressed()){
+					AssetLoader.hitEmpty.play();
+				}
+			}
+
+			if (dummy.isPressed()) {
+				addScore(1);
+			}
+		}
+
+		for (Button thisButton : gameButtons) {
+			thisButton.isTouchDown(screenX, screenY);
+		}
+		
+		for (Button buttons : customButton){
+			buttons.isTouchDown(screenX, screenY);
+			if(customButton.get(0).isJustPressed()){
+				woodTrue = true;
+			}
+			else if(customButton.get(1).isJustPressed()){
+				steelTrue = true;
+			}
+			else if(customButton.get(2).isJustPressed()){
+				carbonTrue = true;
+			}
+			
+			if(customButton.get(3).isJustPressed()){
+				bossTrue = true;
+			}
+			else if(customButton.get(4).isJustPressed()){
+				farmerTrue = true;
+			}
+			else if(customButton.get(5).isJustPressed()){
+				boyTrue = true;
+			}
+		}
+
+		return true;
+	}
+
+	@Override
+	public boolean touchUp(int screenX, int screenY, int pointer, int button) {
+		screenX = scaleX(screenX);
+		screenY = scaleY(screenY);
+
+		for (Dummy dummy : dummies) {
+			if (dummy.isTouchUp(screenX, screenY)) {
+				return true;
+			}
+		}
+
+		for (Button thisButton : gameButtons) {
+			if (thisButton.isTouchUp(screenX, screenY)) {
+				return true;
+			}
+		}
+
+		for (HammerPosition hammerAngle : hammerAngles) {
+			if (hammerAngle.isTouchUp(screenX, screenY)) {
+				return true;
+			}
+		}
+		
+		for (Button buttons : customButton){
+			if (buttons.isTouchUp(screenX, screenY)) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	@Override
+	public boolean keyDown(int keycode) {
+		return false;
+	}
+
+	@Override
+	public boolean keyUp(int keycode) {
+		return false;
+	}
+
+	@Override
+	public boolean keyTyped(char character) {
+		return false;
+	}
+
+	@Override
+	public boolean touchDragged(int screenX, int screenY, int pointer) {
+		return false;
+	}
+
+	@Override
+	public boolean mouseMoved(int screenX, int screenY) {
+		return false;
+	}
+
+	@Override
+	public boolean scrolled(int amount) {
+		return false;
+	}
+
+	private int scaleX(int screenX) {
+		return (int) (screenX / scaleFactorX);
+	}
+
+	private int scaleY(int screenY) {
+		return (int) (screenY / scaleFactorY);
+	}
+
+	private void addScore(int increment) {
+		myWorld.addScore(increment);
+	}
+
+	public static List<Dummy> getDummies() {
+		return dummies;
+	}
+	
+	public static List<Button> getCustomButton(){
+		return customButton;
+	}
+
+}
