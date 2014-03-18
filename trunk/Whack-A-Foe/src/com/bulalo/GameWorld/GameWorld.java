@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import com.badlogic.gdx.utils.TimeUtils;
 import com.bulalo.GameObjects.Dummy;
 import com.bulalo.GameObjects.HammerPosition;
 import com.bulalo.GameObjects.Timer;
@@ -13,9 +12,10 @@ import com.bulalo.Helpers.AssetLoader;
 import com.bulalo.UI.Button;
 
 public class GameWorld {
-	private Timer timer, dummyTimer;
+	private Timer timer, dummyTimer, gameTimer;
 	private Dummy dummy;
-
+	private GameRenderer renderer;
+	
 	// Game Counters ===============================================================
 	public static final float[] coordinateX = { 27f, 63.25f, 99f, 21f, 62.75f,
 			103.5f, 17.75f, 62.75f, 108f };
@@ -42,17 +42,19 @@ public class GameWorld {
 	
 	private int score;
 	private int millis = 0;
-	private long seconds = 60;
+	private int seconds = 60;
+	private int readyCount = 3;
+	
+	private GameState currentState;
+	public enum GameState {
+		READY, RUNNING, GAMEOVER, HIGHSCORE
+	}
 
 	public GameWorld() {
-
+		currentState = GameState.READY;
+		
 		// dummies ==========================================
 		dummies = new ArrayList<Dummy>();
-//		int r = rand.nextInt(9);
-//
-//		dummy = new Dummy(300, x, y, 35, 50);
-//		dummy.spawn(coordinateX[r], coordinateY[r]);
-//		dummies.add(dummy);
 
 		// buttons ==========================================
 		gameButtons = new ArrayList<Button>();
@@ -77,21 +79,82 @@ public class GameWorld {
 		
 		dummyTimer = new Timer(1/7);
 		dummyTimer.start();
+		
+		gameTimer = new Timer(3);
+		gameTimer.start();
 	}
 	
 
-	public void update(float delta) {		
-		checkTimer();
-
+	public void update(float delta) {	
 		runTime += delta;
+	
+		switch (currentState) {
+		case READY:
+			updateReady(delta);
+			break;
+		case RUNNING:
+			updateRunning(delta);
+			break;
+		default:
+			break;
+		}
+
+	}
+
+	private void updateRunning(float delta) {
+		checkTimer();
+		
 		inGame();
 		updateGame();
 		//checkHit();
 		respawn();
 		//System.out.println("array size - " + dummies.size());
-		System.out.println("TIMER :  " + seconds + " : " + millis);
 	}
 
+	private void updateReady(float delta) {
+		if(gameTimer.hasCompleted()){
+			startGame();
+		}	
+	}
+
+	public void startGame() {
+        currentState = GameState.RUNNING;
+    }
+
+    public void readyGame() {
+        currentState = GameState.READY;
+    }
+    
+    public void restart() {
+		score = 0;
+		seconds = 60;
+		//bird.onRestart(midPointY - 5);
+		//scroller.onRestart();
+		readyGame();
+	}
+    
+    public boolean isReady() {
+        return currentState == GameState.READY;
+    }
+
+	public boolean isGameOver() {
+		return currentState == GameState.GAMEOVER;
+	}
+	
+	public boolean isHighScore() {
+	    return currentState == GameState.HIGHSCORE;
+	}
+
+    public boolean isRunning() {
+        return currentState == GameState.RUNNING;
+    }
+    
+	public void setRenderer(GameRenderer renderer) {
+		this.renderer = renderer;
+	}
+    
+	
+	//GAME METHODS ======================================================================
 	// adds multiple dummies in the arraylist
 	public void inGame() {
 		// dummies = new ArrayList<Dummy>();
@@ -203,12 +266,15 @@ public class GameWorld {
 			millis++;
 			if(millis >= 60){
 				seconds--;
+				readyCount--;
 				millis = 0;
 			}
 			timer.start();
 		}
 	}
 	
+	
+	// Getters and Setters ====================================================================================
 	public int getScore() {
 		return score;
 	}
@@ -217,8 +283,12 @@ public class GameWorld {
 		return millis;
 	}
 	
-	public long getSeconds(){
+	public int getSeconds(){
 		return seconds;
+	}
+	
+	public int getReadyCount(){
+		return readyCount;
 	}
 
 	public void addScore(int increment) {
