@@ -80,7 +80,6 @@ public class GameRenderer {
 		thisAnimation = AssetLoader.defaultDummyAnimation;
 		thisAnimationDies = AssetLoader.defaultDummyDies;
 		 
-				
 		dummyAnimation = AssetLoader.dummyAnimation;
 		dummyDies = AssetLoader.dummyDies;
 		tableScreen = AssetLoader.tableScreen;
@@ -163,6 +162,7 @@ public class GameRenderer {
 
 		// Begin SpriteBatch
 		batcher.begin();
+		
 		// Disable transparency
 		// This is good for performance when drawing images that do not require
 		// transparency.
@@ -173,25 +173,7 @@ public class GameRenderer {
 
 		batcher.enableBlending();
 
-		if (custom.checkDummy2() == true) {
-			this.thisAnimation = AssetLoader.defaultDummyAnimation;
-			this.thisAnimationDies = AssetLoader.defaultDummyDies;
-			
-			custom.falseDummy2();
-		} else if (custom.checkDummy() == true) {
-			this.thisAnimation = AssetLoader.officeDummyAnimation;
-			this.thisAnimationDies = AssetLoader.officeDummyDies;
-			
-			custom.falseDummy();
-		} else if (custom.checkDummy1() == true) {
-			this.thisAnimation = AssetLoader.janitorDummyAnimation;
-			this.thisAnimationDies = AssetLoader.janitorDummyDies;
-			
-			custom.falseDummy1();
-		}
-		
-		getAnimation();
-		getAnimationDies();
+		changeDummyAnimation();
 		
 		drawDummy(thisAnimation,thisAnimationDies,runTime);
 		drawScoreTime(runTime);
@@ -220,53 +202,42 @@ public class GameRenderer {
 		return this.table;
 	}
 	
-	private TextureRegion getHammerLeft(){
+	private void changeDummyAnimation(){
+		if (custom.checkDummy2() == true) {
+			this.thisAnimation = AssetLoader.defaultDummyAnimation;
+			this.thisAnimationDies = AssetLoader.defaultDummyDies;
+
+			custom.falseDummy2();
+		} else if (custom.checkDummy() == true) {
+			this.thisAnimation = AssetLoader.officeDummyAnimation;
+			this.thisAnimationDies = AssetLoader.officeDummyDies;
+			
+			custom.falseDummy();
+		} else if (custom.checkDummy1() == true) {
+			this.thisAnimation = AssetLoader.janitorDummyAnimation;
+			this.thisAnimationDies = AssetLoader.janitorDummyDies;
+			
+			custom.falseDummy1();
+		}
+	}
+
+	private void changeHammer(){
 		if (shop.checkHammer() == true){
 			this.hamLeft = AssetLoader.HamWoodLeft;
-			shop.falseCheck();
-		} else if(shop.checkHammer1() == true){
-			this.hamLeft = AssetLoader.HamSteelLeft;
-			shop.falseCheck1();
-		} else if(shop.checkHammer2() == true){
-			this.hamLeft = AssetLoader.HamGoldLeft;
-			shop.falseCheck2();
-		}
-		return hamLeft;
-	}
-	
-	private TextureRegion getHammerMid(){
-		if (shop.checkHammer() == true){
 			this.hamMid = AssetLoader.HamWoodMid;
-			shop.falseCheck();
-		} else if(shop.checkHammer1() == true){
-			this.hamMid = AssetLoader.HamSteelMid;
-			shop.falseCheck1();
-		} else if(shop.checkHammer2() == true){
-			this.hamMid = AssetLoader.HamGoldMid;
-			shop.falseCheck2();
-		}
-		return hamMid;
-	}
-	
-	private TextureRegion getHammerRight(){
-		if (shop.checkHammer() == true){
 			this.hamRight = AssetLoader.HamWoodRight;
 			shop.falseCheck();
 		} else if(shop.checkHammer1() == true){
+			this.hamLeft = AssetLoader.HamSteelLeft;
+			this.hamMid = AssetLoader.HamSteelMid;
 			this.hamRight = AssetLoader.HamSteelRight;
 			shop.falseCheck1();
 		} else if(shop.checkHammer2() == true){
+			this.hamLeft = AssetLoader.HamGoldLeft;
+			this.hamMid = AssetLoader.HamGoldMid;
 			this.hamRight = AssetLoader.HamGoldRight;
 			shop.falseCheck2();
 		}
-		return hamRight;
-	}
-	
-	private void changeHammer(){
-		hamMid = getHammerMid();
-		hamLeft = getHammerLeft();
-		hamRight = getHammerRight();
-
 	}
 
 	

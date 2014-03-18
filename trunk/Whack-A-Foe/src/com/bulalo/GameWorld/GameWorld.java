@@ -42,7 +42,7 @@ public class GameWorld {
 	
 	private int score;
 	private int millis = 0;
-	private long start, seconds = 60;
+	private long seconds = 60;
 
 	public GameWorld() {
 
