@@ -38,13 +38,6 @@ public class CustomInputHandler implements InputProcessor{
 		
 		customButtons = CustomWorld.getCustomButtons();
 
-		table = customWorld.getTable();
-		table1 = customWorld.getTable1();
-		table2 = customWorld.getTable2();
-		
-		dummy = customWorld.getDummy();
-		dummy1 = customWorld.getDummy1();
-		dummy2 = customWorld.getDummy2();
 		
 		this.scaleFactorX = scaleFactorX;
         this.scaleFactorY = scaleFactorY;

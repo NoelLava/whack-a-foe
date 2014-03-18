@@ -54,9 +54,6 @@ public class CustomizeRenderer {
 	}
 
 	public static TextureRegion getBackground() {
-		table = custom.getTable();
-		table1 = custom.getTable();
-		table2 = custom.getTable();
 		if (table.isPressed() == true) {
 			System.out.println("changed to wood");
 			background = AssetLoader.wood;
@@ -75,13 +72,7 @@ public class CustomizeRenderer {
 	
 	private void initAssets() {
 		csbg = AssetLoader.csBg;
-		wood = AssetLoader.wood;
 		
-		steel = AssetLoader.steel;
-		carbon = AssetLoader.carbon;
-		dummyDefault = AssetLoader.dummyDefault4;
-		dummyOffice = AssetLoader.dummyOffice4;
-		dummyJanitor = AssetLoader.dummyJanitor4;
 		
 		//background = AssetLoader.getBackground();
 		//background = getBackground();
@@ -89,13 +80,6 @@ public class CustomizeRenderer {
 	}
 
 	private void initGameObjects() {
-		table = custom.getTable();
-		table1 = custom.getTable1();
-		table2 = custom.getTable2();
-	
-		dummy = custom.getDummy();
-		dummy1 = custom.getDummy1();
-		dummy2 = custom.getDummy2();
 	}
 	
 	public void drawBackground(TextureRegion region) {
@@ -170,12 +154,6 @@ public class CustomizeRenderer {
         // End SpriteBatch
         
         drawButtons();
-        drawTable(wood,20,50,runTime);
-        drawTable1(steel,100,50,runTime);
-        drawTable2(carbon,180,50,runTime);
-        drawDummy(dummyOffice,20,150,runTime);
-        drawDummy1(dummyJanitor,100,150,runTime);
-        drawDummy2(dummyDefault,180,150,runTime);
         
         batcher.end();
 
