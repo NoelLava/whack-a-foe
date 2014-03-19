@@ -103,11 +103,19 @@ public class GameWorld {
 
 	private void updateRunning(float delta) {
 		checkTimer();
+		if(seconds > 0){
+			inGame();
+			updateGame();
+			//checkHit();
+			respawn();
+		} else {
+			for(Dummy dummy : dummies){
+				dummies.remove(dummy);
+			}
+			currentState = GameState.GAMEOVER;
+			System.out.println("GAMEOVER!");
+		}
 		
-		inGame();
-		updateGame();
-		//checkHit();
-		respawn();
 		//System.out.println("array size - " + dummies.size());
 	}
 
