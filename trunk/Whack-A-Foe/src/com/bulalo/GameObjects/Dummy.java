@@ -75,7 +75,7 @@ public class Dummy {
 		bounds = new Rectangle(x, y, (float)width, (float)height);
 		markedForRemoval = false;
 	
-	}
+	} 
 	
 	public void markToRemove(){
 		markedForRemoval = true;

@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.badlogic.gdx.InputProcessor;
 import com.bulalo.GameObjects.Hammers;
+import com.bulalo.GameObjects.Upgrades;
 import com.bulalo.UI.Button;
 
 public class ShopInputHandler implements InputProcessor {
@@ -13,9 +14,19 @@ public class ShopInputHandler implements InputProcessor {
 	private Hammers hammer1;
 	private Hammers hammer2;
 	
+	private Upgrades upgradeOn;
+	private Upgrades upgradeOff;
+	private Upgrades upgradeOn1;
+	private Upgrades upgradeOff1;
+	
 	private static boolean hammerTrue;
 	private static boolean hammer1True;
 	private static boolean hammer2True;
+	
+	private static boolean upgradeOnTrue;
+	private static boolean upgradeOffTrue;
+	private static boolean upgradeOn1True;
+	private static boolean upgradeOff1True;
 	
 	private static List<Button> shopButtons;
 	
@@ -31,6 +42,11 @@ public class ShopInputHandler implements InputProcessor {
 		hammer = shopWorld.getHammer();
 		hammer1 = shopWorld.getHammer1();
 		hammer2 = shopWorld.getHammer2();
+		
+		upgradeOn = shopWorld.getUpgradeOn();
+		upgradeOff = shopWorld.getUpgradeOff();
+		upgradeOn1 = shopWorld.getUpgradeOn1();
+		upgradeOff1 = shopWorld.getUpgradeOff1();
 		
 		this.scaleFactorX = scaleFactorX;
         this.scaleFactorY = scaleFactorY;
@@ -56,6 +72,27 @@ public class ShopInputHandler implements InputProcessor {
 		
 	}
 	
+	public boolean checkUpgradeOn(){
+		return upgradeOnTrue;
+	
+	}
+	
+	public boolean checkUpgradeOff(){
+		return upgradeOffTrue;
+		
+	}
+	
+	public boolean checkUpgradeOn1(){
+		return upgradeOn1True;
+	
+	}
+	
+	public boolean checkUpgradeOff1(){
+		return upgradeOff1True;
+		
+	}
+	
+	
 	
 	@Override
 	public boolean touchDown(int screenX, int screenY, int pointer, int button) {
@@ -73,6 +110,22 @@ public class ShopInputHandler implements InputProcessor {
 		}else if(hammer2.isTouchDown(screenX, screenY)){
 			hammer2True = true;
 			System.out.println("hammer2 touched");
+		}
+		
+		System.out.println("");
+		
+		if(upgradeOn.isTouchDown(screenX, screenY)){
+			upgradeOnTrue = true;
+			System.out.println("upgrade on touched");
+		}else if(upgradeOff.isTouchDown(screenX, screenY)){
+			upgradeOffTrue = true;
+			System.out.println("upgrade off touched");
+		}else if(upgradeOn1.isTouchDown(screenX, screenY)){
+			upgradeOn1True = true;
+			System.out.println("upgrade1 on touched ");
+		}else if(upgradeOff1.isTouchDown(screenX, screenY)){
+			upgradeOff1True = true;
+			System.out.println("upgrade1 off touched");
 		}
 		
 		for (Button thisButton : shopButtons) {
@@ -98,6 +151,25 @@ public class ShopInputHandler implements InputProcessor {
         }
         
         if(hammer2.isTouchUp(screenX, screenY)){
+        	return true;
+        }
+        
+        if(upgradeOn.isTouchUp(screenX, screenY)){
+        	return true;
+        	
+        }
+        
+        if(upgradeOff.isTouchUp(screenX, screenY)){
+        	return true;
+        			
+        }
+        
+        if(upgradeOn1.isTouchUp(screenX, screenY)){
+        	return true;
+        	
+        }
+        
+        if(upgradeOff1.isTouchUp(screenX, screenY)){
         	return true;
         }
         
@@ -167,5 +239,25 @@ public class ShopInputHandler implements InputProcessor {
     	return hammer2True = false;
     
     }
+    
+    public boolean falseUpgradeOn(){
+    	return upgradeOnTrue = false;
+    	
+    }
+    
+    public boolean falseUpgradeOff(){
+    	return upgradeOffTrue = false;
+    	
+    }
+    
+    public boolean falseUpgradeOn1(){
+    	return upgradeOn1True = false;
+    	
+    }
+    
+    public boolean falseUpgradeOff1(){
+    	return upgradeOff1True = false;
+    	
+    } 
 
 }

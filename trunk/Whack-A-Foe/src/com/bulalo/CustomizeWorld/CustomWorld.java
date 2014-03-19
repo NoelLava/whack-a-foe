@@ -1,5 +1,5 @@
 package com.bulalo.CustomizeWorld;
-
+ 
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,11 +14,11 @@ public class CustomWorld {
 	private static List<Button> customButtons;
 	private Button backButton;
 	
-	private Tables table;
-	private Tables table1;
-	private Tables table2;
+	private Button table;
+	private Button table1;
+	private Button table2;
 	
-	private CustomDummy dummy,dummy1,dummy2;
+	private Button dummy,dummy1,dummy2;
 	
 	private Vector2 position;
 	private float x,y;
@@ -33,55 +33,32 @@ public class CustomWorld {
 		backButton = new Button(137.85f, 1.85f, 21.5f, 20.5f,
 				AssetLoader.backButton, AssetLoader.backPressed);
 
-		customButtons.add(backButton);
+		table = new Button(20, 50, 30, 30, AssetLoader.woodIconUp, AssetLoader.woodIconDown);	
 		
-		table = new Tables(20, 50, 22, 42);	
+		table1 = new Button(60, 50, 30, 30, AssetLoader.steelIconUp, AssetLoader.steelIconDown);	
 		
-		table1 = new Tables(60, 50, 22, 42);	
-		
-		table2 = new Tables(100, 50, 22, 42);	
+		table2 = new Button(100, 50, 30, 30, AssetLoader.carbonIconUp,AssetLoader.carbonIconDown);	
 	
-		dummy = new CustomDummy(20, 180, 22, 42);
-		dummy1 = new CustomDummy(60, 180, 22, 42);
-		dummy2 = new CustomDummy(100, 180, 22, 42);
+		dummy = new Button(20, 180, 30, 30, AssetLoader.bossIconUp,AssetLoader.bossIconDown);
+		dummy1 = new Button(60, 180, 30, 30, AssetLoader.farmerIconUp,AssetLoader.farmerIconDown);
+		dummy2 = new Button(100, 180, 30, 30, AssetLoader.boyIconUp,AssetLoader.boyIconDown);
+		
+		customButtons.add(backButton);
+		customButtons.add(table);
+		customButtons.add(table1);
+		customButtons.add(table2);
+		customButtons.add(dummy);
+		customButtons.add(dummy1);
+		customButtons.add(dummy2);
+		
+		
 		
 	}
 	
 	public void update(float delta){	
-		table.update(delta);
-		table1.update(delta);
-		table2.update(delta);
+	}
 	
-		dummy.update(delta);
-		dummy1.update(delta);
-		dummy2.update(delta);
 		
-	}
-	
-	public Tables getTable(){
-		return table;
-	}
-	
-	public Tables getTable1(){
-		return table1;
-	}
-	
-	public Tables getTable2(){
-		return table2;
-	}
-	
-	public CustomDummy getDummy(){
-		return dummy;
-	}
-	
-	public CustomDummy getDummy1(){
-		return dummy1;
-	}
-	
-	public CustomDummy getDummy2(){
-		return dummy2;
-	}
-	
 	public static List<Button> getCustomButtons() {
 		return customButtons;
 	}

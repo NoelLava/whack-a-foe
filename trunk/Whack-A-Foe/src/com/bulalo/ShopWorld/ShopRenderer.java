@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.bulalo.GameObjects.Hammers;
+import com.bulalo.GameObjects.Upgrades;
 import com.bulalo.Helpers.AssetLoader;
 import com.bulalo.UI.Button;
 
@@ -25,6 +26,12 @@ public class ShopRenderer {
 	private TextureRegion kahoy;
 	private TextureRegion bakal;
 	private TextureRegion ginto;
+	
+	private static Upgrades upgradeOn, upgradeOff, upgradeOn1, upgradeOff1;
+	private TextureRegion timeBoostUp;
+	private TextureRegion timeBoostDown;
+	private TextureRegion scoreBoostUp;
+	private TextureRegion scoreBoostDown;
 	
 	private static TextureRegion pamalo;
 	
@@ -72,6 +79,11 @@ public class ShopRenderer {
 		kahoy = AssetLoader.kahoy;
 		bakal = AssetLoader.bakal;
 		ginto = AssetLoader.ginto;
+		
+		timeBoostUp = AssetLoader.timeBoostUp;
+		timeBoostDown = AssetLoader.timeBoostDown;
+		scoreBoostUp = AssetLoader.scoreBoostUp;
+		scoreBoostDown = AssetLoader.scoreBoostDown;
 
 	}
 	
@@ -79,6 +91,11 @@ public class ShopRenderer {
 		hammer = shop.getHammer();
 		hammer1 = shop.getHammer1();
 		hammer2 = shop.getHammer2();
+		
+		upgradeOn = shop.getUpgradeOn();
+		upgradeOff = shop.getUpgradeOff();
+		upgradeOn1 = shop.getUpgradeOn();
+		upgradeOff1 = shop.getUpgradeOff1();
 
 	}
 	
@@ -100,6 +117,26 @@ public class ShopRenderer {
 	public void drawHammer2(TextureRegion region, float x, float y, float runTime){
 		batcher.draw(region, hammer2.getX(), hammer2.getY(), hammer2.getWidth(),
 				hammer2.getHeight());
+	}
+	
+	public void drawUpgradeOn(TextureRegion region, float x, float y, float runTime){
+		batcher.draw(region, upgradeOn.getX(), upgradeOn.getY(), upgradeOn.getWidth(),
+				upgradeOn.getHeight());
+	}
+	
+	public void drawUpgradeOff(TextureRegion region, float x, float y, float runTime){
+		batcher.draw(region, upgradeOff.getX(), upgradeOff.getY(), upgradeOff.getWidth(),
+				upgradeOff.getHeight());
+	}
+	
+	public void drawUpgradeOn1(TextureRegion region, float x, float y, float runTime){
+		batcher.draw(region, upgradeOn1.getX(), upgradeOn1.getY(), upgradeOn1.getWidth(),
+				upgradeOn1.getHeight());
+	}
+	
+	public void drawUpgradeOff1(TextureRegion region, float x, float y, float runTime){
+		batcher.draw(region, upgradeOff1.getX(), upgradeOff1.getY(), upgradeOff1.getWidth(),
+				upgradeOff1.getHeight());
 	}
 	
 	private void drawButtons(){
@@ -131,6 +168,10 @@ public class ShopRenderer {
 		drawHammer(kahoy, 20, 50, runTime);
 		drawHammer1(bakal, 100, 50, runTime);
 		drawHammer2(ginto, 180, 50, runTime);
+		drawUpgradeOn(timeBoostUp, 20, 150, runTime);
+		drawUpgradeOff(timeBoostDown, 100, 150, runTime);
+		drawUpgradeOn1(scoreBoostUp, 180, 150, runTime);
+		drawUpgradeOff1(scoreBoostDown, 260, 150, runTime);
 
 		
 		batcher.end();

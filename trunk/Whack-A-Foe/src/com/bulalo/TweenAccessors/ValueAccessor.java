@@ -1,6 +1,6 @@
 //The ValueAccessor class will help us tween the val variable in the Value class 
 package com.bulalo.TweenAccessors;
-
+ 
 import aurelienribon.tweenengine.TweenAccessor;
 
 public class ValueAccessor implements TweenAccessor<Value> {
