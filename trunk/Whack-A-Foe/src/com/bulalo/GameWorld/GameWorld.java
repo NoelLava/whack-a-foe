@@ -180,7 +180,7 @@ public class GameWorld {
 
 	}
 
-	public void updateRunning() {
+	public void updateCheck() {
 		if (!dummy.isAlive()) {
 			dummies.remove(dummy);
 	
