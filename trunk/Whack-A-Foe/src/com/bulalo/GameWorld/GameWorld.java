@@ -109,9 +109,9 @@ public class GameWorld {
 			//checkHit();
 			respawn();
 		} else {
-			for(Dummy dummy : dummies){
-				dummies.remove(dummy);
-			}
+//			for(Dummy dummy : dummies){
+//				dummies.remove(dummy);
+//			}
 			currentState = GameState.GAMEOVER;
 			System.out.println("GAMEOVER!");
 		}
