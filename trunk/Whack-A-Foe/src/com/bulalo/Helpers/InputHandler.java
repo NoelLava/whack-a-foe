@@ -64,25 +64,7 @@ public class InputHandler implements InputProcessor {
 		
 		for (Button buttons : customButton){
 			buttons.isTouchDown(screenX, screenY);
-			if(customButton.get(0).isJustPressed()){
-				woodTrue = true;
-			}
-			else if(customButton.get(1).isJustPressed()){
-				steelTrue = true;
-			}
-			else if(customButton.get(2).isJustPressed()){
-				carbonTrue = true;
-			}
 			
-			if(customButton.get(3).isJustPressed()){
-				bossTrue = true;
-			}
-			else if(customButton.get(4).isJustPressed()){
-				farmerTrue = true;
-			}
-			else if(customButton.get(5).isJustPressed()){
-				boyTrue = true;
-			}
 		}
 
 		return true;

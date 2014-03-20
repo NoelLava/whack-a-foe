@@ -10,22 +10,14 @@ import com.bulalo.UI.Button;
 public class CustomInputHandler implements InputProcessor{
 	private CustomWorld customWorld;
 	
-	private Tables table;
-	private Tables table1;
-	private Tables table2;
 	
-	private CustomDummy dummy;
-	private CustomDummy dummy1;
-	private CustomDummy dummy2;
+	private static boolean woodTrue;
+	private static boolean steelTrue;
+	private static boolean carbonTrue;
 	
-	
-	private static boolean tableTrue;
-	private static boolean table1True;
-	private static boolean table2True;
-	
-	private static boolean dummyTrue;
-	private static boolean dummy1True;
-	private static boolean dummy2True;
+	private static boolean bossTrue;
+	private static boolean farmerTrue;
+	private static boolean boyTrue;
 	
 	private static List<Button> customButtons;
 
@@ -49,27 +41,27 @@ public class CustomInputHandler implements InputProcessor{
 	}
 	
 	public boolean checkTable(){
-		return tableTrue;
+		return woodTrue;
 	}
 	
 	public boolean checkTable1(){
-		return table1True;
+		return steelTrue;
 	}
 	
 	public boolean checkTable2(){
-		return table2True;
+		return carbonTrue;
 	}
 	
 	public boolean checkDummy2(){
-		return dummy2True;
+		return boyTrue;
 	}
 	
 	public boolean checkDummy1(){
-		return dummy1True;
+		return farmerTrue;
 	}
 	
 	public boolean checkDummy(){
-		return dummyTrue;
+		return bossTrue;
 	}
 	
 	@Override
@@ -77,36 +69,28 @@ public class CustomInputHandler implements InputProcessor{
 		screenX = scaleX(screenX);
 		screenY = scaleY(screenY);
 		
-		if(table.isTouchDown(screenX, screenY)){
-			tableTrue = true;
-			System.out.println("table touched");
-		}
-		else if(table1.isTouchDown(screenX, screenY)){
-			table1True = true;
-			System.out.println("table1 touched");
-		}
-		else if(table2.isTouchDown(screenX, screenY)){
-			table2True = true;
-			System.out.println("table2 touched");
-		}
-		
-		System.out.println(" ");
-		
-		if(dummy.isTouchDown(screenX, screenY)){
-			dummyTrue = true;
-			System.out.println("dummy touched");
-		}
-		else if(dummy1.isTouchDown(screenX, screenY)){
-			dummy1True = true;
-			System.out.println("dummy1 touched");
-		}
-		else if(dummy2.isTouchDown(screenX, screenY)){
-			dummy2True = true;
-			System.out.println("dummy2 touched");
-		}
-		
 		for (Button thisButton : customButtons) {
 			thisButton.isTouchDown(screenX, screenY);
+		
+			if(customButtons.get(1).isJustPressed()){
+				woodTrue = true;
+			}
+			else if(customButtons.get(2).isJustPressed()){
+				steelTrue = true;
+			}
+			else if(customButtons.get(3).isJustPressed()){
+				carbonTrue = true;
+			}
+			
+			if(customButtons.get(4).isJustPressed()){
+				bossTrue = true;
+			}
+			else if(customButtons.get(5).isJustPressed()){
+				farmerTrue = true;
+			}
+			else if(customButtons.get(6).isJustPressed()){
+				boyTrue = true;
+			}
 		}
 
 		return false;
@@ -114,33 +98,10 @@ public class CustomInputHandler implements InputProcessor{
 	
 	@Override
 	public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-		 screenX = scaleX(screenX);
+		screenX = scaleX(screenX);
 		screenY = scaleY(screenY);
 		
-		if(table.isTouchUp(screenX, screenY)){
-			return true;
-		}
-		
-		if(table1.isTouchUp(screenX, screenY)){
-			return true;
-		}
-		
-		if(table2.isTouchUp(screenX, screenY)){
-			return true;
-		}
-		
-		if(dummy.isTouchUp(screenX, screenY)){
-			return true;
-		}
-		
-		if(dummy1.isTouchUp(screenX, screenY)){
-			return true;
-		}
-		
-		if(dummy2.isTouchUp(screenX, screenY)){
-			return true;
-		}
-		
+	
 		for (Button thisButton : customButtons) {
 			if (thisButton.isTouchUp(screenX, screenY)) {
 				return true;
@@ -195,27 +156,27 @@ public class CustomInputHandler implements InputProcessor{
 	}
 	
 	public boolean falseCheck(){
-		return tableTrue = false;
+		return woodTrue = false;
 	}
 	
 	public boolean falseCheck1(){
-		return table1True = false;
+		return steelTrue = false;
 	}
 
 	public boolean falseCheck2(){
-		return table2True = false;
+		return carbonTrue = false;
 	}
 	
 	public boolean falseDummy2(){
-		return dummy2True = false;
+		return boyTrue = false;
 	}
 
 	public boolean falseDummy1(){
-		return dummy1True = false;
+		return farmerTrue = false;
 	}
 
 	public boolean falseDummy(){
-		return dummyTrue = false;
+		return bossTrue = false;
 	}
 
 }

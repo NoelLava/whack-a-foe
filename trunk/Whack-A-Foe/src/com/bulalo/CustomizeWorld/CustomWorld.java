@@ -20,6 +20,8 @@ public class CustomWorld {
 	
 	private Button dummy,dummy1,dummy2;
 	
+	private Button useWood, useSteel, useCarbon, useBoss, useFarmer, useBoy;
+	
 	private Vector2 position;
 	private float x,y;
 	
@@ -33,15 +35,22 @@ public class CustomWorld {
 		backButton = new Button(137.85f, 1.85f, 21.5f, 20.5f,
 				AssetLoader.backButton, AssetLoader.backPressed);
 
-		table = new Button(20, 50, 30, 30, AssetLoader.woodIconUp, AssetLoader.woodIconDown);	
+		table = new Button(20, 75, 38, 38, AssetLoader.woodIconUp, AssetLoader.woodIconDown);	
 		
-		table1 = new Button(60, 50, 30, 30, AssetLoader.steelIconUp, AssetLoader.steelIconDown);	
+		table1 = new Button(60, 75, 38, 38, AssetLoader.steelIconUp, AssetLoader.steelIconDown);	
 		
-		table2 = new Button(100, 50, 30, 30, AssetLoader.carbonIconUp,AssetLoader.carbonIconDown);	
+		table2 = new Button(100, 75, 38, 38, AssetLoader.carbonIconUp,AssetLoader.carbonIconDown);	
 	
-		dummy = new Button(20, 180, 30, 30, AssetLoader.bossIconUp,AssetLoader.bossIconDown);
-		dummy1 = new Button(60, 180, 30, 30, AssetLoader.farmerIconUp,AssetLoader.farmerIconDown);
-		dummy2 = new Button(100, 180, 30, 30, AssetLoader.boyIconUp,AssetLoader.boyIconDown);
+		dummy = new Button(20, 180, 38, 38, AssetLoader.bossIconUp,AssetLoader.bossIconDown);
+		dummy1 = new Button(60, 180, 38, 38, AssetLoader.farmerIconUp,AssetLoader.farmerIconDown);
+		dummy2 = new Button(100, 180, 38, 38, AssetLoader.boyIconUp,AssetLoader.boyIconDown);
+		
+		useWood = new Button(30,95,20,15, AssetLoader.useUp, AssetLoader.useDown);
+		useSteel = new Button(70,95,20,15, AssetLoader.useUp, AssetLoader.useDown);
+		useCarbon = new Button(110,95,20,15, AssetLoader.useUp, AssetLoader.useDown);
+		useBoss = new Button(30,200,20,15, AssetLoader.useUp, AssetLoader.useDown);
+		useFarmer = new Button(70,200,20,15, AssetLoader.useUp, AssetLoader.useDown);
+		useBoy = new Button(110,200,20,15, AssetLoader.useUp, AssetLoader.useDown);
 		
 		customButtons.add(backButton);
 		customButtons.add(table);
@@ -50,6 +59,12 @@ public class CustomWorld {
 		customButtons.add(dummy);
 		customButtons.add(dummy1);
 		customButtons.add(dummy2);
+		customButtons.add(useWood);
+		customButtons.add(useSteel);
+		customButtons.add(useCarbon);
+		customButtons.add(useBoss);
+		customButtons.add(useFarmer);
+		customButtons.add(useBoy);
 		
 		
 		

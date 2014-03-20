@@ -32,11 +32,6 @@ public class GameRenderer {
 	private List<Dummy> dummies;
 	private List<Button> gameButtons;
 	private List<HammerPosition> hammerPositions;
-<<<<<<< HEAD
- 
-=======
-
->>>>>>> 2d2096216484ac50815143c03cc7c34a34daf7c0
 	private TextureRegion hamLeft, hamMid, hamRight;
 	private TextureRegion table;
 	private Animation dummyDefault;
