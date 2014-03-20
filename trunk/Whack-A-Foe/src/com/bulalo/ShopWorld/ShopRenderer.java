@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.bulalo.GameObjects.Hammers;
+import com.bulalo.GameObjects.Upgrades;
 import com.bulalo.Helpers.AssetLoader;
 import com.bulalo.UI.Button;
 
@@ -105,7 +106,8 @@ public class ShopRenderer {
 	private void drawButtons(){
 		for(Button button : shopButtons) {
 			button.draw(batcher);
-        }		
+        }
+		
 	}
 	
 	public void render(float runTime) {
@@ -131,7 +133,6 @@ public class ShopRenderer {
 		drawHammer(kahoy, 20, 50, runTime);
 		drawHammer1(bakal, 100, 50, runTime);
 		drawHammer2(ginto, 180, 50, runTime);
-
 		
 		batcher.end();
 	}

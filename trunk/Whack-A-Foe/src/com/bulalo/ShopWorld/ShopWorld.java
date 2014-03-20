@@ -3,15 +3,17 @@ package com.bulalo.ShopWorld;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.math.Vector2;
 import com.bulalo.GameObjects.Hammers;
+import com.bulalo.GameObjects.Upgrades;
 import com.bulalo.Helpers.AssetLoader;
 import com.bulalo.UI.Button;
 
 public class ShopWorld {
 	private static List<Button> shopButtons;
+	
 	private Button backButton;
+	private Button timeUpgradeButton;
+	private Button scoreUpgradeButton;
 
 	private Hammers hammer;
 	private Hammers hammer1;
@@ -27,20 +29,27 @@ public class ShopWorld {
 //				AssetLoader.backButton, AssetLoader.backPressed);
 		backButton = new Button(137.85f, 1.85f, 21.5f, 20.5f,
 				AssetLoader.backButton, AssetLoader.backPressed);
+		
+		timeUpgradeButton = new Button(25, 165, 50, 60,
+				AssetLoader.timeBoostUp, AssetLoader.timeBoostDown);
+		scoreUpgradeButton = new Button(90 , 165, 50, 60,
+				AssetLoader.scoreBoostUp, AssetLoader.scoreBoostDown);
 
 		shopButtons.add(backButton);
+		shopButtons.add(timeUpgradeButton);
+		shopButtons.add(scoreUpgradeButton);
 		
-		hammer = new Hammers (20, 50, 22, 42);
+		hammer = new Hammers (9, 60, 43, 53);
+		hammer1 = new Hammers (59, 60, 43, 53);
+		hammer2 = new Hammers (109, 60, 43, 53);
 		
-		hammer1 = new Hammers (60, 50, 22, 42);
-		
-		hammer2 = new Hammers (100, 50, 22, 42);
 	}
 
 	public void update(float delta) {
 		hammer.update(delta);
 		hammer1.update(delta);
 		hammer2.update(delta);
+				
 	}
 
 	public Hammers getHammer() {
