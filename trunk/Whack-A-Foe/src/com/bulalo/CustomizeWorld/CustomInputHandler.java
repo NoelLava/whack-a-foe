@@ -15,17 +15,9 @@ public class CustomInputHandler implements InputProcessor{
 	private static boolean steelTrue;
 	private static boolean carbonTrue;
 	
-	private static boolean woodIconTrue;
-	private static boolean steelIconTrue;
-	private static boolean carbonIconTrue;
-	
 	private static boolean bossTrue;
 	private static boolean farmerTrue;
 	private static boolean boyTrue;
-	
-	private static boolean bossIconTrue;
-	private static boolean farmerIconTrue;
-	private static boolean boyIconTrue;
 	
 	private static List<Button> customButtons;
 	private static List<Button> useButton;
@@ -73,29 +65,6 @@ public class CustomInputHandler implements InputProcessor{
 		return bossTrue;
 	}
 	
-	public boolean checkWoodIcon(){
-		return woodIconTrue;
-	}
-	
-	public boolean checkSteelIcon(){
-		return steelIconTrue;
-	}
-	
-	public boolean checkCarbonIcon(){
-		return carbonIconTrue;
-	}
-	
-	public boolean checkBossIcon(){
-		return bossIconTrue;
-	}
-	
-	public boolean checkFarmerIcon(){
-		return farmerIconTrue;
-	}
-	
-	public boolean checkBoyIcon(){
-		return boyIconTrue;
-	}
 	
 	@Override
 	public boolean touchDown(int screenX, int screenY, int pointer, int button) {
@@ -105,25 +74,6 @@ public class CustomInputHandler implements InputProcessor{
 		for (Button thisButton : customButtons) {
 			thisButton.isTouchDown(screenX, screenY);
 		
-			if(customButtons.get(1).isJustPressed()){
-				this.woodIconTrue = true;
-			}
-			else if(customButtons.get(2).isJustPressed()){
-				this.steelIconTrue = true;
-			}
-			else if(customButtons.get(3).isJustPressed()){
-				this.carbonIconTrue = true;
-			}
-			
-			if(customButtons.get(4).isJustPressed()){
-				this.bossIconTrue = true;
-			}
-			else if(customButtons.get(5).isJustPressed()){
-				this.farmerIconTrue = true;
-			}
-			else if(customButtons.get(6).isJustPressed()){
-				this.boyIconTrue = true;
-			}
 		}
 
 		for (Button thisButton : useButton){
@@ -242,28 +192,5 @@ public class CustomInputHandler implements InputProcessor{
 		return bossTrue = false;
 	}
 
-	public boolean falseWoodIcon(){
-		return woodIconTrue = false;
-	}
-	
-	public boolean falseSteelIcon(){
-		return steelIconTrue = false;
-	}
-	
-	public boolean falseCarbonIcon(){
-		return carbonIconTrue = false;
-	}
-	
-	public boolean falseBossIcon(){
-		return bossIconTrue = false;
-	}
-	
-	public boolean falseFarmerIcon(){
-		return farmerIconTrue = false;
-	}
-	
-	public boolean falseBoyIcon(){
-		return boyIconTrue = false;
-	}
-	
+		
 }
