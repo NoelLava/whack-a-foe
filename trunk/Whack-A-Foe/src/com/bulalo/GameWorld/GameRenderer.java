@@ -227,13 +227,13 @@ public class GameRenderer {
 	}
 
 	private TextureRegion getTable() {
-		if (custom.checkTable() == true) {
+		if (custom.checkWoodIcon() == true) {
 			this.table = AssetLoader.wood;
 			custom.falseCheck();
-		} else if (custom.checkTable1() == true) {
+		} else if (custom.checkSteelIcon() == true) {
 			this.table = AssetLoader.steel;
 			custom.falseCheck1();
-		} else if (custom.checkTable2() == true) {
+		} else if (custom.checkCarbonIcon() == true) {
 			this.table = AssetLoader.carbon;
 			custom.falseCheck2();
 		}
@@ -242,17 +242,17 @@ public class GameRenderer {
 	}
 
 	private void changeDummyAnimation() {
-		if (custom.checkDummy2() == true) {
+		if (custom.checkBoyIcon() == true) {
 			this.thisAnimation = AssetLoader.defaultDummyAnimation;
 			this.thisAnimationDies = AssetLoader.defaultDummyDies;
 
 			custom.falseDummy2();
-		} else if (custom.checkDummy() == true) {
+		} else if (custom.checkBossIcon() == true) {
 			this.thisAnimation = AssetLoader.officeDummyAnimation;
 			this.thisAnimationDies = AssetLoader.officeDummyDies;
 
 			custom.falseDummy();
-		} else if (custom.checkDummy1() == true) {
+		} else if (custom.checkFarmerIcon() == true) {
 			this.thisAnimation = AssetLoader.janitorDummyAnimation;
 			this.thisAnimationDies = AssetLoader.janitorDummyDies;
 
