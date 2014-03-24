@@ -13,12 +13,13 @@ import com.bulalo.UI.Button;
 import com.bulalo.whackafoe.WaFGame;
 
 public class GameScreen implements Screen{
-	private static List<Button> gameButtons;
-	Button pause;
 	 
 	GameWorld world;
 	GameRenderer renderer;
 	WaFGame game;
+	
+	private List<Button> gameButtons;
+	Button mainMenu;
 	
 	private float runTime = 0;
 	
@@ -45,16 +46,15 @@ public class GameScreen implements Screen{
 		
 		Gdx.input.setInputProcessor(new InputHandler(world, screenWidth/gameWidth, screenHeight/gameHeight));
 		
-		gameButtons = GameWorld.getGameButtons();
-		pause = gameButtons.get(0);
-		
+		gameButtons = GameWorld.getGameOverButtons();
+		mainMenu = gameButtons.get(1);
 	}
 	
 	@Override
 	public void render(float delta) {
-		runTime += delta;
+		runTime += delta;		
 		
-		if(pause.isJustPressed()){
+		if(mainMenu.isJustPressed()){
 			game.setScreen(new MenuScreen(game));
 			this.dispose();
 		}

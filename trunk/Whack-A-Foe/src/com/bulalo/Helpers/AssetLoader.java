@@ -83,6 +83,17 @@ public class AssetLoader {
 	public static TextureRegion timeBoostDown;
 	public static TextureRegion scoreBoostUp;
 	public static TextureRegion scoreBoostDown;
+	
+	public static Texture pauseTexture;
+	public static TextureRegion gameOverScreen;
+	public static TextureRegion pause;
+	public static TextureRegion ticket;
+	public static TextureRegion mainButtonUp;
+	public static TextureRegion mainButtonDown;
+	public static TextureRegion restartUp;
+	public static TextureRegion restartDown;
+	public static TextureRegion resumeUp;
+	public static TextureRegion resumeDown;
 
 	public static Animation defaultDummyAnimation;
 	public static Animation defaultDummyDies;
@@ -102,7 +113,7 @@ public class AssetLoader {
 	public static Sound gameOver, hitEmpty, hitFriend, hitFunny;
 	public static Music titleMusic, gameMusic, gameMusic2;
 	
-	public static BitmapFont digital, digitalShadow, bit;
+	public static BitmapFont digital, digitalShadow, bit, bitWhite;
 
 	public static void load() {
 		Texture.setEnforcePotImages(false);
@@ -143,6 +154,9 @@ public class AssetLoader {
 		splashScreen.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
 		
 		bulalo = new TextureRegion(splashScreen, 0, 0, 335, 512);
+		
+		pauseTexture = new Texture(Gdx.files.internal("data/pauseGameoverTexture.png"));
+		pauseTexture.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
 		
 		// Sounds ==============================================================================================
 
@@ -230,7 +244,27 @@ public class AssetLoader {
 		TextureRegion[] timeLogo = {timeScore, gameLogo};
 		tableScreen = new Animation(2f, timeLogo);
 		tableScreen.setPlayMode(Animation.LOOP);
-
+		
+		gameOverScreen = new TextureRegion(pauseTexture, 0, 0, 290, 464);
+		pause = new TextureRegion(pauseTexture, 290, 0, 379, 201);
+		ticket = new TextureRegion(pauseTexture, 290, 201, 391, 50);
+		mainButtonUp = new TextureRegion(pauseTexture, 290, 250, 107, 42);
+		mainButtonDown = new TextureRegion(pauseTexture, 397, 250, 107, 42);
+		restartUp = new TextureRegion(pauseTexture, 290, 292, 107, 42);
+		restartDown = new TextureRegion(pauseTexture, 397, 292, 107, 42);
+		resumeUp = new TextureRegion(pauseTexture, 290, 334, 107, 42);
+		resumeDown = new TextureRegion(pauseTexture, 397, 334, 107, 42);
+		
+		gameOverScreen.flip(false, true);
+		pause.flip(false, true);
+		ticket.flip(false, true);
+		mainButtonUp.flip(false, true);
+		mainButtonDown.flip(false, true);
+		restartUp.flip(false, true);
+		restartDown.flip(false, true);
+		resumeUp.flip(false, true);
+		resumeDown.flip(false, true);		
+		
 		// CustomizeScreen Textures ============================================================================
 		csBg = new TextureRegion(cSTexture, 0, 0, 320, 512);
 		wood = new TextureRegion(woodTexture, 0, 0, 512, 512);
@@ -319,10 +353,12 @@ public class AssetLoader {
 		digital = new BitmapFont(Gdx.files.internal("font/Digital.fnt"));
 		digitalShadow = new BitmapFont(Gdx.files.internal("font/DigitalShadow.fnt"));
 		bit = new BitmapFont(Gdx.files.internal("font/8bit.fnt"));
+		bitWhite = new BitmapFont(Gdx.files.internal("font/8bitWhite.fnt"));
 		
 		digital.setScale(.5f, -.5f);
 		digitalShadow.setScale(.5f, -.5f);
-		bit.setScale(.25f, -.25f);
+		bit.setScale(.75f, -.75f);
+		bitWhite.setScale(.75f, -.75f);
 		
 		// Animations ==========================================================================================
 		TextureRegion[] dummiesDefault = { dummyDefault1, dummyDefault2, dummyDefault3, dummyDefault4 };
@@ -360,6 +396,7 @@ public class AssetLoader {
 		hammerAngles.dispose();
 		splashScreen.dispose();
 		dummy.dispose();
+		pauseTexture.dispose();
 		
 		gameStart.dispose();
 		hitSmash.dispose();

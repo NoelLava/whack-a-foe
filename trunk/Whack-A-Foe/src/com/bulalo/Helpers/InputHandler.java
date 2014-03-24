@@ -15,11 +15,12 @@ public class InputHandler implements InputProcessor {
 
 	private static List<Dummy> dummies;
 	private static List<Button> gameButtons;
+	private static List<Button>	gameOverButtons;
 	private static List<HammerPosition> hammerAngles;
-	private static List<Button> customButton; 
-	
-	private static boolean woodTrue,steelTrue,carbonTrue,bossTrue,farmerTrue,boyTrue;
-	
+
+	private static boolean woodTrue, steelTrue, carbonTrue, bossTrue,
+			farmerTrue, boyTrue;
+
 	float scaleFactorX;
 	float scaleFactorY;
 
@@ -28,9 +29,9 @@ public class InputHandler implements InputProcessor {
 		this.myWorld = myWorld;
 		dummies = GameWorld.getDummies();
 		gameButtons = GameWorld.getGameButtons();
+		gameOverButtons = GameWorld.getGameOverButtons();
 		hammerAngles = GameWorld.getHammerAngles();
-		customButton = CustomWorld.getCustomButtons();
-		
+
 		this.scaleFactorX = scaleFactorX;
 		this.scaleFactorY = scaleFactorY;
 
@@ -41,30 +42,36 @@ public class InputHandler implements InputProcessor {
 		screenX = scaleX(screenX);
 		screenY = scaleY(screenY);
 
-		for (Dummy dummy : dummies) {
-			dummy.isTouchDown(screenX, screenY);
+		if (myWorld.isReady() || myWorld.isRunning()) {
+			for (Button thisButton : gameButtons) {
+				thisButton.isTouchDown(screenX, screenY);
+			}
+		}
 
-			for (HammerPosition hammerAngle : hammerAngles) {
-				hammerAngle.isTouchDown(screenX, screenY);
-				if (dummy.isPressed() && hammerAngle.isPressed()) {
-		 			AssetLoader.hitSmash.play();
-				} else if(hammerAngle.isPressed()){
-					AssetLoader.hitEmpty.play();
+		if (myWorld.isRunning()) {
+
+			for (Dummy dummy : dummies) {
+				dummy.isTouchDown(screenX, screenY);
+
+				for (HammerPosition hammerAngle : hammerAngles) {
+					hammerAngle.isTouchDown(screenX, screenY);
+					if (dummy.isPressed() && hammerAngle.isPressed()) {
+						AssetLoader.hitSmash.play();
+					} else if (hammerAngle.isPressed()) {
+						AssetLoader.hitEmpty.play();
+					}
+				}
+
+				if (dummy.isPressed()) {
+					addScore(1);
 				}
 			}
+		} else if (myWorld.isPaused()) {
 
-			if (dummy.isPressed()) {
-				addScore(1);
+		} else if (myWorld.isGameOver()) {
+			for(Button thisButton : gameOverButtons){
+				thisButton.isTouchDown(screenX, screenY);
 			}
-		}
-
-		for (Button thisButton : gameButtons) {
-			thisButton.isTouchDown(screenX, screenY);
-		}
-		
-		for (Button buttons : customButton){
-			buttons.isTouchDown(screenX, screenY);
-			
 		}
 
 		return true;
@@ -93,12 +100,11 @@ public class InputHandler implements InputProcessor {
 			}
 		}
 		
-		for (Button buttons : customButton){
-			if (buttons.isTouchUp(screenX, screenY)) {
-				return true;
-			}
+		for(Button thisButton : gameOverButtons){
+			thisButton.isTouchUp(screenX, screenY);
+			return true;
 		}
-
+		
 		return false;
 	}
 
@@ -147,9 +153,4 @@ public class InputHandler implements InputProcessor {
 	public static List<Dummy> getDummies() {
 		return dummies;
 	}
-	
-	public static List<Button> getCustomButton(){
-		return customButton;
-	}
-
 }
