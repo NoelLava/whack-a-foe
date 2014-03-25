@@ -138,6 +138,14 @@ public class ShopRenderer {
 			this.useButton = useButtons.get(2);
 			useButton.draw(batcher);
 		}
+		else if(shopButtons.get(1).isJustPressed()){
+			this.useButton = buyButtons.get(3);
+			useButton.draw(batcher);
+		}
+		else if(shopButtons.get(2).isJustPressed()){
+			this.useButton = buyButtons.get(4);
+			useButton.draw(batcher);
+		}
 
 	}
 	 
