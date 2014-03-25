@@ -35,7 +35,7 @@ public class GameWorld {
 	private static List<Button> gameOverButtons;
 	Button restartButton;
 	Button mainMenuButton;
-	
+
 	private static List<Button> gamePausedButtons;
 	Button resumeButton;
 	Button pauseRestartButton;
@@ -52,8 +52,11 @@ public class GameWorld {
 
 	private int score;
 	private int millis = 60;
-	private static int seconds = 60;
+	public static int seconds = 60;
 	private int readyCount = 3;
+	
+	private boolean buzzerPlayed = false;
+	private boolean clearPlayed;
 
 	public boolean backToMain;
 
@@ -66,29 +69,38 @@ public class GameWorld {
 	public GameWorld() {
 		currentState = GameState.READY;
 
-		// dummies ===========================================================================================================================
+		// dummies
+		// ===========================================================================================================================
 		dummies = new ArrayList<Dummy>();
 
-		// buttons ===========================================================================================================================
+		// buttons
+		// ===========================================================================================================================
 		gameButtons = new ArrayList<Button>();
-		pauseButton = new Button(137.85f, 1.85f, 21.5f, 20.5f, AssetLoader.pauseButton, AssetLoader.pausePressed);
+		pauseButton = new Button(137.85f, 1.85f, 21.5f, 20.5f,
+				AssetLoader.pauseButton, AssetLoader.pausePressed);
 		gameButtons.add(pauseButton);
 
 		gameOverButtons = new ArrayList<Button>();
-		restartButton = new Button(21.5f, 209.5f, 53.5f, 21, AssetLoader.restartUp, AssetLoader.restartDown);
-		mainMenuButton = new Button(85, 209.5f, 53.5f, 21, AssetLoader.mainButtonUp, AssetLoader.mainButtonDown);
+		restartButton = new Button(21.5f, 209.5f, 53.5f, 21,
+				AssetLoader.restartUp, AssetLoader.restartDown);
+		mainMenuButton = new Button(85, 209.5f, 53.5f, 21,
+				AssetLoader.mainButtonUp, AssetLoader.mainButtonDown);
 		gameOverButtons.add(restartButton);
 		gameOverButtons.add(mainMenuButton);
-		
+
 		gamePausedButtons = new ArrayList<Button>();
-		resumeButton = new Button(53, 99, 53.5f, 21, AssetLoader.resumeUp, AssetLoader.resumeDown);
-		pauseRestartButton = new Button(53, 122, 53.5f, 21, AssetLoader.restartUp, AssetLoader.restartDown);
-		pauseMainButton = new Button(53, 145, 53.5f, 21, AssetLoader.mainButtonUp, AssetLoader.mainButtonDown);
+		resumeButton = new Button(53, 99, 53.5f, 21, AssetLoader.resumeUp,
+				AssetLoader.resumeDown);
+		pauseRestartButton = new Button(53, 122, 53.5f, 21,
+				AssetLoader.restartUp, AssetLoader.restartDown);
+		pauseMainButton = new Button(53, 145, 53.5f, 21,
+				AssetLoader.mainButtonUp, AssetLoader.mainButtonDown);
 		gamePausedButtons.add(resumeButton);
 		gamePausedButtons.add(pauseRestartButton);
 		gamePausedButtons.add(pauseMainButton);
 
-		// holes/hammer regions ==============================================================================================================
+		// holes/hammer regions
+		// ==============================================================================================================
 		hammerPosition = new ArrayList<HammerPosition>(10);
 		for (int ctr = 0; ctr < 10; ctr++) {
 			if (ctr == 9) {
@@ -100,7 +112,6 @@ public class GameWorld {
 				hammerPosition.add(hammer);
 			}
 		}
-
 		// timers
 		timer = new Timer(1 / 1000);
 		timer.start();
@@ -129,23 +140,24 @@ public class GameWorld {
 		default:
 			break;
 		}
-
 	}
 
 	private void updateReady(float delta) {
-	
+		AssetLoader.gameMusic2.stop();
+		AssetLoader.gameOver.stop();
+		AssetLoader.buzzer.stop();
+
 		if (readyCount <= 0) {
 			startGame();
-		}
-		if (pauseButton.isJustPressed()) {
-			currentState = GameState.PAUSE;
-			pauseButton.setJustPressed(false);
 		}
 	}
 
 	private void updateRunning(float delta) {
-		
+		if (!AssetLoader.gameMusic2.isPlaying()) {
+			AssetLoader.gameMusic2.play();
+		}
 		if (seconds > 0) {
+
 			inGame();
 			updateGame();
 			// checkHit();
@@ -155,33 +167,53 @@ public class GameWorld {
 				pauseButton.setJustPressed(false);
 			}
 		} else {
+			AssetLoader.gameMusic2.stop();
 			for (Dummy dummy : dummies) {
 				dummy.setLife(0);
 			}
 			currentState = GameState.GAMEOVER;
 		}
 	}
-	
-	private void updatePause(float delta){
+
+	private void updatePause(float delta) {
+		AssetLoader.gameMusic2.pause();
 
 		if (pauseRestartButton.isJustPressed()) {
-			restart();
+			//restart();
+			currentState = GameState.GAMEOVER;
 			pauseRestartButton.setJustPressed(false);
-		}else if(resumeButton.isJustPressed()){
+		} else if (resumeButton.isJustPressed()) {
 			startGame();
 			resumeButton.setJustPressed(false);
-		}else if (pauseMainButton.isJustPressed()) {
+		} else if (pauseMainButton.isJustPressed()) {
 			backToMain = true;
 			seconds = 60;
 		}
 	}
 
 	public void updateGameOver(float delta) {
+		if(!AssetLoader.buzzer.isPlaying()){
+			if(buzzerPlayed){
+				AssetLoader.buzzer.stop();
+			}else{
+				AssetLoader.buzzer.play();
+				buzzerPlayed = true;
+			}
+		}
+		
+		if(!AssetLoader.gameOver.isPlaying()){
+			if(clearPlayed){
+				AssetLoader.gameOver.stop();
+			}else{
+				AssetLoader.gameOver.play();
+				clearPlayed = true;
+			}
+		}
 
 		if (restartButton.isJustPressed()) {
 			restart();
 			restartButton.setJustPressed(false);
-		}else if (mainMenuButton.isJustPressed()) {
+		} else if (mainMenuButton.isJustPressed()) {
 			backToMain = true;
 			seconds = 60;
 		}
@@ -196,10 +228,11 @@ public class GameWorld {
 	}
 
 	public void restart() {
+		AssetLoader.beep.play();
 		score = 0;
 		readyCount = 3;
 		seconds = 60;
-		
+
 		readyGame();
 	}
 
@@ -305,7 +338,7 @@ public class GameWorld {
 		for (int i = 0; i < 9; i++) {
 
 			if (removed[i] == true) {
-				if (respawnCounter[i] >= 200) {
+				if (respawnCounter[i] >= 100) {
 					System.out.println("respawn method");
 					Dummy dum = new Dummy(300, x, y, 35, 50);
 					int r = rand.nextInt(9);
@@ -339,10 +372,20 @@ public class GameWorld {
 				if (readyCount <= 0) {
 					readyCount = 0;
 					seconds--;
+
 					if (seconds <= 0) {
 						seconds = 0;
 						millis = 0;
 					}
+					if (seconds <= 10 && seconds > 0) {
+						AssetLoader.beep.play();
+					}
+					if (seconds <= 60 && seconds >= 59) {
+						AssetLoader.gameStart.play();
+					}
+
+				} else {
+					AssetLoader.beep.play();
 				}
 			}
 			timer.start();
@@ -386,14 +429,13 @@ public class GameWorld {
 	public static List<Button> getGameOverButtons() {
 		return gameOverButtons;
 	}
-	
-	public static List<Button> getGamePausedButtons(){
+
+	public static List<Button> getGamePausedButtons() {
 		return gamePausedButtons;
 	}
 
 	public static void setSeconds(int seconds) {
 		GameWorld.seconds = seconds;
 	}
-
 
 }
