@@ -15,11 +15,20 @@ public class CustomInputHandler implements InputProcessor{
 	private static boolean steelTrue;
 	private static boolean carbonTrue;
 	
+	private static boolean woodIconTrue;
+	private static boolean steelIconTrue;
+	private static boolean carbonIconTrue;
+	
 	private static boolean bossTrue;
 	private static boolean farmerTrue;
 	private static boolean boyTrue;
 	
+	private static boolean bossIconTrue;
+	private static boolean farmerIconTrue;
+	private static boolean boyIconTrue;
+	
 	private static List<Button> customButtons;
+	private static List<Button> useButton;
 
 	float scaleFactorX;
 	float scaleFactorY;
@@ -29,7 +38,7 @@ public class CustomInputHandler implements InputProcessor{
 		this.customWorld = customWorld;
 		
 		customButtons = CustomWorld.getCustomButtons();
-
+		useButton = CustomWorld.getUseButton();
 		
 		this.scaleFactorX = scaleFactorX;
         this.scaleFactorY = scaleFactorY;
@@ -64,6 +73,30 @@ public class CustomInputHandler implements InputProcessor{
 		return bossTrue;
 	}
 	
+	public boolean checkWoodIcon(){
+		return woodIconTrue;
+	}
+	
+	public boolean checkSteelIcon(){
+		return steelIconTrue;
+	}
+	
+	public boolean checkCarbonIcon(){
+		return carbonIconTrue;
+	}
+	
+	public boolean checkBossIcon(){
+		return bossIconTrue;
+	}
+	
+	public boolean checkFarmerIcon(){
+		return farmerIconTrue;
+	}
+	
+	public boolean checkBoyIcon(){
+		return boyIconTrue;
+	}
+	
 	@Override
 	public boolean touchDown(int screenX, int screenY, int pointer, int button) {
 		screenX = scaleX(screenX);
@@ -73,26 +106,50 @@ public class CustomInputHandler implements InputProcessor{
 			thisButton.isTouchDown(screenX, screenY);
 		
 			if(customButtons.get(1).isJustPressed()){
-				woodTrue = true;
+				this.woodIconTrue = true;
 			}
 			else if(customButtons.get(2).isJustPressed()){
-				steelTrue = true;
+				this.steelIconTrue = true;
 			}
 			else if(customButtons.get(3).isJustPressed()){
-				carbonTrue = true;
+				this.carbonIconTrue = true;
 			}
 			
 			if(customButtons.get(4).isJustPressed()){
-				bossTrue = true;
+				this.bossIconTrue = true;
 			}
 			else if(customButtons.get(5).isJustPressed()){
-				farmerTrue = true;
+				this.farmerIconTrue = true;
 			}
 			else if(customButtons.get(6).isJustPressed()){
-				boyTrue = true;
+				this.boyIconTrue = true;
 			}
 		}
 
+		for (Button thisButton : useButton){
+			thisButton.isTouchDown(screenX, screenY);
+			
+			if(useButton.get(0).isJustPressed()){
+				woodTrue = true;
+			}
+			else if(useButton.get(1).isJustPressed()){
+				steelTrue = true;
+			}
+			else if(useButton.get(2).isJustPressed()){
+				carbonTrue = true;
+			}
+			
+			if(useButton.get(3).isJustPressed()){
+				bossTrue = true;
+			}
+			else if(useButton.get(4).isJustPressed()){
+				farmerTrue = true;
+			}
+			else if(useButton.get(5).isJustPressed()){
+				boyTrue = true;
+			}
+		}
+		
 		return false;
 	}
 	
@@ -103,6 +160,12 @@ public class CustomInputHandler implements InputProcessor{
 		
 	
 		for (Button thisButton : customButtons) {
+			if (thisButton.isTouchUp(screenX, screenY)) {
+				return true;
+			}
+		}
+		
+		for (Button thisButton : useButton) {
 			if (thisButton.isTouchUp(screenX, screenY)) {
 				return true;
 			}
@@ -179,4 +242,28 @@ public class CustomInputHandler implements InputProcessor{
 		return bossTrue = false;
 	}
 
+	public boolean falseWoodIcon(){
+		return woodIconTrue = false;
+	}
+	
+	public boolean falseSteelIcon(){
+		return steelIconTrue = false;
+	}
+	
+	public boolean falseCarbonIcon(){
+		return carbonIconTrue = false;
+	}
+	
+	public boolean falseBossIcon(){
+		return bossIconTrue = false;
+	}
+	
+	public boolean falseFarmerIcon(){
+		return farmerIconTrue = false;
+	}
+	
+	public boolean falseBoyIcon(){
+		return boyIconTrue = false;
+	}
+	
 }

@@ -16,6 +16,7 @@ import com.bulalo.UI.Button;
 
 public class CustomizeRenderer {
 	private static CustomWorld custom = new CustomWorld();
+	private static CustomInputHandler customI = new CustomInputHandler();
 	private ShapeRenderer shapeRenderer;
 	
 	private OrthographicCamera cam;
@@ -32,13 +33,17 @@ public class CustomizeRenderer {
 	private TextureRegion dummyOffice;
 	private TextureRegion dummyJanitor;
 	
+	private Button useTableButtons, useDummyButtons;
+	
 	private static TextureRegion background;
 	
 	private List<Button> customButtons;
-
+	private List<Button> useButton;
+	
 	public CustomizeRenderer(CustomWorld customWorld){
 		custom = customWorld;
 		this.customButtons = CustomWorld.getCustomButtons();
+		this.useButton = CustomWorld.getUseButton();
 		
 		cam = new OrthographicCamera();
 		cam.setToOrtho(true, 160, 256);
@@ -80,6 +85,8 @@ public class CustomizeRenderer {
 	}
 
 	private void initGameObjects() {
+	
+	
 	}
 	
 	public void drawBackground(TextureRegion region) {
@@ -122,6 +129,34 @@ public class CustomizeRenderer {
         }		
 	}
 	
+	private void drawUseButton(){
+		if(customI.checkWoodIcon()==true){
+			this.useTableButtons = useButton.get(0);
+			useTableButtons.draw(batcher);
+		}
+		else if(customI.checkSteelIcon()==true){
+			this.useTableButtons = useButton.get(1);
+			useTableButtons.draw(batcher);
+		}
+		else if(customI.checkCarbonIcon()==true){
+			this.useTableButtons = useButton.get(2);
+			useTableButtons.draw(batcher);
+			
+		}
+		if(customI.checkBossIcon()==true){
+			this.useDummyButtons = useButton.get(3);
+			useDummyButtons.draw(batcher);
+		}
+		else if(customI.checkFarmerIcon()==true){
+			this.useDummyButtons = useButton.get(4);
+			useDummyButtons.draw(batcher);
+		}
+		else if(customI.checkBoyIcon()==true){
+			this.useDummyButtons = useButton.get(5);
+			useDummyButtons.draw(batcher);
+		}
+	}
+	
 	public void render(float runTime){		
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
@@ -154,7 +189,7 @@ public class CustomizeRenderer {
         // End SpriteBatch
         
         drawButtons();
-        
+        drawUseButton();
         batcher.end();
 
     }

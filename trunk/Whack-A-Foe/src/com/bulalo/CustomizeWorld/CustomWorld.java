@@ -12,6 +12,7 @@ import com.bulalo.UI.Button;
 
 public class CustomWorld {
 	private static List<Button> customButtons;
+	private static List<Button> useButton;
 	private Button backButton;
 	
 	private Button table;
@@ -27,7 +28,8 @@ public class CustomWorld {
 	
 	public CustomWorld(){
 		customButtons = new ArrayList<Button>();
-
+		useButton = new ArrayList<Button>();
+		
 //		backButton = new Button(Gdx.graphics.getWidth() / 2 - 30.1f,
 //				Gdx.graphics.getHeight() / 2 - 252.15f, 28.67f, 27.33f,
 //				AssetLoader.backButton, AssetLoader.backPressed);
@@ -59,12 +61,12 @@ public class CustomWorld {
 		customButtons.add(dummy);
 		customButtons.add(dummy1);
 		customButtons.add(dummy2);
-		customButtons.add(useWood);
-		customButtons.add(useSteel);
-		customButtons.add(useCarbon);
-		customButtons.add(useBoss);
-		customButtons.add(useFarmer);
-		customButtons.add(useBoy);
+		useButton.add(useWood);
+		useButton.add(useSteel);
+		useButton.add(useCarbon);
+		useButton.add(useBoss);
+		useButton.add(useFarmer);
+		useButton.add(useBoy);
 		
 		
 		
@@ -76,6 +78,10 @@ public class CustomWorld {
 		
 	public static List<Button> getCustomButtons() {
 		return customButtons;
+	}
+	
+	public static List<Button> getUseButton(){
+		return useButton;
 	}
 	
 }
