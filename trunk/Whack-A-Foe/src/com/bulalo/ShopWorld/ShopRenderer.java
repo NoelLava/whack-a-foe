@@ -123,7 +123,7 @@ public class ShopRenderer {
 			useButton.draw(batcher);
 		}
 	}
-	
+	 
 	public void render(float runTime) {
 		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
