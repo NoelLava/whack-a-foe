@@ -3,7 +3,6 @@ package com.bulalo.Helpers;
 import java.util.List;
 
 import com.badlogic.gdx.InputProcessor;
-import com.bulalo.CustomizeWorld.CustomWorld;
 import com.bulalo.GameObjects.Dummy;
 import com.bulalo.GameObjects.HammerPosition;
 import com.bulalo.GameWorld.GameWorld;
@@ -15,7 +14,7 @@ public class InputHandler implements InputProcessor {
 
 	private static List<Dummy> dummies;
 	private static List<Button> gameButtons;
-	private static List<Button>	gameOverButtons;
+	private static List<Button> gameOverButtons;
 	private static List<HammerPosition> hammerAngles;
 
 	private static boolean woodTrue, steelTrue, carbonTrue, bossTrue,
@@ -69,8 +68,8 @@ public class InputHandler implements InputProcessor {
 		} else if (myWorld.isPaused()) {
 
 		} else if (myWorld.isGameOver()) {
-			for(Button thisButton : gameOverButtons){
-				thisButton.isTouchDown(screenX, screenY);
+			for (Button Gbutton : gameOverButtons) {
+				Gbutton.isTouchDown(screenX, screenY);
 			}
 		}
 
@@ -82,29 +81,34 @@ public class InputHandler implements InputProcessor {
 		screenX = scaleX(screenX);
 		screenY = scaleY(screenY);
 
-		for (Dummy dummy : dummies) {
-			if (dummy.isTouchUp(screenX, screenY)) {
-				return true;
+		if (myWorld.isRunning() || myWorld.isReady()) {
+			for (Button thisButton : gameButtons) {
+
+				if (thisButton.isTouchUp(screenX, screenY)) {
+					return true;
+				}
 			}
 		}
 
-		for (Button thisButton : gameButtons) {
-			if (thisButton.isTouchUp(screenX, screenY)) {
-				return true;
+		if (myWorld.isRunning()) {
+			for (Dummy dummy : dummies) {
+				if (dummy.isTouchUp(screenX, screenY)) {
+					return true;
+				}
+			}
+			for (HammerPosition hammerAngle : hammerAngles) {
+				if (hammerAngle.isTouchUp(screenX, screenY)) {
+					return true;
+				}
+			}
+		} else if (myWorld.isGameOver()) {
+			for (Button GButton : gameOverButtons) {
+				if(GButton.isTouchUp(screenX, screenY)){
+					return true;
+				}
 			}
 		}
 
-		for (HammerPosition hammerAngle : hammerAngles) {
-			if (hammerAngle.isTouchUp(screenX, screenY)) {
-				return true;
-			}
-		}
-		
-		for(Button thisButton : gameOverButtons){
-			thisButton.isTouchUp(screenX, screenY);
-			return true;
-		}
-		
 		return false;
 	}
 

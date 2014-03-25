@@ -1,15 +1,12 @@
 //This class is the very screen of the game which displays the game when play button is pressed
 package com.bulalo.Screens;
 
-import java.util.List;
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.bulalo.GameWorld.GameRenderer;
 import com.bulalo.GameWorld.GameWorld;
 import com.bulalo.Helpers.AssetLoader;
 import com.bulalo.Helpers.InputHandler;
-import com.bulalo.UI.Button;
 import com.bulalo.whackafoe.WaFGame;
 
 public class GameScreen implements Screen{
@@ -17,9 +14,6 @@ public class GameScreen implements Screen{
 	GameWorld world;
 	GameRenderer renderer;
 	WaFGame game;
-	
-	private List<Button> gameButtons;
-	Button mainMenu;
 	
 	private float runTime = 0;
 	
@@ -45,16 +39,13 @@ public class GameScreen implements Screen{
 		renderer = new GameRenderer(world);  //initialize the gameRenderer
 		
 		Gdx.input.setInputProcessor(new InputHandler(world, screenWidth/gameWidth, screenHeight/gameHeight));
-		
-		gameButtons = GameWorld.getGameOverButtons();
-		mainMenu = gameButtons.get(1);
 	}
 	
 	@Override
 	public void render(float delta) {
 		runTime += delta;		
 		
-		if(mainMenu.isJustPressed()){
+		if(world.backToMain == true){
 			game.setScreen(new MenuScreen(game));
 			this.dispose();
 		}

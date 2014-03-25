@@ -3,7 +3,6 @@ package com.bulalo.MenuWorld;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.badlogic.gdx.Gdx;
 import com.bulalo.Helpers.AssetLoader;
 import com.bulalo.UI.Button;
 
@@ -13,7 +12,6 @@ public class MenuWorld {
 	private Button playButton;
 	private Button shopButton;
 	private Button customButton;
-	private Button pauseButton;
 
 	float runTime = 0;
 

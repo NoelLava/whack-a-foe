@@ -9,20 +9,16 @@ import com.bulalo.GameObjects.Dummy;
 import com.bulalo.GameObjects.HammerPosition;
 import com.bulalo.GameObjects.Timer;
 import com.bulalo.Helpers.AssetLoader;
-import com.bulalo.Helpers.InputHandler;
-import com.bulalo.Screens.GameScreen;
-import com.bulalo.Screens.MenuScreen;
 import com.bulalo.UI.Button;
 
 public class GameWorld {
 	private Timer timer, dummyTimer, gameTimer;
 	private Dummy dummy;
-	private GameRenderer renderer;
 
 	// Game Counters
 	// ===============================================================
-	public static final float[] coordinateX = { 28f, 64.25f, 100f, 22.5f, 64.25f,
-			105f, 19f, 64f, 109.25f };
+	public static final float[] coordinateX = { 28f, 64.25f, 100f, 22.5f,
+			64.25f, 105f, 19f, 64f, 109.25f };
 	public static final float[] coordinateY = { 65f, 65f, 65f, 120f, 120f,
 			120f, 175.5f, 175.5f, 175.5f };
 	private boolean[] removed = { false, false, false, false, false, false,
@@ -36,10 +32,11 @@ public class GameWorld {
 	private static List<Button> gameButtons;
 	Button pauseButton;
 
+	private static List<Button>	pauseButtons;
 	private static List<Button> gameOverButtons;
 	Button restartButton;
-	Button resumeButton;
 	Button mainMenuButton;
+	Button resumeButton;
 
 	private static List<HammerPosition> hammerPosition;
 	HammerPosition hammer;
@@ -54,6 +51,8 @@ public class GameWorld {
 	private int millis = 60;
 	private static int seconds = 60;
 	private int readyCount = 3;
+
+	public boolean backToMain;
 
 	private GameState currentState;
 
@@ -79,8 +78,12 @@ public class GameWorld {
 
 		mainMenuButton = new Button(85, 209.5f, 53.5f, 21,
 				AssetLoader.mainButtonUp, AssetLoader.mainButtonDown);
+		
+		//resumeButton = new Button(0, 0, 53.5f, 21, AssetLoader.resumeUp, AssetLoader.resumeDown);
+		
 		gameOverButtons.add(restartButton);
 		gameOverButtons.add(mainMenuButton);
+		//gameOverButtons.add(resumeButton);
 
 		// holes/hammer regions =============================
 		hammerPosition = new ArrayList<HammerPosition>(10);
@@ -124,13 +127,13 @@ public class GameWorld {
 	}
 
 	private void updateReady(float delta) {
-		System.out.println("Game Ready");
 		if (readyCount <= 0) {
 			startGame();
 		}
 	}
 
 	private void updateRunning(float delta) {
+		
 		if (seconds > 0) {
 			inGame();
 			updateGame();
@@ -146,14 +149,14 @@ public class GameWorld {
 			currentState = GameState.GAMEOVER;
 		}
 	}
-	
-	public void updateGameOver(float delta){
+
+	public void updateGameOver(float delta) {
 		seconds = 60;
-		
+
 		if (restartButton.isJustPressed()) {
 			restart();
-		}else if(mainMenuButton.isJustPressed()){
-			mainMenuButton.isPressed();
+		}else if (mainMenuButton.isJustPressed()) {
+			backToMain = true;
 		}
 	}
 
@@ -169,8 +172,7 @@ public class GameWorld {
 		score = 0;
 		readyCount = 3;
 		seconds = 60;
-		// bird.onRestart(midPointY - 5);
-		// scroller.onRestart();
+		
 		readyGame();
 	}
 

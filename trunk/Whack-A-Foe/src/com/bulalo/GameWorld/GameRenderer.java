@@ -4,7 +4,6 @@ package com.bulalo.GameWorld;
 import java.util.List;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.Animation;
@@ -16,7 +15,6 @@ import com.bulalo.CustomizeWorld.CustomInputHandler;
 import com.bulalo.GameObjects.Dummy;
 import com.bulalo.GameObjects.HammerPosition;
 import com.bulalo.Helpers.AssetLoader;
-import com.bulalo.Helpers.InputHandler;
 import com.bulalo.ShopWorld.ShopInputHandler;
 import com.bulalo.UI.Button;
 
@@ -103,13 +101,13 @@ public class GameRenderer {
 	}
 
 	private void drawButtons() {
-		if(myWorld.isGameOver()){
-			for(Button thisButton : gameOverButtons){
-				thisButton.draw(batcher);
-			}
-		}else if(myWorld.isReady() || myWorld.isRunning()){
+		if(myWorld.isReady() || myWorld.isRunning()){
 			for (Button button : gameButtons) {
 				button.draw(batcher);
+			}
+		}else if(myWorld.isGameOver()){
+			for(Button thisButton : gameOverButtons){
+				thisButton.draw(batcher);
 			}
 		}
 	}
