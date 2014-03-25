@@ -21,6 +21,7 @@ public class ShopRenderer {
 	private OrthographicCamera cam;
 	
 	private SpriteBatch batcher;
+	private static Hammers hammer, hammer1, hammer2;
 	private TextureRegion ssbg;
 	private TextureRegion kahoy;
 	private TextureRegion bakal;
@@ -29,19 +30,10 @@ public class ShopRenderer {
 	private static TextureRegion pamalo;
 	
 	private List<Button> shopButtons;
-	private List<Button> buyButtons;
-	private List<Button> hammerButtons;
-	private List<Button> useButtons;
-	
-	private Button buyButton;
-	private Button useButton;
 	
 	public ShopRenderer(ShopWorld ShopWorld) {
 		shop = ShopWorld;
 		this.shopButtons = ShopWorld.getShopButtons();
-		this.buyButtons = ShopWorld.getBuyButtons();
-		this.hammerButtons = ShopWorld.getHammerButtons();
-		this.useButtons = ShopWorld.getUseButtons();
 		
 		cam = new OrthographicCamera();
 		cam.setToOrtho(true, 160, 256);
@@ -57,6 +49,24 @@ public class ShopRenderer {
 		
 	}
 	
+	public static TextureRegion getHammer(){
+		hammer = shop.getHammer();
+		hammer1 = shop.getHammer();
+		hammer2 = shop.getHammer();
+		
+		if(hammer.isPressed() == true){
+			System.out.println("naging kahoy");
+			pamalo = AssetLoader.kahoy;
+		} else if(hammer1.isPressed() == true){
+			System.out.println("naging bakal");
+			pamalo = AssetLoader.bakal;
+		} else if(hammer2.isPressed() == true){
+			System.out.println("naging ginto");
+			pamalo = AssetLoader.ginto;		
+		}System.out.println("click tester");
+		
+		return pamalo;
+	}
 	
 	private void initAssets(){
 		ssbg = AssetLoader.ssBg;
@@ -67,20 +77,36 @@ public class ShopRenderer {
 	}
 	
 	private void initGameObjects(){
-		}
+		hammer = shop.getHammer();
+		hammer1 = shop.getHammer1();
+		hammer2 = shop.getHammer2();
+
+	}
 	
 	public void drawBackground(TextureRegion region){
 		batcher.draw(region, 0, 0, 160, 256);
 	}
 	
+	public void drawHammer(TextureRegion region, float x, float y, float runTime){
+		batcher.draw(region, hammer.getX(), hammer.getY(), hammer.getWidth(),
+				hammer.getHeight());
+	}
+	
+	public void drawHammer1(TextureRegion region, float x, float y, float runTime){
+		batcher.draw(region, hammer1.getX(), hammer1.getY(), hammer1.getWidth(),
+				hammer1.getHeight());
+		
+	}
+	
+	public void drawHammer2(TextureRegion region, float x, float y, float runTime){
+		batcher.draw(region, hammer2.getX(), hammer2.getY(), hammer2.getWidth(),
+				hammer2.getHeight());
+	}
 	
 	private void drawButtons(){
 		for(Button button : shopButtons) {
 			button.draw(batcher);
         }
-		for (Button button : hammerButtons){
-			button.draw(batcher);
-		}
 		
 	}
 	
@@ -90,8 +116,9 @@ public class ShopRenderer {
 				AssetLoader.ticket.getRegionHeight() / 2);
 		
 		String ticketZeros = (AssetLoader.getTicket() < 10)?"00":(AssetLoader.getTicket() >= 10 && AssetLoader.getTicket() < 100)?"0":"";
-		AssetLoader.bitGoldSh.draw(batcher, ticketZeros + AssetLoader.getTicket(), (AssetLoader.ticket.getRegionWidth() / 8) + 5, (AssetLoader.ticket.getRegionHeight() / 8) + 226);
+		AssetLoader.bitGoldSh.draw(batcher, ticketZeros + AssetLoader.getTicket(), (AssetLoader.ticket.getRegionWidth() / 8) + 5, (AssetLoader.ticket.getRegionHeight() / 8) + 224);
 		AssetLoader.bitGold.draw(batcher, ticketZeros + AssetLoader.getTicket(), (AssetLoader.ticket.getRegionWidth() / 8) + 6, (AssetLoader.ticket.getRegionHeight() / 8) + 225);
+
 	}
 		
 		private void drawBuyButtons(){
@@ -122,6 +149,7 @@ public class ShopRenderer {
 			this.useButton = useButtons.get(2);
 			useButton.draw(batcher);
 		}
+
 	}
 	 
 	public void render(float runTime) {
@@ -144,6 +172,12 @@ public class ShopRenderer {
 		batcher.enableBlending();
 		
 		drawButtons();
+
+		drawHammer(kahoy, 20, 50, runTime);
+		drawHammer1(bakal, 100, 50, runTime);
+		drawHammer2(ginto, 180, 50, runTime);
+		drawTickets();
+
 		drawTickets();
 		
 		drawBuyButtons();
