@@ -130,28 +130,28 @@ public class CustomizeRenderer {
 	}
 	
 	private void drawUseButton(){
-		if(customI.checkWoodIcon()==true){
+		if(customButtons.get(1).isJustPressed()){
 			this.useTableButtons = useButton.get(0);
 			useTableButtons.draw(batcher);
 		}
-		else if(customI.checkSteelIcon()==true){
+		else if(customButtons.get(2).isJustPressed()){
 			this.useTableButtons = useButton.get(1);
 			useTableButtons.draw(batcher);
 		}
-		else if(customI.checkCarbonIcon()==true){
+		else if(customButtons.get(3).isJustPressed()){
 			this.useTableButtons = useButton.get(2);
 			useTableButtons.draw(batcher);
 			
 		}
-		if(customI.checkBossIcon()==true){
+		else if(customButtons.get(4).isJustPressed()){
 			this.useDummyButtons = useButton.get(3);
 			useDummyButtons.draw(batcher);
 		}
-		else if(customI.checkFarmerIcon()==true){
+		else if(customButtons.get(5).isJustPressed()){
 			this.useDummyButtons = useButton.get(4);
 			useDummyButtons.draw(batcher);
 		}
-		else if(customI.checkBoyIcon()==true){
+		else if(customButtons.get(6).isJustPressed()){
 			this.useDummyButtons = useButton.get(5);
 			useDummyButtons.draw(batcher);
 		}
