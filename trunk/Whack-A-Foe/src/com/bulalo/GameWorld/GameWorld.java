@@ -139,6 +139,7 @@ public class GameWorld {
 		}
 		if (pauseButton.isJustPressed()) {
 			currentState = GameState.PAUSE;
+			pauseButton.setJustPressed(false);
 		}
 	}
 
@@ -151,6 +152,7 @@ public class GameWorld {
 			respawn();
 			if (pauseButton.isJustPressed()) {
 				currentState = GameState.PAUSE;
+				pauseButton.setJustPressed(false);
 			}
 		} else {
 			for (Dummy dummy : dummies) {
@@ -164,6 +166,10 @@ public class GameWorld {
 
 		if (pauseRestartButton.isJustPressed()) {
 			restart();
+			pauseRestartButton.setJustPressed(false);
+		}else if(resumeButton.isJustPressed()){
+			startGame();
+			resumeButton.setJustPressed(false);
 		}else if (pauseMainButton.isJustPressed()) {
 			backToMain = true;
 			seconds = 60;
@@ -174,6 +180,7 @@ public class GameWorld {
 
 		if (restartButton.isJustPressed()) {
 			restart();
+			restartButton.setJustPressed(false);
 		}else if (mainMenuButton.isJustPressed()) {
 			backToMain = true;
 			seconds = 60;

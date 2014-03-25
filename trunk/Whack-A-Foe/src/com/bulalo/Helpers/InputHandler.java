@@ -42,14 +42,12 @@ public class InputHandler implements InputProcessor {
 		screenX = scaleX(screenX);
 		screenY = scaleY(screenY);
 
-		if (myWorld.isReady() || myWorld.isRunning()) {
+		if (myWorld.isRunning()) {
+			
 			for (Button thisButton : gameButtons) {
 				thisButton.isTouchDown(screenX, screenY);
 			}
-		}
-
-		if (myWorld.isRunning()) {
-
+			
 			for (Dummy dummy : dummies) {
 				dummy.isTouchDown(screenX, screenY);
 
@@ -86,16 +84,13 @@ public class InputHandler implements InputProcessor {
 		screenX = scaleX(screenX);
 		screenY = scaleY(screenY);
 
-		if (myWorld.isRunning() || myWorld.isReady()) {
+		if (myWorld.isRunning()) {
 			for (Button thisButton : gameButtons) {
 
 				if (thisButton.isTouchUp(screenX, screenY)) {
 					return true;
 				}
-			}
-		}
-
-		if (myWorld.isRunning()) {
+			}			
 			for (Dummy dummy : dummies) {
 				if (dummy.isTouchUp(screenX, screenY)) {
 					return true;

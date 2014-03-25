@@ -101,15 +101,15 @@ public class GameRenderer {
 	}
 
 	private void drawButtons() {
-		if (myWorld.isReady() || myWorld.isRunning()) {
+		if (myWorld.isRunning()) {
 			for (Button button : gameButtons) {
 				button.draw(batcher);
 			}
-		} else if(myWorld.isPaused()){
-			for(Button button : gamePausedButtons){
+		} else if (myWorld.isPaused()) {
+			for (Button button : gamePausedButtons) {
 				button.draw(batcher);
 			}
-		}else if (myWorld.isGameOver()) {			
+		} else if (myWorld.isGameOver()) {
 			for (Button thisButton : gameOverButtons) {
 				thisButton.draw(batcher);
 			}
@@ -220,16 +220,18 @@ public class GameRenderer {
 
 		changeDummyAnimation();
 		changeHammer();
-		drawScoreTime(runTime);
 
+		if (myWorld.isReady() || myWorld.isRunning()) {
+			drawScoreTime(runTime);
+		}
 		if (myWorld.isRunning()) {
 			drawDummy(thisAnimation, thisAnimationDies, runTime);
 			drawHammers();
 			
-		} else if(myWorld.isPaused()){
+		} else if (myWorld.isPaused()) {
 			drawPause();
-			
-		}else if (myWorld.isGameOver()) {
+		
+		} else if (myWorld.isGameOver()) {
 			drawGameOver();
 		}
 
