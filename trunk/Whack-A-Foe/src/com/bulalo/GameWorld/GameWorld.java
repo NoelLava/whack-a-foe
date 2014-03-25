@@ -32,8 +32,7 @@ public class GameWorld {
 	private static List<Button> gameButtons;
 	Button pauseButton;
 
-	private static List<Button>	pauseButtons;
-	private static List<Button> gameOverButtons;
+	private static List<Button> gameScreenButtons;
 	Button restartButton;
 	Button mainMenuButton;
 	Button resumeButton;
@@ -63,29 +62,28 @@ public class GameWorld {
 	public GameWorld() {
 		currentState = GameState.READY;
 
-		// dummies ==========================================
+		// dummies ===========================================================================================================================
 		dummies = new ArrayList<Dummy>();
 
-		// buttons ==========================================
+		// buttons ===========================================================================================================================
 		gameButtons = new ArrayList<Button>();
 		pauseButton = new Button(137.85f, 1.85f, 21.5f, 20.5f,
 				AssetLoader.pauseButton, AssetLoader.pausePressed);
 		gameButtons.add(pauseButton);
 
-		gameOverButtons = new ArrayList<Button>();
+		gameScreenButtons = new ArrayList<Button>();
 		restartButton = new Button(21.5f, 209.5f, 53.5f, 21,
 				AssetLoader.restartUp, AssetLoader.restartDown);
 
 		mainMenuButton = new Button(85, 209.5f, 53.5f, 21,
 				AssetLoader.mainButtonUp, AssetLoader.mainButtonDown);
 		
-		//resumeButton = new Button(0, 0, 53.5f, 21, AssetLoader.resumeUp, AssetLoader.resumeDown);
+		resumeButton = new Button(53, 99, 53.5f, 21, AssetLoader.resumeUp, AssetLoader.resumeDown);
 		
-		gameOverButtons.add(restartButton);
-		gameOverButtons.add(mainMenuButton);
-		//gameOverButtons.add(resumeButton);
+		gameScreenButtons.add(restartButton);
+		gameScreenButtons.add(mainMenuButton);
 
-		// holes/hammer regions =============================
+		// holes/hammer regions ==============================================================================================================
 		hammerPosition = new ArrayList<HammerPosition>(10);
 		for (int ctr = 0; ctr < 10; ctr++) {
 			if (ctr == 9) {
@@ -117,6 +115,9 @@ public class GameWorld {
 		case RUNNING:
 			updateRunning(delta);
 			break;
+		case PAUSE:
+			updatePause(delta);
+			break;
 		case GAMEOVER:
 			updateGameOver(delta);
 			break;
@@ -129,6 +130,9 @@ public class GameWorld {
 	private void updateReady(float delta) {
 		if (readyCount <= 0) {
 			startGame();
+		}
+		if (pauseButton.isJustPressed()) {
+			currentState = GameState.PAUSE;
 		}
 	}
 
@@ -147,6 +151,20 @@ public class GameWorld {
 				dummy.setLife(0);
 			}
 			currentState = GameState.GAMEOVER;
+		}
+	}
+	
+	private void updatePause(float delta){
+		restartButton.setX(53);
+		restartButton.setY(122);
+		
+		mainMenuButton.setX(53);
+		mainMenuButton.setY(145);
+		
+		if (restartButton.isJustPressed()) {
+			restart();
+		}else if (mainMenuButton.isJustPressed()) {
+			backToMain = true;
 		}
 	}
 
@@ -357,11 +375,19 @@ public class GameWorld {
 	}
 
 	public static List<Button> getGameOverButtons() {
-		return gameOverButtons;
+		return gameScreenButtons;
 	}
 
 	public static void setSeconds(int seconds) {
 		GameWorld.seconds = seconds;
+	}
+
+	public Button getResumeButton() {
+		return resumeButton;
+	}
+
+	public void setResumeButton(Button resumeButton) {
+		this.resumeButton = resumeButton;
 	}
 
 }

@@ -31,6 +31,8 @@ public class GameRenderer {
 	private List<Dummy> dummies;
 	private List<Button> gameButtons;
 	private List<Button> gameOverButtons;
+	private Button resumeButton;
+	
 	private List<HammerPosition> hammerPositions;
 	private TextureRegion hamLeft, hamMid, hamRight;
 	private TextureRegion table;
@@ -48,7 +50,7 @@ public class GameRenderer {
 
 	public GameRenderer(GameWorld world) {
 		myWorld = world;
-		//this.dummies = InputHandler.getDummies();
+		// this.dummies = InputHandler.getDummies();
 		this.gameButtons = GameWorld.getGameButtons();
 		this.gameOverButtons = GameWorld.getGameOverButtons();
 		this.hammerPositions = GameWorld.getHammerAngles();
@@ -68,6 +70,7 @@ public class GameRenderer {
 
 	private void initGameObjects() {
 		dummies = GameWorld.getDummies();
+		resumeButton = myWorld.getResumeButton();
 	}
 
 	private void initAssets() {
@@ -101,12 +104,14 @@ public class GameRenderer {
 	}
 
 	private void drawButtons() {
-		if(myWorld.isReady() || myWorld.isRunning()){
+		if (myWorld.isReady() || myWorld.isRunning()) {
 			for (Button button : gameButtons) {
 				button.draw(batcher);
 			}
-		}else if(myWorld.isGameOver()){
-			for(Button thisButton : gameOverButtons){
+		} else if (myWorld.isGameOver() || myWorld.isPaused()) {
+			resumeButton.draw(batcher);
+			
+			for (Button thisButton : gameOverButtons) {
 				thisButton.draw(batcher);
 			}
 		}
@@ -164,7 +169,7 @@ public class GameRenderer {
 
 	private void drawGameOver() {
 		int length = ("" + myWorld.getScore()).length();
-		
+
 		batcher.draw(AssetLoader.gameOverScreen, 7.5f, 7.5f,
 				AssetLoader.gameOverScreen.getRegionWidth() / 2,
 				AssetLoader.gameOverScreen.getRegionHeight() / 2);
@@ -178,6 +183,12 @@ public class GameRenderer {
 		AssetLoader.bitWhite.draw(batcher, "" + myWorld.getScore(),
 				69 - (8 * length), 72);
 
+	}
+
+	private void drawPause() {
+		batcher.draw(AssetLoader.pause, -15, 63.5f,
+				AssetLoader.pause.getRegionWidth() / 2,
+				AssetLoader.pause.getRegionHeight() / 2);
 	}
 
 	public void render(float runTime) {
@@ -215,10 +226,14 @@ public class GameRenderer {
 		if (myWorld.isRunning()) {
 			drawDummy(thisAnimation, thisAnimationDies, runTime);
 			drawHammers();
-		} else if (myWorld.isGameOver()) {
+			
+		} else if(myWorld.isPaused()){
+			drawPause();
+			
+		}else if (myWorld.isGameOver()) {
 			drawGameOver();
 		}
-	
+
 		drawButtons();
 		// End SpriteBatch
 		batcher.end();
