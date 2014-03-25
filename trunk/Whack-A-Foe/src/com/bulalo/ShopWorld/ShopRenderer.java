@@ -30,10 +30,18 @@ public class ShopRenderer {
 	private static TextureRegion pamalo;
 	
 	private List<Button> shopButtons;
+	private List<Button> useButtons;
+	private List<Button> buyButtons;
+	private List<Button> hammerButtons;
+	
+	private Button buyButton,useButton;
 	
 	public ShopRenderer(ShopWorld ShopWorld) {
 		shop = ShopWorld;
 		this.shopButtons = ShopWorld.getShopButtons();
+		this.useButtons = ShopWorld.getUseButtons();
+		this.buyButtons = ShopWorld.getBuyButtons();
+		this.hammerButtons = ShopWorld.getHammerButtons();
 		
 		cam = new OrthographicCamera();
 		cam.setToOrtho(true, 160, 256);
@@ -49,24 +57,6 @@ public class ShopRenderer {
 		
 	}
 	
-	public static TextureRegion getHammer(){
-		hammer = shop.getHammer();
-		hammer1 = shop.getHammer();
-		hammer2 = shop.getHammer();
-		
-		if(hammer.isPressed() == true){
-			System.out.println("naging kahoy");
-			pamalo = AssetLoader.kahoy;
-		} else if(hammer1.isPressed() == true){
-			System.out.println("naging bakal");
-			pamalo = AssetLoader.bakal;
-		} else if(hammer2.isPressed() == true){
-			System.out.println("naging ginto");
-			pamalo = AssetLoader.ginto;		
-		}System.out.println("click tester");
-		
-		return pamalo;
-	}
 	
 	private void initAssets(){
 		ssbg = AssetLoader.ssBg;
@@ -77,11 +67,7 @@ public class ShopRenderer {
 	}
 	
 	private void initGameObjects(){
-		hammer = shop.getHammer();
-		hammer1 = shop.getHammer1();
-		hammer2 = shop.getHammer2();
-
-	}
+		}
 	
 	public void drawBackground(TextureRegion region){
 		batcher.draw(region, 0, 0, 160, 256);
@@ -107,6 +93,9 @@ public class ShopRenderer {
 		for(Button button : shopButtons) {
 			button.draw(batcher);
         }
+		for (Button button : hammerButtons){
+			button.draw(batcher);
+		}
 		
 	}
 	
@@ -172,12 +161,6 @@ public class ShopRenderer {
 		batcher.enableBlending();
 		
 		drawButtons();
-
-		drawHammer(kahoy, 20, 50, runTime);
-		drawHammer1(bakal, 100, 50, runTime);
-		drawHammer2(ginto, 180, 50, runTime);
-		drawTickets();
-
 		drawTickets();
 		
 		drawBuyButtons();
