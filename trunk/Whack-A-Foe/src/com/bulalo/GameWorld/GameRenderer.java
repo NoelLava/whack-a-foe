@@ -273,17 +273,14 @@ public class GameRenderer {
 			this.hamLeft = AssetLoader.HamWoodLeft;
 			this.hamMid = AssetLoader.HamWoodMid;
 			this.hamRight = AssetLoader.HamWoodRight;
-			shop.falseCheck();
 		} else if (shop.checkHammer1() == true) {
 			this.hamLeft = AssetLoader.HamSteelLeft;
 			this.hamMid = AssetLoader.HamSteelMid;
 			this.hamRight = AssetLoader.HamSteelRight;
-			shop.falseCheck1();
 		} else if (shop.checkHammer2() == true) {
 			this.hamLeft = AssetLoader.HamGoldLeft;
 			this.hamMid = AssetLoader.HamGoldMid;
 			this.hamRight = AssetLoader.HamGoldRight;
-			shop.falseCheck2();
 		}
 	}
 

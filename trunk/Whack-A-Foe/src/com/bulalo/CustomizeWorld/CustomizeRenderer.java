@@ -9,7 +9,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
-import com.bulalo.GameObjects.CustomDummy;
 import com.bulalo.GameObjects.Tables;
 import com.bulalo.Helpers.AssetLoader;
 import com.bulalo.UI.Button;
@@ -23,7 +22,6 @@ public class CustomizeRenderer {
 	
 	private SpriteBatch batcher;
 	private static Tables table,table1,table2;
-	private static CustomDummy dummy,dummy1,dummy2;
 	
 	private TextureRegion csbg;
 	private TextureRegion wood;
@@ -93,36 +91,7 @@ public class CustomizeRenderer {
 		batcher.draw(region, 0, 0, 160, 256);
 	}
 
-	public void drawTable(TextureRegion region, float x, float y, float runTime) {
-		batcher.draw(region, table.getX(), table.getY(), table.getWidth(),
-				table.getHeight());
-	}
- 
-	public void drawTable1(TextureRegion region, float x, float y, float runTime) {
-		batcher.draw(region, table1.getX(), table1.getY(), table1.getWidth(),
-				table1.getHeight());
-	}
 
-	public void drawTable2(TextureRegion region, float x, float y, float runTime) {
-		batcher.draw(region, table2.getX(), table2.getY(), table2.getWidth(),
-				table2.getHeight());
-	}
-	
-	public void drawDummy(TextureRegion region, float x, float y, float runTime) {
-		batcher.draw(region, dummy.getX(), dummy.getY(), dummy.getWidth(),
-				dummy.getHeight());
-	}
-	
-	public void drawDummy1(TextureRegion region, float x, float y, float runTime) {
-		batcher.draw(region, dummy1.getX(), dummy1.getY(), dummy1.getWidth(),
-				dummy1.getHeight());
-	}
-	
-	public void drawDummy2(TextureRegion region, float x, float y, float runTime) {
-		batcher.draw(region, dummy2.getX(), dummy2.getY(), dummy2.getWidth(),
-				dummy2.getHeight());
-	}
-	
 	private void drawButtons(){
 		for(Button button : customButtons) {
 			button.draw(batcher);
