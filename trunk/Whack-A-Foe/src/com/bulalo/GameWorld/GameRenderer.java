@@ -31,8 +31,7 @@ public class GameRenderer {
 	private List<Dummy> dummies;
 	private List<Button> gameButtons;
 	private List<Button> gameOverButtons;
-	private Button resumeButton;
-	
+	private List<Button> gamePausedButtons;
 	private List<HammerPosition> hammerPositions;
 	private TextureRegion hamLeft, hamMid, hamRight;
 	private TextureRegion table;
@@ -50,11 +49,6 @@ public class GameRenderer {
 
 	public GameRenderer(GameWorld world) {
 		myWorld = world;
-		// this.dummies = InputHandler.getDummies();
-		this.gameButtons = GameWorld.getGameButtons();
-		this.gameOverButtons = GameWorld.getGameOverButtons();
-		this.hammerPositions = GameWorld.getHammerAngles();
-
 		cam = new OrthographicCamera();
 		cam.setToOrtho(true, 160, 256);
 
@@ -70,7 +64,10 @@ public class GameRenderer {
 
 	private void initGameObjects() {
 		dummies = GameWorld.getDummies();
-		resumeButton = myWorld.getResumeButton();
+		this.gameButtons = GameWorld.getGameButtons();
+		this.gameOverButtons = GameWorld.getGameOverButtons();
+		this.gamePausedButtons = GameWorld.getGamePausedButtons();
+		this.hammerPositions = GameWorld.getHammerAngles();
 	}
 
 	private void initAssets() {
@@ -108,9 +105,11 @@ public class GameRenderer {
 			for (Button button : gameButtons) {
 				button.draw(batcher);
 			}
-		} else if (myWorld.isGameOver() || myWorld.isPaused()) {
-			resumeButton.draw(batcher);
-			
+		} else if(myWorld.isPaused()){
+			for(Button button : gamePausedButtons){
+				button.draw(batcher);
+			}
+		}else if (myWorld.isGameOver()) {			
 			for (Button thisButton : gameOverButtons) {
 				thisButton.draw(batcher);
 			}

@@ -15,8 +15,8 @@ public class InputHandler implements InputProcessor {
 	private static List<Dummy> dummies;
 	private static List<Button> gameButtons;
 	private static List<Button> gameOverButtons;
+	private static List<Button> gamePausedButtons;
 	private static List<HammerPosition> hammerAngles;
-	private Button resumeButton;
 
 	private static boolean woodTrue, steelTrue, carbonTrue, bossTrue,
 			farmerTrue, boyTrue;
@@ -30,13 +30,11 @@ public class InputHandler implements InputProcessor {
 		dummies = GameWorld.getDummies();
 		gameButtons = GameWorld.getGameButtons();
 		gameOverButtons = GameWorld.getGameOverButtons();
+		gamePausedButtons = GameWorld.getGamePausedButtons();
 		hammerAngles = GameWorld.getHammerAngles();
-		
-		resumeButton = myWorld.getResumeButton();
 
 		this.scaleFactorX = scaleFactorX;
 		this.scaleFactorY = scaleFactorY;
-
 	}
 
 	@Override
@@ -69,10 +67,9 @@ public class InputHandler implements InputProcessor {
 				}
 			}
 		} else if (myWorld.isPaused()) {
-			resumeButton.isTouchDown(screenX, screenY);
 			
-			for (Button Gbutton : gameOverButtons) {
-				Gbutton.isTouchDown(screenX, screenY);
+			for (Button Pbutton : gamePausedButtons) {
+				Pbutton.isTouchDown(screenX, screenY);
 			}
 
 		} else if (myWorld.isGameOver()) {
@@ -110,12 +107,9 @@ public class InputHandler implements InputProcessor {
 				}
 			}
 		} else if(myWorld.isPaused()){
-			if(resumeButton.isTouchDown(screenX, screenY)){
-				return true;
-			}
-			
-			for (Button GButton : gameOverButtons) {
-				if(GButton.isTouchUp(screenX, screenY)){
+
+			for (Button PButton : gamePausedButtons) {
+				if(PButton.isTouchUp(screenX, screenY)){
 					return true;
 				}
 			}

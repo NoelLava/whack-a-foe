@@ -32,10 +32,14 @@ public class GameWorld {
 	private static List<Button> gameButtons;
 	Button pauseButton;
 
-	private static List<Button> gameScreenButtons;
+	private static List<Button> gameOverButtons;
 	Button restartButton;
 	Button mainMenuButton;
+	
+	private static List<Button> gamePausedButtons;
 	Button resumeButton;
+	Button pauseRestartButton;
+	Button pauseMainButton;
 
 	private static List<HammerPosition> hammerPosition;
 	HammerPosition hammer;
@@ -67,21 +71,22 @@ public class GameWorld {
 
 		// buttons ===========================================================================================================================
 		gameButtons = new ArrayList<Button>();
-		pauseButton = new Button(137.85f, 1.85f, 21.5f, 20.5f,
-				AssetLoader.pauseButton, AssetLoader.pausePressed);
+		pauseButton = new Button(137.85f, 1.85f, 21.5f, 20.5f, AssetLoader.pauseButton, AssetLoader.pausePressed);
 		gameButtons.add(pauseButton);
 
-		gameScreenButtons = new ArrayList<Button>();
-		restartButton = new Button(21.5f, 209.5f, 53.5f, 21,
-				AssetLoader.restartUp, AssetLoader.restartDown);
-
-		mainMenuButton = new Button(85, 209.5f, 53.5f, 21,
-				AssetLoader.mainButtonUp, AssetLoader.mainButtonDown);
+		gameOverButtons = new ArrayList<Button>();
+		restartButton = new Button(21.5f, 209.5f, 53.5f, 21, AssetLoader.restartUp, AssetLoader.restartDown);
+		mainMenuButton = new Button(85, 209.5f, 53.5f, 21, AssetLoader.mainButtonUp, AssetLoader.mainButtonDown);
+		gameOverButtons.add(restartButton);
+		gameOverButtons.add(mainMenuButton);
 		
+		gamePausedButtons = new ArrayList<Button>();
 		resumeButton = new Button(53, 99, 53.5f, 21, AssetLoader.resumeUp, AssetLoader.resumeDown);
-		
-		gameScreenButtons.add(restartButton);
-		gameScreenButtons.add(mainMenuButton);
+		pauseRestartButton = new Button(53, 122, 53.5f, 21, AssetLoader.restartUp, AssetLoader.restartDown);
+		pauseMainButton = new Button(53, 145, 53.5f, 21, AssetLoader.mainButtonUp, AssetLoader.mainButtonDown);
+		gamePausedButtons.add(resumeButton);
+		gamePausedButtons.add(pauseRestartButton);
+		gamePausedButtons.add(pauseMainButton);
 
 		// holes/hammer regions ==============================================================================================================
 		hammerPosition = new ArrayList<HammerPosition>(10);
@@ -128,6 +133,7 @@ public class GameWorld {
 	}
 
 	private void updateReady(float delta) {
+	
 		if (readyCount <= 0) {
 			startGame();
 		}
@@ -155,26 +161,22 @@ public class GameWorld {
 	}
 	
 	private void updatePause(float delta){
-		restartButton.setX(53);
-		restartButton.setY(122);
-		
-		mainMenuButton.setX(53);
-		mainMenuButton.setY(145);
-		
-		if (restartButton.isJustPressed()) {
+
+		if (pauseRestartButton.isJustPressed()) {
 			restart();
-		}else if (mainMenuButton.isJustPressed()) {
+		}else if (pauseMainButton.isJustPressed()) {
 			backToMain = true;
+			seconds = 60;
 		}
 	}
 
 	public void updateGameOver(float delta) {
-		seconds = 60;
 
 		if (restartButton.isJustPressed()) {
 			restart();
 		}else if (mainMenuButton.isJustPressed()) {
 			backToMain = true;
+			seconds = 60;
 		}
 	}
 
@@ -375,19 +377,16 @@ public class GameWorld {
 	}
 
 	public static List<Button> getGameOverButtons() {
-		return gameScreenButtons;
+		return gameOverButtons;
+	}
+	
+	public static List<Button> getGamePausedButtons(){
+		return gamePausedButtons;
 	}
 
 	public static void setSeconds(int seconds) {
 		GameWorld.seconds = seconds;
 	}
 
-	public Button getResumeButton() {
-		return resumeButton;
-	}
-
-	public void setResumeButton(Button resumeButton) {
-		this.resumeButton = resumeButton;
-	}
 
 }
