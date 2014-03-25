@@ -243,13 +243,10 @@ public class GameRenderer {
 	private TextureRegion getTable() {
 		if (custom.checkTable() == true) {
 			this.table = AssetLoader.wood;
-			custom.falseCheck();
 		} else if (custom.checkTable1() == true) {
 			this.table = AssetLoader.steel;
-			custom.falseCheck1();
 		} else if (custom.checkTable2() == true) {
 			this.table = AssetLoader.carbon;
-			custom.falseCheck2();
 		}
 
 		return this.table;
@@ -260,17 +257,14 @@ public class GameRenderer {
 			this.thisAnimation = AssetLoader.defaultDummyAnimation;
 			this.thisAnimationDies = AssetLoader.defaultDummyDies;
 
-			custom.falseDummy2();
 		} else if (custom.checkDummy() == true) {
 			this.thisAnimation = AssetLoader.officeDummyAnimation;
 			this.thisAnimationDies = AssetLoader.officeDummyDies;
 
-			custom.falseDummy();
 		} else if (custom.checkDummy1() == true) {
 			this.thisAnimation = AssetLoader.janitorDummyAnimation;
 			this.thisAnimationDies = AssetLoader.janitorDummyDies;
 
-			custom.falseDummy1();
 		}
 	}
 
