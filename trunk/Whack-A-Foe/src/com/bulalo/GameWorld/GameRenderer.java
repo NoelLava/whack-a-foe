@@ -167,7 +167,7 @@ public class GameRenderer {
 	}
 
 	private void drawGameOver() {
-		int length = ("" + myWorld.getScore()).length();
+		//int length = ("" + myWorld.getScore()).length();
 
 		batcher.draw(AssetLoader.gameOverScreen, 7.5f, 7.5f,
 				AssetLoader.gameOverScreen.getRegionWidth() / 2,
@@ -178,11 +178,17 @@ public class GameRenderer {
 				AssetLoader.ticket.getRegionHeight() / 2);
 
 		String zeros = (myWorld.getScore() < 10)?"00":(myWorld.getScore() >= 10 && myWorld.getScore() < 100)?"0":"";
-		AssetLoader.bit.draw(batcher, zeros + myWorld.getScore(),
-				48 - (3 * length), 74);
-		AssetLoader.bitWhite.draw(batcher, zeros + myWorld.getScore(),
-				50 - (3 * length), 72);
-
+		AssetLoader.bit.draw(batcher, zeros + myWorld.getScore(), 42, 74);
+		AssetLoader.bitWhite.draw(batcher, zeros + myWorld.getScore(), 44, 72);
+		
+		String highZeros = (AssetLoader.getHighScore() < 10)?"00":(AssetLoader.getHighScore() >= 10 && AssetLoader.getHighScore() < 100)?"0":"";
+		AssetLoader.bit.draw(batcher, highZeros + AssetLoader.getHighScore(), 42, 176.5f);
+		AssetLoader.bitWhite.draw(batcher, highZeros + AssetLoader.getHighScore(), 44, 174.5f);
+		
+		String ticketZeros = (AssetLoader.getTicket() < 10)?"00":(AssetLoader.getTicket() >= 10 && AssetLoader.getTicket() < 100)?"0":"";
+		AssetLoader.bitGoldSh.draw(batcher, ticketZeros + AssetLoader.getTicket(), 82.5f, 124);
+		AssetLoader.bitGold.draw(batcher, ticketZeros + AssetLoader.getTicket(), 84.5f, 122);
+		
 	}
 
 	private void drawPause() {
