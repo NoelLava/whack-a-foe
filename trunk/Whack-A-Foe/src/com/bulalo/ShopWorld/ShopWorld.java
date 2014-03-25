@@ -17,18 +17,18 @@ public class ShopWorld {
 	private Button backButton;
 	private Button timeUpgradeButton;
 	private Button scoreUpgradeButton;
-	private Button buyButton;
-	private Button buyButton1;
-	private Button buyButton2;
-	private Button useButton;
-	private Button useButton1;
-	private Button useButton2;
-	private Button buyButton3;
-	private Button buyButton4;
+	private Button buyKahoy;
+	private Button buyBakal;
+	private Button buyGinto;
+	private Button useKahoy;
+	private Button useBakal;
+	private Button useGinto;
+	private Button buyTimeUpgrade;
+	private Button buyScoreUpgrade;
 	
-	private Button hammer;
-	private Button hammer1;
-	private Button hammer2;
+	private Button kahoy;
+	private Button bakal;
+	private Button ginto;
 
 	float runTime = 0;
 
@@ -49,30 +49,35 @@ public class ShopWorld {
 		scoreUpgradeButton = new Button(90 , 165, 43, 53,
 				AssetLoader.scoreBoostUp, AssetLoader.scoreBoostDown);
 		
-		buyButton = new Button(14,117,34.5f,13.5f,AssetLoader.buyUp,AssetLoader.buyDown);
-		buyButton1 = new Button(64,117,34.5f,13.5f,AssetLoader.buyUp,AssetLoader.buyDown);
-		buyButton2 = new Button(114,117,34.5f,13.5f,AssetLoader.buyUp,AssetLoader.buyDown);
-		useButton = new Button(14,132,34.5f,13.5f,AssetLoader.useUp,AssetLoader.useDown);
-		useButton1 = new Button(64,132,34.5f,13.5f,AssetLoader.useUp,AssetLoader.useDown);
-		useButton2 = new Button(114,132,34.5f,13.5f,AssetLoader.useUp,AssetLoader.useDown);
-		buyButton3 = new Button(30,220,34.5f,13.5f,AssetLoader.buyUp,AssetLoader.buyDown);
-		buyButton4 = new Button(95,220,34.5f,13.5f,AssetLoader.buyUp,AssetLoader.buyDown);
+		buyKahoy = new Button(14,117,34.5f,13.5f,AssetLoader.buyUp,AssetLoader.buyDown);
+		buyBakal = new Button(64,117,34.5f,13.5f,AssetLoader.buyUp,AssetLoader.buyDown);
+		buyGinto = new Button(114,117,34.5f,13.5f,AssetLoader.buyUp,AssetLoader.buyDown);
+		useKahoy = new Button(14,132,34.5f,13.5f,AssetLoader.useUp,AssetLoader.useDown);
+		useBakal = new Button(64,132,34.5f,13.5f,AssetLoader.useUp,AssetLoader.useDown);
+		useGinto = new Button(114,132,34.5f,13.5f,AssetLoader.useUp,AssetLoader.useDown);
+		buyTimeUpgrade = new Button(30,220,34.5f,13.5f,AssetLoader.buyUp,AssetLoader.buyDown);
+		buyScoreUpgrade = new Button(95,220,34.5f,13.5f,AssetLoader.buyUp,AssetLoader.buyDown);
 		
 		
-		hammer = new Button(9, 60, 43, 53,AssetLoader.kahoy,AssetLoader.kahoyDown);
-		hammer1 = new Button(59, 60, 43, 53,AssetLoader.bakal,AssetLoader.bakalDown);
-		hammer2 = new Button(109, 60, 43, 53,AssetLoader.ginto,AssetLoader.gintoDown);
-		hammerButtons.add(hammer);
-		hammerButtons.add(hammer1);
-		hammerButtons.add(hammer2);
-		buyButtons.add(buyButton);
-		buyButtons.add(buyButton1);
-		buyButtons.add(buyButton2);
-		useButtons.add(useButton);
-		useButtons.add(useButton1);
-		useButtons.add(useButton2);
-		buyButtons.add(buyButton3);
-		buyButtons.add(buyButton4);
+		kahoy = new Button(9, 60, 43, 53,AssetLoader.kahoy,AssetLoader.kahoyDown);
+		bakal = new Button(59, 60, 43, 53,AssetLoader.bakal,AssetLoader.bakalDown);
+		ginto = new Button(109, 60, 43, 53,AssetLoader.ginto,AssetLoader.gintoDown);
+		
+		hammerButtons.add(kahoy);
+		hammerButtons.add(bakal);
+		hammerButtons.add(ginto);
+		
+		buyButtons.add(buyKahoy);
+		buyButtons.add(buyBakal);
+		buyButtons.add(buyGinto);
+		buyButtons.add(buyTimeUpgrade);
+		buyButtons.add(buyScoreUpgrade);
+		
+		
+		useButtons.add(useKahoy);
+		useButtons.add(useBakal);
+		useButtons.add(useGinto);
+		
 		shopButtons.add(backButton);
 		shopButtons.add(timeUpgradeButton);
 		shopButtons.add(scoreUpgradeButton);
