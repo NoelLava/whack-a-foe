@@ -21,7 +21,9 @@ public class GameScreen implements Screen{
     float screenHeight;
     float gameWidth;
     float gameHeight;   
-	
+    
+    int seconds;
+    
 //	public GameScreen(WaFGame game){
 //		this.game = game;
 //	}
@@ -39,6 +41,8 @@ public class GameScreen implements Screen{
 		renderer = new GameRenderer(world);  //initialize the gameRenderer
 		
 		Gdx.input.setInputProcessor(new InputHandler(world, screenWidth/gameWidth, screenHeight/gameHeight));
+		
+		seconds = GameWorld.seconds;
 	}
 	
 	@Override
@@ -60,9 +64,7 @@ public class GameScreen implements Screen{
 
 	@Override
 	public void show() {
-		AssetLoader.gameStart.play();
-		AssetLoader.gameMusic2.play();
-		AssetLoader.gameMusic2.setLooping(true);
+		AssetLoader.beep.play();
 	}
 
 	@Override
@@ -81,5 +83,7 @@ public class GameScreen implements Screen{
 	public void dispose() {
 		AssetLoader.gameStart.stop();
 		AssetLoader.gameMusic2.stop();
+		AssetLoader.gameOver.stop();
+		AssetLoader.buzzer.stop();
 	}	
 }

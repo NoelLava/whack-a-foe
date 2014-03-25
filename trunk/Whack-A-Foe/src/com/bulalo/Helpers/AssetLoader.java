@@ -110,8 +110,8 @@ public class AssetLoader {
 	public static TextureRegion bulalo;
 	
 	public static Sound gameStart, hitSmash, buttonDown, buttonUp, bulaloil;
-	public static Sound gameOver, hitEmpty, hitFriend, hitFunny;
-	public static Music titleMusic, gameMusic, gameMusic2;
+	public static Sound hitEmpty, hitFriend, hitFunny, beep;
+	public static Music titleMusic, gameMusic, gameMusic2, gameOver, buzzer;
 	
 	public static BitmapFont digital, digitalShadow, bit, bitWhite;
 
@@ -165,11 +165,13 @@ public class AssetLoader {
 		buttonDown = Gdx.audio.newSound(Gdx.files.internal("sfx/buttonDown.mp3"));
 		buttonUp = Gdx.audio.newSound(Gdx.files.internal("sfx/buttonUp.mp3"));
 		bulaloil = Gdx.audio.newSound(Gdx.files.internal("sfx/boil1.mp3"));
-		gameOver = Gdx.audio.newSound(Gdx.files.internal("sfx/clear2.mp3"));
 		hitEmpty = Gdx.audio.newSound(Gdx.files.internal("sfx/SFX1.mp3"));
 		hitFriend = Gdx.audio.newSound(Gdx.files.internal("sfx/SFX3.mp3"));
 		hitFunny = Gdx.audio.newSound(Gdx.files.internal("sfx/SFX4.mp3"));
+		beep = Gdx.audio.newSound(Gdx.files.internal("sfx/beep.mp3"));
 		
+		buzzer = Gdx.audio.newMusic(Gdx.files.internal("sfx/buzzer.mp3"));
+		gameOver = Gdx.audio.newMusic(Gdx.files.internal("sfx/clear2.mp3"));
 		titleMusic = Gdx.audio.newMusic(Gdx.files.internal("music/menuBGM1.mp3"));
 		gameMusic = Gdx.audio.newMusic(Gdx.files.internal("music/playBGM1.mp3"));
 		gameMusic2 = Gdx.audio.newMusic(Gdx.files.internal("music/playBGM2.mp3"));
@@ -398,6 +400,7 @@ public class AssetLoader {
 		dummy.dispose();
 		pauseTexture.dispose();
 		
+		beep.dispose();
 		gameStart.dispose();
 		hitSmash.dispose();
 		buttonDown.dispose();
@@ -410,6 +413,7 @@ public class AssetLoader {
 		titleMusic.dispose();
 		gameMusic.dispose();
 		gameMusic2.dispose();
+		buzzer.dispose();
 		
 		digital.dispose();
 		digitalShadow.dispose();

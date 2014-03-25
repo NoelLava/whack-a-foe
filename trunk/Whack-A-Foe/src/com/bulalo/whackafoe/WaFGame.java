@@ -27,7 +27,6 @@ public class WaFGame extends Game {
 		shopScreen = new ShopScreen(this);
 		AssetLoader.load();
 		setScreen(new SplashScreen(this));
-
 	}
 	
 	@Override
@@ -35,5 +34,4 @@ public class WaFGame extends Game {
 		super.dispose();
 		AssetLoader.dispose();
 	}
-	
 }

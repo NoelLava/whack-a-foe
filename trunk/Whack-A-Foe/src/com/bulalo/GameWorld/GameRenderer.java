@@ -173,14 +173,15 @@ public class GameRenderer {
 				AssetLoader.gameOverScreen.getRegionWidth() / 2,
 				AssetLoader.gameOverScreen.getRegionHeight() / 2);
 
-		batcher.draw(AssetLoader.ticket, 55, 105,
+		batcher.draw(AssetLoader.ticket, 31.5f, 120,
 				AssetLoader.ticket.getRegionWidth() / 2,
 				AssetLoader.ticket.getRegionHeight() / 2);
 
-		AssetLoader.bit.draw(batcher, "" + myWorld.getScore(),
-				66 - (8 * length), 74);
-		AssetLoader.bitWhite.draw(batcher, "" + myWorld.getScore(),
-				69 - (8 * length), 72);
+		String zeros = (myWorld.getScore() < 10)?"00":(myWorld.getScore() >= 10 && myWorld.getScore() < 100)?"0":"";
+		AssetLoader.bit.draw(batcher, zeros + myWorld.getScore(),
+				48 - (3 * length), 74);
+		AssetLoader.bitWhite.draw(batcher, zeros + myWorld.getScore(),
+				50 - (3 * length), 72);
 
 	}
 
