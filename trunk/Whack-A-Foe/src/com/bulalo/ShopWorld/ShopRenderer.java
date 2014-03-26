@@ -36,8 +36,8 @@ public class ShopRenderer {
 	
 	private Button buyButton,useButton;
 	
-	public ShopRenderer(ShopWorld ShopWorld) {
-		shop = ShopWorld;
+	public ShopRenderer(ShopWorld shopWorld) {
+		shop = shopWorld;
 		this.shopButtons = ShopWorld.getShopButtons();
 		this.useButtons = ShopWorld.getUseButtons();
 		this.buyButtons = ShopWorld.getBuyButtons();
@@ -94,7 +94,6 @@ public class ShopRenderer {
 		for (Button button : hammerButtons){
 			button.draw(batcher);
 		}
-		
 	}
 	
 	private void drawTickets(){
