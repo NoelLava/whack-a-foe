@@ -110,9 +110,9 @@ public class AssetLoader {
 	public static Texture splashScreen;
 	public static TextureRegion bulalo;
 	
-	public static Sound gameStart, hitSmash, buttonDown, buttonUp, bulaloil;
+	public static Sound hitSmash, buttonDown, buttonUp, bulaloil;
 	public static Sound hitEmpty, hitFriend, hitFunny, beep;
-	public static Music titleMusic, gameMusic, gameMusic2, gameOver, buzzer;
+	public static Music titleMusic, gameMusic, gameMusic2, gameOver, buzzer, gameStart;
 	private static Preferences prefs;
 	
 	public static BitmapFont digital, digitalShadow, bit, bitWhite, bitGold, bitGoldSh;
@@ -162,7 +162,6 @@ public class AssetLoader {
 		
 		// Sounds ==============================================================================================
 
-		gameStart = Gdx.audio.newSound(Gdx.files.internal("sfx/playSFX.mp3"));
 		hitSmash = Gdx.audio.newSound(Gdx.files.internal("sfx/smashSFX.mp3"));
 		buttonDown = Gdx.audio.newSound(Gdx.files.internal("sfx/buttonDown.mp3"));
 		buttonUp = Gdx.audio.newSound(Gdx.files.internal("sfx/buttonUp.mp3"));
@@ -177,6 +176,7 @@ public class AssetLoader {
 		titleMusic = Gdx.audio.newMusic(Gdx.files.internal("music/menuBGM1.mp3"));
 		gameMusic = Gdx.audio.newMusic(Gdx.files.internal("music/playBGM1.mp3"));
 		gameMusic2 = Gdx.audio.newMusic(Gdx.files.internal("music/playBGM2.mp3"));
+		gameStart = Gdx.audio.newMusic(Gdx.files.internal("sfx/playSFX.mp3"));
 		
 		
 		// TitleScreen Textures ================================================================================

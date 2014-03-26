@@ -23,6 +23,7 @@ public class InputHandler implements InputProcessor {
 
 	float scaleFactorX;
 	float scaleFactorY;
+	public static int dummyPoints = 1;
 
 	public InputHandler(GameWorld myWorld, float scaleFactorX,
 			float scaleFactorY) {
@@ -61,7 +62,7 @@ public class InputHandler implements InputProcessor {
 				}
 
 				if (dummy.isPressed()) {
-					addScore(1);
+					addScore(dummyPoints);
 				}
 			}
 		} else if (myWorld.isPaused()) {

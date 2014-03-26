@@ -9,6 +9,7 @@ import com.bulalo.GameObjects.Dummy;
 import com.bulalo.GameObjects.HammerPosition;
 import com.bulalo.GameObjects.Timer;
 import com.bulalo.Helpers.AssetLoader;
+import com.bulalo.Helpers.InputHandler;
 import com.bulalo.UI.Button;
 
 public class GameWorld {
@@ -54,10 +55,12 @@ public class GameWorld {
 	private int millis = 60;
 	public static int seconds = 60;
 	private int readyCount = 3;
+	private int ticketValue;
 
 	private boolean buzzerPlayed;
 	private boolean clearPlayed;
-
+	public boolean gameStartPlayed;
+	
 	public boolean backToMain;
 	public boolean ticketAdded;
 
@@ -144,9 +147,9 @@ public class GameWorld {
 	}
 
 	private void updateReady(float delta) {
-		AssetLoader.gameMusic2.stop();
-		AssetLoader.gameOver.stop();
-		AssetLoader.buzzer.stop();
+		gameStartPlayed = false;
+		buzzerPlayed = false;
+		clearPlayed = false;
 
 		if (readyCount <= 0) {
 			startGame();
@@ -157,6 +160,15 @@ public class GameWorld {
 		if (!AssetLoader.gameMusic2.isPlaying()) {
 			AssetLoader.gameMusic2.play();
 		}
+		if (!AssetLoader.gameStart.isPlaying()) {
+			if (gameStartPlayed) {
+				AssetLoader.gameStart.stop();
+			} else {
+				AssetLoader.gameStart.play();
+				gameStartPlayed = true;
+			}
+		}
+		
 		if (seconds > 0) {
 
 			inGame();
@@ -193,10 +205,12 @@ public class GameWorld {
 	}
 
 	public void updateGameOver(float delta) {
+		InputHandler.dummyPoints = 1;
 		computeTickets();
 		if (score > AssetLoader.getHighScore()) {
 			AssetLoader.setHighScore(score);
 		}
+		
 		if (!AssetLoader.buzzer.isPlaying()) {
 			if (buzzerPlayed) {
 				AssetLoader.buzzer.stop();
@@ -257,8 +271,8 @@ public class GameWorld {
 	}
 
 	public void computeTickets() {
-		int value = (int) (score / 4);
-		int ticketVal = AssetLoader.getTicket() + value;
+		ticketValue = (int) (score / 4);
+		int ticketVal = AssetLoader.getTicket() + ticketValue;
 
 		if(!ticketAdded){
 			AssetLoader.setTicket(ticketVal);
@@ -271,7 +285,7 @@ public class GameWorld {
 	// adds multiple dummies in the arraylist
 	public void inGame() {
 		// dummies = new ArrayList<Dummy>();
-		if (dummies.size() >= 3) {
+		if (dummies.size() != 0) {
 			System.out.println("dummies list is full");
 		} else {
 			System.out.println("dummies list is null");
@@ -391,10 +405,6 @@ public class GameWorld {
 					if (seconds <= 10 && seconds > 0) {
 						AssetLoader.beep.play();
 					}
-					if (seconds <= 60 && seconds >= 59) {
-						AssetLoader.gameStart.play();
-					}
-
 				} else {
 					AssetLoader.beep.play();
 				}
@@ -451,6 +461,14 @@ public class GameWorld {
 
 	public static void setSeconds(int seconds) {
 		GameWorld.seconds = seconds;
+	}
+
+	public int getTicketValue() {
+		return ticketValue;
+	}
+
+	public void setTicketValue(int ticketValue) {
+		this.ticketValue = ticketValue;
 	}
 
 }

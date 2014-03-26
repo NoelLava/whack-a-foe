@@ -57,17 +57,15 @@ public class ShopRenderer {
 		
 	}
 	
-	
 	private void initAssets(){
 		ssbg = AssetLoader.ssBg;
 		kahoy = AssetLoader.kahoy;
 		bakal = AssetLoader.bakal;
 		ginto = AssetLoader.ginto;
-
 	}
 	
 	private void initGameObjects(){
-		}
+	}
 	
 	public void drawBackground(TextureRegion region){
 		batcher.draw(region, 0, 0, 160, 256);

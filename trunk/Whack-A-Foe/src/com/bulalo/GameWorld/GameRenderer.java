@@ -185,9 +185,9 @@ public class GameRenderer {
 		AssetLoader.bit.draw(batcher, highZeros + AssetLoader.getHighScore(), 42, 176.5f);
 		AssetLoader.bitWhite.draw(batcher, highZeros + AssetLoader.getHighScore(), 44, 174.5f);
 		
-		String ticketZeros = (AssetLoader.getTicket() < 10)?"00":(AssetLoader.getTicket() >= 10 && AssetLoader.getTicket() < 100)?"0":"";
-		AssetLoader.bitGoldSh.draw(batcher, ticketZeros + AssetLoader.getTicket(), 82.5f, 124);
-		AssetLoader.bitGold.draw(batcher, ticketZeros + AssetLoader.getTicket(), 84.5f, 122);
+		String ticketZeros = (myWorld.getTicketValue() < 10)?"00":(myWorld.getTicketValue() >= 10 && myWorld.getTicketValue() < 100)?"0":"";
+		AssetLoader.bitGoldSh.draw(batcher, ticketZeros + myWorld.getTicketValue(), 82.5f, 124);
+		AssetLoader.bitGold.draw(batcher, ticketZeros + myWorld.getTicketValue(), 84.5f, 122);
 		
 	}
 

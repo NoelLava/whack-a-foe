@@ -5,10 +5,12 @@ import java.util.List;
 
 import com.bulalo.GameObjects.Hammers;
 import com.bulalo.GameObjects.Upgrades;
+import com.bulalo.GameWorld.GameWorld;
 import com.bulalo.Helpers.AssetLoader;
+import com.bulalo.Helpers.InputHandler;
 import com.bulalo.UI.Button;
 
-public class ShopWorld {
+public class ShopWorld {	
 	private static List<Button> shopButtons;
 	private static List<Button> useButtons;
 	private static List<Button> buyButtons;
@@ -84,6 +86,14 @@ public class ShopWorld {
 	}
 
 	public void update(float delta) {
+		if(buyTimeUpgrade.isJustPressed()){
+			GameWorld.seconds = 90;
+			buyTimeUpgrade.setJustPressed(false);
+		}
+		if(buyScoreUpgrade.isJustPressed()){
+			InputHandler.dummyPoints = 2;
+			buyScoreUpgrade.setJustPressed(false);
+		}
 
 	}
 	
