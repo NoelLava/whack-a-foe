@@ -54,16 +54,17 @@ public class GameWorld {
 	private int millis = 60;
 	public static int seconds = 60;
 	private int readyCount = 3;
-	
-	private boolean buzzerPlayed = false;
+
+	private boolean buzzerPlayed;
 	private boolean clearPlayed;
 
 	public boolean backToMain;
+	public boolean ticketAdded;
 
 	private GameState currentState;
 
 	public enum GameState {
-		READY, RUNNING, PAUSE, GAMEOVER, HIGHSCORE
+		READY, RUNNING, PAUSE, GAMEOVER
 	}
 
 	public GameWorld() {
@@ -179,8 +180,8 @@ public class GameWorld {
 		AssetLoader.gameMusic2.pause();
 
 		if (pauseRestartButton.isJustPressed()) {
-			//restart();
-			currentState = GameState.GAMEOVER;
+			restart();
+			//currentState = GameState.GAMEOVER;
 			pauseRestartButton.setJustPressed(false);
 		} else if (resumeButton.isJustPressed()) {
 			startGame();
@@ -192,19 +193,22 @@ public class GameWorld {
 	}
 
 	public void updateGameOver(float delta) {
-		if(!AssetLoader.buzzer.isPlaying()){
-			if(buzzerPlayed){
+		computeTickets();
+		if (score > AssetLoader.getHighScore()) {
+			AssetLoader.setHighScore(score);
+		}
+		if (!AssetLoader.buzzer.isPlaying()) {
+			if (buzzerPlayed) {
 				AssetLoader.buzzer.stop();
-			}else{
+			} else {
 				AssetLoader.buzzer.play();
 				buzzerPlayed = true;
 			}
 		}
-		
-		if(!AssetLoader.gameOver.isPlaying()){
-			if(clearPlayed){
+		if (!AssetLoader.gameOver.isPlaying()) {
+			if (clearPlayed) {
 				AssetLoader.gameOver.stop();
-			}else{
+			} else {
 				AssetLoader.gameOver.play();
 				clearPlayed = true;
 			}
@@ -244,10 +248,6 @@ public class GameWorld {
 		return currentState == GameState.GAMEOVER;
 	}
 
-	public boolean isHighScore() {
-		return currentState == GameState.HIGHSCORE;
-	}
-
 	public boolean isRunning() {
 		return currentState == GameState.RUNNING;
 	}
@@ -256,12 +256,23 @@ public class GameWorld {
 		return currentState == GameState.PAUSE;
 	}
 
+	public void computeTickets() {
+		int value = (int) (score / 4);
+		int ticketVal = AssetLoader.getTicket() + value;
+
+//		if(!ticketAdded){
+//			AssetLoader.setTicket(ticketVal);
+//			ticketAdded = true;
+//		}		
+		
+	}
+
 	// GAME METHODS
 	// ======================================================================
 	// adds multiple dummies in the arraylist
 	public void inGame() {
 		// dummies = new ArrayList<Dummy>();
-		if (dummies.size() != 0) {
+		if (dummies.size() >= 4) {
 			System.out.println("dummies list is full");
 		} else {
 			System.out.println("dummies list is null");
@@ -412,6 +423,10 @@ public class GameWorld {
 
 	public void addScore(int increment) {
 		score += increment;
+	}
+
+	public void subtractScore(int decrement) {
+		score -= decrement;
 	}
 
 	public static List<Dummy> getDummies() {

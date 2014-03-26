@@ -47,12 +47,12 @@ public class CustomWorld {
 		dummy1 = new Button(60, 180, 38, 38, AssetLoader.farmerIconUp,AssetLoader.farmerIconDown);
 		dummy2 = new Button(100, 180, 38, 38, AssetLoader.boyIconUp,AssetLoader.boyIconDown);
 		
-		useWood = new Button(30,115,20,15, AssetLoader.useUp, AssetLoader.useDown);
-		useSteel = new Button(70,115,20,15, AssetLoader.useUp, AssetLoader.useDown);
-		useCarbon = new Button(110,115,20,15, AssetLoader.useUp, AssetLoader.useDown);
-		useBoss = new Button(30,220,20,15, AssetLoader.useUp, AssetLoader.useDown);
-		useFarmer = new Button(70,220,20,15, AssetLoader.useUp, AssetLoader.useDown);
-		useBoy = new Button(110,220,20,15, AssetLoader.useUp, AssetLoader.useDown);
+		useWood = new Button(30,115,34.5f,13.5f, AssetLoader.useUp, AssetLoader.useDown);
+		useSteel = new Button(70,115,34.5f,13.5f, AssetLoader.useUp, AssetLoader.useDown);
+		useCarbon = new Button(110,115,34.5f,13.5f, AssetLoader.useUp, AssetLoader.useDown);
+		useBoss = new Button(30,220,34.5f,13.5f, AssetLoader.useUp, AssetLoader.useDown);
+		useFarmer = new Button(70,220,34.5f,13.5f, AssetLoader.useUp, AssetLoader.useDown);
+		useBoy = new Button(110,220,34.5f,13.5f, AssetLoader.useUp, AssetLoader.useDown);
 		
 		customButtons.add(backButton);
 		customButtons.add(table);

@@ -110,6 +110,16 @@ public class ShopRenderer {
 		
 	}
 	
+	private void drawTickets(){
+		batcher.draw(AssetLoader.ticket, 2, 230,
+				AssetLoader.ticket.getRegionWidth() / 2,
+				AssetLoader.ticket.getRegionHeight() / 2);
+		
+		String ticketZeros = (AssetLoader.getTicket() < 10)?"00":(AssetLoader.getTicket() >= 10 && AssetLoader.getTicket() < 100)?"0":"";
+		AssetLoader.bitGoldSh.draw(batcher, ticketZeros + AssetLoader.getTicket(), (AssetLoader.ticket.getRegionWidth() / 8) + 5, (AssetLoader.ticket.getRegionHeight() / 8) + 226);
+		AssetLoader.bitGold.draw(batcher, ticketZeros + AssetLoader.getTicket(), (AssetLoader.ticket.getRegionWidth() / 8) + 6, (AssetLoader.ticket.getRegionHeight() / 8) + 225);
+	}
+	
 	public void render(float runTime) {
 		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
@@ -133,6 +143,7 @@ public class ShopRenderer {
 		drawHammer(kahoy, 20, 50, runTime);
 		drawHammer1(bakal, 100, 50, runTime);
 		drawHammer2(ginto, 180, 50, runTime);
+		drawTickets();
 		
 		batcher.end();
 	}

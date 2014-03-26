@@ -1,6 +1,7 @@
 package com.bulalo.Helpers;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
@@ -112,8 +113,9 @@ public class AssetLoader {
 	public static Sound gameStart, hitSmash, buttonDown, buttonUp, bulaloil;
 	public static Sound hitEmpty, hitFriend, hitFunny, beep;
 	public static Music titleMusic, gameMusic, gameMusic2, gameOver, buzzer;
+	private static Preferences prefs;
 	
-	public static BitmapFont digital, digitalShadow, bit, bitWhite;
+	public static BitmapFont digital, digitalShadow, bit, bitWhite, bitGold, bitGoldSh;
 
 	public static void load() {
 		Texture.setEnforcePotImages(false);
@@ -356,11 +358,15 @@ public class AssetLoader {
 		digitalShadow = new BitmapFont(Gdx.files.internal("font/DigitalShadow.fnt"));
 		bit = new BitmapFont(Gdx.files.internal("font/8bit.fnt"));
 		bitWhite = new BitmapFont(Gdx.files.internal("font/8bitWhite.fnt"));
+		bitGold = new BitmapFont(Gdx.files.internal("font/bitGold.fnt"));
+		bitGoldSh = new BitmapFont(Gdx.files.internal("font/bitGoldSh.fnt"));
 		
 		digital.setScale(.5f, -.5f);
 		digitalShadow.setScale(.5f, -.5f);
 		bit.setScale(.75f, -.75f);
 		bitWhite.setScale(.75f, -.75f);
+		bitGold.setScale(.5f, -.5f);
+		bitGoldSh.setScale(.5f, -.5f);
 		
 		// Animations ==========================================================================================
 		TextureRegion[] dummiesDefault = { dummyDefault1, dummyDefault2, dummyDefault3, dummyDefault4 };
@@ -384,6 +390,48 @@ public class AssetLoader {
 		janitorDummyDies = new Animation(0.03f, dummyJanitorRev);
 		janitorDummyDies.setPlayMode(Animation.NORMAL);
 
+		//Preferences ======================================================================================
+		//==================================================================================================
+		
+		//Create or retrive existing preferences file
+		prefs = Gdx.app.getPreferences("WhackAFoe");
+		
+		//Provides default ticket of 0
+		if(!prefs.contains("ticket")){
+			prefs.putInteger("ticket", 0);
+		}
+		
+		//Provides default high score of 0
+		if(!prefs.contains("highScore")){
+			prefs.putInteger("highScore", 0);
+		}
+	}
+	
+	// Receives an integer and maps it to the String ticket in prefs
+	public static void setTicket(int value){
+		prefs.putInteger("ticket", value);
+		prefs.flush();
+	}
+	
+	//Retrieves the current ticket value
+	public static int getTicket(){
+		return prefs.getInteger("ticket");
+	}
+	
+	//Receives an integer and maps it to the String highScore in prefs
+	public static void setHighScore(int value){
+		prefs.putInteger("highScore", value);
+		prefs.flush();
+	}
+	
+	//Retrieves the current high score
+	public static int getHighScore(){
+		return prefs.getInteger("highScore");
+	}
+	
+	//clears prefs (for development only)
+	public static void clearPref(){
+		prefs.clear();
 	}
 
 	public static void dispose() {
@@ -418,5 +466,8 @@ public class AssetLoader {
 		digital.dispose();
 		digitalShadow.dispose();
 		bit.dispose();
+		bitWhite.dispose();
+		bitGold.dispose();
+		bitGoldSh.dispose();
 	}
 }
