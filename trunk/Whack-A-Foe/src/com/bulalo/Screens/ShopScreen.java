@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
-import com.bulalo.GameObjects.Hammers;
 import com.bulalo.Helpers.AssetLoader;
 import com.bulalo.ShopWorld.ShopInputHandler;
 import com.bulalo.ShopWorld.ShopRenderer;
@@ -19,8 +18,7 @@ public class ShopScreen implements Screen {
 	private String pamalo = "";
 	private float runTime = 0;
 	private ShopWorld shop;
-	private Hammers hammer;
-	
+	 
 	private static List<Button> shopButtons;
 	private Button backButton;
 	

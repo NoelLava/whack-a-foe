@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.badlogic.gdx.InputProcessor;
 import com.bulalo.GameObjects.Hammers;
+import com.bulalo.GameObjects.Upgrades;
 import com.bulalo.UI.Button;
 
 public class ShopInputHandler implements InputProcessor {
@@ -18,7 +19,7 @@ public class ShopInputHandler implements InputProcessor {
 	private static boolean hammer2True;
 	
 	private static List<Button> shopButtons;
-	
+
 	float scaleFactorX;
 	float scaleFactorY;
 	
@@ -55,7 +56,6 @@ public class ShopInputHandler implements InputProcessor {
 		return hammer2True;
 		
 	}
-	
 	
 	@Override
 	public boolean touchDown(int screenX, int screenY, int pointer, int button) {
@@ -101,11 +101,13 @@ public class ShopInputHandler implements InputProcessor {
         	return true;
         }
         
+        
         for(Button thisButton : shopButtons){
     		if(thisButton.isTouchUp(screenX, screenY)){
     			return true;
     		}
     	}
+        
     	return false;
 	}
 	
@@ -167,5 +169,6 @@ public class ShopInputHandler implements InputProcessor {
     	return hammer2True = false;
     
     }
+
 
 }

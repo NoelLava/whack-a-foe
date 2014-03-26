@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import com.badlogic.gdx.utils.TimeUtils;
 import com.bulalo.GameObjects.Dummy;
 import com.bulalo.GameObjects.HammerPosition;
 import com.bulalo.GameObjects.Timer;
@@ -13,54 +12,83 @@ import com.bulalo.Helpers.AssetLoader;
 import com.bulalo.UI.Button;
 
 public class GameWorld {
-	private Timer timer, dummyTimer;
+	private Timer timer, dummyTimer, gameTimer;
 	private Dummy dummy;
 
-	// Game Counters ===============================================================
-	public static final float[] coordinateX = { 27f, 63.25f, 99f, 21f, 62.75f,
-			103.5f, 17.75f, 62.75f, 108f };
+	// Game Counters
+	// ===============================================================
+	public static final float[] coordinateX = { 28f, 64.25f, 100f, 22.5f,
+			64.25f, 105f, 19f, 64f, 109.25f };
 	public static final float[] coordinateY = { 65f, 65f, 65f, 120f, 120f,
 			120f, 175.5f, 175.5f, 175.5f };
 	private boolean[] removed = { false, false, false, false, false, false,
 			false, false, false };
 	private int[] respawnCounter = { 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 	private int[] removeCounter = { 0, 0, 0, 0, 0, 0, 0, 0, 0 };
-	private int escapeCounter = 0;
 
-	// Dummies and Buttons =========================================================
+	// Dummies and Buttons
+	// =========================================================
 	private static List<Dummy> dummies;
 	private static List<Button> gameButtons;
 	Button pauseButton;
 
+	private static List<Button> gameOverButtons;
+	Button restartButton;
+	Button mainMenuButton;
+	
+	private static List<Button> gamePausedButtons;
+	Button resumeButton;
+	Button pauseRestartButton;
+	Button pauseMainButton;
+
 	private static List<HammerPosition> hammerPosition;
 	HammerPosition hammer;
-	
-	// Misc Variables ==============================================================
+
+	// Misc Variables
+	// ==============================================================
 	private float x, y;
 	Random rand = new Random();
 	float runTime = 0;
-	
+
 	private int score;
-	private int millis = 0;
-	private long seconds = 60;
+	private int millis = 60;
+	private static int seconds = 60;
+	private int readyCount = 3;
+
+	public boolean backToMain;
+
+	private GameState currentState;
+
+	public enum GameState {
+		READY, RUNNING, PAUSE, GAMEOVER, HIGHSCORE
+	}
 
 	public GameWorld() {
+		currentState = GameState.READY;
 
-		// dummies ==========================================
+		// dummies ===========================================================================================================================
 		dummies = new ArrayList<Dummy>();
-//		int r = rand.nextInt(9);
-//
-//		dummy = new Dummy(300, x, y, 35, 50);
-//		dummy.spawn(coordinateX[r], coordinateY[r]);
-//		dummies.add(dummy);
 
-		// buttons ==========================================
+		// buttons ===========================================================================================================================
 		gameButtons = new ArrayList<Button>();
-		pauseButton = new Button(137.85f, 1.85f, 21.5f, 20.5f,
-				AssetLoader.pauseButton, AssetLoader.pausePressed);
+		pauseButton = new Button(137.85f, 1.85f, 21.5f, 20.5f, AssetLoader.pauseButton, AssetLoader.pausePressed);
 		gameButtons.add(pauseButton);
 
-		// holes/hammer regions =============================
+		gameOverButtons = new ArrayList<Button>();
+		restartButton = new Button(21.5f, 209.5f, 53.5f, 21, AssetLoader.restartUp, AssetLoader.restartDown);
+		mainMenuButton = new Button(85, 209.5f, 53.5f, 21, AssetLoader.mainButtonUp, AssetLoader.mainButtonDown);
+		gameOverButtons.add(restartButton);
+		gameOverButtons.add(mainMenuButton);
+		
+		gamePausedButtons = new ArrayList<Button>();
+		resumeButton = new Button(53, 99, 53.5f, 21, AssetLoader.resumeUp, AssetLoader.resumeDown);
+		pauseRestartButton = new Button(53, 122, 53.5f, 21, AssetLoader.restartUp, AssetLoader.restartDown);
+		pauseMainButton = new Button(53, 145, 53.5f, 21, AssetLoader.mainButtonUp, AssetLoader.mainButtonDown);
+		gamePausedButtons.add(resumeButton);
+		gamePausedButtons.add(pauseRestartButton);
+		gamePausedButtons.add(pauseMainButton);
+
+		// holes/hammer regions ==============================================================================================================
 		hammerPosition = new ArrayList<HammerPosition>(10);
 		for (int ctr = 0; ctr < 10; ctr++) {
 			if (ctr == 9) {
@@ -71,27 +99,132 @@ public class GameWorld {
 						35, 50, ctr);
 				hammerPosition.add(hammer);
 			}
-		}		
-		timer = new Timer(1/1000);
+		}
+
+		// timers
+		timer = new Timer(1 / 1000);
 		timer.start();
-		
-		dummyTimer = new Timer(1/7);
+
+		dummyTimer = new Timer(1 / 7);
 		dummyTimer.start();
 	}
-	
 
-	public void update(float delta) {		
+	public void update(float delta) {
+		runTime += delta;
 		checkTimer();
 
-		runTime += delta;
-		inGame();
-		updateGame();
-		//checkHit();
-		respawn();
-		//System.out.println("array size - " + dummies.size());
-		System.out.println("TIMER :  " + seconds + " : " + millis);
+		switch (currentState) {
+		case READY:
+			updateReady(delta);
+			break;
+		case RUNNING:
+			updateRunning(delta);
+			break;
+		case PAUSE:
+			updatePause(delta);
+			break;
+		case GAMEOVER:
+			updateGameOver(delta);
+			break;
+		default:
+			break;
+		}
+
 	}
 
+	private void updateReady(float delta) {
+	
+		if (readyCount <= 0) {
+			startGame();
+		}
+		if (pauseButton.isJustPressed()) {
+			currentState = GameState.PAUSE;
+			pauseButton.setJustPressed(false);
+		}
+	}
+
+	private void updateRunning(float delta) {
+		
+		if (seconds > 0) {
+			inGame();
+			updateGame();
+			// checkHit();
+			respawn();
+			if (pauseButton.isJustPressed()) {
+				currentState = GameState.PAUSE;
+				pauseButton.setJustPressed(false);
+			}
+		} else {
+			for (Dummy dummy : dummies) {
+				dummy.setLife(0);
+			}
+			currentState = GameState.GAMEOVER;
+		}
+	}
+	
+	private void updatePause(float delta){
+
+		if (pauseRestartButton.isJustPressed()) {
+			restart();
+			pauseRestartButton.setJustPressed(false);
+		}else if(resumeButton.isJustPressed()){
+			startGame();
+			resumeButton.setJustPressed(false);
+		}else if (pauseMainButton.isJustPressed()) {
+			backToMain = true;
+			seconds = 60;
+		}
+	}
+
+	public void updateGameOver(float delta) {
+
+		if (restartButton.isJustPressed()) {
+			restart();
+			restartButton.setJustPressed(false);
+		}else if (mainMenuButton.isJustPressed()) {
+			backToMain = true;
+			seconds = 60;
+		}
+	}
+
+	public void startGame() {
+		this.currentState = GameState.RUNNING;
+	}
+
+	public void readyGame() {
+		this.currentState = GameState.READY;
+	}
+
+	public void restart() {
+		score = 0;
+		readyCount = 3;
+		seconds = 60;
+		
+		readyGame();
+	}
+
+	public boolean isReady() {
+		return currentState == GameState.READY;
+	}
+
+	public boolean isGameOver() {
+		return currentState == GameState.GAMEOVER;
+	}
+
+	public boolean isHighScore() {
+		return currentState == GameState.HIGHSCORE;
+	}
+
+	public boolean isRunning() {
+		return currentState == GameState.RUNNING;
+	}
+
+	public boolean isPaused() {
+		return currentState == GameState.PAUSE;
+	}
+
+	// GAME METHODS
+	// ======================================================================
 	// adds multiple dummies in the arraylist
 	public void inGame() {
 		// dummies = new ArrayList<Dummy>();
@@ -109,10 +242,10 @@ public class GameWorld {
 
 	}
 
-	public void updateRunning() {
+	public void updateCheck() {
 		if (!dummy.isAlive()) {
 			dummies.remove(dummy);
-	
+
 			dummy = null;
 			int r = rand.nextInt(9);
 			dummy = new Dummy(300, x, y, 35, 50);
@@ -149,7 +282,6 @@ public class GameWorld {
 				removed[i] = true;
 				// dum.isNotMarked();
 				removeCounter[i] = 0;
-				escapeCounter += 1;
 				for (int x = 0; x < dummies.size(); x++) {
 					removeCounter[x] = 0;
 				}
@@ -163,7 +295,7 @@ public class GameWorld {
 			if (!dum.isAlive()) {
 				for (int x = 0; x < dummies.size(); x++) {
 					removeCounter[i] = 0;
-					
+
 				}
 			}
 		}
@@ -197,28 +329,42 @@ public class GameWorld {
 			}
 		}
 	}
-	
-	public void checkTimer(){
-		if(timer.hasCompleted()){
-			millis++;
-			if(millis >= 60){
-				seconds--;
-				millis = 0;
+
+	public void checkTimer() {
+		if (timer.hasCompleted()) {
+			millis--;
+			if (millis <= 0) {
+				readyCount--;
+				millis = 60;
+				if (readyCount <= 0) {
+					readyCount = 0;
+					seconds--;
+					if (seconds <= 0) {
+						seconds = 0;
+						millis = 0;
+					}
+				}
 			}
 			timer.start();
 		}
 	}
-	
+
+	// Getters and Setters
+	// ====================================================================================
 	public int getScore() {
 		return score;
 	}
-	
-	public int getMilis(){
+
+	public int getMilis() {
 		return millis;
 	}
-	
-	public long getSeconds(){
+
+	public int getSeconds() {
 		return seconds;
+	}
+
+	public int getReadyCount() {
+		return readyCount;
 	}
 
 	public void addScore(int increment) {
@@ -236,5 +382,18 @@ public class GameWorld {
 	public static List<HammerPosition> getHammerAngles() {
 		return hammerPosition;
 	}
+
+	public static List<Button> getGameOverButtons() {
+		return gameOverButtons;
+	}
 	
+	public static List<Button> getGamePausedButtons(){
+		return gamePausedButtons;
+	}
+
+	public static void setSeconds(int seconds) {
+		GameWorld.seconds = seconds;
+	}
+
+
 }

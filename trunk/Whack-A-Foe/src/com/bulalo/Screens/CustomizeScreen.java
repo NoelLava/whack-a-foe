@@ -8,10 +8,11 @@ import com.bulalo.CustomizeWorld.CustomInputHandler;
 import com.bulalo.CustomizeWorld.CustomWorld;
 import com.bulalo.CustomizeWorld.CustomizeRenderer;
 import com.bulalo.GameObjects.Tables;
+import com.bulalo.GameWorld.GameWorld;
 import com.bulalo.Helpers.AssetLoader;
 import com.bulalo.UI.Button;
 import com.bulalo.whackafoe.WaFGame;
-
+ 
 public class CustomizeScreen implements Screen {
 	WaFGame game;
 	CustomizeRenderer renderer;
@@ -19,6 +20,7 @@ public class CustomizeScreen implements Screen {
 	private float runTime = 0;
 	private CustomWorld custom;
 	private Tables table;
+	private GameWorld world;
 	
 	private static List<Button> customButtons;
 	private Button backButton;
