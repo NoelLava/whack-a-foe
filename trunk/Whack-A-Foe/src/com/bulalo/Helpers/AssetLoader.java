@@ -271,7 +271,7 @@ public class AssetLoader {
 		
 		// CustomizeScreen Textures ============================================================================
 		csBg = new TextureRegion(cSTexture, 0, 0, 320, 512);
-		wood = new TextureRegion(woodTexture, 0, 0, 512, 512);
+		wood = new TextureRegion(woodTexture, 0, 0, 320, 512);
 		steel = new TextureRegion(steelTexture, 0, 0, 320, 512);
 		carbon = new TextureRegion(carbonTexture, 0, 0, 320, 512);
 		

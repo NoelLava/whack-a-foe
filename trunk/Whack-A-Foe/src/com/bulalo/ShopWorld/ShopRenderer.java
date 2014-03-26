@@ -105,7 +105,7 @@ public class ShopRenderer {
 				AssetLoader.ticket.getRegionHeight() / 2);
 		
 		String ticketZeros = (AssetLoader.getTicket() < 10)?"00":(AssetLoader.getTicket() >= 10 && AssetLoader.getTicket() < 100)?"0":"";
-		AssetLoader.bitGoldSh.draw(batcher, ticketZeros + AssetLoader.getTicket(), (AssetLoader.ticket.getRegionWidth() / 8) + 5, (AssetLoader.ticket.getRegionHeight() / 8) + 224);
+		AssetLoader.bitGoldSh.draw(batcher, ticketZeros + AssetLoader.getTicket(), (AssetLoader.ticket.getRegionWidth() / 8) + 5, (AssetLoader.ticket.getRegionHeight() / 8) + 226);
 		AssetLoader.bitGold.draw(batcher, ticketZeros + AssetLoader.getTicket(), (AssetLoader.ticket.getRegionWidth() / 8) + 6, (AssetLoader.ticket.getRegionHeight() / 8) + 225);
 
 	}
