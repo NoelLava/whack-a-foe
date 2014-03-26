@@ -272,7 +272,7 @@ public class GameWorld {
 	// adds multiple dummies in the arraylist
 	public void inGame() {
 		// dummies = new ArrayList<Dummy>();
-		if (dummies.size() >= 4) {
+		if (dummies.size() >= 3) {
 			System.out.println("dummies list is full");
 		} else {
 			System.out.println("dummies list is null");
@@ -284,7 +284,8 @@ public class GameWorld {
 			}
 		}
 
-	}
+		}
+	
 
 	public void updateCheck() {
 		if (!dummy.isAlive()) {
