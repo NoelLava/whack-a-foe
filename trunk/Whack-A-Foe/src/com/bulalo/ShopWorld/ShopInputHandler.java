@@ -10,15 +10,14 @@ import com.bulalo.UI.Button;
 public class ShopInputHandler implements InputProcessor {
 	private ShopWorld shopWorld;
 	
-	private Hammers hammer;
-	private Hammers hammer1;
-	private Hammers hammer2;
-	
 	private static boolean hammerTrue;
 	private static boolean hammer1True;
 	private static boolean hammer2True;
 	
 	private static List<Button> shopButtons;
+	private static List<Button> hammerButtons;
+	private static List<Button> buyButtons;
+	private static List<Button> useButtons;
 
 	float scaleFactorX;
 	float scaleFactorY;
@@ -28,10 +27,9 @@ public class ShopInputHandler implements InputProcessor {
 		this.shopWorld = shopWorld;
 		
 		shopButtons = ShopWorld.getShopButtons();
-		
-		hammer = shopWorld.getHammer();
-		hammer1 = shopWorld.getHammer1();
-		hammer2 = shopWorld.getHammer2();
+		hammerButtons = ShopWorld.getHammerButtons();
+		buyButtons = ShopWorld.getBuyButtons();
+		useButtons = ShopWorld.getUseButtons();
 		
 		this.scaleFactorX = scaleFactorX;
         this.scaleFactorY = scaleFactorY;
@@ -62,21 +60,32 @@ public class ShopInputHandler implements InputProcessor {
 		screenX = scaleX(screenX);
 		screenY = scaleY(screenY);
 		
-		if(hammer.isTouchDown(screenX, screenY)){
-			hammerTrue = true;
-			System.out.println("hammer touched");
-
-		}else if(hammer1.isTouchDown(screenX, screenY)){
-			hammer1True = true;
-			System.out.println("hammer1 touched");
-		
-		}else if(hammer2.isTouchDown(screenX, screenY)){
-			hammer2True = true;
-			System.out.println("hammer2 touched");
+		for(Button thisButton : hammerButtons){
+			thisButton.isTouchDown(screenX, screenY);
 		}
-		
 		for (Button thisButton : shopButtons) {
 			thisButton.isTouchDown(screenX, screenY);
+		}
+		for (Button thisButton : buyButtons) {
+			thisButton.isTouchDown(screenX, screenY);
+		}
+		for (Button thisButton : useButtons) {
+			thisButton.isTouchDown(screenX, screenY);
+			if(useButtons.get(0).isJustPressed()){
+				hammer1True = false;
+				hammer2True = false;
+				hammerTrue = true;
+			}
+			else if(useButtons.get(1).isJustPressed()){
+				hammerTrue = false;
+				hammer2True = false;
+				hammer1True = true;
+			}
+			else if(useButtons.get(2).isJustPressed()){
+				hammer1True = false;
+				hammerTrue = false;
+				hammer2True = true;
+			}
 		}
 			
     	return false;
@@ -88,25 +97,28 @@ public class ShopInputHandler implements InputProcessor {
 		screenX = scaleX(screenX);
         screenY = scaleY(screenY);
     	
-        if(hammer.isTouchUp(screenX, screenY)){
-        	return true;
-        }
-        
-        if(hammer1.isTouchUp(screenX, screenY)){
-        	return true;
-        	
-        }
-        
-        if(hammer2.isTouchUp(screenX, screenY)){
-        	return true;
-        }
-        
+       for(Button thisButton : hammerButtons){
+    	   if(thisButton.isTouchUp(screenX, screenY)){
+    		   return true;
+    	   }
+       }
+       for(Button thisButton : useButtons){
+    	   if(thisButton.isTouchUp(screenX, screenY)){
+    		   return true;
+    	   }
+       }
         
         for(Button thisButton : shopButtons){
     		if(thisButton.isTouchUp(screenX, screenY)){
     			return true;
     		}
     	}
+        for(Button thisButton : buyButtons){
+    		if(thisButton.isTouchUp(screenX, screenY)){
+    			return true;
+    		}
+    	}
+        
         
     	return false;
 	}
