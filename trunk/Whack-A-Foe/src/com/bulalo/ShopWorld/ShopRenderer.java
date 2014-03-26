@@ -118,8 +118,7 @@ public class ShopRenderer {
 		String ticketZeros = (AssetLoader.getTicket() < 10)?"00":(AssetLoader.getTicket() >= 10 && AssetLoader.getTicket() < 100)?"0":"";
 		AssetLoader.bitGoldSh.draw(batcher, ticketZeros + AssetLoader.getTicket(), (AssetLoader.ticket.getRegionWidth() / 8) + 5, (AssetLoader.ticket.getRegionHeight() / 8) + 224);
 		AssetLoader.bitGold.draw(batcher, ticketZeros + AssetLoader.getTicket(), (AssetLoader.ticket.getRegionWidth() / 8) + 6, (AssetLoader.ticket.getRegionHeight() / 8) + 225);
-<<<<<<< HEAD
-=======
+
 	}
 		
 		private void drawBuyButtons(){
@@ -150,7 +149,7 @@ public class ShopRenderer {
 			this.useButton = useButtons.get(2);
 			useButton.draw(batcher);
 		}
->>>>>>> 4fff736c9955a6233b7c315555ea3c33dd58c24b
+
 	}
 	
 	public void render(float runTime) {
@@ -173,18 +172,16 @@ public class ShopRenderer {
 		batcher.enableBlending();
 		
 		drawButtons();
-<<<<<<< HEAD
+
 		drawHammer(kahoy, 20, 50, runTime);
 		drawHammer1(bakal, 100, 50, runTime);
 		drawHammer2(ginto, 180, 50, runTime);
 		drawTickets();
-		
-=======
+
 		drawTickets();
 		
 		drawBuyButtons();
 		drawUseButtons();
->>>>>>> 4fff736c9955a6233b7c315555ea3c33dd58c24b
 		batcher.end();
 	}
 }
