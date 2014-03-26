@@ -30,10 +30,18 @@ public class ShopRenderer {
 	private static TextureRegion pamalo;
 	
 	private List<Button> shopButtons;
+	private List<Button> useButtons;
+	private List<Button> buyButtons;
+	private List<Button> hammerButtons;
+	
+	private Button buyButton,useButton;
 	
 	public ShopRenderer(ShopWorld ShopWorld) {
 		shop = ShopWorld;
 		this.shopButtons = ShopWorld.getShopButtons();
+		this.useButtons = ShopWorld.getUseButtons();
+		this.buyButtons = ShopWorld.getBuyButtons();
+		this.hammerButtons = ShopWorld.getHammerButtons();
 		
 		cam = new OrthographicCamera();
 		cam.setToOrtho(true, 160, 256);
@@ -49,38 +57,14 @@ public class ShopRenderer {
 		
 	}
 	
-	public static TextureRegion getHammer(){
-		hammer = shop.getHammer();
-		hammer1 = shop.getHammer();
-		hammer2 = shop.getHammer();
-		
-		if(hammer.isPressed() == true){
-			System.out.println("naging kahoy");
-			pamalo = AssetLoader.kahoy;
-		} else if(hammer1.isPressed() == true){
-			System.out.println("naging bakal");
-			pamalo = AssetLoader.bakal;
-		} else if(hammer2.isPressed() == true){
-			System.out.println("naging ginto");
-			pamalo = AssetLoader.ginto;		
-		}System.out.println("click tester");
-		
-		return pamalo;
-	}
-	
 	private void initAssets(){
 		ssbg = AssetLoader.ssBg;
 		kahoy = AssetLoader.kahoy;
 		bakal = AssetLoader.bakal;
 		ginto = AssetLoader.ginto;
-
 	}
 	
 	private void initGameObjects(){
-		hammer = shop.getHammer();
-		hammer1 = shop.getHammer1();
-		hammer2 = shop.getHammer2();
-
 	}
 	
 	public void drawBackground(TextureRegion region){
@@ -107,9 +91,62 @@ public class ShopRenderer {
 		for(Button button : shopButtons) {
 			button.draw(batcher);
         }
+		for (Button button : hammerButtons){
+			button.draw(batcher);
+		}
 		
 	}
 	
+	private void drawTickets(){
+		batcher.draw(AssetLoader.ticket, 2, 230,
+				AssetLoader.ticket.getRegionWidth() / 2,
+				AssetLoader.ticket.getRegionHeight() / 2);
+		
+		String ticketZeros = (AssetLoader.getTicket() < 10)?"00":(AssetLoader.getTicket() >= 10 && AssetLoader.getTicket() < 100)?"0":"";
+		AssetLoader.bitGoldSh.draw(batcher, ticketZeros + AssetLoader.getTicket(), (AssetLoader.ticket.getRegionWidth() / 8) + 5, (AssetLoader.ticket.getRegionHeight() / 8) + 226);
+		AssetLoader.bitGold.draw(batcher, ticketZeros + AssetLoader.getTicket(), (AssetLoader.ticket.getRegionWidth() / 8) + 6, (AssetLoader.ticket.getRegionHeight() / 8) + 225);
+
+	}
+		
+		private void drawBuyButtons(){
+		if(hammerButtons.get(0).isJustPressed()){
+			this.buyButton = buyButtons.get(0);
+			buyButton.draw(batcher);
+		}
+		else if(hammerButtons.get(1).isJustPressed()){
+			this.buyButton = buyButtons.get(1);
+			buyButton.draw(batcher);
+		}
+		else if(hammerButtons.get(2).isJustPressed()){
+			this.buyButton = buyButtons.get(2);
+			buyButton.draw(batcher);
+		}
+	}
+	
+	private void drawUseButtons(){
+		if(buyButtons.get(0).isJustPressed()){
+			this.useButton = useButtons.get(0);
+			useButton.draw(batcher);
+		}
+		else if(buyButtons.get(1).isJustPressed()){
+			this.useButton = useButtons.get(1);
+			useButton.draw(batcher);
+		}
+		else if(buyButtons.get(2).isJustPressed()){
+			this.useButton = useButtons.get(2);
+			useButton.draw(batcher);
+		}
+		else if(shopButtons.get(1).isJustPressed()){
+			this.useButton = buyButtons.get(3);
+			useButton.draw(batcher);
+		}
+		else if(shopButtons.get(2).isJustPressed()){
+			this.useButton = buyButtons.get(4);
+			useButton.draw(batcher);
+		}
+
+	}
+	 
 	public void render(float runTime) {
 		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
@@ -130,10 +167,10 @@ public class ShopRenderer {
 		batcher.enableBlending();
 		
 		drawButtons();
-		drawHammer(kahoy, 20, 50, runTime);
-		drawHammer1(bakal, 100, 50, runTime);
-		drawHammer2(ginto, 180, 50, runTime);
+		drawTickets();
 		
+		drawBuyButtons();
+		drawUseButtons();
 		batcher.end();
 	}
 }

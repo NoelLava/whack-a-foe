@@ -167,21 +167,28 @@ public class GameRenderer {
 	}
 
 	private void drawGameOver() {
-		int length = ("" + myWorld.getScore()).length();
+		//int length = ("" + myWorld.getScore()).length();
 
 		batcher.draw(AssetLoader.gameOverScreen, 7.5f, 7.5f,
 				AssetLoader.gameOverScreen.getRegionWidth() / 2,
 				AssetLoader.gameOverScreen.getRegionHeight() / 2);
 
-		batcher.draw(AssetLoader.ticket, 55, 105,
+		batcher.draw(AssetLoader.ticket, 31.5f, 120,
 				AssetLoader.ticket.getRegionWidth() / 2,
 				AssetLoader.ticket.getRegionHeight() / 2);
 
-		AssetLoader.bit.draw(batcher, "" + myWorld.getScore(),
-				66 - (8 * length), 74);
-		AssetLoader.bitWhite.draw(batcher, "" + myWorld.getScore(),
-				69 - (8 * length), 72);
-
+		String zeros = (myWorld.getScore() < 10)?"00":(myWorld.getScore() >= 10 && myWorld.getScore() < 100)?"0":"";
+		AssetLoader.bit.draw(batcher, zeros + myWorld.getScore(), 42, 74);
+		AssetLoader.bitWhite.draw(batcher, zeros + myWorld.getScore(), 44, 72);
+		
+		String highZeros = (AssetLoader.getHighScore() < 10)?"00":(AssetLoader.getHighScore() >= 10 && AssetLoader.getHighScore() < 100)?"0":"";
+		AssetLoader.bit.draw(batcher, highZeros + AssetLoader.getHighScore(), 42, 176.5f);
+		AssetLoader.bitWhite.draw(batcher, highZeros + AssetLoader.getHighScore(), 44, 174.5f);
+		
+		String ticketZeros = (myWorld.getTicketValue() < 10)?"00":(myWorld.getTicketValue() >= 10 && myWorld.getTicketValue() < 100)?"0":"";
+		AssetLoader.bitGoldSh.draw(batcher, ticketZeros + myWorld.getTicketValue(), 82.5f, 124);
+		AssetLoader.bitGold.draw(batcher, ticketZeros + myWorld.getTicketValue(), 84.5f, 122);
+		
 	}
 
 	private void drawPause() {
@@ -243,13 +250,10 @@ public class GameRenderer {
 	private TextureRegion getTable() {
 		if (custom.checkTable() == true) {
 			this.table = AssetLoader.wood;
-			custom.falseCheck();
 		} else if (custom.checkTable1() == true) {
 			this.table = AssetLoader.steel;
-			custom.falseCheck1();
 		} else if (custom.checkTable2() == true) {
 			this.table = AssetLoader.carbon;
-			custom.falseCheck2();
 		}
 
 		return this.table;
@@ -260,17 +264,14 @@ public class GameRenderer {
 			this.thisAnimation = AssetLoader.defaultDummyAnimation;
 			this.thisAnimationDies = AssetLoader.defaultDummyDies;
 
-			custom.falseDummy2();
 		} else if (custom.checkDummy() == true) {
 			this.thisAnimation = AssetLoader.officeDummyAnimation;
 			this.thisAnimationDies = AssetLoader.officeDummyDies;
 
-			custom.falseDummy();
 		} else if (custom.checkDummy1() == true) {
 			this.thisAnimation = AssetLoader.janitorDummyAnimation;
 			this.thisAnimationDies = AssetLoader.janitorDummyDies;
 
-			custom.falseDummy1();
 		}
 	}
 
@@ -279,17 +280,14 @@ public class GameRenderer {
 			this.hamLeft = AssetLoader.HamWoodLeft;
 			this.hamMid = AssetLoader.HamWoodMid;
 			this.hamRight = AssetLoader.HamWoodRight;
-			shop.falseCheck();
 		} else if (shop.checkHammer1() == true) {
 			this.hamLeft = AssetLoader.HamSteelLeft;
 			this.hamMid = AssetLoader.HamSteelMid;
 			this.hamRight = AssetLoader.HamSteelRight;
-			shop.falseCheck1();
 		} else if (shop.checkHammer2() == true) {
 			this.hamLeft = AssetLoader.HamGoldLeft;
 			this.hamMid = AssetLoader.HamGoldMid;
 			this.hamRight = AssetLoader.HamGoldRight;
-			shop.falseCheck2();
 		}
 	}
 
