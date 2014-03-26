@@ -79,8 +79,9 @@ public class ShopWorld {
 	}
 
 	public void update(float delta) {
-	}
 
+	}
+	
 		public static List<Button> getShopButtons() {
 		return shopButtons;
 	}

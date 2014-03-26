@@ -329,17 +329,17 @@ public class AssetLoader {
 
 		// ShopScreen Textures =================================================================================
 		ssBg = new TextureRegion(sSTexture, 0, 0, 320, 512);
-		kahoy = new TextureRegion(sSTexture, 320, 0, 69, 87);
-		kahoyDown = new TextureRegion(sSTexture, 416, 0, 69, 87);
-		bakal = new TextureRegion(sSTexture, 320, 92, 69, 87);
-		bakalDown = new TextureRegion(sSTexture, 416, 92, 69, 87);
-		ginto = new TextureRegion(sSTexture, 320, 184, 69, 87);
-		gintoDown = new TextureRegion(sSTexture, 416, 184, 69, 87);
+		kahoy = new TextureRegion(sSTexture, 324, 0, 69, 87);
+		kahoyDown = new TextureRegion(sSTexture, 415, 0, 69, 87);
+		bakal = new TextureRegion(sSTexture, 324, 92, 69, 87);
+		bakalDown = new TextureRegion(sSTexture, 415, 92, 69, 87);
+		ginto = new TextureRegion(sSTexture, 324, 184, 69, 87);
+		gintoDown = new TextureRegion(sSTexture, 415, 184, 69, 87);
 		
 		timeBoostUp  = new TextureRegion(sSTexture, 324, 276, 69, 87);
-		timeBoostDown = new TextureRegion(sSTexture, 416, 276, 69, 87);
+		timeBoostDown = new TextureRegion(sSTexture, 415, 276, 69, 87);
 		scoreBoostUp = new TextureRegion(sSTexture, 324, 368, 69, 87);
-		scoreBoostDown = new TextureRegion(sSTexture, 416, 368, 69, 87);
+		scoreBoostDown = new TextureRegion(sSTexture, 415, 368, 69, 87);
 
 		ssBg.flip(false, true);
 		kahoy.flip(false, true);
