@@ -260,11 +260,10 @@ public class GameWorld {
 		int value = (int) (score / 4);
 		int ticketVal = AssetLoader.getTicket() + value;
 
-//		if(!ticketAdded){
-//			AssetLoader.setTicket(ticketVal);
-//			ticketAdded = true;
-//		}		
-		
+		if(!ticketAdded){
+			AssetLoader.setTicket(ticketVal);
+			ticketAdded = true;
+		}			
 	}
 
 	// GAME METHODS

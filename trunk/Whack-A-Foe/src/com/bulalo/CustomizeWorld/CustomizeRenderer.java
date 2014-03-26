@@ -75,11 +75,9 @@ public class CustomizeRenderer {
 	
 	private void initAssets() {
 		csbg = AssetLoader.csBg;
-		
-		
+
 		//background = AssetLoader.getBackground();
 		//background = getBackground();
-		
 	}
 
 	private void initGameObjects() {

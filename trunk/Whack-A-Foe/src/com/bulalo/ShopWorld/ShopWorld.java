@@ -46,12 +46,12 @@ public class ShopWorld {
 		scoreUpgradeButton = new Button(90 , 165, 50, 60,
 				AssetLoader.scoreBoostUp, AssetLoader.scoreBoostDown);
 		
-		buyButton = new Button(24,117,20,15,AssetLoader.buyUp,AssetLoader.buyDown);
-		buyButton1 = new Button(74,117,20,15,AssetLoader.buyUp,AssetLoader.buyDown);
-		buyButton2 = new Button(124,117,20,15,AssetLoader.buyUp,AssetLoader.buyDown);
-		useButton = new Button(24,132,20,15,AssetLoader.useUp,AssetLoader.useDown);
-		useButton1 = new Button(74,132,20,15,AssetLoader.useUp,AssetLoader.useDown);
-		useButton2 = new Button(124,132,20,15,AssetLoader.useUp,AssetLoader.useDown);
+		buyButton = new Button(24,117,34.5f,13.5f,AssetLoader.buyUp,AssetLoader.buyDown);
+		buyButton1 = new Button(74,117,34.5f,13.5f,AssetLoader.buyUp,AssetLoader.buyDown);
+		buyButton2 = new Button(124,117,34.5f,13.5f,AssetLoader.buyUp,AssetLoader.buyDown);
+		useButton = new Button(24,132,34.5f,13.5f,AssetLoader.useUp,AssetLoader.useDown);
+		useButton1 = new Button(74,132,34.5f,13.5f,AssetLoader.useUp,AssetLoader.useDown);
+		useButton2 = new Button(124,132,34.5f,13.5f,AssetLoader.useUp,AssetLoader.useDown);
 		
 		hammer = new Button(9, 60, 43, 53,AssetLoader.kahoy,AssetLoader.kahoyDown);
 		hammer1 = new Button(59, 60, 43, 53,AssetLoader.bakal,AssetLoader.bakalDown);
