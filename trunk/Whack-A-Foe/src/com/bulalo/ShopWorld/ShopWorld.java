@@ -23,6 +23,9 @@ public class ShopWorld {
 	private Button useButton;
 	private Button useButton1;
 	private Button useButton2;
+	private Button buyButton3;
+	private Button buyButton4;
+	
 	private Button hammer;
 	private Button hammer1;
 	private Button hammer2;
@@ -41,17 +44,20 @@ public class ShopWorld {
 		backButton = new Button(137.85f, 1.85f, 21.5f, 20.5f,
 				AssetLoader.backButton, AssetLoader.backPressed);
 		
-		timeUpgradeButton = new Button(25, 165, 50, 60,
+		timeUpgradeButton = new Button(25, 165, 43, 53,
 				AssetLoader.timeBoostUp, AssetLoader.timeBoostDown);
-		scoreUpgradeButton = new Button(90 , 165, 50, 60,
+		scoreUpgradeButton = new Button(90 , 165, 43, 53,
 				AssetLoader.scoreBoostUp, AssetLoader.scoreBoostDown);
 		
-		buyButton = new Button(24,117,34.5f,13.5f,AssetLoader.buyUp,AssetLoader.buyDown);
-		buyButton1 = new Button(74,117,34.5f,13.5f,AssetLoader.buyUp,AssetLoader.buyDown);
-		buyButton2 = new Button(124,117,34.5f,13.5f,AssetLoader.buyUp,AssetLoader.buyDown);
-		useButton = new Button(24,132,34.5f,13.5f,AssetLoader.useUp,AssetLoader.useDown);
-		useButton1 = new Button(74,132,34.5f,13.5f,AssetLoader.useUp,AssetLoader.useDown);
-		useButton2 = new Button(124,132,34.5f,13.5f,AssetLoader.useUp,AssetLoader.useDown);
+		buyButton = new Button(14,117,34.5f,13.5f,AssetLoader.buyUp,AssetLoader.buyDown);
+		buyButton1 = new Button(64,117,34.5f,13.5f,AssetLoader.buyUp,AssetLoader.buyDown);
+		buyButton2 = new Button(114,117,34.5f,13.5f,AssetLoader.buyUp,AssetLoader.buyDown);
+		useButton = new Button(14,132,34.5f,13.5f,AssetLoader.useUp,AssetLoader.useDown);
+		useButton1 = new Button(64,132,34.5f,13.5f,AssetLoader.useUp,AssetLoader.useDown);
+		useButton2 = new Button(114,132,34.5f,13.5f,AssetLoader.useUp,AssetLoader.useDown);
+		buyButton3 = new Button(30,220,34.5f,13.5f,AssetLoader.buyUp,AssetLoader.buyDown);
+		buyButton4 = new Button(95,220,34.5f,13.5f,AssetLoader.buyUp,AssetLoader.buyDown);
+		
 		
 		hammer = new Button(9, 60, 43, 53,AssetLoader.kahoy,AssetLoader.kahoyDown);
 		hammer1 = new Button(59, 60, 43, 53,AssetLoader.bakal,AssetLoader.bakalDown);
@@ -65,6 +71,8 @@ public class ShopWorld {
 		useButtons.add(useButton);
 		useButtons.add(useButton1);
 		useButtons.add(useButton2);
+		buyButtons.add(buyButton3);
+		buyButtons.add(buyButton4);
 		shopButtons.add(backButton);
 		shopButtons.add(timeUpgradeButton);
 		shopButtons.add(scoreUpgradeButton);
