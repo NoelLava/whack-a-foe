@@ -57,38 +57,70 @@ public class ShopInputHandler implements InputProcessor {
 		screenX = scaleX(screenX);
 		screenY = scaleY(screenY);
 
-		for (Button thisButton : shopButtons) {
-			thisButton.isTouchDown(screenX, screenY);
+		shopButtons.get(0).isTouchDown(screenX, screenY);
+
+		for (int index = 1; index < 3; index++) {
+			shopButtons.get(index).isTouchDown(screenX, screenY);
+			if (shopButtons.get(index).isJustPressed()) {
+				buyButtons.get(index + 2).isTouchDown(screenX, screenY);
+				shopButtons.get(index).setJustPressed(false);
+			}
 		}
 
 		for (int index = 0; index < 3; index++) {
 			hammerButtons.get(index).isTouchDown(screenX, screenY);
 			if (hammerButtons.get(index).isJustPressed()) {
+				System.out.println("hammer Pressed");
 				buyButtons.get(index).isTouchDown(screenX, screenY);
 				hammerButtons.get(index).setJustPressed(false);
-				if(buyButtons.get(index).isJustPressed()){
-					useButtons.get(index).isTouchDown(screenX, screenY);
-					if (useButtons.get(0).isJustPressed()) {
+			}
+			
+			if (buyButtons.get(index).isJustPressed()) {
+				System.out.println("buy Pressed");
+				useButtons.get(index).isTouchDown(screenX, screenY);
+				if (useButtons.get(index).isPressed()) {
+					System.out.println("use pressed");
+					if (index == 0) {
+						System.out.println("wood used");
 						hammer1True = false;
 						hammer2True = false;
 						hammerTrue = true;
-						useButtons.get(index).setJustPressed(false);
-					} else if (useButtons.get(1).isJustPressed()) {
+					} else if (index == 1) {
+						System.out.println("steel used");
 						hammerTrue = false;
 						hammer2True = false;
 						hammer1True = true;
-						useButtons.get(index).setJustPressed(false);
-					} else if (useButtons.get(2).isJustPressed()) {
+					} else if (index == 2) {
+						System.out.println("gold used");
 						hammer1True = false;
 						hammerTrue = false;
 						hammer2True = true;
-						useButtons.get(index).setJustPressed(false);
 					}
-					buyButtons.get(index).setJustPressed(false);
+					useButtons.get(index).setJustPressed(false);
 				}
+				buyButtons.get(index).setJustPressed(false);
 			}
+			
+			
 		}
-		
+//
+//		if (useButtons.get(0).isJustPressed()) {
+//			hammer1True = false;
+//			hammer2True = false;
+//			hammerTrue = true;
+//			useButtons.get(0).setJustPressed(false);
+//		} else if (useButtons.get(1).isJustPressed()) {
+//			hammerTrue = false;
+//			hammer2True = false;
+//			hammer1True = true;
+//			useButtons.get(1).setJustPressed(false);
+//		} else if (useButtons.get(2).isJustPressed()) {
+//			hammer1True = false;
+//			hammerTrue = false;
+//			hammer2True = true;
+//			useButtons.get(2).setJustPressed(false);
+//		}
+
 		return false;
 	}
 

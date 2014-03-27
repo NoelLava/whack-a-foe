@@ -94,7 +94,6 @@ public class ShopWorld {
 			InputHandler.dummyPoints = 2;
 			buyScoreUpgrade.setJustPressed(false);
 		}
-
 	}
 	
 		public static List<Button> getShopButtons() {
