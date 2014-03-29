@@ -54,9 +54,9 @@ public class ShopWorld {
 		buyKahoy = new Button(14,117,34.5f,13.5f,AssetLoader.buyUp,AssetLoader.buyDown);
 		buyBakal = new Button(64,117,34.5f,13.5f,AssetLoader.buyUp,AssetLoader.buyDown);
 		buyGinto = new Button(114,117,34.5f,13.5f,AssetLoader.buyUp,AssetLoader.buyDown);
-		useKahoy = new Button(14,132,34.5f,13.5f,AssetLoader.useUp,AssetLoader.useDown);
-		useBakal = new Button(64,132,34.5f,13.5f,AssetLoader.useUp,AssetLoader.useDown);
-		useGinto = new Button(114,132,34.5f,13.5f,AssetLoader.useUp,AssetLoader.useDown);
+		useKahoy = new Button(14,117,34.5f,13.5f,AssetLoader.useUp,AssetLoader.useDown);
+		useBakal = new Button(64,117,34.5f,13.5f,AssetLoader.useUp,AssetLoader.useDown);
+		useGinto = new Button(114,117,34.5f,13.5f,AssetLoader.useUp,AssetLoader.useDown);
 		buyTimeUpgrade = new Button(30,220,34.5f,13.5f,AssetLoader.buyUp,AssetLoader.buyDown);
 		buyScoreUpgrade = new Button(95,220,34.5f,13.5f,AssetLoader.buyUp,AssetLoader.buyDown);
 		
@@ -94,7 +94,6 @@ public class ShopWorld {
 			InputHandler.dummyPoints = 2;
 			buyScoreUpgrade.setJustPressed(false);
 		}
-
 	}
 	
 		public static List<Button> getShopButtons() {
