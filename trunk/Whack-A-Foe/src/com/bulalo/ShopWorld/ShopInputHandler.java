@@ -65,6 +65,7 @@ public class ShopInputHandler implements InputProcessor {
 				buyButtons.get(index + 2).isTouchDown(screenX, screenY);
 				shopButtons.get(index).setJustPressed(false);
 			}
+			
 		}
 
 		for (int index = 0; index < 3; index++) {
@@ -76,32 +77,30 @@ public class ShopInputHandler implements InputProcessor {
 			}
 			
 			if (buyButtons.get(index).isJustPressed()) {
-				System.out.println("buy Pressed");
+				System.out.println("Buy pressed");
 				useButtons.get(index).isTouchDown(screenX, screenY);
-				if (useButtons.get(index).isPressed()) {
-					System.out.println("use pressed");
-					if (index == 0) {
-						System.out.println("wood used");
-						hammer1True = false;
-						hammer2True = false;
-						hammerTrue = true;
-					} else if (index == 1) {
-						System.out.println("steel used");
-						hammerTrue = false;
-						hammer2True = false;
-						hammer1True = true;
-					} else if (index == 2) {
-						System.out.println("gold used");
-						hammer1True = false;
-						hammerTrue = false;
-						hammer2True = true;
-					}
-					useButtons.get(index).setJustPressed(false);
-				}
 				buyButtons.get(index).setJustPressed(false);
 			}
 			
-			
+			if (useButtons.get(index).isJustPressed()) {
+				if (index == 0) {
+					System.out.println("wood used");
+					hammer1True = false;
+					hammer2True = false;
+					hammerTrue = true;
+				} else if (index == 1) {
+					System.out.println("steel used");
+					hammerTrue = false;
+					hammer2True = false;
+					hammer1True = true;
+				} else if (index == 2) {
+					System.out.println("gold used");
+					hammer1True = false;
+					hammerTrue = false;
+					hammer2True = true;
+				}
+				useButtons.get(index).setJustPressed(false);
+			}			
 		}
 //
 //		if (useButtons.get(0).isJustPressed()) {

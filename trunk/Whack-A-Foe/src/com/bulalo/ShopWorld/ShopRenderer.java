@@ -118,36 +118,26 @@ public class ShopRenderer {
 	}
 
 	private void drawBuyButtons() {
-		if (hammerButtons.get(0).isJustPressed()) {
-			this.buyButton = buyButtons.get(0);
-			buyButton.draw(batcher);
-		} else if (hammerButtons.get(1).isJustPressed()) {
-			this.buyButton = buyButtons.get(1);
-			buyButton.draw(batcher);
-		} else if (hammerButtons.get(2).isJustPressed()) {
-			this.buyButton = buyButtons.get(2);
-			buyButton.draw(batcher);
+		for(int index = 0; index < 3; index++){
+			if(hammerButtons.get(index).isJustPressed() || buyButtons.get(index).isPressed()){
+				this.buyButton = buyButtons.get(index);
+				buyButton.draw(batcher);
+			}
 		}
-	}
-
-	private void drawUseButtons() {
-		if (buyButtons.get(0).isJustPressed()) {
-			this.useButton = useButtons.get(0);
-			useButton.draw(batcher);
-		} else if (buyButtons.get(1).isJustPressed()) {
-			this.useButton = useButtons.get(1);
-			useButton.draw(batcher);
-		} else if (buyButtons.get(2).isJustPressed()) {
-			this.useButton = useButtons.get(2);
-			useButton.draw(batcher);
-		} else if (shopButtons.get(1).isJustPressed()) {
-			this.useButton = buyButtons.get(3);
-			useButton.draw(batcher);
-		} else if (shopButtons.get(2).isJustPressed()) {
-			this.useButton = buyButtons.get(4);
-			useButton.draw(batcher);
+		
+		for(int index = 0; index < 5; index++){
+			if(index < 3){
+				if(buyButtons.get(index).isJustPressed() || useButtons.get(index).isPressed()){
+					this.useButton = useButtons.get(index);
+					useButton.draw(batcher);
+				}
+			}else if(index >= 3 && index  < 5 || useButtons.get(index).isPressed()){
+				if(shopButtons.get(index - 2).isJustPressed()){
+					this.useButton = buyButtons.get(index);
+					useButton.draw(batcher);
+				}
+			}
 		}
-
 	}
 
 	public void render(float runTime) {
@@ -174,7 +164,7 @@ public class ShopRenderer {
 		drawTickets();
 
 		drawBuyButtons();
-		drawUseButtons();
+		//drawUseButtons();
 		batcher.end();
 	}
 }
