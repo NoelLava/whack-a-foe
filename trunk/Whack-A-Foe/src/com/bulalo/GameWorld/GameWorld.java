@@ -116,6 +116,7 @@ public class GameWorld {
 				hammerPosition.add(hammer);
 			}
 		}
+		
 		// timers
 		timer = new Timer(1 / 1000);
 		timer.start();
@@ -170,7 +171,6 @@ public class GameWorld {
 		}
 		
 		if (seconds > 0) {
-
 			inGame();
 			updateGame();
 			// checkHit();
@@ -199,13 +199,13 @@ public class GameWorld {
 			startGame();
 			resumeButton.setJustPressed(false);
 		} else if (pauseMainButton.isJustPressed()) {
+			InputHandler.dummyPoints = 1;
 			backToMain = true;
 			seconds = 60;
 		}
 	}
 
 	public void updateGameOver(float delta) {
-		InputHandler.dummyPoints = 1;
 		computeTickets();
 		if (score > AssetLoader.getHighScore()) {
 			AssetLoader.setHighScore(score);
@@ -232,6 +232,7 @@ public class GameWorld {
 			restart();
 			restartButton.setJustPressed(false);
 		} else if (mainMenuButton.isJustPressed()) {
+			InputHandler.dummyPoints = 1;
 			backToMain = true;
 			seconds = 60;
 		}
@@ -246,6 +247,7 @@ public class GameWorld {
 	}
 
 	public void restart() {
+		InputHandler.dummyPoints = 1;
 		AssetLoader.beep.play();
 		score = 0;
 		readyCount = 3;
