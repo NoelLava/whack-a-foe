@@ -3,27 +3,17 @@ package com.bulalo.CustomizeWorld;
 import java.util.List;
 
 import com.badlogic.gdx.InputProcessor;
-import com.bulalo.GameObjects.CustomDummy;
-import com.bulalo.GameObjects.Tables;
 import com.bulalo.UI.Button;
 
 public class CustomInputHandler implements InputProcessor{
-	private CustomWorld customWorld;
 	
-	
-	private static boolean woodTrue;
-	private static boolean steelTrue;
-	private static boolean carbonTrue;
-	
-	private static boolean bossTrue;
-	private static boolean farmerTrue;
-	private static boolean boyTrue;
-	
-	private static List<Button> customButtons;
-	private static List<Button> useButton;
+	CustomWorld customWorld;
+	private static boolean woodTrue,steelTrue,carbonTrue,
+							bossTrue,farmerTrue,boyTrue;
 
-	float scaleFactorX;
-	float scaleFactorY;
+	private static List<Button> customButtons,useButton;
+
+	float scaleFactorX,scaleFactorY;
 	
 	public CustomInputHandler(CustomWorld customWorld, float scaleFactorX,
 			float scaleFactorY){
@@ -203,22 +193,6 @@ public class CustomInputHandler implements InputProcessor{
 
 	public boolean falseDummy(){
 		return bossTrue = false;
-	}
-
-	private void checkCustomizeTrue(){
-		if(woodTrue == true ||
-			steelTrue == true ||
-			carbonTrue == true ||
-			bossTrue == true ||
-			farmerTrue == true ||
-			boyTrue == true){
-			falseCheck();
-			falseCheck1();
-			falseCheck2();
-			falseDummy();
-			falseDummy1();
-			falseDummy2();
-		}
 	}
 		
 }
