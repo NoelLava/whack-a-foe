@@ -56,6 +56,7 @@ public class GameWorld {
 	public static int seconds = 60;
 	private int readyCount = 3;
 	private int ticketValue;
+	private int timerCounter;
 
 	private boolean buzzerPlayed;
 	private boolean clearPlayed;
@@ -170,6 +171,8 @@ public class GameWorld {
 			}
 		}
 		
+		timerCounter = 1;
+		
 		if (seconds > 0) {
 			inGame();
 			updateGame();
@@ -190,7 +193,8 @@ public class GameWorld {
 
 	private void updatePause(float delta) {
 		AssetLoader.gameMusic2.pause();
-
+		timerCounter = 0;
+		
 		if (pauseRestartButton.isJustPressed()) {
 			restart();
 			//currentState = GameState.GAMEOVER;
@@ -396,7 +400,7 @@ public class GameWorld {
 				millis = 60;
 				if (readyCount <= 0) {
 					readyCount = 0;
-					seconds--;
+					seconds -= timerCounter;
 
 					if (seconds <= 0) {
 						seconds = 0;
