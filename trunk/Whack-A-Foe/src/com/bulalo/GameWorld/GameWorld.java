@@ -296,10 +296,8 @@ public class GameWorld {
 				dummies.add(dummy);
 			}
 		}
-
-		}
+	}
 	
-
 	public void updateCheck() {
 		if (!dummy.isAlive()) {
 			dummies.remove(dummy);

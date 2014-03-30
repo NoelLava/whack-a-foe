@@ -102,24 +102,7 @@ public class ShopInputHandler implements InputProcessor {
 				useButtons.get(index).setJustPressed(false);
 			}			
 		}
-//
-//		if (useButtons.get(0).isJustPressed()) {
-//			hammer1True = false;
-//			hammer2True = false;
-//			hammerTrue = true;
-//			useButtons.get(0).setJustPressed(false);
-//		} else if (useButtons.get(1).isJustPressed()) {
-//			hammerTrue = false;
-//			hammer2True = false;
-//			hammer1True = true;
-//			useButtons.get(1).setJustPressed(false);
-//		} else if (useButtons.get(2).isJustPressed()) {
-//			hammer1True = false;
-//			hammerTrue = false;
-//			hammer2True = true;
-//			useButtons.get(2).setJustPressed(false);
-//		}
-
+		
 		return false;
 	}
 
