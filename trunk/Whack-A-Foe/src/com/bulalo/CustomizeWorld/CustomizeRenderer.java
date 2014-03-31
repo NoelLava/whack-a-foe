@@ -14,22 +14,16 @@ import com.bulalo.Helpers.AssetLoader;
 import com.bulalo.UI.Button;
 
 public class CustomizeRenderer {
-	private static CustomWorld custom = new CustomWorld();
-	private static CustomInputHandler customI = new CustomInputHandler();
+	CustomWorld custom = new CustomWorld();
 	private ShapeRenderer shapeRenderer;
 	
 	private OrthographicCamera cam;
 	
 	private SpriteBatch batcher;
+	
 	private static Tables table,table1,table2;
 	
 	private TextureRegion csbg;
-	private TextureRegion wood;
-	private TextureRegion steel;
-	private TextureRegion carbon;
-	private TextureRegion dummyDefault;
-	private TextureRegion dummyOffice;
-	private TextureRegion dummyJanitor;
 	
 	private Button useTableButtons, useDummyButtons;
 	
@@ -39,7 +33,7 @@ public class CustomizeRenderer {
 	private List<Button> useButton;
 	
 	public CustomizeRenderer(CustomWorld customWorld){
-		custom = customWorld;
+		this.custom = customWorld;
 		this.customButtons = CustomWorld.getCustomButtons();
 		this.useButton = CustomWorld.getUseButton();
 		
@@ -52,7 +46,6 @@ public class CustomizeRenderer {
 		shapeRenderer = new ShapeRenderer();
 		shapeRenderer.setProjectionMatrix(cam.combined);
 		
-		initGameObjects();
 		initAssets();
 	}
 
@@ -75,16 +68,8 @@ public class CustomizeRenderer {
 	
 	private void initAssets() {
 		csbg = AssetLoader.csBg;
-
-		//background = AssetLoader.getBackground();
-		//background = getBackground();
 	}
 
-	private void initGameObjects() {
-	
-	
-	}
-	
 	public void drawBackground(TextureRegion region) {
 		batcher.draw(region, 0, 0, 160, 256);
 	}
