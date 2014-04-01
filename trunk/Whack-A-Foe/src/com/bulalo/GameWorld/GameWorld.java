@@ -56,6 +56,7 @@ public class GameWorld {
 	public static int seconds = 60;
 	private int readyCount = 3;
 	private int ticketValue;
+	private int timerCounter;
 
 	private boolean buzzerPlayed;
 	private boolean clearPlayed;
@@ -116,6 +117,7 @@ public class GameWorld {
 				hammerPosition.add(hammer);
 			}
 		}
+		
 		// timers
 		timer = new Timer(1 / 1000);
 		timer.start();
@@ -169,8 +171,9 @@ public class GameWorld {
 			}
 		}
 		
+		timerCounter = 1;
+		
 		if (seconds > 0) {
-
 			inGame();
 			updateGame();
 			// checkHit();
@@ -190,7 +193,8 @@ public class GameWorld {
 
 	private void updatePause(float delta) {
 		AssetLoader.gameMusic2.pause();
-
+		timerCounter = 0;
+		
 		if (pauseRestartButton.isJustPressed()) {
 			restart();
 			//currentState = GameState.GAMEOVER;
@@ -199,13 +203,13 @@ public class GameWorld {
 			startGame();
 			resumeButton.setJustPressed(false);
 		} else if (pauseMainButton.isJustPressed()) {
+			InputHandler.dummyPoints = 1;
 			backToMain = true;
 			seconds = 60;
 		}
 	}
 
 	public void updateGameOver(float delta) {
-		InputHandler.dummyPoints = 1;
 		computeTickets();
 		if (score > AssetLoader.getHighScore()) {
 			AssetLoader.setHighScore(score);
@@ -232,6 +236,7 @@ public class GameWorld {
 			restart();
 			restartButton.setJustPressed(false);
 		} else if (mainMenuButton.isJustPressed()) {
+			InputHandler.dummyPoints = 1;
 			backToMain = true;
 			seconds = 60;
 		}
@@ -246,6 +251,7 @@ public class GameWorld {
 	}
 
 	public void restart() {
+		InputHandler.dummyPoints = 1;
 		AssetLoader.beep.play();
 		score = 0;
 		readyCount = 3;
@@ -296,10 +302,8 @@ public class GameWorld {
 				dummies.add(dummy);
 			}
 		}
-
-		}
+	}
 	
-
 	public void updateCheck() {
 		if (!dummy.isAlive()) {
 			dummies.remove(dummy);
@@ -396,7 +400,7 @@ public class GameWorld {
 				millis = 60;
 				if (readyCount <= 0) {
 					readyCount = 0;
-					seconds--;
+					seconds -= timerCounter;
 
 					if (seconds <= 0) {
 						seconds = 0;

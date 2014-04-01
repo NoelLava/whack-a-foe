@@ -10,7 +10,6 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.bulalo.GameObjects.Hammers;
-import com.bulalo.GameObjects.Upgrades;
 import com.bulalo.Helpers.AssetLoader;
 import com.bulalo.UI.Button;
 
@@ -23,11 +22,11 @@ public class ShopRenderer {
 	private SpriteBatch batcher;
 	private static Hammers hammer, hammer1, hammer2;
 	private TextureRegion ssbg;
-	private TextureRegion kahoy;
-	private TextureRegion bakal;
-	private TextureRegion ginto;
+//	private TextureRegion kahoy;
+//	private TextureRegion bakal;
+//	private TextureRegion ginto;
 
-	private static TextureRegion pamalo;
+//	private static TextureRegion pamalo;
 
 	private List<Button> shopButtons;
 	private List<Button> useButtons;
@@ -52,19 +51,15 @@ public class ShopRenderer {
 		shapeRenderer = new ShapeRenderer();
 		shapeRenderer.setProjectionMatrix(cam.combined);
 
-		initGameObjects();
 		initAssets();
 
 	}
 
 	private void initAssets() {
 		ssbg = AssetLoader.ssBg;
-		kahoy = AssetLoader.kahoy;
-		bakal = AssetLoader.bakal;
-		ginto = AssetLoader.ginto;
-	}
-
-	private void initGameObjects() {
+//		kahoy = AssetLoader.kahoy;
+//		bakal = AssetLoader.bakal;
+//		ginto = AssetLoader.ginto;
 	}
 
 	public void drawBackground(TextureRegion region) {
@@ -118,26 +113,68 @@ public class ShopRenderer {
 	}
 
 	private void drawBuyButtons() {
-		for(int index = 0; index < 3; index++){
-			if(hammerButtons.get(index).isJustPressed() || buyButtons.get(index).isPressed()){
-				this.buyButton = buyButtons.get(index);
-				buyButton.draw(batcher);
-			}
-		}
 		
 		for(int index = 0; index < 5; index++){
 			if(index < 3){
-				if(buyButtons.get(index).isJustPressed() || useButtons.get(index).isPressed()){
-					this.useButton = useButtons.get(index);
-					useButton.draw(batcher);
+				if(hammerButtons.get(index).isJustPressed() || buyButtons.get(index).isPressed() || useButtons.get(index).isPressed()){
+					if(index == 0){
+						if(ShopInputHandler.woodIsBought == false){
+							this.buyButton = buyButtons.get(index);
+							buyButton.draw(batcher);
+						}else if (ShopInputHandler.woodIsBought == true || buyButtons.get(index).isPressed()){
+							this.useButton = useButtons.get(index);
+							useButton.draw(batcher);
+						}
+					}else if(index == 1){
+						if(ShopInputHandler.steelIsBought == false){
+							this.buyButton = buyButtons.get(index);
+							buyButton.draw(batcher); 
+						}else if (ShopInputHandler.steelIsBought == true || buyButtons.get(index).isPressed()){
+							this.useButton = useButtons.get(index);
+							useButton.draw(batcher);
+						}
+					}else if(index == 2){
+						if(ShopInputHandler.goldIsBought == false){
+							this.buyButton = buyButtons.get(index);
+							buyButton.draw(batcher);
+						}else if (ShopInputHandler.goldIsBought == true || buyButtons.get(index).isPressed()){
+							this.useButton = useButtons.get(index);
+							useButton.draw(batcher);
+						}
+					}
 				}
 			}else if(index >= 3 && index  < 5 || useButtons.get(index).isPressed()){
-				if(shopButtons.get(index - 2).isJustPressed()){
+				if(shopButtons.get(index - 2).isJustPressed() || buyButtons.get(index).isPressed()){
 					this.useButton = buyButtons.get(index);
 					useButton.draw(batcher);
 				}
-			}
+			}	
+		
+//			if(index < 3){
+//				if(buyButtons.get(index).isJustPressed() || useButtons.get(index).isPressed()){
+//					this.useButton = useButtons.get(index);
+//					useButton.draw(batcher);
+//				}
+//			}
 		}
+	}
+	
+	public void drawPrice(){		
+		//Steel
+		AssetLoader.priceShadow.draw(batcher, "*400", 65, 91);
+		AssetLoader.priceGold.draw(batcher, "*400", 66, 92);
+		
+		//Gold
+		AssetLoader.priceShadow.draw(batcher, "*500", 115, 91);
+		AssetLoader.priceGold.draw(batcher, "*500", 116, 92);
+		
+		//Time Boost
+		AssetLoader.priceShadow.draw(batcher, "*200", 30, 159);
+		AssetLoader.priceGold.draw(batcher, "*200", 31, 158);
+		
+		//Score Boost
+		AssetLoader.priceShadow.draw(batcher, "*300", 96, 159);
+		AssetLoader.priceGold.draw(batcher, "*300", 97, 158);
 	}
 
 	public void render(float runTime) {
@@ -156,15 +193,13 @@ public class ShopRenderer {
 		batcher.disableBlending();
 
 		drawBackground(ssbg);
-		;
 
 		batcher.enableBlending();
 
 		drawButtons();
 		drawTickets();
-
+		drawPrice();
 		drawBuyButtons();
-		//drawUseButtons();
 		batcher.end();
 	}
 }

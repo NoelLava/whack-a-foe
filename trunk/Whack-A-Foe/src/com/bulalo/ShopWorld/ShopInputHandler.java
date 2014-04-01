@@ -3,8 +3,7 @@ package com.bulalo.ShopWorld;
 import java.util.List;
 
 import com.badlogic.gdx.InputProcessor;
-import com.bulalo.GameObjects.Hammers;
-import com.bulalo.GameObjects.Upgrades;
+import com.bulalo.Helpers.AssetLoader;
 import com.bulalo.UI.Button;
 
 public class ShopInputHandler implements InputProcessor {
@@ -18,6 +17,11 @@ public class ShopInputHandler implements InputProcessor {
 	private static List<Button> hammerButtons;
 	private static List<Button> buyButtons;
 	private static List<Button> useButtons;
+
+	public static boolean steelIsBought = false;
+	public static boolean goldIsBought = false;
+	public static boolean woodIsBought = true;
+	private boolean insufficientTickets;
 
 	float scaleFactorX;
 	float scaleFactorY;
@@ -37,7 +41,6 @@ public class ShopInputHandler implements InputProcessor {
 
 	public ShopInputHandler() {
 		System.out.println("initialized");
-
 	}
 
 	public boolean checkHammer() {
@@ -65,61 +68,69 @@ public class ShopInputHandler implements InputProcessor {
 				buyButtons.get(index + 2).isTouchDown(screenX, screenY);
 				shopButtons.get(index).setJustPressed(false);
 			}
-			
 		}
 
 		for (int index = 0; index < 3; index++) {
 			hammerButtons.get(index).isTouchDown(screenX, screenY);
 			if (hammerButtons.get(index).isJustPressed()) {
-				System.out.println("hammer Pressed");
-				buyButtons.get(index).isTouchDown(screenX, screenY);
+				if (index == 1) {
+					if (steelIsBought == false) {
+						buyButtons.get(index).isTouchDown(screenX, screenY);
+					} else {
+						useButtons.get(index).isTouchDown(screenX, screenY);
+					}
+				} else if (index == 2) {
+					if (goldIsBought == false) {
+						buyButtons.get(index).isTouchDown(screenX, screenY);
+					} else {
+						useButtons.get(index).isTouchDown(screenX, screenY);
+					}
+				} else if (index == 0) {
+					if (woodIsBought == false) {
+						buyButtons.get(index).isTouchDown(screenX, screenY);
+					} else {
+						useButtons.get(index).isTouchDown(screenX, screenY);
+					}
+				}
 				hammerButtons.get(index).setJustPressed(false);
 			}
-			
+
 			if (buyButtons.get(index).isJustPressed()) {
-				System.out.println("Buy pressed");
-				useButtons.get(index).isTouchDown(screenX, screenY);
+				if (index == 1) {
+					int price = 5;
+
+					if (AssetLoader.getTicket() >= price) {
+						steelIsBought = true;
+					}
+					computeTickets(price);
+				} else if (index == 2) {
+					int price = 2;
+
+					if (AssetLoader.getTicket() >= price) {
+						goldIsBought = true;
+					}
+					computeTickets(price);
+				}
 				buyButtons.get(index).setJustPressed(false);
 			}
-			
+
 			if (useButtons.get(index).isJustPressed()) {
 				if (index == 0) {
-					System.out.println("wood used");
 					hammer1True = false;
 					hammer2True = false;
 					hammerTrue = true;
 				} else if (index == 1) {
-					System.out.println("steel used");
 					hammerTrue = false;
 					hammer2True = false;
 					hammer1True = true;
 				} else if (index == 2) {
-					System.out.println("gold used");
 					hammer1True = false;
 					hammerTrue = false;
 					hammer2True = true;
 				}
 				useButtons.get(index).setJustPressed(false);
-			}			
+			}
 		}
-//
-//		if (useButtons.get(0).isJustPressed()) {
-//			hammer1True = false;
-//			hammer2True = false;
-//			hammerTrue = true;
-//			useButtons.get(0).setJustPressed(false);
-//		} else if (useButtons.get(1).isJustPressed()) {
-//			hammerTrue = false;
-//			hammer2True = false;
-//			hammer1True = true;
-//			useButtons.get(1).setJustPressed(false);
-//		} else if (useButtons.get(2).isJustPressed()) {
-//			hammer1True = false;
-//			hammerTrue = false;
-//			hammer2True = true;
-//			useButtons.get(2).setJustPressed(false);
-//		}
-
 		return false;
 	}
 
@@ -173,20 +184,30 @@ public class ShopInputHandler implements InputProcessor {
 
 	@Override
 	public boolean touchDragged(int screenX, int screenY, int pointer) {
-
 		return false;
 	}
 
 	@Override
 	public boolean mouseMoved(int screenX, int screenY) {
-
 		return false;
 	}
 
 	@Override
 	public boolean scrolled(int amount) {
-
 		return false;
+	}
+
+	public void computeTickets(int price) {
+		if (AssetLoader.getTicket() >= price) {
+			int ticketVal = AssetLoader.getTicket() - price;
+			AssetLoader.setTicket(ticketVal);
+
+			insufficientTickets = false;
+			System.out.println("Transaction successful");
+		} else {
+			System.out.println("You have insufficient number of tickets!");
+			insufficientTickets = true;
+		}
 	}
 
 	private int scaleX(int screenX) {
@@ -199,17 +220,22 @@ public class ShopInputHandler implements InputProcessor {
 
 	public boolean falseCheck() {
 		return hammerTrue = false;
-
 	}
 
 	public boolean falseCheck1() {
 		return hammer1True = false;
-
 	}
 
 	public boolean falseCheck2() {
 		return hammer2True = false;
+	}
 
+	public boolean isInsufficientTickets() {
+		return insufficientTickets;
+	}
+
+	public void setInsufficientTickets(boolean insufficientTickets) {
+		this.insufficientTickets = insufficientTickets;
 	}
 
 }
