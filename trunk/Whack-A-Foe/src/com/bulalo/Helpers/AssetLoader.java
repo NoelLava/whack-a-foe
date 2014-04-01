@@ -118,7 +118,7 @@ public class AssetLoader {
 	private static Preferences prefs;
 
 	public static BitmapFont digital, digitalShadow, bit, bitWhite, bitGold,
-			bitGoldSh;
+			bitGoldSh, priceGold, priceShadow;
 
 	public static void load() {
 		Texture.setEnforcePotImages(false);
@@ -392,6 +392,8 @@ public class AssetLoader {
 		bitWhite = new BitmapFont(Gdx.files.internal("font/8bitWhite.fnt"));
 		bitGold = new BitmapFont(Gdx.files.internal("font/bitGold.fnt"));
 		bitGoldSh = new BitmapFont(Gdx.files.internal("font/bitGoldSh.fnt"));
+		priceGold = new BitmapFont(Gdx.files.internal("font/bitGold.fnt"));
+		priceShadow = new BitmapFont(Gdx.files.internal("font/bitGoldSh.fnt"));
 
 		digital.setScale(.5f, -.5f);
 		digitalShadow.setScale(.5f, -.5f);
@@ -399,6 +401,8 @@ public class AssetLoader {
 		bitWhite.setScale(.75f, -.75f);
 		bitGold.setScale(.5f, -.5f);
 		bitGoldSh.setScale(.5f, -.5f);
+		priceGold.setScale(.25f, -.25f);
+		priceShadow.setScale(.25f, -.25f);
 
 		// Animations
 		// ==========================================================================================
@@ -509,5 +513,7 @@ public class AssetLoader {
 		bitWhite.dispose();
 		bitGold.dispose();
 		bitGoldSh.dispose();
+		priceGold.dispose();
+		priceShadow.dispose();
 	}
 }
