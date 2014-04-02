@@ -9,7 +9,7 @@ import com.bulalo.Helpers.InputHandler;
 import com.bulalo.UI.Button;
 
 public class ShopWorld {
-	ShopInputHandler inputHandler;
+	ShopInputHandler shopInputHandler;
 
 	private static List<Button> shopButtons;
 	private static List<Button> useButtons;
@@ -35,7 +35,7 @@ public class ShopWorld {
 	float runTime = 0;
 
 	public ShopWorld() {
-		inputHandler = new ShopInputHandler();
+		shopInputHandler = new ShopInputHandler();
 
 		shopButtons = new ArrayList<Button>();
 		useButtons = new ArrayList<Button>();
@@ -103,7 +103,7 @@ public class ShopWorld {
 				if (AssetLoader.getTicket() >= price) {
 					GameWorld.seconds = 90;
 				}
-				inputHandler.computeTickets(price);
+				shopInputHandler.computeTickets(price);
 
 			}
 			buyTimeUpgrade.setJustPressed(false);
@@ -114,10 +114,29 @@ public class ShopWorld {
 				if (AssetLoader.getTicket() >= price) {
 					InputHandler.dummyPoints = 2;
 				}
-				inputHandler.computeTickets(price);
+				shopInputHandler.computeTickets(price);
 			}
 
 			buyScoreUpgrade.setJustPressed(false);
+		}
+
+		if (buyBakal.isJustPressed()) {
+			int price = 5;
+
+			if (AssetLoader.getTicket() >= price) {
+				ShopInputHandler.steelIsBought = true;
+			}
+			shopInputHandler.computeTickets(price);
+			buyBakal.setJustPressed(false);
+		}
+		if (buyGinto.isJustPressed()) {
+			int price = 2;
+
+			if (AssetLoader.getTicket() >= price) {
+				ShopInputHandler.goldIsBought = true;
+			}
+			shopInputHandler.computeTickets(price);
+			buyGinto.setJustPressed(false);
 		}
 	}
 

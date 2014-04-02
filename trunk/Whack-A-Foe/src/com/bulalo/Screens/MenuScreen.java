@@ -1,7 +1,6 @@
 package com.bulalo.Screens;
  
 import java.util.List;
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.bulalo.Helpers.AssetLoader;

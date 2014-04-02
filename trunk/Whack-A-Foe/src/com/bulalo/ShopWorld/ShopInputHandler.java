@@ -21,7 +21,7 @@ public class ShopInputHandler implements InputProcessor {
 	public static boolean steelIsBought = false;
 	public static boolean goldIsBought = false;
 	public static boolean woodIsBought = true;
-	private boolean insufficientTickets;
+	public static boolean insufficientTickets;
 
 	float scaleFactorX;
 	float scaleFactorY;
@@ -93,25 +93,6 @@ public class ShopInputHandler implements InputProcessor {
 					}
 				}
 				hammerButtons.get(index).setJustPressed(false);
-			}
-
-			if (buyButtons.get(index).isJustPressed()) {
-				if (index == 1) {
-					int price = 5;
-
-					if (AssetLoader.getTicket() >= price) {
-						steelIsBought = true;
-					}
-					computeTickets(price);
-				} else if (index == 2) {
-					int price = 2;
-
-					if (AssetLoader.getTicket() >= price) {
-						goldIsBought = true;
-					}
-					computeTickets(price);
-				}
-				buyButtons.get(index).setJustPressed(false);
 			}
 
 			if (useButtons.get(index).isJustPressed()) {
@@ -203,9 +184,7 @@ public class ShopInputHandler implements InputProcessor {
 			AssetLoader.setTicket(ticketVal);
 
 			insufficientTickets = false;
-			System.out.println("Transaction successful");
 		} else {
-			System.out.println("You have insufficient number of tickets!");
 			insufficientTickets = true;
 		}
 	}
@@ -229,13 +208,4 @@ public class ShopInputHandler implements InputProcessor {
 	public boolean falseCheck2() {
 		return hammer2True = false;
 	}
-
-	public boolean isInsufficientTickets() {
-		return insufficientTickets;
-	}
-
-	public void setInsufficientTickets(boolean insufficientTickets) {
-		this.insufficientTickets = insufficientTickets;
-	}
-
 }

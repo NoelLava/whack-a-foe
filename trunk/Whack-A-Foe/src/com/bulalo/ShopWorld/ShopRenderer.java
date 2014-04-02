@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.bulalo.GameObjects.Hammers;
+import com.bulalo.GameObjects.Timer;
 import com.bulalo.Helpers.AssetLoader;
 import com.bulalo.UI.Button;
 
@@ -22,11 +23,6 @@ public class ShopRenderer {
 	private SpriteBatch batcher;
 	private static Hammers hammer, hammer1, hammer2;
 	private TextureRegion ssbg;
-//	private TextureRegion kahoy;
-//	private TextureRegion bakal;
-//	private TextureRegion ginto;
-
-//	private static TextureRegion pamalo;
 
 	private List<Button> shopButtons;
 	private List<Button> useButtons;
@@ -34,6 +30,8 @@ public class ShopRenderer {
 	private List<Button> hammerButtons;
 
 	private Button buyButton, useButton;
+
+	private Timer warningTimer;
 
 	public ShopRenderer(ShopWorld shopWorld) {
 		shop = shopWorld;
@@ -53,13 +51,11 @@ public class ShopRenderer {
 
 		initAssets();
 
+		warningTimer = new Timer(3);
 	}
 
 	private void initAssets() {
 		ssbg = AssetLoader.ssBg;
-//		kahoy = AssetLoader.kahoy;
-//		bakal = AssetLoader.bakal;
-//		ginto = AssetLoader.ginto;
 	}
 
 	public void drawBackground(TextureRegion region) {
@@ -113,68 +109,89 @@ public class ShopRenderer {
 	}
 
 	private void drawBuyButtons() {
-		
-		for(int index = 0; index < 5; index++){
-			if(index < 3){
-				if(hammerButtons.get(index).isJustPressed() || buyButtons.get(index).isPressed() || useButtons.get(index).isPressed()){
-					if(index == 0){
-						if(ShopInputHandler.woodIsBought == false){
+
+		for (int index = 0; index < 5; index++) {
+			if (index < 3) {
+				if (hammerButtons.get(index).isJustPressed()
+						|| buyButtons.get(index).isPressed()
+						|| useButtons.get(index).isPressed()) {
+					if (index == 0) {
+						if (ShopInputHandler.woodIsBought == false) {
 							this.buyButton = buyButtons.get(index);
 							buyButton.draw(batcher);
-						}else if (ShopInputHandler.woodIsBought == true || buyButtons.get(index).isPressed()){
+						} else if (ShopInputHandler.woodIsBought == true
+								|| buyButtons.get(index).isPressed()) {
 							this.useButton = useButtons.get(index);
 							useButton.draw(batcher);
 						}
-					}else if(index == 1){
-						if(ShopInputHandler.steelIsBought == false){
+					} else if (index == 1) {
+						if (ShopInputHandler.steelIsBought == false) {
 							this.buyButton = buyButtons.get(index);
-							buyButton.draw(batcher); 
-						}else if (ShopInputHandler.steelIsBought == true || buyButtons.get(index).isPressed()){
+							buyButton.draw(batcher);
+						} else if (ShopInputHandler.steelIsBought == true
+								|| buyButtons.get(index).isPressed()) {
 							this.useButton = useButtons.get(index);
 							useButton.draw(batcher);
 						}
-					}else if(index == 2){
-						if(ShopInputHandler.goldIsBought == false){
+					} else if (index == 2) {
+						if (ShopInputHandler.goldIsBought == false) {
 							this.buyButton = buyButtons.get(index);
 							buyButton.draw(batcher);
-						}else if (ShopInputHandler.goldIsBought == true || buyButtons.get(index).isPressed()){
+						} else if (ShopInputHandler.goldIsBought == true
+								|| buyButtons.get(index).isPressed()) {
 							this.useButton = useButtons.get(index);
 							useButton.draw(batcher);
 						}
 					}
 				}
-			}else if(index >= 3 && index  < 5 || useButtons.get(index).isPressed()){
-				if(shopButtons.get(index - 2).isJustPressed() || buyButtons.get(index).isPressed()){
+			} else if (index >= 3 && index < 5
+					|| useButtons.get(index).isPressed()) {
+				if (shopButtons.get(index - 2).isJustPressed()
+						|| buyButtons.get(index).isPressed()) {
 					this.useButton = buyButtons.get(index);
 					useButton.draw(batcher);
 				}
-			}	
-		
-//			if(index < 3){
-//				if(buyButtons.get(index).isJustPressed() || useButtons.get(index).isPressed()){
-//					this.useButton = useButtons.get(index);
-//					useButton.draw(batcher);
-//				}
-//			}
+			}
 		}
 	}
-	
-	public void drawPrice(){		
-		//Steel
+
+	public void drawPrice() {
+		// Steel
 		AssetLoader.priceShadow.draw(batcher, "*400", 65, 91);
 		AssetLoader.priceGold.draw(batcher, "*400", 66, 92);
-		
-		//Gold
+
+		// Gold
 		AssetLoader.priceShadow.draw(batcher, "*500", 115, 91);
 		AssetLoader.priceGold.draw(batcher, "*500", 116, 92);
-		
-		//Time Boost
+
+		// Time Boost
 		AssetLoader.priceShadow.draw(batcher, "*200", 30, 159);
 		AssetLoader.priceGold.draw(batcher, "*200", 31, 158);
-		
-		//Score Boost
+
+		// Score Boost
 		AssetLoader.priceShadow.draw(batcher, "*300", 96, 159);
 		AssetLoader.priceGold.draw(batcher, "*300", 97, 158);
+	}
+
+	public void drawTransaction() {
+		if (ShopInputHandler.insufficientTickets) {
+			if(!warningTimer.isRunning){
+				warningTimer.start();
+			}
+			AssetLoader.priceShadow.draw(batcher, "YOU HAVE", 50, 119);
+			AssetLoader.bitWarning.draw(batcher, "YOU HAVE", 50, 118);
+			AssetLoader.priceGold.draw(batcher, "YOU HAVE", 50, 117);
+
+			AssetLoader.priceShadow.draw(batcher, "INSUFFICIENT TICKETS",
+					5, 129);
+			AssetLoader.bitWarning.draw(batcher, "INSUFFICIENT TICKETS", 5,
+					128);
+			AssetLoader.priceGold.draw(batcher, "INSUFFICIENT TICKETS", 5,
+					127);
+			if (warningTimer.hasCompleted()) {
+				ShopInputHandler.insufficientTickets = false;
+			}
+		}		
 	}
 
 	public void render(float runTime) {
@@ -200,6 +217,7 @@ public class ShopRenderer {
 		drawTickets();
 		drawPrice();
 		drawBuyButtons();
+		drawTransaction();
 		batcher.end();
 	}
 }
