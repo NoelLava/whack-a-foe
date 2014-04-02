@@ -63,45 +63,45 @@ public class CustomInputHandler implements InputProcessor{
 		
 		for (Button thisButton : customButtons) {
 			thisButton.isTouchDown(screenX, screenY);
-		
+			for (Button thisUseButton : useButton){
+				thisUseButton.isTouchDown(screenX, screenY);
+				
+				
+				if(useButton.get(0).isJustPressed()){
+					steelTrue = false;
+					carbonTrue = false;
+					woodTrue = true;
+				}
+				else if(useButton.get(1).isJustPressed()){
+					woodTrue = false;
+					carbonTrue = false;
+					steelTrue = true;
+				}
+				else if(useButton.get(2).isJustPressed()){
+					woodTrue = false;
+					steelTrue = false;
+					carbonTrue = true;
+				}
+				
+				if(useButton.get(3).isJustPressed()){
+					boyTrue = false;
+					farmerTrue = false;
+					bossTrue = true;
+				}
+				else if(useButton.get(4).isJustPressed()){
+					boyTrue = false;
+					bossTrue = false;
+					farmerTrue = true;
+				}
+				else if(useButton.get(5).isJustPressed()){
+					bossTrue = false;
+					farmerTrue = false;
+					boyTrue = true;
+				}
+			}
 		}
 
-		for (Button thisButton : useButton){
-			thisButton.isTouchDown(screenX, screenY);
-			
-			
-			if(useButton.get(0).isJustPressed()){
-				steelTrue = false;
-				carbonTrue = false;
-				woodTrue = true;
-			}
-			else if(useButton.get(1).isJustPressed()){
-				woodTrue = false;
-				carbonTrue = false;
-				steelTrue = true;
-			}
-			else if(useButton.get(2).isJustPressed()){
-				woodTrue = false;
-				steelTrue = false;
-				carbonTrue = true;
-			}
-			
-			if(useButton.get(3).isJustPressed()){
-				boyTrue = false;
-				farmerTrue = false;
-				bossTrue = true;
-			}
-			else if(useButton.get(4).isJustPressed()){
-				boyTrue = false;
-				bossTrue = false;
-				farmerTrue = true;
-			}
-			else if(useButton.get(5).isJustPressed()){
-				bossTrue = false;
-				farmerTrue = false;
-				boyTrue = true;
-			}
-		}
+
 		
 		return false;
 	}
