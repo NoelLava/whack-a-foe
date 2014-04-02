@@ -20,8 +20,8 @@ public class GameWorld {
 	// ===============================================================
 	public static final float[] coordinateX = { 28f, 64.25f, 100f, 22.5f,
 			64.25f, 105f, 19f, 64f, 109.25f };
-	public static final float[] coordinateY = { 65f, 65f, 65f, 120f, 120f,
-			120f, 175.5f, 175.5f, 175.5f };
+	public static final float[] coordinateY = { 69f, 69f, 69f, 124f, 124f,
+			124f, 179.5f, 179.5f, 179.5f };
 	private boolean[] removed = { false, false, false, false, false, false,
 			false, false, false };
 	private int[] respawnCounter = { 0, 0, 0, 0, 0, 0, 0, 0, 0 };
@@ -61,7 +61,7 @@ public class GameWorld {
 	private boolean buzzerPlayed;
 	private boolean clearPlayed;
 	public boolean gameStartPlayed;
-	
+
 	public boolean backToMain;
 	public boolean ticketAdded;
 
@@ -117,7 +117,7 @@ public class GameWorld {
 				hammerPosition.add(hammer);
 			}
 		}
-		
+
 		// timers
 		timer = new Timer(1 / 1000);
 		timer.start();
@@ -170,9 +170,9 @@ public class GameWorld {
 				gameStartPlayed = true;
 			}
 		}
-		
+
 		timerCounter = 1;
-		
+
 		if (seconds > 0) {
 			inGame();
 			updateGame();
@@ -194,10 +194,10 @@ public class GameWorld {
 	private void updatePause(float delta) {
 		AssetLoader.gameMusic2.pause();
 		timerCounter = 0;
-		
+
 		if (pauseRestartButton.isJustPressed()) {
 			restart();
-			//currentState = GameState.GAMEOVER;
+			// currentState = GameState.GAMEOVER;
 			pauseRestartButton.setJustPressed(false);
 		} else if (resumeButton.isJustPressed()) {
 			startGame();
@@ -214,7 +214,7 @@ public class GameWorld {
 		if (score > AssetLoader.getHighScore()) {
 			AssetLoader.setHighScore(score);
 		}
-		
+
 		if (!AssetLoader.buzzer.isPlaying()) {
 			if (buzzerPlayed) {
 				AssetLoader.buzzer.stop();
@@ -280,10 +280,10 @@ public class GameWorld {
 		ticketValue = (int) (score / 4);
 		int ticketVal = AssetLoader.getTicket() + ticketValue;
 
-		if(!ticketAdded){
+		if (!ticketAdded) {
 			AssetLoader.setTicket(ticketVal);
 			ticketAdded = true;
-		}			
+		}
 	}
 
 	// GAME METHODS
@@ -303,7 +303,7 @@ public class GameWorld {
 			}
 		}
 	}
-	
+
 	public void updateCheck() {
 		if (!dummy.isAlive()) {
 			dummies.remove(dummy);

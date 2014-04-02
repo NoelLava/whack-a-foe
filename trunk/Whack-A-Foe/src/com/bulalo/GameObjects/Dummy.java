@@ -19,8 +19,8 @@ public class Dummy {
 	
 	public Dummy(int life, float x, float y, int width, int height){
 		this.life = life;
-		this.width = 35;
-		this.height = 50;
+		this.width = 32;
+		this.height = 46;
 		position = new Vector2(x,y);
 		
 		bounds = new Rectangle(x*2, y*2, width*2, height*2);

@@ -131,7 +131,7 @@ public class AssetLoader {
 				Gdx.files.internal("data/HammerAngleTexture.png"));
 		hammerAngles.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
 
-		dummy = new Texture(Gdx.files.internal("data/dummies.png"));
+		dummy = new Texture(Gdx.files.internal("data/dummies2.png"));
 		dummy.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
 
 		tSTexture = new Texture(
@@ -237,15 +237,35 @@ public class AssetLoader {
 		table = new TextureRegion(gameTexture, 0, 0, 320, 512);
 		table.flip(false, true);
 
-		dummyDefault1 = new TextureRegion(dummy, 1, 174, 65, 90);
-		dummyDefault2 = new TextureRegion(dummy, 56, 174, 65, 90);
-		dummyDefault3 = new TextureRegion(dummy, 117, 174, 65, 90);
-		dummyDefault4 = new TextureRegion(dummy, 179, 174, 65, 90);
+		dummyDefault1 = new TextureRegion(dummy, 0, 308, 64, 92);
+		dummyDefault2 = new TextureRegion(dummy, 64, 308, 64, 92);
+		dummyDefault3 = new TextureRegion(dummy, 128, 308, 64, 92);
+		dummyDefault4 = new TextureRegion(dummy, 191, 308, 64, 92);
+		
+		dummyJanitor1 = new TextureRegion(dummy, 0, 124, 64, 92);
+		dummyJanitor2 = new TextureRegion(dummy, 64, 124, 64, 92);
+		dummyJanitor3 = new TextureRegion(dummy, 128, 124, 64, 92);
+		dummyJanitor4 = new TextureRegion(dummy, 191, 124, 64, 92);
+
+		dummyOffice1 = new TextureRegion(dummy, 0, 216, 64, 92);
+		dummyOffice2 = new TextureRegion(dummy, 64, 216, 64, 92);
+		dummyOffice3 = new TextureRegion(dummy, 128, 216, 64, 92);
+		dummyOffice4 = new TextureRegion(dummy, 191, 216, 64, 92);
 
 		dummyDefault1.flip(false, true);
 		dummyDefault2.flip(false, true);
 		dummyDefault3.flip(false, true);
 		dummyDefault4.flip(false, true);
+		
+		dummyJanitor1.flip(false, true);
+		dummyJanitor2.flip(false, true);
+		dummyJanitor3.flip(false, true);
+		dummyJanitor4.flip(false, true);
+		
+		dummyOffice1.flip(false, true);
+		dummyOffice2.flip(false, true);
+		dummyOffice3.flip(false, true);
+		dummyOffice4.flip(false, true);
 
 		HamWoodLeft = new TextureRegion(hammerAngles, 0, 0, 107, 170);
 		HamWoodMid = new TextureRegion(hammerAngles, 107, 0, 107, 170);
@@ -303,19 +323,6 @@ public class AssetLoader {
 		wood = new TextureRegion(woodTexture, 0, 0, 320, 512);
 		steel = new TextureRegion(steelTexture, 0, 0, 320, 512);
 		carbon = new TextureRegion(carbonTexture, 0, 0, 320, 512);
-
-		dummyJanitor1 = new TextureRegion(dummy, 45, 0, 65, 90);
-		dummyJanitor2 = new TextureRegion(dummy, 84, 0, 65, 90);
-		dummyJanitor3 = new TextureRegion(dummy, 130, 0, 65, 90);
-		dummyJanitor4 = new TextureRegion(dummy, 184, 0, 65, 90);
-
-		dummyOffice1 = new TextureRegion(dummy, 40, 83, 65, 90);
-		dummyOffice2 = new TextureRegion(dummy, 84, 83, 65, 90);
-		dummyOffice3 = new TextureRegion(dummy, 129, 83, 65, 90);
-		dummyOffice4 = new TextureRegion(dummy, 184, 83, 65, 90);
-
-		dummyJanitor4.flip(false, true);
-		dummyOffice4.flip(false, true);
 
 		useUp = new TextureRegion(cSTexture, 330, 3, 69, 27);
 		useDown = new TextureRegion(cSTexture, 409, 3, 69, 27);

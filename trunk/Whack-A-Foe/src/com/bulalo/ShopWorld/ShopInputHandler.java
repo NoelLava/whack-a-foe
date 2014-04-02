@@ -74,7 +74,7 @@ public class ShopInputHandler implements InputProcessor {
 			hammerButtons.get(index).isTouchDown(screenX, screenY);
 			if (hammerButtons.get(index).isJustPressed()) {
 				if (index == 1) {
-				if (steelIsBought == false) {
+					if (steelIsBought == false) {
 						buyButtons.get(index).isTouchDown(screenX, screenY);
 					} else {
 						useButtons.get(index).isTouchDown(screenX, screenY);
@@ -184,9 +184,7 @@ public class ShopInputHandler implements InputProcessor {
 			AssetLoader.setTicket(ticketVal);
 
 			insufficientTickets = false;
-			System.out.println("Transaction successful");
 		} else {
-			System.out.println("You have insufficient number of tickets!");
 			insufficientTickets = true;
 		}
 	}
