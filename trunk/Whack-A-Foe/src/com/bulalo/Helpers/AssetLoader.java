@@ -118,7 +118,7 @@ public class AssetLoader {
 	private static Preferences prefs;
 
 	public static BitmapFont digital, digitalShadow, bit, bitWhite, bitGold,
-			bitGoldSh, priceGold, priceShadow;
+			bitGoldSh, priceGold, priceShadow, bitWarning;
 
 	public static void load() {
 		Texture.setEnforcePotImages(false);
@@ -394,6 +394,7 @@ public class AssetLoader {
 		bitGoldSh = new BitmapFont(Gdx.files.internal("font/bitGoldSh.fnt"));
 		priceGold = new BitmapFont(Gdx.files.internal("font/bitGold.fnt"));
 		priceShadow = new BitmapFont(Gdx.files.internal("font/bitGoldSh.fnt"));
+		bitWarning = new BitmapFont(Gdx.files.internal("font/bitWarning.fnt"));
 
 		digital.setScale(.5f, -.5f);
 		digitalShadow.setScale(.5f, -.5f);
@@ -403,16 +404,17 @@ public class AssetLoader {
 		bitGoldSh.setScale(.5f, -.5f);
 		priceGold.setScale(.25f, -.25f);
 		priceShadow.setScale(.25f, -.25f);
+		bitWarning.setScale(.25f, -.25f);
 
 		// Animations
 		// ==========================================================================================
 		TextureRegion[] dummiesDefault = { dummyDefault1, dummyDefault2,
 				dummyDefault3, dummyDefault4 };
-		defaultDummyAnimation = new Animation(0.03f, dummiesDefault);
+		defaultDummyAnimation = new Animation(0.25f, dummiesDefault);
 		defaultDummyAnimation.setPlayMode(Animation.NORMAL);
 		TextureRegion[] dummyDefaultRev = { dummyDefault4, dummyDefault3,
 				dummyDefault2, dummyDefault1 };
-		defaultDummyDies = new Animation(0.03f, dummyDefaultRev);
+		defaultDummyDies = new Animation(0.25f, dummyDefaultRev);
 		defaultDummyDies.setPlayMode(Animation.NORMAL);
 
 		TextureRegion[] dummiesOffice = { dummyOffice1, dummyOffice2,
@@ -515,5 +517,6 @@ public class AssetLoader {
 		bitGoldSh.dispose();
 		priceGold.dispose();
 		priceShadow.dispose();
+		bitWarning.dispose();
 	}
 }

@@ -5,6 +5,7 @@ import com.badlogic.gdx.utils.TimeUtils;
 public class Timer {
 	private long start;
 	private long secsToWait;
+	public boolean isRunning;
 
 	public Timer(long secsToWait) {
 		this.secsToWait = secsToWait;
@@ -12,6 +13,7 @@ public class Timer {
 
 	public void start() {
 		start = TimeUtils.millis() / 1000;
+		isRunning = true;
 	}
 	
 	public void pause(){
@@ -23,6 +25,11 @@ public class Timer {
 	}
 
 	public boolean hasCompleted() {
-		return TimeUtils.millis() / 1000 - start >= secsToWait;
+		if( TimeUtils.millis() / 1000 - start >= secsToWait){
+			isRunning = false;
+			return true;
+		}else{
+			return false;
+		}
 	}
 }
