@@ -15,8 +15,6 @@ public class Dummy {
 	private boolean markedForRemoval;
 	private boolean isPressed = false;
 	
-	private int score;
-	
 	public Dummy(int life, float x, float y, int width, int height){
 		this.life = life;
 		this.width = 32;
@@ -28,18 +26,13 @@ public class Dummy {
 	
 	public void update(float delta){
 		life--;
-		if(life <= 0){
+		if(life < 1){
 			life = 0;
-		}
-		if(this.isPressed()){
-			
-		}
-		
+		}		
 		System.out.println(life);
 	}
 	
 	public boolean onClick(int screenX, int screenY){
-		System.out.println("Dummy - clicked");
 		return bounds.contains(screenX, screenY);
 	}
 	
@@ -48,7 +41,6 @@ public class Dummy {
         if (bounds.contains(screenX, screenY)) {
             isPressed = true;
             life = 0;
-
             return true;
         }
         return false;
@@ -76,6 +68,28 @@ public class Dummy {
 		markedForRemoval = false;
 	
 	} 
+	
+//	public int getPosition(){
+//		if(position.x == 28 && position.y == 69){
+//			return 0;
+//		}else if(position.x == 64.25f && position.y == 69){
+//			return 1;
+//		}else if(position.x == 100 && position.y == 69){
+//			return 2;
+//		}else if(position.x == 22.5f && position.y == 124){
+//			return 3;
+//		}else if(position.x == 64.25f && position.y == 124){
+//			return 4;
+//		}else if(position.x == 105 && position.y == 124){
+//			return 5;
+//		}else if(position.x == 19 && position.y == 179.5f){
+//			return 6;
+//		}else if(position.x == 64 && position.y == 124){
+//			return 7;
+//		}else{// if(position.x == 109.25f && position.y == 124)
+//			return 8;
+//		}
+//	}
 	
 	public void markToRemove(){
 		markedForRemoval = true;
@@ -114,7 +128,7 @@ public class Dummy {
     }
     
     public boolean isAlive(){
-    	if(life < 1){
+    	if(life == 0){
     		return false;
     	}else{ 
     		return true;

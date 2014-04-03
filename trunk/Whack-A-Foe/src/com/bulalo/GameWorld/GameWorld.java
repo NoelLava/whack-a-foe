@@ -24,12 +24,15 @@ public class GameWorld {
 			124f, 179.5f, 179.5f, 179.5f };
 	private boolean[] removed = { false, false, false, false, false, false,
 			false, false, false };
+	// private boolean[] removed = { true, true, true, true, true, true,
+	// true, true, true};
 	private int[] respawnCounter = { 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 	private int[] removeCounter = { 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 
 	// Dummies and Buttons
 	// =========================================================
 	private static List<Dummy> dummies;
+	private static List<Dummy> friends;
 	private static List<Button> gameButtons;
 	Button pauseButton;
 
@@ -77,7 +80,7 @@ public class GameWorld {
 		// dummies
 		// ===========================================================================================================================
 		dummies = new ArrayList<Dummy>();
-
+		friends = new ArrayList<Dummy>(2);
 		// buttons
 		// ===========================================================================================================================
 		gameButtons = new ArrayList<Button>();
@@ -170,14 +173,14 @@ public class GameWorld {
 				gameStartPlayed = true;
 			}
 		}
-
 		timerCounter = 1;
 
 		if (seconds > 0) {
 			inGame();
 			updateGame();
-			// checkHit();
 			respawn();
+			if (score <= 0)
+				score = 0;
 			if (pauseButton.isJustPressed()) {
 				currentState = GameState.PAUSE;
 				pauseButton.setJustPressed(false);
@@ -300,19 +303,8 @@ public class GameWorld {
 				dummy = new Dummy(300, x, y, 35, 50);
 				dummy.spawn(coordinateX[r], coordinateY[r]);
 				dummies.add(dummy);
+				removed[r] = false;
 			}
-		}
-	}
-
-	public void updateCheck() {
-		if (!dummy.isAlive()) {
-			dummies.remove(dummy);
-
-			dummy = null;
-			int r = rand.nextInt(9);
-			dummy = new Dummy(300, x, y, 35, 50);
-			dummy.spawn(coordinateX[r], coordinateY[r]);
-			dummies.add(dummy);
 		}
 	}
 
@@ -320,12 +312,25 @@ public class GameWorld {
 		int i = 0;
 		while (i < dummies.size()) {
 			Dummy dum = dummies.get(i);
-			checkToRemove();
+			checkToRemove();// ===========
 			if (dum.isMarked()) {
 				System.out.println("mark " + i);
 				dum.markToRemove();
 				removed[i] = true;
 				dum.isNotMarked();
+			} else {
+				i++;
+			}
+		}
+
+		while (i < friends.size()) {
+			Dummy friend = friends.get(i);
+			checkToRemove();// ===========
+			if (friend.isMarked()) {
+				System.out.println("mark " + i);
+				friend.markToRemove();
+				removed[i] = true;
+				friend.isNotMarked();
 			} else {
 				i++;
 			}
@@ -338,26 +343,29 @@ public class GameWorld {
 			Dummy dum = dummies.get(i);
 			if (dum.isAlive()) {
 				System.out.println("checkToRemove - alive");
-			} else {
+			} else if (!dum.isAlive()) {
+				dum.markToRemove();
 				System.out.println("should remove " + i);
-				dummies.remove(i);
+				dummies.remove(dum);
 				removed[i] = true;
-				// dum.isNotMarked();
 				removeCounter[i] = 0;
 				for (int x = 0; x < dummies.size(); x++) {
 					removeCounter[x] = 0;
 				}
 			}
 		}
-	}
 
-	public void checkHit() {
-		for (int i = 0; i < dummies.size(); i++) {
-			Dummy dum = dummies.get(i);
-			if (!dum.isAlive()) {
-				for (int x = 0; x < dummies.size(); x++) {
-					removeCounter[i] = 0;
-
+		for (int i = 0; i < friends.size(); i++) {
+			Dummy friend = friends.get(i);
+			if (friend.isAlive()) {
+				System.out.println("checkToRemove - alive");
+			} else if (!friend.isAlive()) {
+				System.out.println("should remove " + i);
+				friends.remove(friend);
+				removed[i] = true;
+				removeCounter[i] = 0;
+				for (int x = 0; x < friends.size(); x++) {
+					removeCounter[x] = 0;
 				}
 			}
 		}
@@ -365,18 +373,23 @@ public class GameWorld {
 
 	public void respawn() {
 		for (int i = 0; i < 9; i++) {
-
 			if (removed[i] == true) {
 				if (respawnCounter[i] >= 100) {
 					System.out.println("respawn method");
 					Dummy dum = new Dummy(300, x, y, 35, 50);
 					int r = rand.nextInt(9);
+
 					dum.spawn(coordinateX[r], coordinateY[r]);
 					dummies.add(dum);
 
+					int f = rand.nextInt(9);
+					Dummy friend = new Dummy(300, x, y, 35, 50);
+					friend.spawn(coordinateX[f], coordinateY[f]);
+					friends.add(friend);
+
 					respawnCounter[i] = 0;
 					removed[i] = false;
-					for (int y = 0; y < dummies.size(); y++) {
+					for (int y = 0; y < 9; y++) {
 						removeCounter[y] = 0;
 					}
 				} else {
@@ -384,10 +397,11 @@ public class GameWorld {
 					System.out.println("respawn counter for " + i + " - "
 							+ respawnCounter[i]);
 				}
+
 			} else {
 				removeCounter[i] += 1;
-				System.out.println("remove counter for " + i + " - "
-						+ removeCounter[i]);
+				// System.out.println("remove counter for " + i + " - "
+				// + removeCounter[i]);
 			}
 		}
 	}
@@ -473,6 +487,14 @@ public class GameWorld {
 
 	public void setTicketValue(int ticketValue) {
 		this.ticketValue = ticketValue;
+	}
+
+	public static List<Dummy> getFriends() {
+		return friends;
+	}
+
+	public static void setFriends(List<Dummy> friends) {
+		GameWorld.friends = friends;
 	}
 
 }
