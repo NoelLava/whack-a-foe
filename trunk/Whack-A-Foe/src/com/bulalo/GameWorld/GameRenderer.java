@@ -29,6 +29,7 @@ public class GameRenderer {
 
 	private Dummy dummy;
 	private List<Dummy> dummies;
+	private List<Dummy> friends;
 	private List<Button> gameButtons;
 	private List<Button> gameOverButtons;
 	private List<Button> gamePausedButtons;
@@ -64,6 +65,7 @@ public class GameRenderer {
 
 	private void initGameObjects() {
 		dummies = GameWorld.getDummies();
+		friends = GameWorld.getFriends();
 		this.gameButtons = GameWorld.getGameButtons();
 		this.gameOverButtons = GameWorld.getGameOverButtons();
 		this.gamePausedButtons = GameWorld.getGamePausedButtons();
@@ -82,6 +84,8 @@ public class GameRenderer {
 
 		dummyAnimation = AssetLoader.dummyAnimation;
 		dummyDies = AssetLoader.dummyDies;
+		
+		
 		tableScreen = AssetLoader.tableScreen;
 	}
 
@@ -89,13 +93,23 @@ public class GameRenderer {
 			float runTime) {
 		for (Dummy dummy : dummies) {
 			if (dummy.isAlive()) {
-
 				batcher.draw(animation.getKeyFrame(runTime), dummy.getX(),
 						dummy.getY(), dummy.getWidth(), dummy.getHeight());
 			} else {
 				System.out.println("Renderer draw dies");
 				batcher.draw(animationDies.getKeyFrame(runTime), dummy.getX(),
 						dummy.getY(), dummy.getWidth(), dummy.getHeight());
+			}
+		}
+		
+		for(Dummy friend : friends){
+			if(friend.isAlive()){
+				batcher.draw(AssetLoader.dummyBabies.getKeyFrame(runTime), friend.getX(),
+						friend.getY(), friend.getWidth(), friend.getHeight());
+			} else {
+				System.out.println("Renderer draw dies");
+				batcher.draw(AssetLoader.babyDies.getKeyFrame(runTime), friend.getX(),
+						friend.getY(), friend.getWidth(), friend.getHeight());
 			}
 		}
 	}

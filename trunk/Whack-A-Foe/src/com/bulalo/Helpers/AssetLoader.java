@@ -14,18 +14,10 @@ public class AssetLoader {
 	public static Texture gameTexture;
 	public static Texture hammerAngles;
 	public static TextureRegion table;
-	public static TextureRegion dummyDefault1;
-	public static TextureRegion dummyDefault2;
-	public static TextureRegion dummyDefault3;
-	public static TextureRegion dummyDefault4;
-	public static TextureRegion dummyJanitor1;
-	public static TextureRegion dummyJanitor2;
-	public static TextureRegion dummyJanitor3;
-	public static TextureRegion dummyJanitor4;
-	public static TextureRegion dummyOffice1;
-	public static TextureRegion dummyOffice2;
-	public static TextureRegion dummyOffice3;
-	public static TextureRegion dummyOffice4;
+	public static TextureRegion dummyDefault1, dummyDefault2, dummyDefault3, dummyDefault4;
+	public static TextureRegion dummyJanitor1, dummyJanitor2, dummyJanitor3, dummyJanitor4;
+	public static TextureRegion dummyOffice1, dummyOffice2, dummyOffice3, dummyOffice4;
+	public static TextureRegion dummyBaby1, dummyBaby2, dummyBaby3, dummyBaby4;
 	public static TextureRegion HamWoodLeft, HamWoodMid, HamWoodRight;
 	public static TextureRegion HamSteelLeft, HamSteelMid, HamSteelRight;
 	public static TextureRegion HamGoldLeft, HamGoldMid, HamGoldRight;
@@ -103,6 +95,8 @@ public class AssetLoader {
 	public static Animation officeDummyDies;
 	public static Animation janitorDummyAnimation;
 	public static Animation janitorDummyDies;
+	public static Animation dummyBabies;
+	public static Animation babyDies;
 	public static Animation dummyAnimation, dummyDies;
 	public static Animation tableScreen;
 
@@ -251,7 +245,17 @@ public class AssetLoader {
 		dummyOffice2 = new TextureRegion(dummy, 64, 216, 64, 92);
 		dummyOffice3 = new TextureRegion(dummy, 128, 216, 64, 92);
 		dummyOffice4 = new TextureRegion(dummy, 191, 216, 64, 92);
-
+		
+		dummyBaby1 = new TextureRegion(dummy, 0, 32, 64, 92);
+		dummyBaby2 = new TextureRegion(dummy, 64, 32, 64, 92);
+		dummyBaby3 = new TextureRegion(dummy, 128, 32, 64, 92);
+		dummyBaby4 = new TextureRegion(dummy, 191, 32, 64, 92);
+		
+		dummyBaby1.flip(false, true);
+		dummyBaby2.flip(false, true);
+		dummyBaby3.flip(false, true);
+		dummyBaby4.flip(false, true);
+		
 		dummyDefault1.flip(false, true);
 		dummyDefault2.flip(false, true);
 		dummyDefault3.flip(false, true);
@@ -441,6 +445,12 @@ public class AssetLoader {
 				dummyJanitor2, dummyJanitor1 };
 		janitorDummyDies = new Animation(0.03f, dummyJanitorRev);
 		janitorDummyDies.setPlayMode(Animation.NORMAL);
+		
+		TextureRegion[] dummyBaby = {dummyBaby1, dummyBaby2, dummyBaby3, dummyBaby4};
+		dummyBabies = new Animation(0.03f, dummyBaby);
+		dummyBabies.setPlayMode(Animation.NORMAL);
+		babyDies = new Animation(0.03f, dummyBaby);
+		babyDies.setPlayMode(Animation.REVERSED);
 
 		// Preferences
 		// ======================================================================================
