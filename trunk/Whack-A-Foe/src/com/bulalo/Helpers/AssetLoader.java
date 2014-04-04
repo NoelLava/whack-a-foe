@@ -105,6 +105,11 @@ public class AssetLoader {
 
 	public static Texture splashScreen;
 	public static TextureRegion bulalo;
+<<<<<<< HEAD
+
+	//public static Sound /*hitSmash,*/ buttonDown, buttonUp, bulaloil;
+	//public static Sound hitEmpty, hitFriend, hitFunny, beep;
+=======
 	
 	public static Texture upload;
 	public static TextureRegion uploadRegion;
@@ -112,8 +117,9 @@ public class AssetLoader {
 	private static Upload uploadThisPic = new Upload();
 	public static Sound hitSmash, buttonDown, buttonUp, bulaloil;
 	public static Sound hitEmpty, hitFriend, hitFunny, beep;
+>>>>>>> 0e76b3f0bcf2c9c583798bd33c1d442d9fa52633
 	public static Music titleMusic, gameMusic, gameMusic2, gameOver, buzzer,
-			gameStart;
+			gameStart, hitSmash, buttonDown, buttonUp, bulaloil, hitEmpty, hitFriend, hitFunny, beep;
 	private static Preferences prefs;
 
 	public static BitmapFont digital, digitalShadow, bit, bitWhite, bitGold,
@@ -170,15 +176,15 @@ public class AssetLoader {
 		// Sounds
 		// ==============================================================================================
 
-		hitSmash = Gdx.audio.newSound(Gdx.files.internal("sfx/smashSFX.mp3"));
-		buttonDown = Gdx.audio.newSound(Gdx.files
+		hitSmash = Gdx.audio.newMusic(Gdx.files.internal("sfx/smashSFX.mp3"));
+		buttonDown = Gdx.audio.newMusic(Gdx.files
 				.internal("sfx/buttonDown.mp3"));
-		buttonUp = Gdx.audio.newSound(Gdx.files.internal("sfx/buttonUp.mp3"));
-		bulaloil = Gdx.audio.newSound(Gdx.files.internal("sfx/boil1.mp3"));
-		hitEmpty = Gdx.audio.newSound(Gdx.files.internal("sfx/SFX1.mp3"));
-		hitFriend = Gdx.audio.newSound(Gdx.files.internal("sfx/SFX3.mp3"));
-		hitFunny = Gdx.audio.newSound(Gdx.files.internal("sfx/SFX4.mp3"));
-		beep = Gdx.audio.newSound(Gdx.files.internal("sfx/beep.mp3"));
+		buttonUp = Gdx.audio.newMusic(Gdx.files.internal("sfx/buttonUp.mp3"));
+		bulaloil = Gdx.audio.newMusic(Gdx.files.internal("sfx/boil1.mp3"));
+		hitEmpty = Gdx.audio.newMusic(Gdx.files.internal("sfx/SFX1.mp3"));
+		hitFriend = Gdx.audio.newMusic(Gdx.files.internal("sfx/SFX3.mp3"));
+		hitFunny = Gdx.audio.newMusic(Gdx.files.internal("sfx/SFX4.mp3"));
+		beep = Gdx.audio.newMusic(Gdx.files.internal("sfx/beep.mp3"));
 
 		buzzer = Gdx.audio.newMusic(Gdx.files.internal("sfx/buzzer.mp3"));
 		gameOver = Gdx.audio.newMusic(Gdx.files.internal("sfx/clear2.mp3"));

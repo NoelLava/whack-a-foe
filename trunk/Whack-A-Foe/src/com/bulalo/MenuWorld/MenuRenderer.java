@@ -14,18 +14,31 @@ import com.bulalo.Helpers.InputHandler;
 import com.bulalo.UI.Button;
 
 public class MenuRenderer {
+	private static MenuWorld menu = new MenuWorld();
 	private ShapeRenderer shapeRenderer;
-	private MenuWorld menu;
-	private OrthographicCamera cam;
-	private SpriteBatch batcher;
 	
+	private OrthographicCamera cam;
+	
+	private SpriteBatch batcher;
 	private TextureRegion titleBg;
+	
+	private Button sfxMusicButton;
+	private Button bgmMusicButton;
 
 	private List<Button> menuButtons;
+	private List<Button> sfxButtonsOn;
+	private List<Button> bgmButtonsOn;
+	private List<Button> sfxButtonsOff;
+	private List<Button> bgmButtonsOff;
+	
 	
 	public MenuRenderer(MenuWorld world) {
 		menu = world;
         this.menuButtons = MenuWorld.getMenuButtons();
+        this.sfxButtonsOn = MenuWorld.getSFXButtonOn();
+        this.bgmButtonsOn = MenuWorld.getBGMButtonOn();
+        this.sfxButtonsOff = MenuWorld.getSFXButtonOff();
+        this.bgmButtonsOff = MenuWorld.getBGMButtonOff();
         
 		cam = new OrthographicCamera();
 		cam.setToOrtho(true, 160, 256);
@@ -41,13 +54,59 @@ public class MenuRenderer {
 	
 	public void initAssets(){
 		titleBg = AssetLoader.titleBg;
+		System.out.println(Gdx.files.getExternalStoragePath());
 	}
 	
 	private void drawButtons(){
 		for(Button button : menuButtons) {
 			button.draw(batcher);
-        }		
+        }
+		
+		for(Button button: sfxButtonsOn){
+			button.draw(batcher);
+		}
+		
+		for(Button button : bgmButtonsOn){
+			button.draw(batcher);
+		}
+
 	}
+	
+	private void drawMusicButtons(){
+			if(sfxButtonsOn.get(0).isJustPressed() || sfxButtonsOff.get(0).isPressed()){
+				this.sfxMusicButton = sfxButtonsOff.get(0);
+				sfxMusicButton.draw(batcher);
+			} 
+			
+			if(sfxButtonsOff.get(0).isJustPressed() || sfxButtonsOn.get(0).isPressed()){
+				this.sfxMusicButton = sfxButtonsOn.get(0);
+				sfxMusicButton.draw(batcher);
+			}
+
+			if(bgmButtonsOn.get(0).isJustPressed()){
+				this.bgmMusicButton = bgmButtonsOff.get(0);
+				bgmMusicButton.draw(batcher);
+				
+			}
+			
+			if(bgmButtonsOff.get(0).isPressed()){
+				this.bgmMusicButton = bgmButtonsOn.get(0);
+				bgmMusicButton.draw(batcher);
+		
+			}
+		
+	
+			//if(bgmButtonsOn.get(0).isPressed()){
+				//this.bgmMusicButton = bgmButtonsOff.get(0);
+				//bgmMusicButton.draw(batcher);
+			
+			//} else if(bgmButtonsOff.get(0).isPressed()){
+				//this.bgmMusicButton = bgmButtonsOn.get(0);
+				//bgmMusicButton.draw(batcher);
+			//}
+			
+	}
+
 
 	public void render(float runTime) {
 		Gdx.gl.glClearColor(0, 0, 0, 1);
@@ -76,6 +135,7 @@ public class MenuRenderer {
 		batcher.enableBlending();
 		
 		drawButtons();
+		drawMusicButtons();
 		
 		// End SpriteBatch
 		batcher.end();
