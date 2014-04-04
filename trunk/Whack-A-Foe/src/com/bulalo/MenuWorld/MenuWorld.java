@@ -3,13 +3,13 @@ package com.bulalo.MenuWorld;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.sound.sampled.FloatControl;
-
+import com.bulalo.FileUpload.Upload;
 import com.bulalo.Helpers.AssetLoader;
 import com.bulalo.UI.Button;
 
 public class MenuWorld {
 	private static List<Button> menuButtons;
+	public Upload upload;
 	private static List<Button> sfxButtonsOn;
 	private static List<Button> bgmButtonsOn;
 	private static List<Button> sfxButtonsOff;
@@ -59,6 +59,8 @@ public class MenuWorld {
 		sfxButtonOff = new Button(100, 230, 20, 20, AssetLoader.sfxOffUp, AssetLoader.sfxOffDown);
 		bgmButtonOff = new Button(125, 230, 20, 20, AssetLoader.bgmOffUp, AssetLoader.bgmOffDown);
 
+		upload = new Upload();
+		
 		menuButtons.add(playButton);
 		menuButtons.add(shopButton);
 		menuButtons.add(customButton);
