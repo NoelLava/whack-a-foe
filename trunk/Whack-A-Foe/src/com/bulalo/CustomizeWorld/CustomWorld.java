@@ -10,7 +10,7 @@ public class CustomWorld {
 	private static List<Button> customButtons;
 	private static List<Button> useButton;
 	private Button backButton;
-	
+	private Button upload;
 	private Button table,table1,table2;
 	private Button dummy,dummy1,dummy2;
 	private Button useWood, useSteel, useCarbon, useBoss, useFarmer, useBoy;
@@ -21,6 +21,9 @@ public class CustomWorld {
 		useButton = new ArrayList<Button>();
 		
 		backButton = new Button(137.85f, 1.85f, 21.5f, 20.5f,
+				AssetLoader.backButton, AssetLoader.backPressed);
+		
+		upload = new Button(137.85f, 21.85f, 21.5f, 20.5f,
 				AssetLoader.backButton, AssetLoader.backPressed);
 		
 		//icons for the tables
@@ -47,6 +50,7 @@ public class CustomWorld {
 		customButtons.add(dummy);
 		customButtons.add(dummy1);
 		customButtons.add(dummy2);
+		customButtons.add(upload);
 		useButton.add(useWood);
 		useButton.add(useSteel);
 		useButton.add(useCarbon);
