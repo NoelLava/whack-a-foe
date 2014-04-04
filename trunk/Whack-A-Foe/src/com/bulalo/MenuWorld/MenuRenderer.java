@@ -54,6 +54,7 @@ public class MenuRenderer {
 	
 	public void initAssets(){
 		titleBg = AssetLoader.titleBg;
+		System.out.println(Gdx.files.getExternalStoragePath());
 	}
 	
 	private void drawButtons(){

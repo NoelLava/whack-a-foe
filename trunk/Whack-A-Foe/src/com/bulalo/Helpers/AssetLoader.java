@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.bulalo.FileUpload.Upload;
 
 public class AssetLoader {
 	public static Texture gameTexture;
@@ -104,9 +105,19 @@ public class AssetLoader {
 
 	public static Texture splashScreen;
 	public static TextureRegion bulalo;
+<<<<<<< HEAD
 
 	//public static Sound /*hitSmash,*/ buttonDown, buttonUp, bulaloil;
 	//public static Sound hitEmpty, hitFriend, hitFunny, beep;
+=======
+	
+	public static Texture upload;
+	public static TextureRegion uploadRegion;
+	
+	private static Upload uploadThisPic = new Upload();
+	public static Sound hitSmash, buttonDown, buttonUp, bulaloil;
+	public static Sound hitEmpty, hitFriend, hitFunny, beep;
+>>>>>>> 0e76b3f0bcf2c9c583798bd33c1d442d9fa52633
 	public static Music titleMusic, gameMusic, gameMusic2, gameOver, buzzer,
 			gameStart, hitSmash, buttonDown, buttonUp, bulaloil, hitEmpty, hitFriend, hitFunny, beep;
 	private static Preferences prefs;
@@ -121,6 +132,10 @@ public class AssetLoader {
 				Gdx.files.internal("data/GameScreenTexture.png"));
 		gameTexture.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
 
+		//upload
+		uploadThisPic.getTexture();
+		upload = uploadThisPic.getImage();
+		
 		hammerAngles = new Texture(
 				Gdx.files.internal("data/HammerAngleTexture.png"));
 		hammerAngles.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
@@ -327,6 +342,7 @@ public class AssetLoader {
 		wood = new TextureRegion(woodTexture, 0, 0, 320, 512);
 		steel = new TextureRegion(steelTexture, 0, 0, 320, 512);
 		carbon = new TextureRegion(carbonTexture, 0, 0, 320, 512);
+		uploadRegion = new TextureRegion(upload,0,0,320,512);
 
 		useUp = new TextureRegion(cSTexture, 330, 3, 69, 27);
 		useDown = new TextureRegion(cSTexture, 409, 3, 69, 27);
@@ -349,6 +365,7 @@ public class AssetLoader {
 		wood.flip(false, true);
 		steel.flip(false, true);
 		carbon.flip(false, true);
+		uploadRegion.flip(false, true);
 
 		useUp.flip(false, true);
 		useDown.flip(false, true);
@@ -496,6 +513,7 @@ public class AssetLoader {
 	public static void clearPref() {
 		prefs.clear();
 	}
+	
 
 	public static void dispose() {
 		// We must dispose of the textures when we are finished

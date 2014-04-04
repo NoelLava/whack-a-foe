@@ -19,6 +19,7 @@ public class MenuWorld {
 	private Button shopButton;
 	private Button customButton;
 	
+<<<<<<< HEAD
 	private Button sfxButtonOn;
 	
 	private Button bgmButtonOn;
@@ -27,6 +28,8 @@ public class MenuWorld {
 
 	private Button bgmButtonOff;
 
+=======
+>>>>>>> 0e76b3f0bcf2c9c583798bd33c1d442d9fa52633
 	float runTime = 0;
 
 	public MenuWorld() {
