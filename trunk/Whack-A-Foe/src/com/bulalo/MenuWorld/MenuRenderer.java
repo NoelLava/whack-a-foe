@@ -25,19 +25,16 @@ public class MenuRenderer {
 	private Button bgmMusicButton;
 
 	private List<Button> menuButtons;
-	private List<Button> sfxButtonsOn;
-	private List<Button> bgmButtonsOn;
-	private List<Button> sfxButtonsOff;
-	private List<Button> bgmButtonsOff;
+	private List<Button> sfxButtons;
+	private List<Button> bgmButtons;
+
 	
 	
 	public MenuRenderer(MenuWorld world) {
 		menu = world;
         this.menuButtons = MenuWorld.getMenuButtons();
-        this.sfxButtonsOn = MenuWorld.getSFXButtonOn();
-        this.bgmButtonsOn = MenuWorld.getBGMButtonOn();
-        this.sfxButtonsOff = MenuWorld.getSFXButtonOff();
-        this.bgmButtonsOff = MenuWorld.getBGMButtonOff();
+        this.sfxButtons = MenuWorld.getSFXButtonOn();
+        this.bgmButtons = MenuWorld.getBGMButtonOn();
         
 		cam = new OrthographicCamera();
 		cam.setToOrtho(true, 160, 256);
@@ -61,39 +58,51 @@ public class MenuRenderer {
 			button.draw(batcher);
         }
 		
-		for(Button button: sfxButtonsOn){
+		for(Button button: sfxButtons){
 			button.draw(batcher);
 		}
 		
-		for(Button button : bgmButtonsOn){
+		for(Button button : bgmButtons){
 			button.draw(batcher);
 		}
 
 	}
 	
 	private void drawMusicButtons(){
-			if(sfxButtonsOn.get(0).isJustPressed() || sfxButtonsOn.get(0).isPressed() || sfxButtonsOff.get(0).isPressed()){
-				this.sfxMusicButton = sfxButtonsOff.get(0);
-				sfxMusicButton.draw(batcher);
-			} 
-			
-			if(sfxButtonsOff.get(0).isJustPressed() || sfxButtonsOff.get(0).isPressed() || sfxButtonsOn.get(0).isPressed()){
-				this.sfxMusicButton = sfxButtonsOn.get(0);
-				sfxMusicButton.draw(batcher);
-			}
-
-			if(bgmButtonsOn.get(0).isJustPressed() || bgmButtonsOn.get(0).isPressed() || bgmButtonsOff.get(0).isPressed()){
-				this.bgmMusicButton = bgmButtonsOff.get(0);
-				bgmMusicButton.draw(batcher);
-				
-			}
-			
-			if(bgmButtonsOff.get(0).isPressed() || bgmButtonsOff.get(0).isPressed() || bgmButtonsOn.get(0).isPressed()){
-				this.bgmMusicButton = bgmButtonsOn.get(0);
-				bgmMusicButton.draw(batcher);
 		
-			}
-			
+		if(MenuWorld.sfxOn){
+			sfxButtons.get(0).draw(batcher);
+		}else{
+			sfxButtons.get(1).draw(batcher);
+		}
+		
+		if(MenuWorld.bgmOn){
+			bgmButtons.get(0).draw(batcher);
+		}else{
+			bgmButtons.get(1).draw(batcher);
+		}
+		
+//			if(sfxButtons.get(0).isJustPressed() || sfxButtons.get(0).isPressed() || sfxButtons.get(1).isPressed()){
+//				this.sfxMusicButton = sfxButtons.get(1);
+//				sfxMusicButton.draw(batcher);
+//			} 
+//			
+//			if(sfxButtons.get(1).isJustPressed() || sfxButtons.get(1).isPressed() || sfxButtons.get(1).isPressed()){
+//				this.sfxMusicButton = sfxButtons.get(0);
+//				sfxMusicButton.draw(batcher);
+//			}
+//
+//			if(bgmButtons.get(0).isJustPressed() || bgmButtons.get(0).isPressed() || bgmButtons.get(1).isPressed()){
+//				this.bgmMusicButton = bgmButtons.get(1);
+//				bgmMusicButton.draw(batcher);
+//				
+//			}
+//			
+//			if(bgmButtons.get(1).isPressed() || bgmButtons.get(1).isPressed() || bgmButtons.get(0).isPressed()){
+//				this.bgmMusicButton = bgmButtons.get(0);
+//				bgmMusicButton.draw(batcher);
+//		
+//			}	
 	}
 
 
