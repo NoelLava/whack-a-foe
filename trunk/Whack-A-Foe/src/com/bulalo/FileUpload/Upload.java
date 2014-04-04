@@ -1,14 +1,11 @@
 package com.bulalo.FileUpload;
 
-import com.badlogic.gdx.Files;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Texture;
 
 public class Upload {
 	private static Texture image;
-	
-	
 	
 	public void getTexture(){
 		
