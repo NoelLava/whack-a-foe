@@ -176,6 +176,13 @@ public class GameWorld {
 		timerCounter = 1;
 
 		if (seconds > 0) {
+			for(Dummy dummy : dummies){
+				dummy.update(delta);
+			}
+			for(Dummy friend : friends){
+				friend.update(delta);
+			}
+			
 			inGame();
 			updateGame();
 			respawn();
@@ -294,13 +301,13 @@ public class GameWorld {
 	// adds multiple dummies in the arraylist
 	public void inGame() {
 		// dummies = new ArrayList<Dummy>();
-		if (dummies.size() != 0) {
+		if (dummies.size() >= 2) {
 			System.out.println("dummies list is full");
 		} else {
 			System.out.println("dummies list is null");
 			for (int ctr = 0; ctr < 1; ctr++) {
 				int r = rand.nextInt(9);
-				dummy = new Dummy(300, x, y, 35, 50);
+				dummy = new Dummy(100, x, y, 35, 50);
 				dummy.spawn(coordinateX[r], coordinateY[r]);
 				dummies.add(dummy);
 				removed[r] = false;
@@ -376,14 +383,14 @@ public class GameWorld {
 			if (removed[i] == true) {
 				if (respawnCounter[i] >= 100) {
 					System.out.println("respawn method");
-					Dummy dum = new Dummy(300, x, y, 35, 50);
+					Dummy dum = new Dummy(100, x, y, 35, 50);
 					int r = rand.nextInt(9);
 
 					dum.spawn(coordinateX[r], coordinateY[r]);
 					dummies.add(dum);
 
 					int f = rand.nextInt(9);
-					Dummy friend = new Dummy(300, x, y, 35, 50);
+					Dummy friend = new Dummy(100, x, y, 35, 50);
 					friend.spawn(coordinateX[f], coordinateY[f]);
 					friends.add(friend);
 
