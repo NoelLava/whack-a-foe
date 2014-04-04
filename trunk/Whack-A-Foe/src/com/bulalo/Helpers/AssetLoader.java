@@ -106,10 +106,6 @@ public class AssetLoader {
 
 	public static Texture splashScreen;
 	public static TextureRegion bulalo;
-<<<<<<< HEAD
-=======
-
->>>>>>> 11b04da57e5935502289b37c9c308520ee27c7f6
 	//public static Sound /*hitSmash,*/ buttonDown, buttonUp, bulaloil;
 	//public static Sound hitEmpty, hitFriend, hitFunny, beep;
 	

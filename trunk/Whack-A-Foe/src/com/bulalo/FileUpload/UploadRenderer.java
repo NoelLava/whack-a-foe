@@ -1,5 +1,7 @@
 package com.bulalo.FileUpload;
 
+import java.util.List;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -7,7 +9,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
-import com.bulalo.Helpers.AssetLoader;
+import com.bulalo.CustomizeWorld.CustomWorld;
+import com.bulalo.UI.Button;
 
 public class UploadRenderer {
 	
@@ -16,6 +19,10 @@ public class UploadRenderer {
 	private SpriteBatch batcher;
 	
 	private TextureRegion csbg;
+	Button backButton,uploadButton;
+	CustomWorld custom = new CustomWorld();
+	UploadWorld upload = new UploadWorld();
+	private List<Button> customButtons;
 	
 	public UploadRenderer(){
 		cam = new OrthographicCamera();
@@ -27,11 +34,14 @@ public class UploadRenderer {
 		shapeRenderer = new ShapeRenderer();
 		shapeRenderer.setProjectionMatrix(cam.combined);
 		
+		this.customButtons = CustomWorld.getCustomButtons();
+		backButton = customButtons.get(0);
+		
+		uploadButton = upload.getButton();
 		initAssets();
 	}
 	
 	private void initAssets() {
-		csbg = AssetLoader.csBg;
 	}
 
 	public void drawBackground(TextureRegion region) {
@@ -51,8 +61,8 @@ public class UploadRenderer {
 
         batcher.begin();
         batcher.disableBlending();
-        
-        drawBackground(csbg);
+       backButton.draw(batcher);
+       uploadButton.draw(batcher);
         
         batcher.enableBlending();
         batcher.end();

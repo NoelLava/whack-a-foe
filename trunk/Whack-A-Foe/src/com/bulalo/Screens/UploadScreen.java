@@ -7,6 +7,7 @@ import com.badlogic.gdx.Screen;
 import com.bulalo.CustomizeWorld.CustomInputHandler;
 import com.bulalo.CustomizeWorld.CustomWorld;
 import com.bulalo.FileUpload.UploadRenderer;
+import com.bulalo.FileUpload.UploadWorld;
 import com.bulalo.UI.Button;
 import com.bulalo.whackafoe.WaFGame;
 
@@ -15,6 +16,7 @@ public class UploadScreen implements Screen{
 	WaFGame game;
 	UploadRenderer renderer;
 	CustomWorld custom;
+	UploadWorld upload = new UploadWorld();
 	
 	float screenWidth;
     float screenHeight;
@@ -23,6 +25,8 @@ public class UploadScreen implements Screen{
     float runTime = 0;
 	
     Button backButton;
+    Button uploadButton;
+    
     private static List<Button> customButtons;
     
     public UploadScreen(WaFGame game){
@@ -38,6 +42,7 @@ public class UploadScreen implements Screen{
 		
 		customButtons = CustomWorld.getCustomButtons();
 		backButton = customButtons.get(0);
+		uploadButton = upload.getButton();
 	
 	}
     
