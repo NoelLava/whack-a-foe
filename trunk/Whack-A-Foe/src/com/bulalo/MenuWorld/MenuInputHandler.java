@@ -12,25 +12,90 @@ public class MenuInputHandler implements InputProcessor {
 	float scaleFactorX;
 	float scaleFactorY;
 	
+	private static boolean sfxTrue, bgmTrue;
+	
 	private static List<Button> menuButtons;
+	private static List<Button> sfxButtonsOn;
+	private static List<Button> bgmButtonsOn;
+	private static List<Button> sfxButtonsOff;
+	private static List<Button> bgmButtonsOff;
 	
 	public MenuInputHandler(MenuWorld menuWorld, float scaleFactorX, float scaleFactorY){
 		this.menuWorld = menuWorld;		
+		
 		menuButtons = MenuWorld.getMenuButtons();
+		sfxButtonsOn = MenuWorld.getSFXButtonOn();
+		bgmButtonsOn = MenuWorld.getBGMButtonOn();
+		sfxButtonsOff = MenuWorld.getSFXButtonOff();
+		bgmButtonsOff = MenuWorld.getBGMButtonOff();
 		
 		this.scaleFactorX = scaleFactorX;
         this.scaleFactorY = scaleFactorY;
+	}
+	
+	public MenuInputHandler(){
+		System.out.println("initialize");
+	}
+	
+	public boolean checkSFX(){
+		return sfxTrue;
+	}
+	
+	public boolean checkBGM(){
+		return bgmTrue;
 	}
 
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
     	screenX = scaleX(screenX);
 		screenY = scaleY(screenY);
+		int index = 0;
 		
-        for(Button thisButton : menuButtons){
-        	thisButton.isTouchDown(screenX, screenY);
-        }
-    	return true;
+		menuButtons.get(0).isTouchDown(screenX, screenY);
+		menuButtons.get(1).isTouchDown(screenX, screenY);
+		menuButtons.get(2).isTouchDown(screenX, screenY);
+	
+		for(Button thisUseButton : sfxButtonsOn){
+			thisUseButton.isTouchDown(screenX, screenY);
+			
+			if(sfxButtonsOn.get(index).isJustPressed()){
+				sfxTrue = true;
+			
+			}
+			
+			if(sfxButtonsOff.get(index).isJustPressed()){
+				sfxTrue = false;
+			}
+			
+		}
+		
+		
+		
+		/*bgmButtonsOn.get(index).isTouchDown(screenX, screenY);
+		sfxButtonsOff.get(index).isTouchDown(screenX, screenY);
+		bgmButtonsOff.get(index).isTouchDown(screenX, screenY);*/	
+	/*	if(sfxButtonsOn.get(index).isJustPressed()){
+			sfxButtonsOff.get(index).isTouchDown(screenX, screenY);
+			sfxButtonsOn.get(index).setJustPressed(false);
+				
+		}
+		if(sfxButtonsOff.get(index).isJustPressed()){
+			sfxButtonsOn.get(index).isTouchDown(screenX, screenY);
+			sfxButtonsOff.get(index).setJustPressed(false);
+		}
+		
+		if(bgmButtonsOn.get(index).isJustPressed()){
+			bgmButtonsOff.get(index).isTouchDown(screenX, screenY);
+			bgmButtonsOn.get(index).setJustPressed(false);
+				
+		}
+		if(bgmButtonsOff.get(index).isJustPressed()){
+			bgmButtonsOn.get(index).isTouchDown(screenX, screenY);
+			bgmButtonsOff.get(index).setJustPressed(false);
+		}
+*/
+		
+    	return false;
     }
     
     @Override
@@ -43,6 +108,31 @@ public class MenuInputHandler implements InputProcessor {
     			return true;
     		}
     	}
+    	
+    	for(Button thisButton : sfxButtonsOn){
+    		if(thisButton.isTouchUp(screenX, screenY)){
+    			return true;
+    		}
+    	}
+    	
+    	for(Button thisButton : bgmButtonsOn){
+    		if(thisButton.isTouchUp(screenX, screenY)){
+    			return true;
+    		}
+    	}
+    	
+    	for(Button thisButton : sfxButtonsOff){
+    		if(thisButton.isTouchUp(screenX, screenY)){
+    			return true;
+    		}
+    	}
+    	
+    	for(Button thisButton : bgmButtonsOff){
+    		if(thisButton.isTouchUp(screenX, screenY)){
+    			return true;
+    		}
+    	}
+    	
     	return false;
     }
 
