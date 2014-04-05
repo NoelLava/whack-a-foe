@@ -105,19 +105,16 @@ public class AssetLoader {
 
 	public static Texture splashScreen;
 	public static TextureRegion bulalo;
-<<<<<<< HEAD
 
 	//public static Sound /*hitSmash,*/ buttonDown, buttonUp, bulaloil;
 	//public static Sound hitEmpty, hitFriend, hitFunny, beep;
-=======
 	
 	public static Texture upload;
 	public static TextureRegion uploadRegion;
 	
 	private static Upload uploadThisPic = new Upload();
-	public static Sound hitSmash, buttonDown, buttonUp, bulaloil;
-	public static Sound hitEmpty, hitFriend, hitFunny, beep;
->>>>>>> 0e76b3f0bcf2c9c583798bd33c1d442d9fa52633
+	//public static Sound hitSmash, buttonDown, buttonUp, bulaloil;
+	//public static Sound hitEmpty, hitFriend, hitFunny, beep;
 	public static Music titleMusic, gameMusic, gameMusic2, gameOver, buzzer,
 			gameStart, hitSmash, buttonDown, buttonUp, bulaloil, hitEmpty, hitFriend, hitFunny, beep;
 	private static Preferences prefs;

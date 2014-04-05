@@ -2,32 +2,23 @@ package com.bulalo.MenuWorld;
 
 import java.util.ArrayList;
 import java.util.List;
-
-<<<<<<< HEAD
 import com.bulalo.FileUpload.Upload;
-=======
 import javax.sound.sampled.FloatControl;
-
->>>>>>> f3a487dff24942d315a83c73c60978472fc6e4db
 import com.bulalo.Helpers.AssetLoader;
 import com.bulalo.UI.Button;
 
 public class MenuWorld {
 	private static List<Button> menuButtons;
-<<<<<<< HEAD
 	public Upload upload;
-=======
 	private static List<Button> sfxButtonsOn;
 	private static List<Button> bgmButtonsOn;
 	private static List<Button> sfxButtonsOff;
 	private static List<Button> bgmButtonsOff;
->>>>>>> f3a487dff24942d315a83c73c60978472fc6e4db
 
 	private Button playButton;
 	private Button shopButton;
 	private Button customButton;
 	
-<<<<<<< HEAD
 	private Button sfxButtonOn;
 	
 	private Button bgmButtonOn;
@@ -36,8 +27,6 @@ public class MenuWorld {
 
 	private Button bgmButtonOff;
 
-=======
->>>>>>> 0e76b3f0bcf2c9c583798bd33c1d442d9fa52633
 	float runTime = 0;
 
 	public MenuWorld() {
