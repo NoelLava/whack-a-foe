@@ -3,11 +3,13 @@ package com.bulalo.MenuWorld;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.bulalo.FileUpload.Upload;
 import com.bulalo.Helpers.AssetLoader;
 import com.bulalo.UI.Button;
 
 public class MenuWorld {
 	private static List<Button> menuButtons;
+	public Upload upload;
 
 	private Button playButton;
 	private Button shopButton;
@@ -35,6 +37,8 @@ public class MenuWorld {
 		customButton = new Button(15.95f, 187.53f, 43, 41,
 				AssetLoader.blueButton, AssetLoader.bluePressed);
 
+		upload = new Upload();
+		
 		menuButtons.add(playButton);
 		menuButtons.add(shopButton);
 		menuButtons.add(customButton);
