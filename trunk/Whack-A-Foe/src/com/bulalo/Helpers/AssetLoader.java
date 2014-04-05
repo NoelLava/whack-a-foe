@@ -3,13 +3,14 @@ package com.bulalo.Helpers;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.audio.Music;
-import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.bulalo.CustomizeWorld.CustomInputHandler;
 import com.bulalo.FileUpload.Upload;
+import com.bulalo.GameObjects.CustomDummy;
 
 public class AssetLoader {
 	public static Texture gameTexture;
@@ -100,20 +101,23 @@ public class AssetLoader {
 	public static Animation dummyBabies;
 	public static Animation babyDies;
 	public static Animation dummyAnimation, dummyDies;
+	public static Animation dummyCustom, dummyCustomDies;
 	public static Animation tableScreen;
 
 	public static Texture dummy;
 
 	public static Texture splashScreen;
 	public static TextureRegion bulalo;
-
 	//public static Sound /*hitSmash,*/ buttonDown, buttonUp, bulaloil;
 	//public static Sound hitEmpty, hitFriend, hitFunny, beep;
 	
 	public static Texture upload;
+	public static Texture toUpload;
 	public static TextureRegion uploadRegion;
 	
-	private static Upload uploadThisPic = new Upload();
+	private static CustomInputHandler uploads = new CustomInputHandler();
+	static Upload uploadThis = new Upload();
+	private static String source;
 	//public static Sound hitSmash, buttonDown, buttonUp, bulaloil;
 	//public static Sound hitEmpty, hitFriend, hitFunny, beep;
 	public static Music titleMusic, gameMusic, gameMusic2, gameOver, buzzer,
@@ -131,8 +135,15 @@ public class AssetLoader {
 		gameTexture.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
 
 		//upload
-		uploadThisPic.getTexture();
-		upload = uploadThisPic.getImage();
+		
+		if(uploads.checkCustomDummy() == true){
+		upload = setCustomDummy();
+		upload.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
+		
+		}else{
+		upload = new Texture(Gdx.files.external("dummyAries.png"));
+		upload.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
+		}
 		
 		hammerAngles = new Texture(
 				Gdx.files.internal("data/HammerAngleTexture.png"));
@@ -340,7 +351,7 @@ public class AssetLoader {
 		wood = new TextureRegion(woodTexture, 0, 0, 320, 512);
 		steel = new TextureRegion(steelTexture, 0, 0, 320, 512);
 		carbon = new TextureRegion(carbonTexture, 0, 0, 320, 512);
-		uploadRegion = new TextureRegion(upload,0,0,320,512);
+		uploadRegion = new TextureRegion(upload,0,0,64,92);
 
 		useUp = new TextureRegion(cSTexture, 330, 3, 69, 27);
 		useDown = new TextureRegion(cSTexture, 409, 3, 69, 27);
@@ -472,6 +483,13 @@ public class AssetLoader {
 		dummyBabies.setPlayMode(Animation.NORMAL);
 		babyDies = new Animation(0.03f, dummyBaby);
 		babyDies.setPlayMode(Animation.REVERSED);
+		
+		TextureRegion[] dummiesCustom = { uploadRegion };
+		dummyCustom = new Animation(0.03f, dummiesCustom);
+		dummyCustom.setPlayMode(Animation.NORMAL);
+		TextureRegion[] dummyCustomRev = { uploadRegion };
+		dummyCustomDies = new Animation(0.03f, dummyCustomRev);
+		dummyCustomDies.setPlayMode(Animation.NORMAL);
 
 		// Preferences
 		// ======================================================================================
@@ -497,6 +515,18 @@ public class AssetLoader {
 		prefs.flush();
 	}
 
+	public static Texture setCustomDummy(){
+		Texture upload = null;
+		if(uploads.checkCustomDummy() == true){
+			upload = uploadThis.getImage();
+			System.out.println("upload updated");
+		}
+		else{
+			System.out.println("no custom dummy set");
+		}
+		return upload;
+	}
+	
 	// Retrieves the current ticket value
 	public static int getTicket() {
 		return prefs.getInteger("ticket");
@@ -532,6 +562,7 @@ public class AssetLoader {
 		splashScreen.dispose();
 		dummy.dispose();
 		pauseTexture.dispose();
+		upload.dispose();
 
 		beep.dispose();
 		gameStart.dispose();

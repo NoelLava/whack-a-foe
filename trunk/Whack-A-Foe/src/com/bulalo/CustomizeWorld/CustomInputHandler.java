@@ -1,19 +1,24 @@
 package com.bulalo.CustomizeWorld;
 
 import java.util.List;
+import java.util.Scanner;
 
 import com.badlogic.gdx.InputProcessor;
+import com.bulalo.FileUpload.Upload;
 import com.bulalo.UI.Button;
 
 public class CustomInputHandler implements InputProcessor{
-	
+	Scanner input = new Scanner(System.in);
 	CustomWorld customWorld;
+	Upload upload = new Upload();
+	private static String source;
 	private static boolean woodTrue,steelTrue,carbonTrue,
-							bossTrue,farmerTrue,boyTrue;
+							bossTrue,farmerTrue,boyTrue,customDummy;
 
 	private static List<Button> customButtons,useButton;
 
 	float scaleFactorX,scaleFactorY;
+	
 	
 	public CustomInputHandler(CustomWorld customWorld, float scaleFactorX,
 			float scaleFactorY){
@@ -21,7 +26,6 @@ public class CustomInputHandler implements InputProcessor{
 		
 		customButtons = CustomWorld.getCustomButtons();
 		useButton = CustomWorld.getUseButton();
-		
 		this.scaleFactorX = scaleFactorX;
         this.scaleFactorY = scaleFactorY;
 	
@@ -29,6 +33,8 @@ public class CustomInputHandler implements InputProcessor{
 	
 	public CustomInputHandler(){
 		System.out.println("initialized");
+		source = "";
+		
 	}
 	
 	public boolean checkTable(){
@@ -38,6 +44,15 @@ public class CustomInputHandler implements InputProcessor{
 	public boolean checkTable1(){
 		return steelTrue;
 	}
+	
+	public void setCustomDummyFalse(){
+		customDummy = false;
+	}
+	
+	public boolean checkCustomDummy(){
+		return customDummy;
+	}
+	
 	
 	public boolean checkTable2(){
 		return carbonTrue;
@@ -63,6 +78,16 @@ public class CustomInputHandler implements InputProcessor{
 		
 		for (Button thisButton : customButtons) {
 			thisButton.isTouchDown(screenX, screenY);
+			if(customButtons.get(7).isJustPressed()){
+				System.out.println("Input image source here: ");
+				source = input.nextLine();
+				upload.getTexture(source);
+				boyTrue = false;
+				bossTrue = false;
+				farmerTrue = false;
+				customDummy = true;
+				break;
+			}
 			for (Button thisUseButton : useButton){
 				thisUseButton.isTouchDown(screenX, screenY);
 				
@@ -80,6 +105,7 @@ public class CustomInputHandler implements InputProcessor{
 				else if(useButton.get(2).isJustPressed()){
 					woodTrue = false;
 					steelTrue = false;
+					
 					carbonTrue = true;
 				}
 				
@@ -87,19 +113,24 @@ public class CustomInputHandler implements InputProcessor{
 					boyTrue = false;
 					farmerTrue = false;
 					bossTrue = true;
+					customDummy = false;
 				}
 				else if(useButton.get(4).isJustPressed()){
 					boyTrue = false;
 					bossTrue = false;
 					farmerTrue = true;
+					customDummy = false;
 				}
 				else if(useButton.get(5).isJustPressed()){
 					bossTrue = false;
 					farmerTrue = false;
 					boyTrue = true;
+					customDummy = false;
 				}
 			}
 		}
+		
+	
 
 
 		
@@ -114,6 +145,7 @@ public class CustomInputHandler implements InputProcessor{
 	
 		for (Button thisButton : customButtons) {
 			if (thisButton.isTouchUp(screenX, screenY)) {
+				
 				return true;
 			}
 		}
@@ -123,6 +155,8 @@ public class CustomInputHandler implements InputProcessor{
 				return true;
 			}
 		}
+		
+			
 		
 		return false;
 	}

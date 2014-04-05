@@ -48,6 +48,8 @@ public class GameWorld {
 	private static List<HammerPosition> hammerPosition;
 	HammerPosition hammer;
 
+		
+	
 	// Misc Variables
 	// ==============================================================
 	private float x, y;
@@ -76,7 +78,7 @@ public class GameWorld {
 
 	public GameWorld() {
 		currentState = GameState.READY;
-
+		
 		// dummies
 		// ===========================================================================================================================
 		dummies = new ArrayList<Dummy>();

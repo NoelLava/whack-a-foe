@@ -6,16 +6,17 @@ import com.badlogic.gdx.graphics.Texture;
 
 public class Upload {
 	private static Texture image;
-	
-	public void getTexture(){
+	private FileHandle img;
+	public void getTexture(String texture){
 		
 		//FileHandle img = Gdx.files.absolute("storage/sdcard0/DCIM/try.jpg");
 		//load from desktop
-		FileHandle img = Gdx.files.external("try.jpg");
+		this.img = Gdx.files.external(texture);
 		
 		image = new Texture(img); 
 		
 	}
+	
 	
 	public void populateFiles(){
 		FileHandle[] files = Gdx.files.external("").list();

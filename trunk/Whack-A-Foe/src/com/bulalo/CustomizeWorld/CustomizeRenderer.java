@@ -24,7 +24,6 @@ public class CustomizeRenderer {
 	private static Tables table,table1,table2;
 	
 	private TextureRegion csbg;
-	private TextureRegion upload;
 	
 	private Button useTableButtons, useDummyButtons;
 	
@@ -69,7 +68,6 @@ public class CustomizeRenderer {
 	
 	private void initAssets() {
 		csbg = AssetLoader.csBg;
-		upload = AssetLoader.uploadRegion;
 	}
 
 	public void drawBackground(TextureRegion region) {
@@ -134,7 +132,7 @@ public class CustomizeRenderer {
         batcher.disableBlending();
         //batcher.draw(background, 0, 0, 160, 256);
         
-        drawBackground(upload);
+        drawBackground(csbg);
         
         batcher.enableBlending();
        // batcher.draw(wood,0,50,22,42);

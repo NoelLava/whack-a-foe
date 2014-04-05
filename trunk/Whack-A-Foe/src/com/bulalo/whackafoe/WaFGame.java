@@ -14,6 +14,7 @@ public class WaFGame extends Game {
 	public GameScreen gameScreen;
 	public CustomizeScreen customizeScreen;
 	public ShopScreen shopScreen;
+	
 	Game game;
 	
 	@Override

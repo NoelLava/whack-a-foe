@@ -12,6 +12,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.bulalo.CustomizeWorld.CustomInputHandler;
+import com.bulalo.FileUpload.Upload;
 import com.bulalo.GameObjects.Dummy;
 import com.bulalo.GameObjects.HammerPosition;
 import com.bulalo.Helpers.AssetLoader;
@@ -285,8 +286,12 @@ public class GameRenderer {
 		} else if (custom.checkDummy1() == true) {
 			this.thisAnimation = AssetLoader.janitorDummyAnimation;
 			this.thisAnimationDies = AssetLoader.janitorDummyDies;
-
+		
+		} else if (custom.checkCustomDummy() == true){
+			this.thisAnimation = AssetLoader.dummyCustom;
+			this.thisAnimationDies = AssetLoader.dummyCustomDies;
 		}
+		
 	}
 
 	private void changeHammer() {
