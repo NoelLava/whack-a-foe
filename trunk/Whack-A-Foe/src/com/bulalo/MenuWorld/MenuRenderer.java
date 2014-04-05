@@ -10,7 +10,6 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.bulalo.Helpers.AssetLoader;
-import com.bulalo.Helpers.InputHandler;
 import com.bulalo.UI.Button;
 
 public class MenuRenderer {
@@ -73,37 +72,27 @@ public class MenuRenderer {
 	}
 	
 	private void drawMusicButtons(){
-			if(sfxButtonsOn.get(0).isJustPressed() || sfxButtonsOff.get(0).isPressed()){
+			if(sfxButtonsOn.get(0).isJustPressed() || sfxButtonsOn.get(0).isPressed() || sfxButtonsOff.get(0).isPressed()){
 				this.sfxMusicButton = sfxButtonsOff.get(0);
 				sfxMusicButton.draw(batcher);
 			} 
 			
-			if(sfxButtonsOff.get(0).isJustPressed() || sfxButtonsOn.get(0).isPressed()){
+			if(sfxButtonsOff.get(0).isJustPressed() || sfxButtonsOff.get(0).isPressed() || sfxButtonsOn.get(0).isPressed()){
 				this.sfxMusicButton = sfxButtonsOn.get(0);
 				sfxMusicButton.draw(batcher);
 			}
 
-			if(bgmButtonsOn.get(0).isJustPressed()){
+			if(bgmButtonsOn.get(0).isJustPressed() || bgmButtonsOn.get(0).isPressed() || bgmButtonsOff.get(0).isPressed()){
 				this.bgmMusicButton = bgmButtonsOff.get(0);
 				bgmMusicButton.draw(batcher);
 				
 			}
 			
-			if(bgmButtonsOff.get(0).isPressed()){
+			if(bgmButtonsOff.get(0).isPressed() || bgmButtonsOff.get(0).isPressed() || bgmButtonsOn.get(0).isPressed()){
 				this.bgmMusicButton = bgmButtonsOn.get(0);
 				bgmMusicButton.draw(batcher);
 		
 			}
-		
-	
-			//if(bgmButtonsOn.get(0).isPressed()){
-				//this.bgmMusicButton = bgmButtonsOff.get(0);
-				//bgmMusicButton.draw(batcher);
-			
-			//} else if(bgmButtonsOff.get(0).isPressed()){
-				//this.bgmMusicButton = bgmButtonsOn.get(0);
-				//bgmMusicButton.draw(batcher);
-			//}
 			
 	}
 

@@ -65,6 +65,7 @@ public class AssetLoader {
 	public static TextureRegion boyIconDown;
 	public static TextureRegion farmerIconUp;
 	public static TextureRegion farmerIconDown;
+	public static TextureRegion uploadUp, uploadDown;
 
 	public static Texture sSTexture;
 	public static TextureRegion ssBg;
@@ -357,6 +358,12 @@ public class AssetLoader {
 		boyIconDown = new TextureRegion(cSTexture, 409, 345, 67, 67);
 		farmerIconUp = new TextureRegion(cSTexture, 330, 415, 67, 67);
 		farmerIconDown = new TextureRegion(cSTexture, 409, 415, 67, 67);
+		
+		uploadDown = new TextureRegion(pauseTexture, 505, 251, 134, 52);
+		uploadUp = new TextureRegion(pauseTexture, 505, 303, 134, 52);
+		
+		uploadUp.flip(false, true);
+		uploadDown.flip(false, true);
 
 		csBg.flip(false, true);
 		wood.flip(false, true);

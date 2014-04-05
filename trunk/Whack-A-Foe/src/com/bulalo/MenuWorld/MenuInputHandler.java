@@ -59,41 +59,35 @@ public class MenuInputHandler implements InputProcessor {
 			thisUseButton.isTouchDown(screenX, screenY);
 			
 			if(sfxButtonsOn.get(index).isJustPressed()){
-				sfxTrue = true;
+				sfxTrue = false;
+				sfxButtonsOff.get(index).isTouchDown(screenX, screenY);
+				sfxButtonsOn.get(index).setJustPressed(false);
 			
 			}
 			
 			if(sfxButtonsOff.get(index).isJustPressed()){
-				sfxTrue = false;
+				sfxTrue = true;
+				sfxButtonsOn.get(index).isTouchDown(screenX, screenY);
+				sfxButtonsOff.get(index).setJustPressed(false);
 			}
 			
 		}
 		
+		for(Button thisUseButton : bgmButtonsOn){
+			thisUseButton.isTouchDown(screenX, screenY);
 		
-		
-		/*bgmButtonsOn.get(index).isTouchDown(screenX, screenY);
-		sfxButtonsOff.get(index).isTouchDown(screenX, screenY);
-		bgmButtonsOff.get(index).isTouchDown(screenX, screenY);*/	
-	/*	if(sfxButtonsOn.get(index).isJustPressed()){
-			sfxButtonsOff.get(index).isTouchDown(screenX, screenY);
-			sfxButtonsOn.get(index).setJustPressed(false);
-				
+			if(bgmButtonsOn.get(index).isJustPressed()){
+				bgmTrue = false;
+				bgmButtonsOff.get(index).isTouchDown(screenX, screenY);
+				bgmButtonsOn.get(index).setJustPressed(false);
+			}
+			
+			if(bgmButtonsOff.get(index).isJustPressed()){
+				bgmTrue = true;
+				bgmButtonsOn.get(index).isTouchDown(screenX, screenY);
+				bgmButtonsOff.get(index).setJustPressed(false);
+			}
 		}
-		if(sfxButtonsOff.get(index).isJustPressed()){
-			sfxButtonsOn.get(index).isTouchDown(screenX, screenY);
-			sfxButtonsOff.get(index).setJustPressed(false);
-		}
-		
-		if(bgmButtonsOn.get(index).isJustPressed()){
-			bgmButtonsOff.get(index).isTouchDown(screenX, screenY);
-			bgmButtonsOn.get(index).setJustPressed(false);
-				
-		}
-		if(bgmButtonsOff.get(index).isJustPressed()){
-			bgmButtonsOn.get(index).isTouchDown(screenX, screenY);
-			bgmButtonsOff.get(index).setJustPressed(false);
-		}
-*/
 		
     	return false;
     }
