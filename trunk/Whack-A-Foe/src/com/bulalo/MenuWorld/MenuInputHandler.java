@@ -15,20 +15,15 @@ public class MenuInputHandler implements InputProcessor {
 	private static boolean sfxTrue, bgmTrue;
 	
 	private static List<Button> menuButtons;
-	private static List<Button> sfxButtonsOn;
-	private static List<Button> bgmButtonsOn;
-	private static List<Button> sfxButtonsOff;
-	private static List<Button> bgmButtonsOff;
+	private static List<Button> sfxButtons;
+	private static List<Button> bgmButtons;
 	
 	public MenuInputHandler(MenuWorld menuWorld, float scaleFactorX, float scaleFactorY){
 		this.menuWorld = menuWorld;		
 		
 		menuButtons = MenuWorld.getMenuButtons();
-		sfxButtonsOn = MenuWorld.getSFXButtonOn();
-		bgmButtonsOn = MenuWorld.getBGMButtonOn();
-		sfxButtonsOff = MenuWorld.getSFXButtonOff();
-		bgmButtonsOff = MenuWorld.getBGMButtonOff();
-		
+		sfxButtons = MenuWorld.getSFXButtonOn();
+		bgmButtons = MenuWorld.getBGMButtonOn();		
 		this.scaleFactorX = scaleFactorX;
         this.scaleFactorY = scaleFactorY;
 	}
@@ -55,39 +50,48 @@ public class MenuInputHandler implements InputProcessor {
 		menuButtons.get(1).isTouchDown(screenX, screenY);
 		menuButtons.get(2).isTouchDown(screenX, screenY);
 	
-		for(Button thisUseButton : sfxButtonsOn){
-			thisUseButton.isTouchDown(screenX, screenY);
-			
-			if(sfxButtonsOn.get(index).isJustPressed()){
-				sfxTrue = false;
-				sfxButtonsOff.get(index).isTouchDown(screenX, screenY);
-				sfxButtonsOn.get(index).setJustPressed(false);
-			
-			}
-			
-			if(sfxButtonsOff.get(index).isJustPressed()){
-				sfxTrue = true;
-				sfxButtonsOn.get(index).isTouchDown(screenX, screenY);
-				sfxButtonsOff.get(index).setJustPressed(false);
-			}
-			
+		// eto lang kim.sabi sayo boolean lang ===========
+		if(MenuWorld.sfxOn){
+			sfxButtons.get(index).isTouchDown(screenX, screenY);
+		}else{
+			sfxButtons.get(index + 1).isTouchDown(screenX, screenY);
 		}
 		
-		for(Button thisUseButton : bgmButtonsOn){
-			thisUseButton.isTouchDown(screenX, screenY);
-		
-			if(bgmButtonsOn.get(index).isJustPressed()){
-				bgmTrue = false;
-				bgmButtonsOff.get(index).isTouchDown(screenX, screenY);
-				bgmButtonsOn.get(index).setJustPressed(false);
-			}
-			
-			if(bgmButtonsOff.get(index).isJustPressed()){
-				bgmTrue = true;
-				bgmButtonsOn.get(index).isTouchDown(screenX, screenY);
-				bgmButtonsOff.get(index).setJustPressed(false);
-			}
+		if(MenuWorld.bgmOn){
+			bgmButtons.get(index).isTouchDown(screenX, screenY);
+		}else{
+			bgmButtons.get(index + 1).isTouchDown(screenX, screenY);
 		}
+//		for(Button sfxButtonOn : sfxButtons){
+//			
+//			if(sfxButtons.get(index).isJustPressed()){
+//				sfxTrue = false;
+//				sfxButtons.get(index + 1).isTouchDown(screenX, screenY);
+//				sfxButtons.get(index).setJustPressed(false);
+//			}
+//			if(sfxButtons.get(index + 1).isJustPressed()){
+//				sfxTrue = true;
+//				sfxButtons.get(index).isTouchDown(screenX, screenY);
+//				sfxButtons.get(index + 1).setJustPressed(false);
+//			}
+//			
+//		}
+		
+//		for(Button thisUseButton : bgmButtons){
+//			thisUseButton.isTouchDown(screenX, screenY);
+//		
+//			if(bgmButtons.get(index).isJustPressed()){
+//				bgmTrue = false;
+//				bgmButtons.get(index + 1).isTouchDown(screenX, screenY);
+//				bgmButtons.get(index).setJustPressed(false);
+//			}
+//			
+//			if(bgmButtons.get(index + 1).isJustPressed()){
+//				bgmTrue = true;
+//				bgmButtons.get(index).isTouchDown(screenX, screenY);
+//				bgmButtons.get(index + 1).setJustPressed(false);
+//			}
+//		}
 		
     	return false;
     }
@@ -103,25 +107,13 @@ public class MenuInputHandler implements InputProcessor {
     		}
     	}
     	
-    	for(Button thisButton : sfxButtonsOn){
+    	for(Button thisButton : sfxButtons){
     		if(thisButton.isTouchUp(screenX, screenY)){
     			return true;
     		}
     	}
     	
-    	for(Button thisButton : bgmButtonsOn){
-    		if(thisButton.isTouchUp(screenX, screenY)){
-    			return true;
-    		}
-    	}
-    	
-    	for(Button thisButton : sfxButtonsOff){
-    		if(thisButton.isTouchUp(screenX, screenY)){
-    			return true;
-    		}
-    	}
-    	
-    	for(Button thisButton : bgmButtonsOff){
+    	for(Button thisButton : bgmButtons){
     		if(thisButton.isTouchUp(screenX, screenY)){
     			return true;
     		}

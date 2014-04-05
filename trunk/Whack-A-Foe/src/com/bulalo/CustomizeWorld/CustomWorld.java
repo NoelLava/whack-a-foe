@@ -15,7 +15,6 @@ public class CustomWorld {
 	private Button dummy,dummy1,dummy2;
 	private Button useWood, useSteel, useCarbon, useBoss, useFarmer, useBoy;
 	
-	
 	public CustomWorld(){
 		customButtons = new ArrayList<Button>();
 		useButton = new ArrayList<Button>();
@@ -57,9 +56,7 @@ public class CustomWorld {
 		useButton.add(useBoss);
 		useButton.add(useFarmer);
 		useButton.add(useBoy);
-		
-		
-		
+
 	}
 	
 	public void update(float delta){	
