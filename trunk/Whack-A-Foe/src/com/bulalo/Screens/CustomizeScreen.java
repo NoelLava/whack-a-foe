@@ -24,7 +24,6 @@ public class CustomizeScreen implements Screen {
 	
 	private static List<Button> customButtons;
 	private Button backButton;
-	private Button upload;
 	
 	float screenWidth;
     float screenHeight;
@@ -50,7 +49,6 @@ public class CustomizeScreen implements Screen {
 		
 		customButtons = CustomWorld.getCustomButtons();
 		backButton = customButtons.get(0);
-		upload = customButtons.get(7);
 	}
 
 	@Override
@@ -61,10 +59,8 @@ public class CustomizeScreen implements Screen {
 			game.setScreen(new MenuScreen(game));
 			this.dispose();
 		}
-		if(upload.isJustPressed()){
-			game.setScreen(new UploadScreen(game));
-			this.dispose();
-		}
+		
+		
 		
 		custom.update(delta);
 		renderer.render(runTime);
