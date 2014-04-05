@@ -10,7 +10,6 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.bulalo.CustomizeWorld.CustomInputHandler;
 import com.bulalo.FileUpload.Upload;
-import com.bulalo.GameObjects.CustomDummy;
 
 public class AssetLoader {
 	public static Texture gameTexture;
@@ -141,7 +140,7 @@ public class AssetLoader {
 		upload.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
 		
 		}else{
-		upload = new Texture(Gdx.files.external("dummyAries.png"));
+		upload = new Texture(Gdx.files.external("aries.png"));
 		upload.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
 		}
 		
