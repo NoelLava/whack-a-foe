@@ -19,7 +19,6 @@ public class CustomInputHandler implements InputProcessor{
 
 	float scaleFactorX,scaleFactorY;
 	
-	
 	public CustomInputHandler(CustomWorld customWorld, float scaleFactorX,
 			float scaleFactorY){
 		this.customWorld = customWorld;
@@ -28,13 +27,11 @@ public class CustomInputHandler implements InputProcessor{
 		useButton = CustomWorld.getUseButton();
 		this.scaleFactorX = scaleFactorX;
         this.scaleFactorY = scaleFactorY;
-	
 	}
 	
 	public CustomInputHandler(){
 		System.out.println("initialized");
 		source = "";
-		
 	}
 	
 	public boolean checkTable(){
@@ -53,7 +50,6 @@ public class CustomInputHandler implements InputProcessor{
 		return customDummy;
 	}
 	
-	
 	public boolean checkTable2(){
 		return carbonTrue;
 	}
@@ -69,7 +65,6 @@ public class CustomInputHandler implements InputProcessor{
 	public boolean checkDummy(){
 		return bossTrue;
 	}
-	
 	
 	@Override
 	public boolean touchDown(int screenX, int screenY, int pointer, int button) {
@@ -91,7 +86,6 @@ public class CustomInputHandler implements InputProcessor{
 			for (Button thisUseButton : useButton){
 				thisUseButton.isTouchDown(screenX, screenY);
 				
-				
 				if(useButton.get(0).isJustPressed()){
 					steelTrue = false;
 					carbonTrue = false;
@@ -105,7 +99,6 @@ public class CustomInputHandler implements InputProcessor{
 				else if(useButton.get(2).isJustPressed()){
 					woodTrue = false;
 					steelTrue = false;
-					
 					carbonTrue = true;
 				}
 				
@@ -129,11 +122,6 @@ public class CustomInputHandler implements InputProcessor{
 				}
 			}
 		}
-		
-	
-
-
-		
 		return false;
 	}
 	
@@ -155,45 +143,36 @@ public class CustomInputHandler implements InputProcessor{
 				return true;
 			}
 		}
-		
-			
-		
 		return false;
 	}
 	
 	@Override
 	public boolean keyDown(int keycode) {
-		
 		return false;
 	}
 
 	@Override
 	public boolean keyUp(int keycode) {
-
 		return false;
 	}
 
 	@Override
 	public boolean keyTyped(char character) {
-
 		return false;
 	}
 
 	@Override
 	public boolean touchDragged(int screenX, int screenY, int pointer) {
-
 		return false;
 	}
 
 	@Override
 	public boolean mouseMoved(int screenX, int screenY) {
-
 		return false;
 	}
 
 	@Override
 	public boolean scrolled(int amount) {
-
 		return false;
 	}
 	
@@ -228,5 +207,4 @@ public class CustomInputHandler implements InputProcessor{
 	public boolean falseDummy(){
 		return bossTrue = false;
 	}
-		
 }

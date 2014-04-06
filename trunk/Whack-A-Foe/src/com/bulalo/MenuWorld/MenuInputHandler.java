@@ -6,8 +6,6 @@ import com.badlogic.gdx.InputProcessor;
 import com.bulalo.UI.Button;
 
 public class MenuInputHandler implements InputProcessor {
-
-	private MenuWorld menuWorld;
 	
 	float scaleFactorX;
 	float scaleFactorY;
@@ -19,8 +17,7 @@ public class MenuInputHandler implements InputProcessor {
 	private static List<Button> bgmButtons;
 	
 	public MenuInputHandler(MenuWorld menuWorld, float scaleFactorX, float scaleFactorY){
-		this.menuWorld = menuWorld;		
-		
+
 		menuButtons = MenuWorld.getMenuButtons();
 		sfxButtons = MenuWorld.getSFXButtonOn();
 		bgmButtons = MenuWorld.getBGMButtonOn();		
@@ -49,8 +46,7 @@ public class MenuInputHandler implements InputProcessor {
 		menuButtons.get(0).isTouchDown(screenX, screenY);
 		menuButtons.get(1).isTouchDown(screenX, screenY);
 		menuButtons.get(2).isTouchDown(screenX, screenY);
-	
-		// eto lang kim.sabi sayo boolean lang ===========
+
 		if(MenuWorld.sfxOn){
 			sfxButtons.get(index).isTouchDown(screenX, screenY);
 		}else{
@@ -62,37 +58,6 @@ public class MenuInputHandler implements InputProcessor {
 		}else{
 			bgmButtons.get(index + 1).isTouchDown(screenX, screenY);
 		}
-//		for(Button sfxButtonOn : sfxButtons){
-//			
-//			if(sfxButtons.get(index).isJustPressed()){
-//				sfxTrue = false;
-//				sfxButtons.get(index + 1).isTouchDown(screenX, screenY);
-//				sfxButtons.get(index).setJustPressed(false);
-//			}
-//			if(sfxButtons.get(index + 1).isJustPressed()){
-//				sfxTrue = true;
-//				sfxButtons.get(index).isTouchDown(screenX, screenY);
-//				sfxButtons.get(index + 1).setJustPressed(false);
-//			}
-//			
-//		}
-		
-//		for(Button thisUseButton : bgmButtons){
-//			thisUseButton.isTouchDown(screenX, screenY);
-//		
-//			if(bgmButtons.get(index).isJustPressed()){
-//				bgmTrue = false;
-//				bgmButtons.get(index + 1).isTouchDown(screenX, screenY);
-//				bgmButtons.get(index).setJustPressed(false);
-//			}
-//			
-//			if(bgmButtons.get(index + 1).isJustPressed()){
-//				bgmTrue = true;
-//				bgmButtons.get(index).isTouchDown(screenX, screenY);
-//				bgmButtons.get(index + 1).setJustPressed(false);
-//			}
-//		}
-		
     	return false;
     }
     

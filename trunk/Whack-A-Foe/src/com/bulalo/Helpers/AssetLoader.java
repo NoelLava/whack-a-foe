@@ -15,9 +15,12 @@ public class AssetLoader {
 	public static Texture gameTexture;
 	public static Texture hammerAngles;
 	public static TextureRegion table;
-	public static TextureRegion dummyDefault1, dummyDefault2, dummyDefault3, dummyDefault4;
-	public static TextureRegion dummyJanitor1, dummyJanitor2, dummyJanitor3, dummyJanitor4;
-	public static TextureRegion dummyOffice1, dummyOffice2, dummyOffice3, dummyOffice4;
+	public static TextureRegion dummyDefault1, dummyDefault2, dummyDefault3,
+			dummyDefault4;
+	public static TextureRegion dummyJanitor1, dummyJanitor2, dummyJanitor3,
+			dummyJanitor4;
+	public static TextureRegion dummyOffice1, dummyOffice2, dummyOffice3,
+			dummyOffice4;
 	public static TextureRegion dummyBaby1, dummyBaby2, dummyBaby3, dummyBaby4;
 	public static TextureRegion HamWoodLeft, HamWoodMid, HamWoodRight;
 	public static TextureRegion HamSteelLeft, HamSteelMid, HamSteelRight;
@@ -107,20 +110,19 @@ public class AssetLoader {
 
 	public static Texture splashScreen;
 	public static TextureRegion bulalo;
-	//public static Sound /*hitSmash,*/ buttonDown, buttonUp, bulaloil;
-	//public static Sound hitEmpty, hitFriend, hitFunny, beep;
-	
+
 	public static Texture upload;
 	public static Texture toUpload;
 	public static TextureRegion uploadRegion;
-	
+
 	private static CustomInputHandler uploads = new CustomInputHandler();
 	static Upload uploadThis = new Upload();
 	private static String source;
-	//public static Sound hitSmash, buttonDown, buttonUp, bulaloil;
-	//public static Sound hitEmpty, hitFriend, hitFunny, beep;
+	// public static Sound hitSmash, buttonDown, buttonUp, bulaloil;
+	// public static Sound hitEmpty, hitFriend, hitFunny, beep;
 	public static Music titleMusic, gameMusic, gameMusic2, gameOver, buzzer,
-			gameStart, hitSmash, buttonDown, buttonUp, bulaloil, hitEmpty, hitFriend, hitFunny, beep;
+			gameStart, hitSmash, buttonDown, buttonUp, bulaloil, hitEmpty,
+			hitFriend, hitFunny, beep;
 	private static Preferences prefs;
 
 	public static BitmapFont digital, digitalShadow, bit, bitWhite, bitGold,
@@ -133,17 +135,15 @@ public class AssetLoader {
 				Gdx.files.internal("data/GameScreenTexture.png"));
 		gameTexture.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
 
-		//upload
-		
-		if(uploads.checkCustomDummy() == true){
-		upload = setCustomDummy();
-		upload.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
-		
-		}else{
-		upload = new Texture(Gdx.files.external("aries.png"));
-		upload.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
+		// upload
+		if (uploads.checkCustomDummy() == true) {
+			upload = setCustomDummy();
+			upload.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
+		} else {
+			upload = new Texture(Gdx.files.external("aries.png"));
+			upload.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
 		}
-		
+
 		hammerAngles = new Texture(
 				Gdx.files.internal("data/HammerAngleTexture.png"));
 		hammerAngles.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
@@ -230,7 +230,7 @@ public class AssetLoader {
 		backPressed.flip(false, true);
 		pauseButton.flip(false, true);
 		pausePressed.flip(false, true);
-		
+
 		bgmOnUp = new TextureRegion(pauseTexture, 290, 374, 38, 38);
 		bgmOnDown = new TextureRegion(pauseTexture, 290, 413, 38, 38);
 		bgmOffUp = new TextureRegion(pauseTexture, 328, 374, 38, 38);
@@ -239,7 +239,7 @@ public class AssetLoader {
 		sfxOnDown = new TextureRegion(pauseTexture, 366, 413, 38, 38);
 		sfxOffUp = new TextureRegion(pauseTexture, 404, 374, 38, 38);
 		sfxOffDown = new TextureRegion(pauseTexture, 404, 413, 38, 38);
-		
+
 		bgmOnUp.flip(false, true);
 		bgmOnDown.flip(false, true);
 		bgmOffUp.flip(false, true);
@@ -258,7 +258,7 @@ public class AssetLoader {
 		dummyDefault2 = new TextureRegion(dummy, 64, 308, 64, 92);
 		dummyDefault3 = new TextureRegion(dummy, 128, 308, 64, 92);
 		dummyDefault4 = new TextureRegion(dummy, 191, 308, 64, 92);
-		
+
 		dummyJanitor1 = new TextureRegion(dummy, 0, 124, 64, 92);
 		dummyJanitor2 = new TextureRegion(dummy, 64, 124, 64, 92);
 		dummyJanitor3 = new TextureRegion(dummy, 128, 124, 64, 92);
@@ -268,27 +268,27 @@ public class AssetLoader {
 		dummyOffice2 = new TextureRegion(dummy, 64, 216, 64, 92);
 		dummyOffice3 = new TextureRegion(dummy, 128, 216, 64, 92);
 		dummyOffice4 = new TextureRegion(dummy, 191, 216, 64, 92);
-		
+
 		dummyBaby1 = new TextureRegion(dummy, 0, 32, 64, 92);
 		dummyBaby2 = new TextureRegion(dummy, 64, 32, 64, 92);
 		dummyBaby3 = new TextureRegion(dummy, 128, 32, 64, 92);
 		dummyBaby4 = new TextureRegion(dummy, 191, 32, 64, 92);
-		
+
 		dummyBaby1.flip(false, true);
 		dummyBaby2.flip(false, true);
 		dummyBaby3.flip(false, true);
 		dummyBaby4.flip(false, true);
-		
+
 		dummyDefault1.flip(false, true);
 		dummyDefault2.flip(false, true);
 		dummyDefault3.flip(false, true);
 		dummyDefault4.flip(false, true);
-		
+
 		dummyJanitor1.flip(false, true);
 		dummyJanitor2.flip(false, true);
 		dummyJanitor3.flip(false, true);
 		dummyJanitor4.flip(false, true);
-		
+
 		dummyOffice1.flip(false, true);
 		dummyOffice2.flip(false, true);
 		dummyOffice3.flip(false, true);
@@ -350,7 +350,7 @@ public class AssetLoader {
 		wood = new TextureRegion(woodTexture, 0, 0, 320, 512);
 		steel = new TextureRegion(steelTexture, 0, 0, 320, 512);
 		carbon = new TextureRegion(carbonTexture, 0, 0, 320, 512);
-		uploadRegion = new TextureRegion(upload,0,0,64,92);
+		uploadRegion = new TextureRegion(upload, 0, 0, 64, 92);
 
 		useUp = new TextureRegion(cSTexture, 330, 3, 69, 27);
 		useDown = new TextureRegion(cSTexture, 409, 3, 69, 27);
@@ -368,10 +368,10 @@ public class AssetLoader {
 		boyIconDown = new TextureRegion(cSTexture, 409, 345, 67, 67);
 		farmerIconUp = new TextureRegion(cSTexture, 330, 415, 67, 67);
 		farmerIconDown = new TextureRegion(cSTexture, 409, 415, 67, 67);
-		
+
 		uploadDown = new TextureRegion(pauseTexture, 505, 251, 134, 52);
 		uploadUp = new TextureRegion(pauseTexture, 505, 303, 134, 52);
-		
+
 		uploadUp.flip(false, true);
 		uploadDown.flip(false, true);
 
@@ -476,13 +476,14 @@ public class AssetLoader {
 				dummyJanitor2, dummyJanitor1 };
 		janitorDummyDies = new Animation(0.03f, dummyJanitorRev);
 		janitorDummyDies.setPlayMode(Animation.NORMAL);
-		
-		TextureRegion[] dummyBaby = {dummyBaby1, dummyBaby2, dummyBaby3, dummyBaby4};
+
+		TextureRegion[] dummyBaby = { dummyBaby1, dummyBaby2, dummyBaby3,
+				dummyBaby4 };
 		dummyBabies = new Animation(0.03f, dummyBaby);
 		dummyBabies.setPlayMode(Animation.NORMAL);
 		babyDies = new Animation(0.03f, dummyBaby);
 		babyDies.setPlayMode(Animation.REVERSED);
-		
+
 		TextureRegion[] dummiesCustom = { uploadRegion };
 		dummyCustom = new Animation(0.03f, dummiesCustom);
 		dummyCustom.setPlayMode(Animation.NORMAL);
@@ -492,7 +493,7 @@ public class AssetLoader {
 
 		// Preferences
 		// ======================================================================================
-		// ==================================================================================================
+		// ======================================================================================
 
 		// Create or retrive existing preferences file
 		prefs = Gdx.app.getPreferences("WhackAFoe");
@@ -514,18 +515,17 @@ public class AssetLoader {
 		prefs.flush();
 	}
 
-	public static Texture setCustomDummy(){
+	public static Texture setCustomDummy() {
 		Texture upload = null;
-		if(uploads.checkCustomDummy() == true){
+		if (uploads.checkCustomDummy() == true) {
 			upload = uploadThis.getImage();
 			System.out.println("upload updated");
-		}
-		else{
+		} else {
 			System.out.println("no custom dummy set");
 		}
 		return upload;
 	}
-	
+
 	// Retrieves the current ticket value
 	public static int getTicket() {
 		return prefs.getInteger("ticket");
@@ -546,7 +546,6 @@ public class AssetLoader {
 	public static void clearPref() {
 		prefs.clear();
 	}
-	
 
 	public static void dispose() {
 		// We must dispose of the textures when we are finished
