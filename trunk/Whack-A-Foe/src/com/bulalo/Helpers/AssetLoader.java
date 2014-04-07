@@ -546,14 +546,6 @@ public class AssetLoader {
 	public static void clearPref() {
 		prefs.clear();
 	}
-<<<<<<< HEAD
-	
-	public static void loadUpload(){
-		
-	}
-=======
->>>>>>> 604061297d8f1d174f495b57bf5c54ed27966d29
-
 	public static void dispose() {
 		// We must dispose of the textures when we are finished
 		gameTexture.dispose();
