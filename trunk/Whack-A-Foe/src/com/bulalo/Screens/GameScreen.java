@@ -51,7 +51,6 @@ public class GameScreen implements Screen{
 		
 		if(world.backToMain == true){
 			game.setScreen(new MenuScreen(game));
-			this.dispose();
 		}
 		
 		world.update(delta);

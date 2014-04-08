@@ -56,8 +56,8 @@ public class ShopScreen implements Screen {
 		runTime += delta;
 		
 		if(backButton.isJustPressed()){
+			dispose();
 			game.setScreen(new MenuScreen(game));
-			this.dispose();
 		}
 		
 		shop.update(delta);

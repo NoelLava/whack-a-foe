@@ -548,6 +548,9 @@ public class AssetLoader {
 		prefs.clear();
 	}
 	
+	public static void loadUpload(){
+		
+	}
 
 	public static void dispose() {
 		// We must dispose of the textures when we are finished
