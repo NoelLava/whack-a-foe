@@ -7,7 +7,7 @@ public class Upgrades {
 	
 	private Vector2 position;
 	private Rectangle bounds;
-	private float x, y, width, height;
+	float x, y, width, height;
 	private boolean isPressed = false;
 	
 	public Upgrades(float x, float y, float width, float height){

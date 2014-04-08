@@ -10,7 +10,7 @@ import com.bulalo.UI.Button;
 
 public class InputHandler implements InputProcessor {
 	private GameWorld myWorld;
-	private Dummy myDummy;
+	Dummy myDummy;
 
 	private static List<Dummy> dummies;
 	private static List<Dummy> friends;
@@ -19,7 +19,7 @@ public class InputHandler implements InputProcessor {
 	private static List<Button> gamePausedButtons;
 	private static List<HammerPosition> hammerAngles;
 
-	private static boolean woodTrue, steelTrue, carbonTrue, bossTrue,
+	static boolean woodTrue, steelTrue, carbonTrue, bossTrue,
 			farmerTrue, boyTrue;
 
 	float scaleFactorX;
@@ -180,7 +180,7 @@ public class InputHandler implements InputProcessor {
 		myWorld.addScore(increment);
 	}
 
-	private void subtractScore(int decrement) {
+	void subtractScore(int decrement) {
 		myWorld.subtractScore(decrement);
 	}
 

@@ -19,8 +19,8 @@ public class CustomizeScreen implements Screen {
 	private String background = "";
 	private float runTime = 0;
 	private CustomWorld custom;
-	private Tables table;
-	private GameWorld world;
+	Tables table;
+	GameWorld world;
 	
 	private static List<Button> customButtons;
 	private Button backButton;

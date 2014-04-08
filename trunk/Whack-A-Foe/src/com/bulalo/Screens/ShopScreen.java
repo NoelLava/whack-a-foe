@@ -20,8 +20,8 @@ public class ShopScreen implements Screen {
 	private String pamalo = "";
 	private float runTime = 0;
 	private ShopWorld shop;
-	private Hammers hammer;
-	private GameWorld world;
+	Hammers hammer;
+	GameWorld world;
 	 
 	private static List<Button> shopButtons;
 	private Button backButton;

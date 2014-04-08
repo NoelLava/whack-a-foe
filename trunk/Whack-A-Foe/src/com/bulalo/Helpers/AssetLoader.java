@@ -117,7 +117,7 @@ public class AssetLoader {
 
 	private static CustomInputHandler uploads = new CustomInputHandler();
 	static Upload uploadThis = new Upload();
-	private static String source;
+	static String source;
 	// public static Sound hitSmash, buttonDown, buttonUp, bulaloil;
 	// public static Sound hitEmpty, hitFriend, hitFunny, beep;
 	public static Music titleMusic, gameMusic, gameMusic2, gameOver, buzzer,

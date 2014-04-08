@@ -9,7 +9,7 @@ public class Dummy {
 	private int life;
 	private int width;
 	private int height;
-	private Dummy myDummy;
+	Dummy myDummy;
 	
 	private Rectangle bounds;
 	private boolean markedForRemoval;

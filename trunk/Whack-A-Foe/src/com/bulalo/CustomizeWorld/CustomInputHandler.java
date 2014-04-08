@@ -5,7 +5,6 @@ import java.util.Scanner;
 
 import com.badlogic.gdx.InputProcessor;
 import com.bulalo.FileUpload.Upload;
-import com.bulalo.Helpers.AssetLoader;
 import com.bulalo.UI.Button;
 
 public class CustomInputHandler implements InputProcessor{

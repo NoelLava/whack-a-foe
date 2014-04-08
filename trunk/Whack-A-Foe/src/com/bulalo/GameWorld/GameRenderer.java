@@ -12,7 +12,6 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.bulalo.CustomizeWorld.CustomInputHandler;
-import com.bulalo.FileUpload.Upload;
 import com.bulalo.GameObjects.Dummy;
 import com.bulalo.GameObjects.HammerPosition;
 import com.bulalo.Helpers.AssetLoader;
@@ -28,7 +27,7 @@ public class GameRenderer {
 	private ShopInputHandler shop = new ShopInputHandler();
 	private SpriteBatch batcher;
 
-	private Dummy dummy;
+	Dummy dummy;
 	private List<Dummy> dummies;
 	private List<Dummy> friends;
 	private List<Button> gameButtons;
@@ -37,17 +36,11 @@ public class GameRenderer {
 	private List<HammerPosition> hammerPositions;
 	private TextureRegion hamLeft, hamMid, hamRight;
 	private TextureRegion table;
-	private Animation dummyDefault;
-	private Animation dummyDefaultDies;
-	private Animation dummyJanitor;
-	private Animation dummyJanitorDies;
-	private Animation dummyOffice;
-	private Animation dummyOfficeDies;
 	private Animation thisAnimation;
 	private Animation thisAnimationDies;
-	private Animation dummyAnimation;
-	private Animation dummyDies;
-	private Animation tableScreen;
+	Animation dummyAnimation;
+	Animation dummyDies;
+	Animation tableScreen;
 
 	public GameRenderer(GameWorld world) {
 		myWorld = world;

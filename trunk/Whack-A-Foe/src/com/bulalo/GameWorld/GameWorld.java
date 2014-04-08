@@ -13,7 +13,8 @@ import com.bulalo.Helpers.InputHandler;
 import com.bulalo.UI.Button;
 
 public class GameWorld {
-	private Timer timer, dummyTimer, gameTimer;
+	private Timer timer, dummyTimer; 
+	Timer gameTimer;
 	private Dummy dummy;
 
 	// Game Counters

@@ -15,7 +15,7 @@ import com.bulalo.Helpers.AssetLoader;
 import com.bulalo.UI.Button;
 
 public class ShopRenderer {
-	private static ShopWorld shop = new ShopWorld();
+	static ShopWorld shop = new ShopWorld();
 	private ShapeRenderer shapeRenderer;
 
 	private OrthographicCamera cam;

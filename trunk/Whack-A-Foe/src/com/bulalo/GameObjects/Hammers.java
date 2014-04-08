@@ -2,12 +2,11 @@ package com.bulalo.GameObjects;
 
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
-import com.bulalo.GameWorld.GameWorld;
 
 public class Hammers {
 	private Vector2 position;
 	private Rectangle bounds;
-	private float x, y, width, height;
+	float x, y, width, height;
 	private boolean isPressed = false;
 	
 	public Hammers(float x, float y, float width, float height){

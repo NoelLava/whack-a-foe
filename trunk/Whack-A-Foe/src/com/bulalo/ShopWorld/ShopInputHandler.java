@@ -7,7 +7,7 @@ import com.bulalo.Helpers.AssetLoader;
 import com.bulalo.UI.Button;
 
 public class ShopInputHandler implements InputProcessor {
-	private ShopWorld shopWorld;
+	ShopWorld shopWorld;
 
 	private static boolean hammerTrue;
 	private static boolean hammer1True;
