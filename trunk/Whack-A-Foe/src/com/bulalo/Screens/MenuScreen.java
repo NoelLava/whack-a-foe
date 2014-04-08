@@ -56,14 +56,17 @@ public class MenuScreen implements Screen {
 		runTime += delta;
 
 		if(playButton.isJustPressed()){
+			this.dispose();
+			
 			game.setScreen(new GameScreen(game));
-			this.dispose();
 		}else if(shopButton.isJustPressed()){
+			this.dispose();
+			
 			game.setScreen(new ShopScreen(game));
-			this.dispose();
 		}else if(customButton.isJustPressed()){
-			game.setScreen(new CustomizeScreen(game));
 			this.dispose();
+			
+			game.setScreen(new CustomizeScreen(game));
 		}
 	
 		menu.update(delta);
