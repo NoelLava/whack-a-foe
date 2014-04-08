@@ -116,12 +116,11 @@ public class ShopWorld {
 				}
 				shopInputHandler.computeTickets(price);
 			}
-
 			buyScoreUpgrade.setJustPressed(false);
 		}
 
 		if (buyBakal.isJustPressed()) {
-			int price = 5;
+			int price = 400;
 
 			if (AssetLoader.getTicket() >= price) {
 				ShopInputHandler.steelIsBought = true;
@@ -130,7 +129,7 @@ public class ShopWorld {
 			buyBakal.setJustPressed(false);
 		}
 		if (buyGinto.isJustPressed()) {
-			int price = 2;
+			int price = 500;
 
 			if (AssetLoader.getTicket() >= price) {
 				ShopInputHandler.goldIsBought = true;

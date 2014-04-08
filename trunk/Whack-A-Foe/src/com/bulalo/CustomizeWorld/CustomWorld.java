@@ -22,7 +22,11 @@ public class CustomWorld {
 		backButton = new Button(137.85f, 1.85f, 21.5f, 20.5f,
 				AssetLoader.backButton, AssetLoader.backPressed);
 		
+<<<<<<< HEAD
 		upload = new Button(46, 233.5f, 67, 14,
+=======
+		upload = new Button(23, 217.5f, 67, 26,
+>>>>>>> 604061297d8f1d174f495b57bf5c54ed27966d29
 				AssetLoader.uploadUp, AssetLoader.uploadDown);
 		
 		//icons for the tables
@@ -31,16 +35,16 @@ public class CustomWorld {
 		table2 = new Button(100, 75, 38, 38, AssetLoader.carbonIconUp,AssetLoader.carbonIconDown);	
 		
 		//icons for the dummies
-		dummy = new Button(20, 180, 38, 38, AssetLoader.bossIconUp,AssetLoader.bossIconDown);
-		dummy1 = new Button(60, 180, 38, 38, AssetLoader.farmerIconUp,AssetLoader.farmerIconDown);
-		dummy2 = new Button(100, 180, 38, 38, AssetLoader.boyIconUp,AssetLoader.boyIconDown);
+		dummy = new Button(20, 150, 38, 38, AssetLoader.bossIconUp,AssetLoader.bossIconDown);
+		dummy1 = new Button(60, 150, 38, 38, AssetLoader.farmerIconUp,AssetLoader.farmerIconDown);
+		dummy2 = new Button(100, 150, 38, 38, AssetLoader.boyIconUp,AssetLoader.boyIconDown);
 		
 		useWood = new Button(22,115,34.5f,13.5f, AssetLoader.useUp, AssetLoader.useDown);
 		useSteel = new Button(62,115,34.5f,13.5f, AssetLoader.useUp, AssetLoader.useDown);
 		useCarbon = new Button(102,115,34.5f,13.5f, AssetLoader.useUp, AssetLoader.useDown);
-		useBoss = new Button(22,220,34.5f,13.5f, AssetLoader.useUp, AssetLoader.useDown);
-		useFarmer = new Button(62,220,34.5f,13.5f, AssetLoader.useUp, AssetLoader.useDown);
-		useBoy = new Button(102,220,34.5f,13.5f, AssetLoader.useUp, AssetLoader.useDown);
+		useBoss = new Button(22,190,34.5f,13.5f, AssetLoader.useUp, AssetLoader.useDown);
+		useFarmer = new Button(62,190,34.5f,13.5f, AssetLoader.useUp, AssetLoader.useDown);
+		useBoy = new Button(102,190,34.5f,13.5f, AssetLoader.useUp, AssetLoader.useDown);
 		
 		customButtons.add(backButton);
 		customButtons.add(table);

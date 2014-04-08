@@ -18,10 +18,6 @@ public class MenuScreen implements Screen {
 	private float runTime = 0;
 
 	private static List<Button> menuButtons;
-	private static List<Button> sfxButtonsOn;
-	
-	private Button sfxButtonOn;
-
 	private Button playButton;
 	private Button shopButton;
 	private Button customButton;
@@ -53,16 +49,11 @@ public class MenuScreen implements Screen {
 		playButton = menuButtons.get(0);
 		shopButton = menuButtons.get(1);
 		customButton = menuButtons.get(2);
-		
-		sfxButtonsOn = MenuWorld.getSFXButtonOn();
-		sfxButtonOn = sfxButtonsOn.get(0); 
 	}
 
 	@Override
 	public void render(float delta) {
 		runTime += delta;
-		// if (Gdx.input.justTouched()) // use your own criterion here
-		// game.setScreen(game.gameScreen);
 
 		if(playButton.isJustPressed()){
 			game.setScreen(new GameScreen(game));

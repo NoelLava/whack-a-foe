@@ -13,25 +13,18 @@ import com.bulalo.Helpers.AssetLoader;
 import com.bulalo.UI.Button;
 
 public class MenuRenderer {
-	private static MenuWorld menu = new MenuWorld();
 	private ShapeRenderer shapeRenderer;
 	
 	private OrthographicCamera cam;
 	
 	private SpriteBatch batcher;
 	private TextureRegion titleBg;
-	
-	private Button sfxMusicButton;
-	private Button bgmMusicButton;
 
 	private List<Button> menuButtons;
 	private List<Button> sfxButtons;
 	private List<Button> bgmButtons;
 
-	
-	
 	public MenuRenderer(MenuWorld world) {
-		menu = world;
         this.menuButtons = MenuWorld.getMenuButtons();
         this.sfxButtons = MenuWorld.getSFXButtonOn();
         this.bgmButtons = MenuWorld.getBGMButtonOn();
@@ -81,28 +74,6 @@ public class MenuRenderer {
 		}else{
 			bgmButtons.get(1).draw(batcher);
 		}
-		
-//			if(sfxButtons.get(0).isJustPressed() || sfxButtons.get(0).isPressed() || sfxButtons.get(1).isPressed()){
-//				this.sfxMusicButton = sfxButtons.get(1);
-//				sfxMusicButton.draw(batcher);
-//			} 
-//			
-//			if(sfxButtons.get(1).isJustPressed() || sfxButtons.get(1).isPressed() || sfxButtons.get(1).isPressed()){
-//				this.sfxMusicButton = sfxButtons.get(0);
-//				sfxMusicButton.draw(batcher);
-//			}
-//
-//			if(bgmButtons.get(0).isJustPressed() || bgmButtons.get(0).isPressed() || bgmButtons.get(1).isPressed()){
-//				this.bgmMusicButton = bgmButtons.get(1);
-//				bgmMusicButton.draw(batcher);
-//				
-//			}
-//			
-//			if(bgmButtons.get(1).isPressed() || bgmButtons.get(1).isPressed() || bgmButtons.get(0).isPressed()){
-//				this.bgmMusicButton = bgmButtons.get(0);
-//				bgmMusicButton.draw(batcher);
-//		
-//			}	
 	}
 
 

@@ -30,6 +30,11 @@ public class MenuWorld {
 		menuButtons = new ArrayList<Button>();
 		sfxButtons = new ArrayList<Button>();
 		bgmButtons = new ArrayList<Button>();
+<<<<<<< HEAD
+=======
+		//AssetLoader.load();
+		
+>>>>>>> 604061297d8f1d174f495b57bf5c54ed27966d29
 		// playButton = new Button(Gdx.graphics.getWidth() / 2 - 144.05f,
 		// Gdx.graphics.getHeight() / 2 - 147.6f, 43, 41,
 		// AssetLoader.redButton, AssetLoader.redPressed);
