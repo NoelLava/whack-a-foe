@@ -59,7 +59,7 @@ public class ShopScreen implements Screen {
 			dispose();
 			game.setScreen(new MenuScreen(game));
 		}
-		
+		 
 		shop.update(delta);
 		renderer.render(runTime);
 		

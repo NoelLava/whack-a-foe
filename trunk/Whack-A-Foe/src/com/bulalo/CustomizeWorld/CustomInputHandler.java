@@ -78,7 +78,6 @@ public class CustomInputHandler implements InputProcessor{
 				System.out.println("Input image source here: ");
 				source = input.nextLine();
 				upload.getTexture(source);
-				AssetLoader.load();
 				boyTrue = false;
 				bossTrue = false;
 				farmerTrue = false;
