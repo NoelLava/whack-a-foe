@@ -22,7 +22,7 @@ public class CustomWorld {
 		backButton = new Button(137.85f, 1.85f, 21.5f, 20.5f,
 				AssetLoader.backButton, AssetLoader.backPressed);
 		
-		upload = new Button(46, 233.5f, 67, 14,AssetLoader.uploadUp, AssetLoader.uploadDown);
+		upload = new Button(20, 213, 67, 26,AssetLoader.uploadUp, AssetLoader.uploadDown);
 		
 		//icons for the tables
 		table = new Button(20, 75, 38, 38, AssetLoader.woodIconUp, AssetLoader.woodIconDown);	
