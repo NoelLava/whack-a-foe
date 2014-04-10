@@ -40,7 +40,6 @@ public class CustomWorld {
 		useBoss = new Button(22,190,34.5f,13.5f, AssetLoader.useUp, AssetLoader.useDown);
 		useFarmer = new Button(62,190,34.5f,13.5f, AssetLoader.useUp, AssetLoader.useDown);
 		useBoy = new Button(102,190,34.5f,13.5f, AssetLoader.useUp, AssetLoader.useDown);
-		
 		customButtons.add(backButton);
 		customButtons.add(table);
 		customButtons.add(table1);
@@ -59,6 +58,7 @@ public class CustomWorld {
 	}
 	
 	public void update(float delta){	
+		
 	}
 	
 		

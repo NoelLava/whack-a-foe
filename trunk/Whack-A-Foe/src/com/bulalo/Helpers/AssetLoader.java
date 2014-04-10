@@ -128,6 +128,22 @@ public class AssetLoader {
 	public static BitmapFont digital, digitalShadow, bit, bitWhite, bitGold,
 			bitGoldSh, priceGold, priceShadow, bitWarning;
 
+	public static void updateUpload(){
+			Texture.setEnforcePotImages(false);
+		// upload
+			
+				if (uploads.checkCustomDummy() == true) {
+					upload = setCustomDummy();
+					upload.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
+				} else {
+					upload = new Texture(Gdx.files.external("aries.png"));
+					upload.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
+				}
+				
+				uploadRegion = new TextureRegion(upload, 0, 0, 64, 92);
+				uploadRegion.flip(false, true);
+	}
+	
 	public static void load() {
 		Texture.setEnforcePotImages(false);
 
@@ -135,14 +151,7 @@ public class AssetLoader {
 				Gdx.files.internal("data/GameScreenTexture.png"));
 		gameTexture.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
 
-		// upload
-		if (uploads.checkCustomDummy() == true) {
-			upload = setCustomDummy();
-			upload.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
-		} else {
-			upload = new Texture(Gdx.files.external("aries.png"));
-			upload.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
-		}
+		updateUpload();
 
 		hammerAngles = new Texture(
 				Gdx.files.internal("data/HammerAngleTexture.png"));
@@ -350,8 +359,7 @@ public class AssetLoader {
 		wood = new TextureRegion(woodTexture, 0, 0, 320, 512);
 		steel = new TextureRegion(steelTexture, 0, 0, 320, 512);
 		carbon = new TextureRegion(carbonTexture, 0, 0, 320, 512);
-		uploadRegion = new TextureRegion(upload, 0, 0, 64, 92);
-
+		
 		useUp = new TextureRegion(cSTexture, 330, 3, 69, 27);
 		useDown = new TextureRegion(cSTexture, 409, 3, 69, 27);
 		buyUp = new TextureRegion(cSTexture, 330, 35, 69, 27);
@@ -379,8 +387,7 @@ public class AssetLoader {
 		wood.flip(false, true);
 		steel.flip(false, true);
 		carbon.flip(false, true);
-		uploadRegion.flip(false, true);
-
+	
 		useUp.flip(false, true);
 		useDown.flip(false, true);
 		buyUp.flip(false, true);

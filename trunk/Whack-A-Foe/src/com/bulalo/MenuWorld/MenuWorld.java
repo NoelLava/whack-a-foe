@@ -30,8 +30,7 @@ public class MenuWorld {
 		menuButtons = new ArrayList<Button>();
 		sfxButtons = new ArrayList<Button>();
 		bgmButtons = new ArrayList<Button>();
-		//AssetLoader.load();
-		
+		AssetLoader.load();
 		// playButton = new Button(Gdx.graphics.getWidth() / 2 - 144.05f,
 		// Gdx.graphics.getHeight() / 2 - 147.6f, 43, 41,
 		// AssetLoader.redButton, AssetLoader.redPressed);
@@ -41,8 +40,6 @@ public class MenuWorld {
 		// customButton = new Button(Gdx.graphics.getWidth() / 2 - 144.05f,
 		// Gdx.graphics.getHeight() / 2 - 68.47f, 43, 41,
 		// AssetLoader.blueButton, AssetLoader.bluePressed);
-		AssetLoader.load();
-		
 		playButton = new Button(15.95f, 108.4f, 43, 41, AssetLoader.redButton,
 				AssetLoader.redPressed);
 		shopButton = new Button(15.95f, 147.46f, 43, 41,

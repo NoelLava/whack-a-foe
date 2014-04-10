@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 import com.badlogic.gdx.InputProcessor;
 import com.bulalo.FileUpload.Upload;
+import com.bulalo.Helpers.AssetLoader;
 import com.bulalo.UI.Button;
 
 public class CustomInputHandler implements InputProcessor{
@@ -74,13 +75,14 @@ public class CustomInputHandler implements InputProcessor{
 		for (Button thisButton : customButtons) {
 			thisButton.isTouchDown(screenX, screenY);
 			if(customButtons.get(7).isJustPressed()){
-				System.out.println("Input image source here: ");
-				source = input.nextLine();
-				upload.getTexture(source);
 				boyTrue = false;
 				bossTrue = false;
 				farmerTrue = false;
 				customDummy = true;
+				System.out.println("Input image source here: ");
+				source = input.nextLine();
+				upload.getTexture(source);
+				AssetLoader.updateUpload();
 				break;
 			}
 			for (Button thisUseButton : useButton){
