@@ -240,13 +240,13 @@ public class AssetLoader {
 		pauseButton.flip(false, true);
 		pausePressed.flip(false, true);
 
-		bgmOnUp = new TextureRegion(pauseTexture, 290, 374, 38, 38);
-		bgmOnDown = new TextureRegion(pauseTexture, 290, 413, 38, 38);
-		bgmOffUp = new TextureRegion(pauseTexture, 328, 374, 38, 38);
-		bgmOffDown = new TextureRegion(pauseTexture, 328, 413, 38, 38);
-		sfxOnUp = new TextureRegion(pauseTexture, 366, 374, 38, 38);
+		bgmOnUp = new TextureRegion(pauseTexture, 290, 376, 38, 38);
+		bgmOnDown = new TextureRegion(pauseTexture, 290, 413.5f, 38, 38);
+		bgmOffUp = new TextureRegion(pauseTexture, 328, 376, 38, 38);
+		bgmOffDown = new TextureRegion(pauseTexture, 328, 413.5f, 38, 38);
+		sfxOnUp = new TextureRegion(pauseTexture, 366, 376, 38, 38);
 		sfxOnDown = new TextureRegion(pauseTexture, 366, 413, 38, 38);
-		sfxOffUp = new TextureRegion(pauseTexture, 404, 374, 38, 38);
+		sfxOffUp = new TextureRegion(pauseTexture, 404, 376, 38, 38);
 		sfxOffDown = new TextureRegion(pauseTexture, 404, 413, 38, 38);
 
 		bgmOnUp.flip(false, true);

@@ -47,11 +47,11 @@ public class MenuWorld {
 		customButton = new Button(15.95f, 187.53f, 43, 41,
 				AssetLoader.blueButton, AssetLoader.bluePressed);	
 		
-		sfxButtonOn = new Button(5, 237, 15, 15, AssetLoader.sfxOnUp, AssetLoader.sfxOnDown);
-		bgmButtonOn = new Button(20, 237, 15, 15, AssetLoader.bgmOnUp, AssetLoader.bgmOnDown);
+		sfxButtonOn = new Button(16 , 237, 15, 15, AssetLoader.sfxOnUp, AssetLoader.sfxOnDown);
+		bgmButtonOn = new Button(32, 237, 15, 15, AssetLoader.bgmOnUp, AssetLoader.bgmOnDown);
 		
-		sfxButtonOff = new Button(5, 237, 15, 15, AssetLoader.sfxOffUp, AssetLoader.sfxOffDown);
-		bgmButtonOff = new Button(20, 237, 15, 15, AssetLoader.bgmOffUp, AssetLoader.bgmOffDown);
+		sfxButtonOff = new Button(16, 237, 15, 15, AssetLoader.sfxOffUp, AssetLoader.sfxOffDown);
+		bgmButtonOff = new Button(32, 237, 15, 15, AssetLoader.bgmOffUp, AssetLoader.bgmOffDown);
 
 		upload = new Upload();
 		
