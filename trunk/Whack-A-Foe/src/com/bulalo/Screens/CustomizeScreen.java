@@ -56,7 +56,7 @@ public class CustomizeScreen implements Screen {
 		runTime += delta;
 		
 		if(backButton.isJustPressed()){
-			dispose();
+			this.dispose();
 			game.setScreen(new MenuScreen(game));
 		}
 		
